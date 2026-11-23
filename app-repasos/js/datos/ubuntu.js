@@ -319,3 +319,197 @@ DATOS.ubuntu = {
       explicacion: "Conviene trabajar siempre con el usuario común y usar root solo cuando sea necesario." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de test (nivel 1º Bachillerato)
+   ========================================================= */
+
+DATOS.ubuntu.test.basico.push(
+  { p: "¿Qué comando se usa para cambiar de directorio en la terminal?",
+    op: ["pwd", "cd", "ls", "mkdir"], r: 1,
+    e: "cd /home entra en esa carpeta; cd sin argumentos vuelve a la carpeta personal del usuario." },
+
+  { p: "¿Cuál es el directorio raíz del sistema en GNU/Linux?",
+    op: ["/home", "/etc", "/", "/var"], r: 2,
+    e: "Todo cuelga de /; a diferencia de Windows no hay letras de unidad como C:." },
+
+  { p: "¿Cómo se indica al comando cd que queremos subir al directorio padre?",
+    op: ["cd .", "cd ..", "cd ~", "cd /"], r: 1,
+    e: "cd . no cambia de carpeta; cd ~ lleva a la carpeta personal." },
+
+  { p: "En la terminal, el símbolo ~ representa:",
+    op: ["la raíz del sistema", "el directorio personal del usuario", "el directorio actual", "la papelera"], r: 1,
+    e: "~/Documentos equivale a /home/usuario/Documentos." },
+
+  { p: "¿Qué muestra la opción -l del comando ls?",
+    op: ["Los permisos, el propietario, el tamaño y la fecha de cada archivo",
+         "Solo los archivos ocultos", "El contenido de todos los archivos", "La lista de procesos"], r: 0,
+    e: "ls -l da el listado en formato largo; ls -a incluye también los archivos ocultos." },
+
+  { p: "¿Qué contiene el directorio /bin de GNU/Linux?",
+    op: ["Archivos de configuración", "Los documentos del usuario",
+         "Programas ejecutables esenciales", "Archivos temporales"], r: 2,
+    e: "/etc guarda la configuración, /home los usuarios y /tmp los archivos temporales." },
+
+  { p: "¿Qué comando elimina una carpeta vacía?",
+    op: ["rmdir", "rmfile", "del", "erase"], r: 0,
+    e: "rmdir solo funciona si la carpeta está vacía; para borrar una carpeta con contenido se usa rm -r." },
+
+  { p: "En el símbolo del sistema de la terminal, el carácter # indica que:",
+    op: ["Se está trabajando como root", "Hay un error de sintaxis",
+         "El equipo está apagado", "Falta un archivo"], r: 0,
+    e: "Con un usuario normal el símbolo es $; con el superusuario root es #." },
+
+  { p: "¿Cómo se reconocen los archivos ocultos en GNU/Linux?",
+    op: ["Su nombre empieza por un punto", "Su nombre empieza por una arroba",
+         "Siempre se llaman oculto.txt", "No se pueden crear desde la terminal"], r: 0,
+    e: "Por ejemplo .bashrc; para verlos hay que usar ls -a." },
+
+  { p: "¿Qué comando muestra un archivo de texto pantalla a pantalla?",
+    op: ["cat", "more", "pwd", "touch"], r: 1,
+    e: "cat lo muestra todo de una vez; more avanza con la barra espaciadora." },
+
+  { p: "¿Para qué sirve el comando echo?",
+    op: ["Para mostrar un texto en pantalla", "Para crear una carpeta",
+         "Para copiar un archivo", "Para cambiar de directorio"], r: 0,
+    e: "echo Hola escribe Hola; también se usa para redirigir texto a un archivo con >." },
+
+  { p: "¿Qué tecla completa automáticamente el nombre de un comando o archivo en la terminal?",
+    op: ["Intro", "Tabulador (Tab)", "Escape", "Suprimir"], r: 1,
+    e: "Pulsando dos veces Tab se muestran las posibles coincidencias." },
+
+  { p: "¿Qué es un shell?",
+    op: ["Un intérprete que lee y ejecuta las órdenes del usuario",
+         "Un editor de imágenes", "Un gestor de particiones", "Un tipo de archivo comprimido"], r: 0,
+    e: "Es la interfaz de texto entre el usuario y el núcleo del sistema." },
+
+  { p: "¿Para qué se usa el directorio /tmp?",
+    op: ["Para guardar la configuración", "Para archivos temporales",
+         "Para los programas instalados", "Para los archivos de arranque"], r: 1,
+    e: "Su contenido suele borrarse al reiniciar; /boot guarda el núcleo y los archivos de arranque." },
+
+  { p: "¿Cuál es el intérprete de comandos (shell) por defecto en Ubuntu?",
+    op: ["cmd", "bash", "PowerShell", "csh"], r: 1,
+    e: "bash = Bourne Again SHell; otros shells como zsh se pueden instalar después." },
+
+  { p: "¿Qué comando cierra la sesión de la terminal?",
+    op: ["exit", "clear", "stop", "close"], r: 0,
+    e: "También funciona Ctrl+D; clear solo borra lo mostrado en pantalla." }
+);
+
+DATOS.ubuntu.test.medio.push(
+  { p: "¿Qué comando comprueba si hay conexión con otro equipo enviando paquetes?",
+    op: ["ping", "ipconfig", "net use", "ls"], r: 0,
+    e: "ping envía paquetes y muestra el tiempo de respuesta; ipconfig es el comando de Windows." },
+
+  { p: "¿Qué orden muestra la ruta que siguen los paquetes hasta un destino?",
+    op: ["ping", "ip a", "traceroute", "who"], r: 2,
+    e: "En Windows el equivalente es tracert; en Linux se usa traceroute." },
+
+  { p: "¿Qué permite hacer el comando sudo?",
+    op: ["Cambiar la contraseña del usuario", "Ejecutar una orden con privilegios de root",
+         "Apagar el equipo", "Listar los archivos del sistema"], r: 1,
+    e: "sudo nombre_de_orden pide la contraseña del usuario y ejecuta esa sola orden como root." },
+
+  { p: "¿Qué comando cambia el propietario de un archivo?",
+    op: ["chmod", "chown", "chgrp", "whoami"], r: 1,
+    e: "chown usuario:grupo archivo cambia dueño y grupo; chmod cambia los permisos." },
+
+  { p: "¿Qué opción de cp permite copiar carpetas con todo su contenido?",
+    op: ["-r", "-v", "-f", "-n"], r: 0,
+    e: "cp -r origen destino copia de forma recursiva; -v muestra el progreso." },
+
+  { p: "¿Cuál es el gestor de paquetes que Ubuntu usa desde la terminal para instalar paquetes .deb?",
+    op: ["rpm", "apt", "yum", "msi"], r: 1,
+    e: "rpm es de Fedora/Red Hat, yum se usó en distribuciones antiguas de Red Hat y msi es de Windows." },
+
+  { p: "¿Qué hace sudo apt upgrade?",
+    op: ["Instala un paquete nuevo", "Actualiza los paquetes instalados a las versiones disponibles",
+         "Elimina todos los paquetes", "Cambia el gestor de arranque"], r: 1,
+    e: "apt update actualiza el índice de los repositorios; apt upgrade actualiza los paquetes instalados." },
+
+  { p: "¿Cómo se instala desde la terminal una aplicación en formato Snap?",
+    op: ["snap install nombre", "apt install snap", "snap setup nombre", "snadd nombre"], r: 0,
+    e: "Snap son paquetes autocontenidos; apt instala los paquetes .deb de los repositorios." },
+
+  { p: "¿Para qué sirve el comando grep?",
+    op: ["Comprimir archivos", "Buscar líneas que coinciden con un patrón de texto",
+         "Borrar las líneas de un archivo", "Contar los procesos"], r: 1,
+    e: "grep texto archivo muestra las líneas que contienen ese texto; -i ignora mayúsculas." },
+
+  { p: "¿Qué significa el símbolo | (pipe) en la terminal?",
+    op: ["Redirigir la salida a un archivo", "Pasar la salida de una orden como entrada de otra",
+         "Ejecutar la orden en segundo plano", "Separar los parámetros de una orden"], r: 1,
+    e: "cat archivo | grep palabra busca texto dentro del archivo." },
+
+  { p: "¿Qué muestra el comando history?",
+    op: ["Las órdenes ejecutadas anteriormente", "Los procesos en ejecución",
+         "Los archivos ocultos", "El espacio libre en disco"], r: 0,
+    e: "Se puede repetir una orden con !número; df -h muestra el espacio en disco." },
+
+  { p: "¿Qué información ofrece uname -a?",
+    op: ["La fecha y hora del sistema", "El espacio ocupado por los archivos",
+         "Datos del núcleo y del equipo, como la versión y la arquitectura",
+         "La lista de usuarios conectados"], r: 2,
+    e: "who muestra los usuarios conectados; date muestra la fecha." }
+);
+
+DATOS.ubuntu.test.avanzado.push(
+  { p: "Un archivo con permisos 600 significa:",
+    op: ["El propietario puede leer y escribir; el grupo y los demás no tienen permisos",
+         "Todos pueden leerlo", "El propietario puede ejecutarlo", "Solo el grupo puede escribir"], r: 0,
+    e: "6 = 4+2 (rw-), 0 = sin permisos para el grupo y el resto." },
+
+  { p: "¿Qué valor numérico de chmod corresponde a rwxr-xr--?",
+    op: ["754", "744", "755", "645"], r: 0,
+    e: "rwx = 7, r-x = 5 y r-- = 4, en ese orden: propietario, grupo y resto." },
+
+  { p: "¿Qué hace el símbolo > al redirigir la salida de una orden?",
+    op: ["Crea o sobrescribe un archivo con la salida", "Añade la salida al final del archivo",
+         "Toma la entrada desde un archivo", "Muestra los permisos del archivo"], r: 0,
+    e: "ls > lista.txt guarda el listado; con >> se añade sin borrar lo anterior." },
+
+  { p: "¿Qué diferencia hay entre > y >> en una redirección?",
+    op: ["> y >> hacen exactamente lo mismo",
+         ">> añade la salida al final del archivo, mientras que > lo sobrescribe",
+         "> solo funciona con errores", ">> solo funciona con carpetas"], r: 1,
+    e: "Por eso >> se usa para acumular datos, por ejemplo en un archivo de registro." },
+
+  { p: "¿Qué se consigue con 2> archivo.log?",
+    op: ["Guardar la salida normal en el archivo", "Guardar los mensajes de error en el archivo",
+         "Leer el archivo como entrada", "Ejecutar la orden en segundo plano"], r: 1,
+    e: "La salida estándar es 1 y la de errores es 2; 2> redirige los mensajes de error." },
+
+  { p: "¿Cuál es la diferencia entre sudo y su?",
+    op: ["su inicia una sesión como otro usuario; sudo ejecuta una sola orden con privilegios (de root por defecto) sin cambiar de sesión",
+         "sudo y su son exactamente iguales", "sudo solo sirve para instalar software",
+         "su solo sirve para ver archivos"], r: 0,
+    e: "sudo -i abre una sesión de root; conviene usar sudo solo para la orden necesaria." },
+
+  { p: "¿Qué comando envía una señal para terminar un proceso del que conocemos su PID?",
+    op: ["rm", "kill", "top", "halt"], r: 1,
+    e: "kill 1234 termina el proceso 1234; kill -9 1234 lo fuerza si no responde." },
+
+  { p: "¿Qué comando muestra los procesos en tiempo real y su consumo de CPU y memoria?",
+    op: ["free", "top", "du", "uptime"], r: 1,
+    e: "ps muestra una instantánea; top se actualiza continuamente y se sale con q." },
+
+  { p: "¿Qué significa el carácter & al final de una orden?",
+    op: ["Repetir la orden varias veces", "Ocultar los mensajes de error",
+         "Ejecutar la orden en segundo plano", "Cambiar los permisos del archivo"], r: 2,
+    e: "Así la terminal queda libre mientras la orden sigue ejecutándose." },
+
+  { p: "Estás en /home/alumno y quieres listar el contenido de /etc usando una ruta absoluta. ¿Qué orden es correcta?",
+    op: ["ls etc", "ls /etc", "cd /etc ls", "dir /etc"], r: 1,
+    e: "La ruta absoluta empieza por /; ls etc buscaría /home/alumno/etc." },
+
+  { p: "¿Qué orden busca todos los archivos con extensión .txt dentro de /home?",
+    op: ["find /home -name '*.txt'", "grep -r '*.txt' /home",
+         "find /home -type '*.txt'", "ls /home/*.txt"], r: 0,
+    e: "Las comillas evitan que el shell expanda el comodín antes de que find lo use." },
+
+  { p: "¿Qué efecto tiene chmod -x archivo?",
+    op: ["Añade permiso de ejecución a todos", "Quita el permiso de ejecución a propietario, grupo y resto",
+         "Cambia el propietario del archivo", "Quita solo el permiso de lectura"], r: 1,
+    e: "Con chmod u+x solo se añade la ejecución al propietario; con -x se quita a las tres figuras." }
+);

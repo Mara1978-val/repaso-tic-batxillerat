@@ -332,3 +332,186 @@ DATOS.redes = {
       explicacion: "La fibra óptica, por contra, es muy segura frente a escuchas." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de test: hasta 30 preguntas por nivel
+   ========================================================= */
+
+DATOS.redes.test.basico.push(
+  { p: "El modelo OSI de interoperabilidad de sistemas abiertos está formado por:",
+    op: ["7 capas", "4 capas", "5 capas", "3 capas"], r: 0,
+    e: "De inferior a superior: física, enlace, red, transporte, sesión, presentación y aplicación." },
+
+  { p: "En el modelo OSI, la capa que se encarga del direccionamiento lógico y del enrutamiento es la capa:",
+    op: ["Física", "Enlace de datos", "Red", "Aplicación"], r: 2,
+    e: "En ella trabajan el protocolo IP y los routers; la capa 2 usa direcciones MAC." },
+
+  { p: "El protocolo de transporte sin conexión, ligero y que no garantiza la entrega es:",
+    op: ["TCP", "UDP", "HTTP", "FTP"], r: 1,
+    e: "UDP se usa en streaming, DNS y VoIP, donde la velocidad importa más que la fiabilidad." },
+
+  { p: "El servicio que traduce un nombre de dominio, como www.example.com, en su dirección IP es:",
+    op: ["FTP", "SMTP", "DHCP", "DNS"], r: 3,
+    e: "DNS es la 'guía telefónica' de Internet: guarda la correspondencia nombre-IP." },
+
+  { p: "El protocolo que se utiliza normalmente para solicitar y recibir páginas web es:",
+    op: ["HTTP", "FTP", "POP3", "SMTP"], r: 0,
+    e: "HTTP funciona en modo cliente-servidor; HTTPS es su versión cifrada." },
+
+  { p: "HTTPS se diferencia de HTTP en que:",
+    op: ["Transmite más rápido sin control de errores", "No necesita servidor",
+         "Cifra la comunicación mediante TLS/SSL", "Está reservado al correo electrónico"], r: 2,
+    e: "El cifrado protege contraseñas y datos; el puerto habitual es 443 frente al 80 de HTTP." },
+
+  { p: "El protocolo FTP sirve principalmente para:",
+    op: ["Enviar correo electrónico", "Transferir archivos entre un cliente y un servidor",
+         "Asignar direcciones IP", "Comprobar la conectividad"], r: 1,
+    e: "Normalmente usa los puertos 21 (control) y 20 (datos)." },
+
+  { p: "El protocolo SMTP se utiliza para:",
+    op: ["Recibir correo del servidor", "Transferir ficheros", "Navegar por Internet",
+         "Enviar mensajes de correo electrónico"], r: 3,
+    e: "SMTP envía el correo; POP3 o IMAP se encargan de recibirlo." },
+
+  { p: "Los protocolos POP3 e IMAP permiten:",
+    op: ["Recibir y gestionar el correo almacenado en el servidor", "Enviar correo",
+         "Repartir direcciones IP", "Comprimir archivos"], r: 0,
+    e: "IMAP mantiene los mensajes sincronizados en el servidor; POP3 suele descargarlos al cliente." },
+
+  { p: "El protocolo ICMP se asocia sobre todo a:",
+    op: ["La transferencia de archivos", "Mensajes de control y diagnóstico, como el ping",
+         "El cifrado de la conexión", "La asignación automática de IPs"], r: 1,
+    e: "ping envía paquetes ICMP de eco y mide el tiempo de respuesta (RTT)." },
+
+  { p: "Un firewall es un sistema que:",
+    op: ["Aumenta el ancho de banda contratado", "Asigna direcciones IP a los equipos",
+         "Filtra el tráfico de red según reglas de seguridad", "Almacena las contraseñas de los usuarios"], r: 2,
+    e: "Puede ser software o hardware y se coloca en el perímetro de la red." },
+
+  { p: "Una VPN permite:",
+    op: ["Crear una conexión cifrada a través de una red pública como Internet",
+         "Sustituir el cable de red por fibra", "Convertir una LAN en una WAN físicamente",
+         "Aumentar la memoria del router"], r: 0,
+    e: "Es un 'túnel' cifrado: muy usado para trabajar desde casa de forma segura." },
+
+  { p: "WPA2 y WPA3 son estándares de:",
+    op: ["Velocidad del Wi-Fi", "Cifrado y seguridad de las redes Wi-Fi",
+         "Numeración de canales", "Nombre del punto de acceso"], r: 1,
+    e: "Protegeron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
+
+  { p: "El comando ping se emplea para:",
+    op: ["Mostrar la configuración de la tarjeta de red", "Crear una nueva subred",
+         "Listar los archivos de un servidor",
+         "Comprobar la conectividad enviando paquetes de eco a otra IP"], r: 3,
+    e: "Si responde, indica que hay comunicación; el tiempo de respuesta se mide en milisegundos." },
+
+  { p: "Sobre las unidades de velocidad y tamaño, es correcto que:",
+    op: ["1 byte equivale a 1000 bits", "1 Mbps significa 1 millón de bytes por segundo",
+         "1 byte equivale a 8 bits y 1 Gbps a 10^9 bits por segundo",
+         "1 MHz mide la velocidad de la red"], r: 2,
+    e: "Los bits por segundo (bps) miden velocidad; los bytes, tamaño. 1 Mbps = 10^6 bps." }
+);
+
+DATOS.redes.test.medio.push(
+  { p: "Sobre TCP y UDP, la afirmación correcta es:",
+    op: ["TCP es orientado a conexión y UDP no", "UDP garantiza la entrega y TCP no",
+         "Ambos pertenecen a la capa de red (capa 3)", "TCP solo puede usarse con fibra óptica"], r: 0,
+    e: "TCP controla errores, orden y reenvíos; UDP es más rápido y no establece conexión previa." },
+
+  { p: "El modelo TCP/IP se organiza en:",
+    op: ["7 capas, como el OSI", "5 capas: física, enlace, red, transporte y aplicación",
+         "3 capas: aplicación, transporte y red",
+         "4 capas: aplicación, transporte, internet y acceso a la red"], r: 3,
+    e: "Es un modelo más simple que el OSI: agrupa las capas de sesión y presentación en la aplicación." },
+
+  { p: "En una videollamada se prefiere UDP antes que TCP porque:",
+    op: ["UDP cifra mejor los datos", "UDP funciona solo en IPv6",
+         "Evita reenvíos y retrasos: se tolera perder algún paquete antes que esperar",
+         "TCP no puede usar el puerto 80"], r: 2,
+    e: "En tiempo real, un paquete tardío no sirve: la fluidez importa más que la integridad." },
+
+  { p: "Un PC obtiene IP por DHCP, hace ping a 8.8.8.8 correctamente pero no abre páginas web. Lo más probable es que falle:",
+    op: ["La resolución DNS", "El cable de red", "La puerta de enlace", "La tarjeta de red"], r: 0,
+    e: "Si llegan paquetes a una IP pública, la conectividad y el gateway funcionan: falta resolver nombres." },
+
+  { p: "Una dirección IPv6 se representa:",
+    op: ["Con cuatro números decimales separados por puntos", "Con 6 pares hexadecimales",
+         "Con 128 números decimales",
+         "Con 8 grupos de hexadecimales separados por dos puntos"], r: 3,
+    e: "Son 128 bits; los grupos de ceros consecutivos se pueden comprimir con '::'." },
+
+  { p: "La fibra óptica es inmune a las interferencias electromagnéticas porque:",
+    op: ["Lleva un blindaje de cobre", "Usa 8 pares trenzados",
+         "Transmite luz en lugar de impulsos eléctricos", "Funciona solo en interiores"], r: 2,
+    e: "Al no conducir corriente, no capta ruido y es difícil de interceptar sin cortar el cable." },
+
+  { p: "La principal mejora de WPA3 frente a WPA2 es:",
+    op: ["Refuerza el cifrado y la autenticación de la red (SAE)", "Duplica el alcance de la señal",
+         "Añade más canales de 2,4 GHz", "Elimina la necesidad de contraseña"], r: 0,
+    e: "WPA2 usa PSK y AES-CCMP; WPA3 incorpora autenticación SAE, más resistente a ataques de diccionario." },
+
+  { p: "Frente a la banda de 2,4 GHz, la banda de 5 GHz ofrece:",
+    op: ["Mayor alcance y mejor penetración de muros", "Más interferencias de microondas",
+         "Menos interferencias y más velocidad, pero menor alcance", "Solo permite conectarse con cable"], r: 2,
+    e: "2,4 GHz alcanza más distancia pero está saturada; 5 GHz es más limpia y rápida." },
+
+  { p: "El comando tracert (traceroute en Linux) sirve para:",
+    op: ["Mostrar la ruta y el tiempo hasta cada router intermedio", "Ver la configuración TCP/IP",
+         "Borrar la caché DNS", "Renovar la IP asignada por DHCP"], r: 0,
+    e: "Permite localizar en qué salto de la ruta se pierden los paquetes." },
+
+  { p: "En Windows, el comando 'ipconfig /release' sirve para:",
+    op: ["Liberar espacio en el disco duro", "Liberar la dirección IP asignada por DHCP",
+         "Reiniciar el router", "Mostrar la tabla de enrutamiento"], r: 1,
+    e: "Después se usa 'ipconfig /renew' para pedir una nueva dirección al servidor DHCP." },
+
+  { p: "Un cable Cat 6a admite hasta:",
+    op: ["100 Mbps a 100 m", "1 Gbps solo a 50 m", "10 Gbps a 100 m", "40 Gbps a 100 m"], r: 2,
+    e: "Cat 6 llega a 10 Gbps hasta unos 55 m; Cat 6a amplía el límite a 100 m. Cat 8 se usa a distancias cortas." },
+
+  { p: "En el modelo OSI, la capa de presentación se encarga de:",
+    op: ["Enrutar los paquetes entre redes", "Cifrar, comprimir y convertir el formato de los datos",
+         "Generar la señal eléctrica en el cable", "Asignar direcciones IP"], r: 1,
+    e: "Es la capa 6: asegura que la aplicación receptora interprete correctamente la información." }
+);
+
+DATOS.redes.test.avanzado.push(
+  { p: "La dirección de red y la de broadcast de 10.20.30.77/27 son, respectivamente:",
+    op: ["10.20.30.64 y 10.20.30.95", "10.20.30.77 y 10.20.30.95",
+         "10.20.30.64 y 10.20.30.127", "10.20.30.0 y 10.20.30.255"], r: 0,
+    e: "/27 = 255.255.255.224: bloques de 32 (.0, .32, .64, .96...). La .77 está entre .64 y .95." },
+
+  { p: "¿Cuántos hosts utilizables ofrece una red /22?",
+    op: ["510", "1022", "1024", "4094"], r: 1,
+    e: "32 − 22 = 10 bits de host → 2^10 = 1024 direcciones, menos red y broadcast = 1022 hosts." },
+
+  { p: "Partiendo de 192.168.10.0/24 se necesitan al menos 6 subredes con 25 hosts cada una. La máscara adecuada es:",
+    op: ["255.255.255.240 (/28)", "255.255.255.192 (/26)",
+         "255.255.255.224 (/27)", "255.255.255.128 (/25)"], r: 2,
+    e: "Con 3 bits prestados (/27) se obtienen 8 subredes de 32 IPs (30 hosts útiles); /28 da solo 14 hosts y /26 solo 4 subredes." },
+
+  { p: "Para una subred de exactamente 14 equipos dentro de 192.168.5.0/24, la máscara que aprovecha mejor el espacio es:",
+    op: ["255.255.255.252 (/30)", "255.255.255.224 (/27)",
+         "255.255.255.0 (/24)", "255.255.255.240 (/28)"], r: 3,
+    e: "/28 deja 4 bits de host: 2^4 − 2 = 14 hosts. /30 solo da 2 hosts y /27 da 30." },
+
+  { p: "Un PC 192.168.1.20/24 hace ping a su gateway 192.168.1.1 y funciona, pero no llega a 192.168.2.10. La causa más probable es:",
+    op: ["La tarjeta de red del PC está averiada", "Falta una ruta o el router no conecta ambas redes",
+         "El cable del PC está suelto", "El servidor DNS está caído"], r: 1,
+    e: "Si responde la puerta de enlace, la red local está bien: el fallo está en el enrutamiento entre redes." },
+
+  { p: "Un cliente de correo descarga los mensajes y los elimina del servidor. El protocolo que está usando es:",
+    op: ["SMTP", "HTTP", "POP3", "DHCP"], r: 2,
+    e: "POP3 descarga y borra del servidor por defecto; IMAP mantiene los mensajes sincronizados. SMTP solo envía." },
+
+  { p: "Si dos equipos de una misma LAN usan la misma dirección IP:",
+    op: ["No pasa nada: el switch los diferencia por su MAC",
+         "Aparece un conflicto y las conexiones fallan o se interrumpen",
+         "El router les asigna una IP nueva automáticamente", "Se crea una VLAN automáticamente"], r: 1,
+    e: "La IP debe ser única en la red; DHCP evita repetirlas y ARP permite detectar duplicados." },
+
+  { p: "La forma abreviada correcta de 2001:0db8:0000:0000:0000:ff00:0042:8329 es:",
+    op: ["2001:db8::ff00:42:8329", "2001:0db8::::ff00:0042:8329",
+         "2001:db8:0:0:0:ff00:0042:8329:0001", "2001-db8-ff00-42-8329"], r: 0,
+    e: "Se quitan los ceros a la izquierda de cada grupo y los grupos de ceros seguidos se resumen con '::' una sola vez." }
+);

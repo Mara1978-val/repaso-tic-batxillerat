@@ -280,3 +280,205 @@ DATOS.hardware = {
       explicacion: "También es más fiable (MTBF de millones de horas) pero no recuperable en laboratorio." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de preguntas (test)
+   Se añaden con push para no alterar la declaración anterior.
+   ========================================================= */
+
+/* ---------- NIVEL BÁSICO (16 nuevas) ---------- */
+DATOS.hardware.test.basico.push(
+  { p: "¿Cuál es la unidad mínima de información que puede valer 0 o 1?",
+    op: ["El bit", "El byte", "El kilobyte", "El carácter"], r: 0,
+    e: "El bit (binary digit) es la unidad mínima; 8 bits forman un byte." },
+
+  { p: "¿Qué significa el acrónimo CPU?",
+    op: ["Central Process Unit", "Computer Personal Unit", "Core Processing Utility", "Central Processing Unit"], r: 3,
+    e: "CPU = Central Processing Unit (Unidad Central de Procesamiento): interpreta y ejecuta instrucciones." },
+
+  { p: "¿Qué componente se encarga de generar la imagen que se muestra en el monitor?",
+    op: ["La fuente de alimentación", "La tarjeta de sonido", "La tarjeta gráfica", "El disco duro"], r: 2,
+    e: "La tarjeta gráfica (GPU) procesa y envía la imagen al monitor; puede estar integrada en la CPU." },
+
+  { p: "¿Qué periférico se usa principalmente para escribir texto en el ordenador?",
+    op: ["El teclado", "El ratón", "La impresora", "El micrófono"], r: 0,
+    e: "El teclado es un periférico de entrada para introducir texto y comandos." },
+
+  { p: "¿Cuál de estos dispositivos guarda los datos aunque se apague el equipo?",
+    op: ["La RAM", "La caché", "El disco duro", "Los registros"], r: 2,
+    e: "El disco (HDD o SSD) es no volátil: conserva los datos sin corriente eléctrica." },
+
+  { p: "¿Qué conector se usa habitualmente para enchufar un pendrive o una impresora?",
+    op: ["RJ-45", "USB", "HDMI", "VGA"], r: 1,
+    e: "USB es el conector estándar para periféricos y almacenamiento externo." },
+
+  { p: "¿Qué hace un escáner?",
+    op: ["Imprime documentos", "Almacena programas", "Amplifica el sonido", "Digitaliza documentos e imágenes"], r: 3,
+    e: "El escáner es un periférico de entrada que convierte documentos físicos en imágenes digitales." },
+
+  { p: "¿Qué es un procesador de doble núcleo (dual-core)?",
+    op: ["Un procesador con dos núcleos de procesamiento", "Dos procesadores soldados", "Un procesador sin caché", "Un procesador de 2 bits"], r: 0,
+    e: "Dos núcleos dentro del mismo chip pueden trabajar en paralelo." },
+
+  { p: "¿Qué componente se instala en el zócalo (socket) de la placa base?",
+    op: ["La memoria RAM", "El procesador", "La tarjeta gráfica", "La fuente de alimentación"], r: 1,
+    e: "El socket es el alojamiento del procesador; la RAM va en las ranuras DIMM." },
+
+  { p: "¿Qué significa BIOS?",
+    op: ["Basic Input Output System", "Binary Input Output System", "Basic Integrated Operating System", "Board Input Output Setup"], r: 0,
+    e: "BIOS = Sistema Básico de Entrada/Salida: inicializa el hardware y arranca el equipo." },
+
+  { p: "¿Cómo se denomina el conector estándar de una red Ethernet (cable de red)?",
+    op: ["USB", "HDMI", "RJ-45", "DVI"], r: 2,
+    e: "RJ-45 es el conector de 8 pines usado en redes Ethernet con cable de par trenzado." },
+
+  { p: "¿En qué forma se procesan internamente los datos en un ordenador digital?",
+    op: ["En decimal", "En caracteres ASCII", "En vatios", "En binario (0 y 1)"], r: 3,
+    e: "Toda la información se codifica en bits; después se agrupan en bytes." },
+
+  { p: "¿Qué elemento se usa para disipar el calor del procesador?",
+    op: ["Un disipador con ventilador", "Una batería CR2032", "Un cable SATA", "Una tarjeta de red"], r: 0,
+    e: "El disipador (con ventilador o refrigeración líquida) evita el sobrecalentamiento de la CPU." },
+
+  { p: "¿Qué es un periférico?",
+    op: ["Un programa del sistema", "Un dispositivo conectado al ordenador para introducir o sacar datos", "Un tipo de procesador", "La memoria interna de la CPU"], r: 1,
+    e: "Los periféricos pueden ser de entrada, de salida o de entrada/salida (E/S)." },
+
+  { p: "¿Cuál de estos periféricos produce sonido?",
+    op: ["El micrófono", "El escáner", "Los altavoces", "El ratón"], r: 2,
+    e: "Los altavoces son de salida de audio; el micrófono es de entrada." },
+
+  { p: "¿Qué tipo de memoria utilizan las memorias USB (pendrives)?",
+    op: ["Memoria DRAM", "Memoria flash", "Memoria SRAM", "Memoria magnética"], r: 1,
+    e: "La memoria flash es no volátil y se usa en pendrives, SSD y tarjetas SD." }
+);
+
+/* ---------- NIVEL MEDIO (15 nuevas) ---------- */
+DATOS.hardware.test.medio.push(
+  { p: "¿Cuántos valores distintos puede representar un byte?",
+    op: ["8", "128", "256", "1.024"], r: 2,
+    e: "Con 8 bits hay 2⁸ = 256 combinaciones, de 0 a 255." },
+
+  { p: "¿Cuántos bits tiene una dirección IPv4?",
+    op: ["32", "48", "64", "128"], r: 0,
+    e: "IPv4 usa 32 bits, escritos como cuatro números de 0 a 255." },
+
+  { p: "¿Qué interfaz utilizan los discos SSD NVMe?",
+    op: ["SATA", "PCIe", "USB 2.0", "PS/2"], r: 1,
+    e: "NVMe se conecta por PCIe, mucho más rápida que SATA; suele usar el formato M.2." },
+
+  { p: "¿Cuál es la velocidad máxima teórica de USB 2.0?",
+    op: ["12 Mbps", "480 Mbps", "5 Gbps", "10 Gbps"], r: 1,
+    e: "USB 2.0 (High Speed) llega a 480 Mbps; USB 3.0 alcanza 5 Gbps." },
+
+  { p: "¿Cuál es la velocidad máxima teórica de USB 3.0 (USB 3.2 Gen 1)?",
+    op: ["480 Mbps", "1,5 Gbps", "5 Gbps", "40 Gbps"], r: 2,
+    e: "USB 3.0 ofrece hasta 5 Gbps; 40 Gbps corresponde a USB4/Thunderbolt 3." },
+
+  { p: "¿Cuál es la capacidad de un DVD de una sola capa?",
+    op: ["700 MB", "25 GB", "50 GB", "4,7 GB"], r: 3,
+    e: "El DVD de una capa (DVD-5) guarda 4,7 GB; el de doble capa (DVD-9), 8,5 GB." },
+
+  { p: "¿Cuál es la capacidad de un disco Blu-ray de una sola capa?",
+    op: ["4,7 GB", "8,5 GB", "25 GB", "100 GB"], r: 2,
+    e: "Un Blu-ray de una capa guarda 25 GB; el de doble capa, 50 GB." },
+
+  { p: "En RAID 0 los datos se reparten entre varios discos. ¿Cuál es su característica principal?",
+    op: ["Duplica la seguridad ante fallos", "Aumenta la velocidad pero no hay redundancia", "Usa un único disco de respaldo", "Solo funciona con tres discos"], r: 1,
+    e: "RAID 0 (striping) suma rendimiento y capacidad, pero si falla un disco se pierde todo." },
+
+  { p: "¿Qué hace RAID 1 con los datos?",
+    op: ["Los repara automáticamente", "Los divide en fragmentos sin copia", "Crea una copia exacta (espejo) en otro disco", "Los comprime para ahorrar espacio"], r: 2,
+    e: "RAID 1 (mirroring) duplica la información, por lo que tolera el fallo de un disco." },
+
+  { p: "Un procesador de 2,4 GHz trabaja a…",
+    op: ["24 MHz", "240 MHz", "2.400.000 MHz", "2.400 MHz"], r: 3,
+    e: "Como 1 GHz = 1.000 MHz, 2,4 GHz = 2.400 MHz." },
+
+  { p: "Dentro de la jerarquía de memoria, la caché L1 es…",
+    op: ["La más rápida y pequeña, integrada en la CPU", "La más lenta pero de mayor tamaño", "Un disco de estado sólido", "La memoria que usa el sistema operativo"], r: 0,
+    e: "L1 es la más cercana al procesador; detrás van L2, L3, la RAM y los discos." },
+
+  { p: "¿Qué es la memoria virtual?",
+    op: ["Un disco reservado solo para vídeos", "Una parte del disco usada como extensión de la RAM", "Una RAM soldada a la placa base", "La memoria de la tarjeta gráfica"], r: 1,
+    e: "Cuando falta RAM, el sistema operativo intercambia páginas con un archivo o partición de intercambio en el disco." },
+
+  { p: "¿Cuál es la función principal del chipset de la placa base?",
+    op: ["Generar la imagen del monitor", "Gestionar la comunicación entre la CPU y el resto de componentes", "Convertir la corriente alterna en continua", "Guardar los archivos del usuario"], r: 1,
+    e: "El chipset actúa como intermediario entre el procesador, la memoria y los periféricos." },
+
+  { p: "¿Qué tipo de información puede transmitir un puerto HDMI?",
+    op: ["Solo sonido", "Solo vídeo", "Corriente eléctrica de la fuente", "Vídeo y audio digitales"], r: 3,
+    e: "HDMI transporta vídeo y audio digitales por un mismo cable: se usa en monitores y televisores." },
+
+  { p: "Copiando un archivo de 1 GB a una velocidad de 100 MB/s, ¿cuánto tarda aproximadamente?",
+    op: ["1 s", "10 s", "100 s", "1.024 s"], r: 1,
+    e: "1 GB = 1.024 MB y 1.024 ÷ 100 ≈ 10,24 s, es decir, unos 10 segundos." }
+);
+
+/* ---------- NIVEL AVANZADO (16 nuevas) ---------- */
+DATOS.hardware.test.avanzado.push(
+  { p: "El número binario 101010 equivale en decimal a:",
+    op: ["36", "40", "42", "44"], r: 2,
+    e: "32 + 8 + 2 = 42 (encendidos los bits 5, 3 y 1)." },
+
+  { p: "El número decimal 255 escrito en hexadecimal es:",
+    op: ["0xEF", "0xFE", "0x1FF", "0xFF"], r: 3,
+    e: "255 = 11111111₂ = FF₁₆; cada cifra hexadecimal representa 4 bits." },
+
+  { p: "Un archivo de 5.120 MB se descarga a 100 Mbps. ¿Cuánto tarda?",
+    op: ["40,96 s", "409,6 s", "51,2 s", "512 s"], r: 1,
+    e: "100 Mbps = 12,5 MB/s; 5.120 ÷ 12,5 = 409,6 s (unos 6,8 minutos)." },
+
+  { p: "Un equipo consume 95 W (CPU), 250 W (GPU) y 55 W (resto). Aplicando el margen del 30%, ¿qué fuente conviene?",
+    op: ["Una de 400 W", "Una de 450 W", "Una de 500 W", "Una de 550 W o más"], r: 3,
+    e: "El total es 400 W y 400 × 1,3 = 520 W, así que conviene una fuente de al menos 550 W." },
+
+  { p: "¿Qué caracteriza a un array RAID 5?",
+    op: ["Requiere al menos 3 discos y tolera el fallo de uno", "Requiere 2 discos y no tolera fallos", "Usa un solo disco y copias en la nube", "Requiere 4 discos y tolera dos fallos"], r: 0,
+    e: "RAID 5 reparte datos con paridad distribuida: capacidad útil (n-1) discos y aguanta un fallo." },
+
+  { p: "¿Cuál es el mínimo de discos de RAID 6 y cuántos fallos tolera?",
+    op: ["3 discos y 1 fallo", "4 discos y 2 fallos", "2 discos y 1 fallo", "5 discos y 3 fallos"], r: 1,
+    e: "RAID 6 usa doble paridad: al menos 4 discos y tolera la pérdida de dos de ellos." },
+
+  { p: "Un bus de datos de 64 bits a 3,2 GHz, con una transferencia por ciclo, mueve aproximadamente:",
+    op: ["3,2 GB/s", "12,8 GB/s", "25,6 GB/s", "51,2 GB/s"], r: 2,
+    e: "64 bits = 8 bytes; 8 B × 3,2·10⁹ ciclos/s = 25,6·10⁹ B/s = 25,6 GB/s." },
+
+  { p: "Una pantalla 4K UHD de 3840 × 2160 píxeles tiene aproximadamente:",
+    op: ["2 MP", "4 MP", "6,2 MP", "8,3 MP"], r: 3,
+    e: "3840 × 2160 = 8.294.400 píxeles ≈ 8,3 megapíxeles." },
+
+  { p: "Una imagen de 8,3 MP a 24 bits por píxel ocupa, sin comprimir, unos:",
+    op: ["8,3 MB", "16,6 MB", "23,7 MB", "49,8 MB"], r: 2,
+    e: "24 bits = 3 bytes; 8,3·10⁶ × 3 ≈ 24,9·10⁶ B, que son ≈ 23,7 MiB (÷1.024²)." },
+
+  { p: "Grabar vídeo de forma continua a 10 Mbps durante una hora genera aproximadamente:",
+    op: ["450 MB", "4.500 MB (4,5 GB)", "45 GB", "3.600 MB"], r: 1,
+    e: "10 Mbps = 1,25 MB/s; multiplicando por 3.600 s se obtienen 4.500 MB ≈ 4,5 GB." },
+
+  { p: "¿Cuánta memoria puede direccionar un bus de direcciones de 24 bits (direccionando por bytes)?",
+    op: ["1 MB", "8 MB", "16 MB", "24 MB"], r: 2,
+    e: "2²⁴ = 16.777.216 direcciones, es decir, 16 MB." },
+
+  { p: "¿Cuál es el voltaje de funcionamiento típico de la memoria DDR4?",
+    op: ["1,2 V", "1,5 V", "1,8 V", "2,5 V"], r: 0,
+    e: "DDR4 trabaja a 1,2 V (DDR3 lo hacía a 1,5 V): menos voltaje implica menor consumo." },
+
+  { p: "En la jerarquía de memoria, ¿qué elemento tiene menor latencia?",
+    op: ["El disco HDD", "La RAM", "La caché L1", "Los registros de la CPU"], r: 3,
+    e: "Los registros están dentro del procesador y se acceden en un ciclo: son los más rápidos." },
+
+  { p: "Frente a SATA/AHCI, la interfaz NVMe se caracteriza por:",
+    op: ["Usar PCIe y colas de comandos mucho más profundas", "Usar el mismo protocolo AHCI", "Ser incompatible con discos M.2", "Funcionar solo con discos mecánicos"], r: 0,
+    e: "NVMe está diseñada para memoria flash sobre PCIe: reduce la latencia y permite muchas colas en paralelo." },
+
+  { p: "Comparando un SSD SATA (550 MB/s) con un HDD (120 MB/s), el SSD es aproximadamente:",
+    op: ["2 veces más rápido", "4,6 veces más rápido", "10 veces más rápido", "20 veces más rápido"], r: 1,
+    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia supera las 25 veces." },
+
+  { p: "¿Cuántos bits como mínimo se necesitan para representar 1.000 valores distintos?",
+    op: ["8 bits", "9 bits", "10 bits", "16 bits"], r: 2,
+    e: "2⁹ = 512 no basta, pero 2¹⁰ = 1.024 sí: hacen falta 10 bits." }
+);

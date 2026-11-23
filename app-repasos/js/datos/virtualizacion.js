@@ -321,3 +321,380 @@ DATOS.virtualizacion = {
       explicacion: "Requisito: nunca desconectar con la MV en ejecución o pausada." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de test: hasta 30 preguntas por nivel
+   (se añaden al final; no se modifica el apartado «abiertas»)
+   ========================================================= */
+
+/* ---------- BÁSICO (16 nuevas) ---------- */
+DATOS.virtualizacion.test.basico.push({
+  p: "Las «Guest Additions» de VirtualBox son:",
+  op: ["Un antivirus para el invitado", "Un disco de arranque alternativo",
+       "Un conjunto de controladores y utilidades que se instalan dentro del SO invitado",
+       "Un complemento del navegador web"], r: 2,
+  e: "Mejoran el ratón, el vídeo, el portapapeles y permiten usar carpetas compartidas."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Qué es una instantánea (snapshot) en VirtualBox?",
+  op: ["Una copia del estado de la MV en un momento concreto",
+       "Una fotografía del escritorio del host",
+       "Un disco duro nuevo añadido a la MV",
+       "Un tipo de adaptador de red"], r: 0,
+  e: "Guarda la configuración y el estado del disco para poder volver a ese punto después."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un «clon» de una máquina virtual es:",
+  op: ["Una copia de seguridad del sistema anfitrión",
+       "Una copia de la MV que crea otra máquina independiente",
+       "Otro nombre para una instantánea",
+       "Un controlador de USB"], r: 1,
+  e: "El clon genera una MV nueva, con su propio archivo de disco virtual."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿En qué estado se encuentra una MV que hemos «pausado»?",
+  op: ["Apagada", "Guardada en disco", "En ejecución normal",
+       "Congelada en memoria: no avanza la ejecución pero puede reanudarse"], r: 3,
+  e: "La pausa mantiene el estado en RAM; en cambio, «Guardar estado» lo escribe en disco."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Para compartir archivos entre el equipo real y la MV sin usar la red, VirtualBox ofrece:",
+  op: ["El Extension Pack", "Las carpetas compartidas",
+       "La memoria base", "El adaptador NAT"], r: 1,
+  e: "Se configuran en los ajustes de la MV y requieren las Guest Additions instaladas en el invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "El formato de disco virtual VMDK es el formato nativo de:",
+  op: ["VirtualBox", "Microsoft Hyper-V", "VMware", "Apple"], r: 2,
+  e: "VirtualBox sabe crear y usar discos VMDK además de sus propios VDI."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "La memoria RAM que se asigna a una MV en VirtualBox se denomina:",
+  op: ["Memoria base", "Memoria caché", "RAM del host", "Memoria ROM"], r: 0,
+  e: "Se ajusta en Configuración > Sistema > Memoria base."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Cómo se denomina el procesador virtual asignado a una máquina virtual?",
+  op: ["GPU", "ROM", "Chipset", "vCPU (CPU virtual)"], r: 3,
+  e: "Cada vCPU corresponde a un hilo del procesador real puesto a disposición del invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "La edición básica de VirtualBox es un software:",
+  op: ["De pago y cerrado",
+       "Gratuito y de código abierto (el Extension Pack tiene licencia aparte)",
+       "Solo para servidores", "Que exige licencia de Windows"], r: 1,
+  e: "El hipervisor base se distribuye gratuitamente; el complemento tiene condiciones de licencia distintas."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Una de las principales ventajas de la virtualización es:",
+  op: ["Aprovechar mejor el hardware ejecutando varios sistemas en un mismo equipo",
+       "Duplicar el número de monitores", "Alargar la batería del portátil",
+       "Evitar actualizar el software"], r: 0,
+  e: "Consolidación: menos equipos físicos para prestar los mismos servicios."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un inconveniente de la virtualización es:",
+  op: ["No poder instalar antivirus", "La imposibilidad de navegar por Internet",
+       "El consumo extra de CPU, RAM y disco al ejecutar varios sistemas",
+       "Que el host pierda la conexión de red"], r: 2,
+  e: "Cada MV consume recursos reales: hay que dimensionar bien el equipo."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Cuál es la diferencia entre emulación y virtualización?",
+  op: ["La emulación solo sirve para juegos",
+       "La emulación imita hardware de otra arquitectura; la virtualización ofrece el mismo hardware real al invitado",
+       "Son exactamente lo mismo",
+       "La virtualización imita siempre otra arquitectura"], r: 1,
+  e: "El emulador traduce instrucciones; el hipervisor ejecuta código nativo sobre el mismo procesador."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Al exportar una máquina virtual para llevarla a otro equipo se genera normalmente un archivo:",
+  op: [".vdi", ".iso", ".ova o .ovf", ".exe"], r: 2,
+  e: "OVF es un formato estándar de varios ficheros; OVA lo empaqueta todo en uno."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un dispositivo USB conectado al equipo real puede usarse en la MV:",
+  op: ["Rediriéndolo desde el menú USB de VirtualBox (con el Extension Pack para USB 2.0/3.0)",
+       "Solo si la MV está apagada", "Nunca, por motivos de seguridad",
+       "Automáticamente sin ninguna configuración"], r: 0,
+  e: "El hipervisor captura el dispositivo y se lo presenta al sistema invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "En VirtualBox, la aceleración gráfica (renderizado) de una MV se refiere a:",
+  op: ["Un modo de red", "Un tipo de disco", "Una opción de sonido",
+       "El uso de la GPU para dibujar la pantalla del invitado"], r: 3,
+  e: "Activar la aceleración 3D mejora los gráficos del SO invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Cuando una MV está «apagada» (power off):",
+  op: ["Sigue consumiendo la RAM asignada",
+       "No está en ejecución: consume recursos mínimos y permite cambiar su configuración",
+       "Está pausada en memoria", "Acaba de ser exportada"], r: 1,
+  e: "Con la MV apagada se pueden modificar RAM, vCPUs, discos y adaptadores."
+});
+
+/* ---------- MEDIO (15 nuevas) ---------- */
+DATOS.virtualizacion.test.medio.push({
+  p: "El modo de red «Solo host» (host-only) permite:",
+  op: ["Salir a Internet a través del host",
+       "Conectar la MV a la red física como un equipo más",
+       "Comunicar el host con sus MVs en una red privada virtual, sin darles acceso a Internet",
+       "Aislar las MVs entre sí"], r: 2,
+  e: "Crea una red privada con una tarjeta virtual en el host; las MVs se ven entre sí y con el host."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Cuál es la diferencia principal entre NAT y Adaptador Puente?",
+  op: ["NAT comparte la IP del host; el puente da a la MV una IP propia de la red física",
+       "NAT da IP propia y el puente comparte la del host",
+       "Ambos modos son equivalentes", "El puente solo funciona por cable Ethernet"], r: 0,
+  e: "Con NAT la MV sale oculta tras el host; con puente es un equipo más de la red."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Qué diferencia hay entre una instantánea y un clon?",
+  op: ["Son exactamente lo mismo", "El clon no ocupa espacio en disco",
+       "La instantánea solo se puede crear con la MV apagada",
+       "La instantánea guarda un estado al que puedes volver; el clon crea una MV nueva independiente"], r: 3,
+  e: "La instantánea forma parte del historial de la MV; el clon es una copia autónoma."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "La opción «Guardar el estado» (Save State) al cerrar una MV:",
+  op: ["La apaga completamente y borra su memoria",
+       "Guarda el estado de CPU y memoria en disco y la deja lista para reanudarla donde estaba",
+       "Elimina los discos virtuales", "La deja pausada solo en RAM"], r: 1,
+  e: "Es distinto de Apagar: al reanudar se recupera exactamente el estado anterior."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Dónde se configura el tipo de adaptador de red de una MV en VirtualBox?",
+  op: ["En Archivo > Preferencias > Red",
+       "En Configuración > Red > Adaptador 1, apartado «Conectado a»",
+       "En Configuración > Almacenamiento", "En el menú Dispositivos > Guest Additions"], r: 1,
+  e: "Ahí se elige NAT, Adaptador puente, Red interna, Solo host, etc. (y se puede activar el Adaptador 2)."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Qué es la «memoria de vídeo» en la configuración de una MV?",
+  op: ["La memoria del navegador del host",
+       "La RAM dedicada a la tarjeta gráfica virtual; conviene aumentarla si se activa la aceleración 3D",
+       "El espacio libre del disco virtual", "La memoria del Extension Pack"], r: 1,
+  e: "Se ajusta en Configuración > Pantalla > Memoria de vídeo."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "El «portapapeles compartido» de VirtualBox permite:",
+  op: ["Copiar texto y archivos entre el host y el invitado si están instaladas las Guest Additions",
+       "Copiar archivos entre dos MVs sin configuración",
+       "Sincronizar automáticamente los discos", "Compartir una impresora"], r: 0,
+  e: "Se activa en Configuración > General > Avanzado y necesita las Guest Additions."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Para que una MV reconozca un pendrive conectado al equipo real:",
+  op: ["Hay que apagar el host", "Hay que instalar un controlador en el router",
+       "Basta con poner la red en modo NAT",
+       "Hay que instalar el Extension Pack (USB 2.0/3.0) y redirigir el dispositivo desde el menú USB"], r: 3,
+  e: "Sin el Extension Pack VirtualBox solo ofrece soporte USB 1.1."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Si el disco de una MV está en reserva dinámica y el host se queda sin espacio:",
+  op: ["El disco crece automáticamente en otra unidad",
+       "La MV puede fallar o bloquearse al no poder crecer el archivo .vdi",
+       "El disco se convierte en reserva fija", "Se borran las instantáneas automáticamente"], r: 1,
+  e: "Conviene vigilar el espacio libre del host; la reserva fija evita este problema."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Para qué sirve exportar una MV a los formatos OVF/OVA?",
+  op: ["Para aumentar su memoria base", "Para crear una instantánea",
+       "Para distribuirla o migrarla a otro equipo o hipervisor de forma estándar",
+       "Para formatear su disco"], r: 2,
+  e: "OVF es un estándar abierto; OVA empaqueta todos los archivos en uno solo."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "En VirtualBox, un «appliance» es:",
+  op: ["Una MV preconfigurada que se distribuye como OVA/OVF y se importa lista para usar",
+       "Un complemento de red", "Un tipo de instantánea",
+       "Una herramienta para formatear discos"], r: 0,
+  e: "Se importa con Archivo > Importar appliance."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Al crear una MV, ¿qué sistema operativo invitado conviene elegir?",
+  op: ["Siempre el mismo que tiene el host",
+       "El que se vaya a instalar realmente, para que VirtualBox ajuste chipset, gráficos y controladores",
+       "El más reciente, aunque no se vaya a usar", "Ninguno: se decide después de instalar el sistema"], r: 1,
+  e: "El asistente adapta la configuración según el SO y si es de 32 o 64 bits."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Si el instalador de un sistema de 64 bits no aparece como opción en una MV, lo más probable es:",
+  op: ["Que falte el Extension Pack", "Que el disco esté en FAT32",
+       "Que no haya espacio suficiente en el host",
+       "Que la MV esté configurada como de 32 bits o que VT-x/AMD-V esté desactivado en la BIOS"], r: 3,
+  e: "Hay que elegir la versión correcta del SO invitado y habilitar la virtualización en la BIOS."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Cómo se clona una MV desde la interfaz gráfica de VirtualBox?",
+  op: ["Clic derecho sobre la MV > Clonar", "Archivo > Exportar disco duro",
+       "Dispositivos > Clonar USB", "Herramientas > Formatear VDI"], r: 0,
+  e: "El asistente permite clonación completa o vinculada (linked clone, basada en una instantánea)."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Un «clon vinculado» (linked clone) se caracteriza por:",
+  op: ["Copiar todo el disco y ser totalmente independiente", "No poder eliminarse nunca",
+       "Compartir el disco base con la original a través de una instantánea, ahorrando espacio",
+       "Funcionar solo con discos en reserva fija"], r: 2,
+  e: "Si se elimina la instantánea en la que se basa, el clon vinculado deja de ser válido."
+});
+
+/* ---------- AVANZADO (16 nuevas) ---------- */
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV en modo NAT ofrece un servicio web en el puerto 80, pero no es accesible desde otros equipos. ¿Qué hay que configurar?",
+  op: ["Instalar las Guest Additions", "Aumentar la memoria base",
+       "Configurar la redirección de puertos (port forwarding) en el adaptador NAT",
+       "Desactivar el Extension Pack"], r: 2,
+  e: "NAT oculta la MV tras el host; el port forwarding publica un puerto del host hacia el invitado."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "¿Cómo configurar una MV que necesita Internet pero debe ser alcanzable desde el host con una IP privada fija?",
+  op: ["Un único adaptador en modo Red interna",
+       "Adaptador 1 en NAT (salida a Internet) y Adaptador 2 en Solo host (acceso desde el host)",
+       "Un único adaptador en NAT sin más opciones",
+       "Sin adaptador de red, usando solo las Guest Additions"], r: 1,
+  e: "Es la configuración típica: NAT para navegar y host-only para administrar la MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "En una Red Interna con varias MVs y sin router, ¿quién asigna las direcciones IP?",
+  op: ["VirtualBox lo hace automáticamente mediante NAT", "El Extension Pack",
+       "No hay DHCP por defecto: hay que asignar IPs estáticas o configurar un servidor DHCP en esa red interna",
+       "El host mediante Wi-Fi"], r: 2,
+  e: "La red interna es un segmento aislado: conviene planificar el direccionamiento o montar DHCP."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Tienes la instantánea «Limpia» y, desde ella, la instantánea «Con programa». Si quieres volver al estado Limpia sin perder la otra rama, debes:",
+  op: ["Borrar todas las instantáneas", "Restaurar (Restore) la instantánea «Limpia»",
+       "Clonar la MV completa", "Apagar y volver a encender la MV"], r: 1,
+  e: "Restaurar cambia el estado actual al de esa instantánea, pero conserva el resto del árbol de instantáneas."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV con muchas instantáneas ocupa mucho más espacio en el host de lo esperado. ¿Por qué?",
+  op: ["Cada instantánea crea un disco de diferencias (.vdi) con los cambios posteriores",
+       "El Extension Pack duplica todos los discos",
+       "La RAM de la MV se guarda como archivo de disco", "NAT genera copias de seguridad"], r: 0,
+  e: "Borrar las instantáneas que ya no se necesitan permite recuperar espacio."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "¿En qué escenario conviene elegir «reserva fija» para el disco virtual?",
+  op: ["Cuando se quiere ahorrar espacio en el host",
+       "Cuando el disco va a estar en una unidad FAT32",
+       "Cuando la MV solo tiene 1 vCPU",
+       "Cuando se prioriza rendimiento y se prevé que el disco crecerá bastante"], r: 3,
+  e: "La reserva fija es algo más rápida y evita el riesgo de quedarse sin espacio al crecer."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Hay que ampliar de 20 GB a 40 GB un disco .vdi con la MV apagada. El procedimiento correcto es:",
+  op: ["Borrar el disco y crear uno nuevo desde cero",
+       "Usar VBoxManage modifymedium (modifyhd) con --resize 40960 y después ampliar la partición dentro del invitado",
+       "Convertir el disco a formato ISO", "Aumentar la memoria base de la MV"], r: 1,
+  e: "El comando cambia el tamaño del archivo; el SO invitado aún debe expandir su partición."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Al importar un appliance OVA procedente de otro fabricante, la MV puede dar problemas porque:",
+  op: ["Los archivos OVA solo funcionan en VMware", "Falta instalar el Extension Pack",
+       "Los controladores, el formato de disco o el chipset pueden no ser totalmente compatibles y hay que revisarlos",
+       "La MV debe estar encendida para importarse"], r: 2,
+  e: "OVF es un estándar, pero conviene adaptar la configuración de hardware tras la importación."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV con aplicaciones de diseño dibuja la pantalla muy despacio. Si el host tiene una GPU compatible, ¿qué ayudará?",
+  op: ["Activar la aceleración gráfica 3D en Configuración > Pantalla e instalar las Guest Additions",
+       "Desactivar VT-x en la BIOS", "Poner la tarjeta de red en modo puente",
+       "Reducir la memoria base por debajo de 512 MB"], r: 0,
+  e: "Sin aceleración, los gráficos se renderizan por software; la GPU virtual no sustituye a una gráfica física dedicada."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Con 8 GB de RAM en el host, pretendes ejecutar tres MVs de Windows a la vez. Lo más previsible es:",
+  op: ["Saturación de memoria: el host empieza a usar swap y todo va muy lento",
+       "Ningún problema: VirtualBox crea RAM virtual ilimitada",
+       "Las MVs se apagan solas automáticamente", "Se duplican las direcciones IP"], r: 0,
+  e: "El conjunto de MVs no debería superar aproximadamente la mitad de la RAM real del host."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Conectas un disco USB 3.0 a la MV y solo lo reconoce como USB 1.1. La causa más probable es:",
+  op: ["La MV está en modo NAT", "El disco está formateado en exFAT",
+       "Faltan vCPUs asignadas",
+       "No está instalado el Extension Pack y/o no se ha elegido el controlador USB 3.0 (xHCI)"], r: 3,
+  e: "El Extension Pack aporta USB 2.0/3.0; para cambiar el controlador hay que apagar la MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Tras cambiar una MV a Adaptador Puente, no recibe dirección IP. ¿Qué hay que revisar primero?",
+  op: ["Que el puente esté asociado a la tarjeta física correcta (Wi-Fi o Ethernet) y que haya DHCP en esa red",
+       "Que falte el Extension Pack", "Que la MV tenga asignadas 2 vCPUs",
+       "Que el disco sea de reserva dinámica"], r: 0,
+  e: "Con puente la MV depende de la red física: si elige el adaptador equivocado o no hay DHCP, no tendrá IP."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Desde el host no puedes acceder al servicio de una MV en NAT usando su IP privada 10.0.2.15. ¿Por qué?",
+  op: ["Porque la MV está apagada", "Porque faltan las Guest Additions",
+       "Porque el host tiene desactivado el firewall",
+       "Porque esa IP pertenece a la red NAT interna del invitado: el host no la ve directamente; usa port forwarding o cambia de modo"], r: 3,
+  e: "La red NAT aísla al invitado; el host solo lo alcanza mediante redirección de puertos u otro modo de red."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Necesitas dos copias de una MV que se modifiquen y se borren por separado sin afectar a la original. Debes usar:",
+  op: ["Dos instantáneas de la misma MV", "Un clon completo de la MV (uno para cada copia)",
+       "La opción Pausar", "Cambiar el modo de red a Red interna"], r: 1,
+  e: "El clon completo crea discos propios; las instantáneas son parte del historial de una sola MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Si cifras el disco de una MV con el Extension Pack y pierdes la contraseña:",
+  op: ["Se puede recuperar reinstalando las Guest Additions",
+       "VirtualBox la muestra en Archivo > Preferencias",
+       "No se puede acceder al disco: habrá que restaurar desde una copia o instantánea anterior",
+       "El cifrado se desactiva automáticamente"], r: 2,
+  e: "El cifrado protege el archivo .vdi; sin la clave no existe forma de descifrarlo."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Instalaste las Guest Additions, pero el escritorio de la MV no se ajusta al tamaño de la ventana. ¿Qué revisar?",
+  op: ["Que la tarjeta de red esté en modo puente",
+       "Que el SO invitado se haya reiniciado tras la instalación y que la memoria de vídeo sea suficiente",
+       "Que el disco esté en reserva fija", "Que el Extension Pack esté desinstalado"], r: 1,
+  e: "Las Guest Additions requieren reiniciar el invitado; también influye la memoria de vídeo asignada."
+});

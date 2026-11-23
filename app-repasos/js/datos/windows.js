@@ -293,3 +293,221 @@ DATOS.windows = {
       explicacion: "De ahí que aparezcan etiquetas como «versión beta»." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de preguntas del tema WINDOWS
+   (16 básicas + 13 medias + 13 avanzadas = 30 por nivel)
+   ========================================================= */
+
+DATOS.windows.test.basico.push(
+  { p: "¿En qué elemento de la interfaz se encuentra normalmente el botón de Inicio y los programas anclados?",
+    op: ["En la Papelera de Reciclaje", "En la barra de tareas", "En el Panel de control", "Dentro de una unidad de disco"], r: 1,
+    e: "La barra de tareas suele estar abajo y contiene Inicio, apps ancladas, la ventana activa y el área de notificación." },
+
+  { p: "El área de notificación (bandeja del sistema) de la barra de tareas muestra:",
+    op: ["La hora y avisos, además de iconos como red, volumen o antivirus", "Solo los archivos eliminados",
+         "El contenido completo del disco C:", "La lista de controladores instalados"], r: 0,
+    e: "En la bandeja se ven los iconos del sistema, las notificaciones de las apps y la hora." },
+
+  { p: "Un acceso directo del escritorio es:",
+    op: ["Una copia completa del programa", "Un tipo especial de carpeta",
+         "Un icono que apunta al archivo o programa original", "Un archivo de texto con instrucciones"], r: 2,
+    e: "Es un puntero al elemento original: si se borra este, el acceso directo deja de funcionar." },
+
+  { p: "En Windows, un icono es:",
+    op: ["Una pequeña imagen que representa un archivo, carpeta o programa", "Un tipo de contraseña",
+         "Una unidad de almacenamiento", "Una orden escrita en texto"], r: 0,
+    e: "Los iconos identifican visualmente los elementos del escritorio y del Explorador." },
+
+  { p: "Para cambiar el fondo del escritorio se acude normalmente a:",
+    op: ["Administrador de tareas > Rendimiento", "Inicio > Configuración > Personalización",
+         "La Papelera de Reciclaje", "El Editor del Registro"], r: 1,
+    e: "En Personalización se ajustan el fondo, los colores, el tema y la pantalla de bloqueo." },
+
+  { p: "La extensión .xlsx corresponde normalmente a un documento de:",
+    op: ["PowerPoint", "Word", "Excel", "Bloc de notas"], r: 2,
+    e: "xlsx → Excel; docx → Word; pptx → PowerPoint; txt → Bloc de notas." },
+
+  { p: "¿Qué extensión suele tener un archivo de texto plano creado con el Bloc de notas?",
+    op: [".txt", ".docx", ".jpg", ".exe"], r: 0,
+    e: "El Bloc de notas guarda texto sin formato; la extensión habitual es .txt." },
+
+  { p: "¿Cuál de estas extensiones corresponde normalmente a una imagen?",
+    op: [".exe", ".mp3", ".docx", ".jpg"], r: 3,
+    e: "jpg y png son formatos de imagen; mp3 es audio, docx es documento y exe es ejecutable." },
+
+  { p: "En el Explorador de archivos, una carpeta sirve principalmente para:",
+    op: ["Organizar y agrupar archivos y otras carpetas", "Aumentar la memoria RAM",
+         "Establecer la conexión a Internet", "Ejecutar programas al arrancar"], r: 0,
+    e: "Las carpetas organizan la información en una estructura jerárquica o árbol de directorios." },
+
+  { p: "La ruta (path) de un archivo en Windows indica:",
+    op: ["El tamaño del archivo en bytes", "La ubicación completa desde la unidad hasta el archivo",
+         "La contraseña de acceso al archivo", "El programa que lo creó"], r: 1,
+    e: "Por ejemplo, C:\\Usuarios\\MARA\\Documentos\\tarea.docx es la ruta de un archivo." },
+
+  { p: "La operación «arrastrar y soltar» en el Explorador permite:",
+    op: ["Borrar definitivamente los archivos", "Cambiar el nombre de la unidad",
+         "Mover o copiar archivos llevándolos con el ratón a otra carpeta", "Apagar el equipo"], r: 2,
+    e: "Al arrastrar dentro de la misma unidad se mueve; a otra unidad se copia (Ctrl fuerza copiar)." },
+
+  { p: "El menú Inicio de Windows permite, entre otras cosas:",
+    op: ["Buscar programas y archivos, abrir ajustes y apagar o reiniciar el equipo",
+         "Solamente consultar la hora del sistema", "Desfragmentar el disco duro", "Editar directamente el Registro"], r: 0,
+    e: "Es el punto de acceso principal a aplicaciones, ajustes, energía y búsqueda." },
+
+  { p: "Vaciar la Papelera de Reciclaje implica:",
+    op: ["Mover los archivos a otra carpeta", "Eliminar definitivamente los archivos que contiene",
+         "Restaurar los archivos a su ubicación original", "Comprimir los archivos para ahorrar espacio"], r: 1,
+    e: "Después de vaciarla, los archivos ya no se pueden recuperar con las opciones habituales." },
+
+  { p: "La combinación de teclas Ctrl + C sirve para:",
+    op: ["Cortar el elemento seleccionado", "Pegar lo copiado", "Deshacer la última acción",
+         "Copiar el elemento seleccionado"], r: 3,
+    e: "Ctrl+C copia, Ctrl+V pega, Ctrl+X corta y Ctrl+Z deshace." },
+
+  { p: "La combinación de teclas Ctrl + Z permite:",
+    op: ["Guardar el documento actual", "Cerrar todas las ventanas", "Cambiar de usuario",
+         "Deshacer la última acción realizada"], r: 3,
+    e: "Es muy útil para revertir un borrado o un movimiento hecho por error." },
+
+  { p: "La combinación Windows + L sirve para:",
+    op: ["Apagar el equipo", "Abrir el Explorador de archivos", "Bloquear la sesión",
+         "Cambiar el fondo de escritorio"], r: 2,
+    e: "Bloquea la sesión sin cerrar los programas; hará falta la contraseña para volver." }
+);
+
+DATOS.windows.test.medio.push(
+  { p: "El comando de CMD que copia un archivo a otra ubicación es:",
+    op: ["del", "move", "copy", "cls"], r: 2,
+    e: "copy origen destino crea una copia; move desplaza el original y del lo borra." },
+
+  { p: "Para cambiar el nombre de un archivo desde el símbolo del sistema se usa:",
+    op: ["ren (o rename)", "copy", "md", "cls"], r: 0,
+    e: "ren antiguo.txt nuevo.txt cambia el nombre sin desplazar el archivo." },
+
+  { p: "El Administrador de tareas permite:",
+    op: ["Ver y finalizar procesos y consultar el uso de CPU, memoria y disco",
+         "Desfragmentar el disco duro", "Editar el Registro de Windows", "Crear particiones nuevas"], r: 0,
+    e: "Se abre con Ctrl+Mayús+Esc o desde la pantalla de Ctrl+Alt+Supr." },
+
+  { p: "Para impedir que un programa se inicie automáticamente al encender el equipo se configura en:",
+    op: ["El Desfragmentador de disco", "Configuración > Aplicaciones > Inicio (o Administrador de tareas > Inicio)",
+         "La Papelera de Reciclaje", "diskpart"], r: 1,
+    e: "Desactivarlo agiliza el arranque; no desinstala el programa." },
+
+  { p: "La forma recomendable de desinstalar un programa en Windows 10/11 es:",
+    op: ["Borrar su carpeta de Archivos de programa", "Vaciar la Papelera de Reciclaje",
+         "Inicio > Configuración > Aplicaciones > Desinstalar", "Ejecutar chkdsk"], r: 2,
+    e: "Así se eliminan también las entradas del Registro y los archivos asociados." },
+
+  { p: "Para conectarse a una red Wi-Fi se suele usar:",
+    op: ["El Administrador de tareas", "diskpart", "El Bloc de notas",
+         "El icono de red del área de notificación > Red e Internet"], r: 3,
+    e: "Desde Configuración > Red e Internet se elige la red y se introduce la contraseña." },
+
+  { p: "El comando para liberar la dirección IP y solicitar una nueva es:",
+    op: ["ipconfig /all", "ping -t", "ipconfig /release e ipconfig /renew", "tracert"], r: 2,
+    e: "release libera la IP asignada por DHCP y renew vuelve a pedirla al servidor." },
+
+  { p: "Para compartir una carpeta con otros equipos de la red se configuran:",
+    op: ["Las opciones de uso compartido del Explorador y los permisos de la carpeta",
+         "El Desfragmentador de disco", "chkdsk", "La herramienta Recortes"], r: 0,
+    e: "Además conviene marcar la red como privada y conceder permisos de lectura o escritura." },
+
+  { p: "El Control de cuentas de usuario (UAC) sirve para:",
+    op: ["Aumentar la velocidad de Internet", "Pedir confirmación cuando un programa intenta cambiar ajustes importantes",
+         "Crear copias de seguridad automáticas", "Reparar sectores defectuosos"], r: 1,
+    e: "Es el aviso «¿Desea permitir esta aplicación?» que evita cambios no autorizados." },
+
+  { p: "El firewall de Windows se encarga de:",
+    op: ["Comprimir los archivos del disco", "Reparar el Registro", "Aumentar la memoria disponible",
+         "Permitir o bloquear el tráfico de red según unas reglas"], r: 3,
+    e: "Actúa como barrera frente a accesos no deseados desde la red." },
+
+  { p: "Un antivirus protege el equipo:",
+    op: ["Detectando y eliminando malware y manteniendo actualizadas sus firmas",
+         "Desfragmentando el disco", "Gestionando las contraseñas de Wi-Fi", "Repartiendo la memoria entre los procesos"], r: 0,
+    e: "Microsoft Defender viene incluido en Windows; conviene mantenerlo activo y actualizado." },
+
+  { p: "Un punto de restauración se crea desde:",
+    op: ["La Papelera de Reciclaje", "Panel de control > Sistema > Protección del sistema > Crear",
+         "El Administrador de tareas", "La herramienta chkdsk"], r: 1,
+    e: "Es recomendable crear uno antes de instalar software o cambiar ajustes importantes." },
+
+  { p: "La herramienta Historial de archivos sirve para:",
+    op: ["Guardar copias periódicas de las carpetas personales en otro disco", "Borrar archivos temporales",
+         "Actualizar los controladores", "Crear nuevas particiones"], r: 0,
+    e: "Permite recuperar versiones anteriores de archivos y carpetas." }
+);
+
+DATOS.windows.test.avanzado.push(
+  { p: "La principal ventaja de NTFS frente a FAT32 es:",
+    op: ["Es compatible con cualquier dispositivo antiguo", "No necesita permisos de usuario",
+         "Admite archivos de más de 4 GB, permisos, cifrado y journaling", "Ocupa siempre menos espacio que FAT32"], r: 2,
+    e: "FAT32 no permite archivos mayores de 4 GB ni permisos avanzados." },
+
+  { p: "En NTFS, los permisos de una carpeta:",
+    op: ["Se asignan a usuarios o grupos e incluyen lectura, escritura y ejecución, entre otros",
+         "Solo pueden modificarse desde la BIOS", "Son idénticos en todas las unidades siempre",
+         "No se pueden heredar de la carpeta padre"], r: 0,
+    e: "Se gestionan en la pestaña Seguridad y suelen heredarse de la carpeta superior." },
+
+  { p: "Si Windows avisa de que un archivo está en uso y no se puede borrar, lo recomendable es:",
+    op: ["Formatear la unidad", "Cerrar la aplicación que lo usa o finalizar su proceso desde el Administrador de tareas",
+         "Eliminar la carpeta Windows", "Desinstalar el antivirus"], r: 1,
+    e: "También puede ayudar reiniciar: el bloqueo suele venir de un proceso todavía abierto." },
+
+  { p: "Al conectar un dispositivo USB que no funciona, conviene revisar:",
+    op: ["Reinstalar Windows de inmediato", "Vaciar la Papelera de Reciclaje", "Cambiar la contraseña de usuario",
+         "El puerto/cable y su estado en el Administrador de Dispositivos"], r: 3,
+    e: "Si aparece con un signo de advertencia, se puede actualizar o reinstalar su controlador." },
+
+  { p: "Una pantalla azul (BSOD) indica:",
+    op: ["Que el navegador necesita una actualización", "Que el monitor está averiado",
+         "Que el disco tiene demasiados documentos",
+         "Un error crítico del sistema, a menudo por controladores o hardware, que deja un volcado para analizar"], r: 3,
+    e: "El Visor de eventos y los archivos de volcado ayudan a identificar la causa." },
+
+  { p: "El Visor de eventos de Windows permite:",
+    op: ["Editar directamente el Registro del sistema",
+         "Consultar registros de errores, advertencias e información del sistema y las aplicaciones",
+         "Crear particiones en el disco", "Gestionar las impresoras instaladas"], r: 1,
+    e: "Sus registros de aplicación, seguridad y sistema son clave para diagnosticar fallos." },
+
+  { p: "Dentro de las fases del software, una versión RC (Release Candidate) es:",
+    op: ["La primera versión de prueba, todavía incompleta", "La versión reservada solo a los programadores",
+         "La versión prácticamente final, salvo que surjan errores graves", "El manual de instalación del producto"], r: 2,
+    e: "Si no aparecen fallos graves, se publica la versión RTM o estable." },
+
+  { p: "Una versión beta de un programa se caracteriza por:",
+    op: ["No existir todavía", "Ser la versión final y definitiva",
+         "Tener ya las funcionalidades previstas, pero seguir en revisión y con posibles errores",
+         "Estar disponible solo para el fabricante del hardware"], r: 2,
+    e: "La fase alfa es anterior y más incompleta; en beta suelen probarla también los usuarios." },
+
+  { p: "¿Qué es Windows PE (Preinstallation Environment)?",
+    op: ["Un formato de imagen de disco", "Un entorno mínimo usado para instalar, recuperar o reparar Windows",
+         "Un navegador incluido en el sistema", "Un tipo de cuenta de usuario"], r: 1,
+    e: "Es la base del arranque del instalador y de los medios de recuperación." },
+
+  { p: "Arrancar en modo seguro sirve para:",
+    op: ["Acelerar el equipo de forma permanente", "Cargar Windows con servicios y controladores mínimos para diagnosticar fallos",
+         "Instalar actualizaciones automáticamente", "Ocultar los archivos del sistema"], r: 1,
+    e: "Es útil cuando un controlador o un malware impide el arranque normal." },
+
+  { p: "El comando sfc /scannow permite:",
+    op: ["Borrar todos los archivos temporales", "Crear una nueva partición", "Mostrar la configuración de red",
+         "Comprobar y reparar archivos protegidos del sistema"], r: 3,
+    e: "System File Checker sustituye archivos del sistema dañados o alterados." },
+
+  { p: "La opción «Restablecer este PC» permite:",
+    op: ["Cambiar únicamente la contraseña del usuario", "Desfragmentar el disco duro",
+         "Reinstalar Windows conservando o borrando los archivos personales", "Crear un punto de restauración"], r: 2,
+    e: "Se encuentra en Configuración > Actualización y seguridad > Recuperación." },
+
+  { p: "BitLocker es la utilidad de Windows que permite:",
+    op: ["Cifrar unidades completas para proteger los datos", "Comprimir discos duros",
+         "Crear cuentas de usuario", "Reparar sectores defectuosos"], r: 0,
+    e: "La clave de recuperación hay que guardarla en un sitio seguro (cuenta Microsoft o impresa)." }
+);

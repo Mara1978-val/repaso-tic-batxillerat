@@ -350,10 +350,9 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
       <div class="bloque-config">
         <h2>Número de preguntas</h2>
         <div class="chips" id="chips-numero">
-          <button class="chip" data-numero="5">5</button>
           <button class="chip activo" data-numero="10">10</button>
-          <button class="chip" data-numero="15">15</button>
-          <button class="chip" data-numero="99">Todas</button>
+          <button class="chip" data-numero="20">20</button>
+          <button class="chip" data-numero="30">30</button>
         </div>
       </div>
 
@@ -753,6 +752,208 @@ DATOS.hardware = {
   ]
 };
 
+/* =========================================================
+   Ampliación del banco de preguntas (test)
+   Se añaden con push para no alterar la declaración anterior.
+   ========================================================= */
+
+/* ---------- NIVEL BÁSICO (16 nuevas) ---------- */
+DATOS.hardware.test.basico.push(
+  { p: "¿Cuál es la unidad mínima de información que puede valer 0 o 1?",
+    op: ["El bit", "El byte", "El kilobyte", "El carácter"], r: 0,
+    e: "El bit (binary digit) es la unidad mínima; 8 bits forman un byte." },
+
+  { p: "¿Qué significa el acrónimo CPU?",
+    op: ["Central Process Unit", "Computer Personal Unit", "Core Processing Utility", "Central Processing Unit"], r: 3,
+    e: "CPU = Central Processing Unit (Unidad Central de Procesamiento): interpreta y ejecuta instrucciones." },
+
+  { p: "¿Qué componente se encarga de generar la imagen que se muestra en el monitor?",
+    op: ["La fuente de alimentación", "La tarjeta de sonido", "La tarjeta gráfica", "El disco duro"], r: 2,
+    e: "La tarjeta gráfica (GPU) procesa y envía la imagen al monitor; puede estar integrada en la CPU." },
+
+  { p: "¿Qué periférico se usa principalmente para escribir texto en el ordenador?",
+    op: ["El teclado", "El ratón", "La impresora", "El micrófono"], r: 0,
+    e: "El teclado es un periférico de entrada para introducir texto y comandos." },
+
+  { p: "¿Cuál de estos dispositivos guarda los datos aunque se apague el equipo?",
+    op: ["La RAM", "La caché", "El disco duro", "Los registros"], r: 2,
+    e: "El disco (HDD o SSD) es no volátil: conserva los datos sin corriente eléctrica." },
+
+  { p: "¿Qué conector se usa habitualmente para enchufar un pendrive o una impresora?",
+    op: ["RJ-45", "USB", "HDMI", "VGA"], r: 1,
+    e: "USB es el conector estándar para periféricos y almacenamiento externo." },
+
+  { p: "¿Qué hace un escáner?",
+    op: ["Imprime documentos", "Almacena programas", "Amplifica el sonido", "Digitaliza documentos e imágenes"], r: 3,
+    e: "El escáner es un periférico de entrada que convierte documentos físicos en imágenes digitales." },
+
+  { p: "¿Qué es un procesador de doble núcleo (dual-core)?",
+    op: ["Un procesador con dos núcleos de procesamiento", "Dos procesadores soldados", "Un procesador sin caché", "Un procesador de 2 bits"], r: 0,
+    e: "Dos núcleos dentro del mismo chip pueden trabajar en paralelo." },
+
+  { p: "¿Qué componente se instala en el zócalo (socket) de la placa base?",
+    op: ["La memoria RAM", "El procesador", "La tarjeta gráfica", "La fuente de alimentación"], r: 1,
+    e: "El socket es el alojamiento del procesador; la RAM va en las ranuras DIMM." },
+
+  { p: "¿Qué significa BIOS?",
+    op: ["Basic Input Output System", "Binary Input Output System", "Basic Integrated Operating System", "Board Input Output Setup"], r: 0,
+    e: "BIOS = Sistema Básico de Entrada/Salida: inicializa el hardware y arranca el equipo." },
+
+  { p: "¿Cómo se denomina el conector estándar de una red Ethernet (cable de red)?",
+    op: ["USB", "HDMI", "RJ-45", "DVI"], r: 2,
+    e: "RJ-45 es el conector de 8 pines usado en redes Ethernet con cable de par trenzado." },
+
+  { p: "¿En qué forma se procesan internamente los datos en un ordenador digital?",
+    op: ["En decimal", "En caracteres ASCII", "En vatios", "En binario (0 y 1)"], r: 3,
+    e: "Toda la información se codifica en bits; después se agrupan en bytes." },
+
+  { p: "¿Qué elemento se usa para disipar el calor del procesador?",
+    op: ["Un disipador con ventilador", "Una batería CR2032", "Un cable SATA", "Una tarjeta de red"], r: 0,
+    e: "El disipador (con ventilador o refrigeración líquida) evita el sobrecalentamiento de la CPU." },
+
+  { p: "¿Qué es un periférico?",
+    op: ["Un programa del sistema", "Un dispositivo conectado al ordenador para introducir o sacar datos", "Un tipo de procesador", "La memoria interna de la CPU"], r: 1,
+    e: "Los periféricos pueden ser de entrada, de salida o de entrada/salida (E/S)." },
+
+  { p: "¿Cuál de estos periféricos produce sonido?",
+    op: ["El micrófono", "El escáner", "Los altavoces", "El ratón"], r: 2,
+    e: "Los altavoces son de salida de audio; el micrófono es de entrada." },
+
+  { p: "¿Qué tipo de memoria utilizan las memorias USB (pendrives)?",
+    op: ["Memoria DRAM", "Memoria flash", "Memoria SRAM", "Memoria magnética"], r: 1,
+    e: "La memoria flash es no volátil y se usa en pendrives, SSD y tarjetas SD." }
+);
+
+/* ---------- NIVEL MEDIO (15 nuevas) ---------- */
+DATOS.hardware.test.medio.push(
+  { p: "¿Cuántos valores distintos puede representar un byte?",
+    op: ["8", "128", "256", "1.024"], r: 2,
+    e: "Con 8 bits hay 2⁸ = 256 combinaciones, de 0 a 255." },
+
+  { p: "¿Cuántos bits tiene una dirección IPv4?",
+    op: ["32", "48", "64", "128"], r: 0,
+    e: "IPv4 usa 32 bits, escritos como cuatro números de 0 a 255." },
+
+  { p: "¿Qué interfaz utilizan los discos SSD NVMe?",
+    op: ["SATA", "PCIe", "USB 2.0", "PS/2"], r: 1,
+    e: "NVMe se conecta por PCIe, mucho más rápida que SATA; suele usar el formato M.2." },
+
+  { p: "¿Cuál es la velocidad máxima teórica de USB 2.0?",
+    op: ["12 Mbps", "480 Mbps", "5 Gbps", "10 Gbps"], r: 1,
+    e: "USB 2.0 (High Speed) llega a 480 Mbps; USB 3.0 alcanza 5 Gbps." },
+
+  { p: "¿Cuál es la velocidad máxima teórica de USB 3.0 (USB 3.2 Gen 1)?",
+    op: ["480 Mbps", "1,5 Gbps", "5 Gbps", "40 Gbps"], r: 2,
+    e: "USB 3.0 ofrece hasta 5 Gbps; 40 Gbps corresponde a USB4/Thunderbolt 3." },
+
+  { p: "¿Cuál es la capacidad de un DVD de una sola capa?",
+    op: ["700 MB", "25 GB", "50 GB", "4,7 GB"], r: 3,
+    e: "El DVD de una capa (DVD-5) guarda 4,7 GB; el de doble capa (DVD-9), 8,5 GB." },
+
+  { p: "¿Cuál es la capacidad de un disco Blu-ray de una sola capa?",
+    op: ["4,7 GB", "8,5 GB", "25 GB", "100 GB"], r: 2,
+    e: "Un Blu-ray de una capa guarda 25 GB; el de doble capa, 50 GB." },
+
+  { p: "En RAID 0 los datos se reparten entre varios discos. ¿Cuál es su característica principal?",
+    op: ["Duplica la seguridad ante fallos", "Aumenta la velocidad pero no hay redundancia", "Usa un único disco de respaldo", "Solo funciona con tres discos"], r: 1,
+    e: "RAID 0 (striping) suma rendimiento y capacidad, pero si falla un disco se pierde todo." },
+
+  { p: "¿Qué hace RAID 1 con los datos?",
+    op: ["Los repara automáticamente", "Los divide en fragmentos sin copia", "Crea una copia exacta (espejo) en otro disco", "Los comprime para ahorrar espacio"], r: 2,
+    e: "RAID 1 (mirroring) duplica la información, por lo que tolera el fallo de un disco." },
+
+  { p: "Un procesador de 2,4 GHz trabaja a…",
+    op: ["24 MHz", "240 MHz", "2.400.000 MHz", "2.400 MHz"], r: 3,
+    e: "Como 1 GHz = 1.000 MHz, 2,4 GHz = 2.400 MHz." },
+
+  { p: "Dentro de la jerarquía de memoria, la caché L1 es…",
+    op: ["La más rápida y pequeña, integrada en la CPU", "La más lenta pero de mayor tamaño", "Un disco de estado sólido", "La memoria que usa el sistema operativo"], r: 0,
+    e: "L1 es la más cercana al procesador; detrás van L2, L3, la RAM y los discos." },
+
+  { p: "¿Qué es la memoria virtual?",
+    op: ["Un disco reservado solo para vídeos", "Una parte del disco usada como extensión de la RAM", "Una RAM soldada a la placa base", "La memoria de la tarjeta gráfica"], r: 1,
+    e: "Cuando falta RAM, el sistema operativo intercambia páginas con un archivo o partición de intercambio en el disco." },
+
+  { p: "¿Cuál es la función principal del chipset de la placa base?",
+    op: ["Generar la imagen del monitor", "Gestionar la comunicación entre la CPU y el resto de componentes", "Convertir la corriente alterna en continua", "Guardar los archivos del usuario"], r: 1,
+    e: "El chipset actúa como intermediario entre el procesador, la memoria y los periféricos." },
+
+  { p: "¿Qué tipo de información puede transmitir un puerto HDMI?",
+    op: ["Solo sonido", "Solo vídeo", "Corriente eléctrica de la fuente", "Vídeo y audio digitales"], r: 3,
+    e: "HDMI transporta vídeo y audio digitales por un mismo cable: se usa en monitores y televisores." },
+
+  { p: "Copiando un archivo de 1 GB a una velocidad de 100 MB/s, ¿cuánto tarda aproximadamente?",
+    op: ["1 s", "10 s", "100 s", "1.024 s"], r: 1,
+    e: "1 GB = 1.024 MB y 1.024 ÷ 100 ≈ 10,24 s, es decir, unos 10 segundos." }
+);
+
+/* ---------- NIVEL AVANZADO (16 nuevas) ---------- */
+DATOS.hardware.test.avanzado.push(
+  { p: "El número binario 101010 equivale en decimal a:",
+    op: ["36", "40", "42", "44"], r: 2,
+    e: "32 + 8 + 2 = 42 (encendidos los bits 5, 3 y 1)." },
+
+  { p: "El número decimal 255 escrito en hexadecimal es:",
+    op: ["0xEF", "0xFE", "0x1FF", "0xFF"], r: 3,
+    e: "255 = 11111111₂ = FF₁₆; cada cifra hexadecimal representa 4 bits." },
+
+  { p: "Un archivo de 5.120 MB se descarga a 100 Mbps. ¿Cuánto tarda?",
+    op: ["40,96 s", "409,6 s", "51,2 s", "512 s"], r: 1,
+    e: "100 Mbps = 12,5 MB/s; 5.120 ÷ 12,5 = 409,6 s (unos 6,8 minutos)." },
+
+  { p: "Un equipo consume 95 W (CPU), 250 W (GPU) y 55 W (resto). Aplicando el margen del 30%, ¿qué fuente conviene?",
+    op: ["Una de 400 W", "Una de 450 W", "Una de 500 W", "Una de 550 W o más"], r: 3,
+    e: "El total es 400 W y 400 × 1,3 = 520 W, así que conviene una fuente de al menos 550 W." },
+
+  { p: "¿Qué caracteriza a un array RAID 5?",
+    op: ["Requiere al menos 3 discos y tolera el fallo de uno", "Requiere 2 discos y no tolera fallos", "Usa un solo disco y copias en la nube", "Requiere 4 discos y tolera dos fallos"], r: 0,
+    e: "RAID 5 reparte datos con paridad distribuida: capacidad útil (n-1) discos y aguanta un fallo." },
+
+  { p: "¿Cuál es el mínimo de discos de RAID 6 y cuántos fallos tolera?",
+    op: ["3 discos y 1 fallo", "4 discos y 2 fallos", "2 discos y 1 fallo", "5 discos y 3 fallos"], r: 1,
+    e: "RAID 6 usa doble paridad: al menos 4 discos y tolera la pérdida de dos de ellos." },
+
+  { p: "Un bus de datos de 64 bits a 3,2 GHz, con una transferencia por ciclo, mueve aproximadamente:",
+    op: ["3,2 GB/s", "12,8 GB/s", "25,6 GB/s", "51,2 GB/s"], r: 2,
+    e: "64 bits = 8 bytes; 8 B × 3,2·10⁹ ciclos/s = 25,6·10⁹ B/s = 25,6 GB/s." },
+
+  { p: "Una pantalla 4K UHD de 3840 × 2160 píxeles tiene aproximadamente:",
+    op: ["2 MP", "4 MP", "6,2 MP", "8,3 MP"], r: 3,
+    e: "3840 × 2160 = 8.294.400 píxeles ≈ 8,3 megapíxeles." },
+
+  { p: "Una imagen de 8,3 MP a 24 bits por píxel ocupa, sin comprimir, unos:",
+    op: ["8,3 MB", "16,6 MB", "23,7 MB", "49,8 MB"], r: 2,
+    e: "24 bits = 3 bytes; 8,3·10⁶ × 3 ≈ 24,9·10⁶ B, que son ≈ 23,7 MiB (÷1.024²)." },
+
+  { p: "Grabar vídeo de forma continua a 10 Mbps durante una hora genera aproximadamente:",
+    op: ["450 MB", "4.500 MB (4,5 GB)", "45 GB", "3.600 MB"], r: 1,
+    e: "10 Mbps = 1,25 MB/s; multiplicando por 3.600 s se obtienen 4.500 MB ≈ 4,5 GB." },
+
+  { p: "¿Cuánta memoria puede direccionar un bus de direcciones de 24 bits (direccionando por bytes)?",
+    op: ["1 MB", "8 MB", "16 MB", "24 MB"], r: 2,
+    e: "2²⁴ = 16.777.216 direcciones, es decir, 16 MB." },
+
+  { p: "¿Cuál es el voltaje de funcionamiento típico de la memoria DDR4?",
+    op: ["1,2 V", "1,5 V", "1,8 V", "2,5 V"], r: 0,
+    e: "DDR4 trabaja a 1,2 V (DDR3 lo hacía a 1,5 V): menos voltaje implica menor consumo." },
+
+  { p: "En la jerarquía de memoria, ¿qué elemento tiene menor latencia?",
+    op: ["El disco HDD", "La RAM", "La caché L1", "Los registros de la CPU"], r: 3,
+    e: "Los registros están dentro del procesador y se acceden en un ciclo: son los más rápidos." },
+
+  { p: "Frente a SATA/AHCI, la interfaz NVMe se caracteriza por:",
+    op: ["Usar PCIe y colas de comandos mucho más profundas", "Usar el mismo protocolo AHCI", "Ser incompatible con discos M.2", "Funcionar solo con discos mecánicos"], r: 0,
+    e: "NVMe está diseñada para memoria flash sobre PCIe: reduce la latencia y permite muchas colas en paralelo." },
+
+  { p: "Comparando un SSD SATA (550 MB/s) con un HDD (120 MB/s), el SSD es aproximadamente:",
+    op: ["2 veces más rápido", "4,6 veces más rápido", "10 veces más rápido", "20 veces más rápido"], r: 1,
+    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia supera las 25 veces." },
+
+  { p: "¿Cuántos bits como mínimo se necesitan para representar 1.000 valores distintos?",
+    op: ["8 bits", "9 bits", "10 bits", "16 bits"], r: 2,
+    e: "2⁹ = 512 no basta, pero 2¹⁰ = 1.024 sí: hacen falta 10 bits." }
+);
+
 </script>
 <script>
 /* =========================================================
@@ -1079,6 +1280,383 @@ DATOS.virtualizacion = {
   ]
 };
 
+/* =========================================================
+   Ampliación del banco de test: hasta 30 preguntas por nivel
+   (se añaden al final; no se modifica el apartado «abiertas»)
+   ========================================================= */
+
+/* ---------- BÁSICO (16 nuevas) ---------- */
+DATOS.virtualizacion.test.basico.push({
+  p: "Las «Guest Additions» de VirtualBox son:",
+  op: ["Un antivirus para el invitado", "Un disco de arranque alternativo",
+       "Un conjunto de controladores y utilidades que se instalan dentro del SO invitado",
+       "Un complemento del navegador web"], r: 2,
+  e: "Mejoran el ratón, el vídeo, el portapapeles y permiten usar carpetas compartidas."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Qué es una instantánea (snapshot) en VirtualBox?",
+  op: ["Una copia del estado de la MV en un momento concreto",
+       "Una fotografía del escritorio del host",
+       "Un disco duro nuevo añadido a la MV",
+       "Un tipo de adaptador de red"], r: 0,
+  e: "Guarda la configuración y el estado del disco para poder volver a ese punto después."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un «clon» de una máquina virtual es:",
+  op: ["Una copia de seguridad del sistema anfitrión",
+       "Una copia de la MV que crea otra máquina independiente",
+       "Otro nombre para una instantánea",
+       "Un controlador de USB"], r: 1,
+  e: "El clon genera una MV nueva, con su propio archivo de disco virtual."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿En qué estado se encuentra una MV que hemos «pausado»?",
+  op: ["Apagada", "Guardada en disco", "En ejecución normal",
+       "Congelada en memoria: no avanza la ejecución pero puede reanudarse"], r: 3,
+  e: "La pausa mantiene el estado en RAM; en cambio, «Guardar estado» lo escribe en disco."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Para compartir archivos entre el equipo real y la MV sin usar la red, VirtualBox ofrece:",
+  op: ["El Extension Pack", "Las carpetas compartidas",
+       "La memoria base", "El adaptador NAT"], r: 1,
+  e: "Se configuran en los ajustes de la MV y requieren las Guest Additions instaladas en el invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "El formato de disco virtual VMDK es el formato nativo de:",
+  op: ["VirtualBox", "Microsoft Hyper-V", "VMware", "Apple"], r: 2,
+  e: "VirtualBox sabe crear y usar discos VMDK además de sus propios VDI."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "La memoria RAM que se asigna a una MV en VirtualBox se denomina:",
+  op: ["Memoria base", "Memoria caché", "RAM del host", "Memoria ROM"], r: 0,
+  e: "Se ajusta en Configuración > Sistema > Memoria base."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Cómo se denomina el procesador virtual asignado a una máquina virtual?",
+  op: ["GPU", "ROM", "Chipset", "vCPU (CPU virtual)"], r: 3,
+  e: "Cada vCPU corresponde a un hilo del procesador real puesto a disposición del invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "La edición básica de VirtualBox es un software:",
+  op: ["De pago y cerrado",
+       "Gratuito y de código abierto (el Extension Pack tiene licencia aparte)",
+       "Solo para servidores", "Que exige licencia de Windows"], r: 1,
+  e: "El hipervisor base se distribuye gratuitamente; el complemento tiene condiciones de licencia distintas."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Una de las principales ventajas de la virtualización es:",
+  op: ["Aprovechar mejor el hardware ejecutando varios sistemas en un mismo equipo",
+       "Duplicar el número de monitores", "Alargar la batería del portátil",
+       "Evitar actualizar el software"], r: 0,
+  e: "Consolidación: menos equipos físicos para prestar los mismos servicios."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un inconveniente de la virtualización es:",
+  op: ["No poder instalar antivirus", "La imposibilidad de navegar por Internet",
+       "El consumo extra de CPU, RAM y disco al ejecutar varios sistemas",
+       "Que el host pierda la conexión de red"], r: 2,
+  e: "Cada MV consume recursos reales: hay que dimensionar bien el equipo."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "¿Cuál es la diferencia entre emulación y virtualización?",
+  op: ["La emulación solo sirve para juegos",
+       "La emulación imita hardware de otra arquitectura; la virtualización ofrece el mismo hardware real al invitado",
+       "Son exactamente lo mismo",
+       "La virtualización imita siempre otra arquitectura"], r: 1,
+  e: "El emulador traduce instrucciones; el hipervisor ejecuta código nativo sobre el mismo procesador."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Al exportar una máquina virtual para llevarla a otro equipo se genera normalmente un archivo:",
+  op: [".vdi", ".iso", ".ova o .ovf", ".exe"], r: 2,
+  e: "OVF es un formato estándar de varios ficheros; OVA lo empaqueta todo en uno."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Un dispositivo USB conectado al equipo real puede usarse en la MV:",
+  op: ["Rediriéndolo desde el menú USB de VirtualBox (con el Extension Pack para USB 2.0/3.0)",
+       "Solo si la MV está apagada", "Nunca, por motivos de seguridad",
+       "Automáticamente sin ninguna configuración"], r: 0,
+  e: "El hipervisor captura el dispositivo y se lo presenta al sistema invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "En VirtualBox, la aceleración gráfica (renderizado) de una MV se refiere a:",
+  op: ["Un modo de red", "Un tipo de disco", "Una opción de sonido",
+       "El uso de la GPU para dibujar la pantalla del invitado"], r: 3,
+  e: "Activar la aceleración 3D mejora los gráficos del SO invitado."
+});
+
+DATOS.virtualizacion.test.basico.push({
+  p: "Cuando una MV está «apagada» (power off):",
+  op: ["Sigue consumiendo la RAM asignada",
+       "No está en ejecución: consume recursos mínimos y permite cambiar su configuración",
+       "Está pausada en memoria", "Acaba de ser exportada"], r: 1,
+  e: "Con la MV apagada se pueden modificar RAM, vCPUs, discos y adaptadores."
+});
+
+/* ---------- MEDIO (15 nuevas) ---------- */
+DATOS.virtualizacion.test.medio.push({
+  p: "El modo de red «Solo host» (host-only) permite:",
+  op: ["Salir a Internet a través del host",
+       "Conectar la MV a la red física como un equipo más",
+       "Comunicar el host con sus MVs en una red privada virtual, sin darles acceso a Internet",
+       "Aislar las MVs entre sí"], r: 2,
+  e: "Crea una red privada con una tarjeta virtual en el host; las MVs se ven entre sí y con el host."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Cuál es la diferencia principal entre NAT y Adaptador Puente?",
+  op: ["NAT comparte la IP del host; el puente da a la MV una IP propia de la red física",
+       "NAT da IP propia y el puente comparte la del host",
+       "Ambos modos son equivalentes", "El puente solo funciona por cable Ethernet"], r: 0,
+  e: "Con NAT la MV sale oculta tras el host; con puente es un equipo más de la red."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Qué diferencia hay entre una instantánea y un clon?",
+  op: ["Son exactamente lo mismo", "El clon no ocupa espacio en disco",
+       "La instantánea solo se puede crear con la MV apagada",
+       "La instantánea guarda un estado al que puedes volver; el clon crea una MV nueva independiente"], r: 3,
+  e: "La instantánea forma parte del historial de la MV; el clon es una copia autónoma."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "La opción «Guardar el estado» (Save State) al cerrar una MV:",
+  op: ["La apaga completamente y borra su memoria",
+       "Guarda el estado de CPU y memoria en disco y la deja lista para reanudarla donde estaba",
+       "Elimina los discos virtuales", "La deja pausada solo en RAM"], r: 1,
+  e: "Es distinto de Apagar: al reanudar se recupera exactamente el estado anterior."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Dónde se configura el tipo de adaptador de red de una MV en VirtualBox?",
+  op: ["En Archivo > Preferencias > Red",
+       "En Configuración > Red > Adaptador 1, apartado «Conectado a»",
+       "En Configuración > Almacenamiento", "En el menú Dispositivos > Guest Additions"], r: 1,
+  e: "Ahí se elige NAT, Adaptador puente, Red interna, Solo host, etc. (y se puede activar el Adaptador 2)."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Qué es la «memoria de vídeo» en la configuración de una MV?",
+  op: ["La memoria del navegador del host",
+       "La RAM dedicada a la tarjeta gráfica virtual; conviene aumentarla si se activa la aceleración 3D",
+       "El espacio libre del disco virtual", "La memoria del Extension Pack"], r: 1,
+  e: "Se ajusta en Configuración > Pantalla > Memoria de vídeo."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "El «portapapeles compartido» de VirtualBox permite:",
+  op: ["Copiar texto y archivos entre el host y el invitado si están instaladas las Guest Additions",
+       "Copiar archivos entre dos MVs sin configuración",
+       "Sincronizar automáticamente los discos", "Compartir una impresora"], r: 0,
+  e: "Se activa en Configuración > General > Avanzado y necesita las Guest Additions."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Para que una MV reconozca un pendrive conectado al equipo real:",
+  op: ["Hay que apagar el host", "Hay que instalar un controlador en el router",
+       "Basta con poner la red en modo NAT",
+       "Hay que instalar el Extension Pack (USB 2.0/3.0) y redirigir el dispositivo desde el menú USB"], r: 3,
+  e: "Sin el Extension Pack VirtualBox solo ofrece soporte USB 1.1."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Si el disco de una MV está en reserva dinámica y el host se queda sin espacio:",
+  op: ["El disco crece automáticamente en otra unidad",
+       "La MV puede fallar o bloquearse al no poder crecer el archivo .vdi",
+       "El disco se convierte en reserva fija", "Se borran las instantáneas automáticamente"], r: 1,
+  e: "Conviene vigilar el espacio libre del host; la reserva fija evita este problema."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Para qué sirve exportar una MV a los formatos OVF/OVA?",
+  op: ["Para aumentar su memoria base", "Para crear una instantánea",
+       "Para distribuirla o migrarla a otro equipo o hipervisor de forma estándar",
+       "Para formatear su disco"], r: 2,
+  e: "OVF es un estándar abierto; OVA empaqueta todos los archivos en uno solo."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "En VirtualBox, un «appliance» es:",
+  op: ["Una MV preconfigurada que se distribuye como OVA/OVF y se importa lista para usar",
+       "Un complemento de red", "Un tipo de instantánea",
+       "Una herramienta para formatear discos"], r: 0,
+  e: "Se importa con Archivo > Importar appliance."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Al crear una MV, ¿qué sistema operativo invitado conviene elegir?",
+  op: ["Siempre el mismo que tiene el host",
+       "El que se vaya a instalar realmente, para que VirtualBox ajuste chipset, gráficos y controladores",
+       "El más reciente, aunque no se vaya a usar", "Ninguno: se decide después de instalar el sistema"], r: 1,
+  e: "El asistente adapta la configuración según el SO y si es de 32 o 64 bits."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Si el instalador de un sistema de 64 bits no aparece como opción en una MV, lo más probable es:",
+  op: ["Que falte el Extension Pack", "Que el disco esté en FAT32",
+       "Que no haya espacio suficiente en el host",
+       "Que la MV esté configurada como de 32 bits o que VT-x/AMD-V esté desactivado en la BIOS"], r: 3,
+  e: "Hay que elegir la versión correcta del SO invitado y habilitar la virtualización en la BIOS."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "¿Cómo se clona una MV desde la interfaz gráfica de VirtualBox?",
+  op: ["Clic derecho sobre la MV > Clonar", "Archivo > Exportar disco duro",
+       "Dispositivos > Clonar USB", "Herramientas > Formatear VDI"], r: 0,
+  e: "El asistente permite clonación completa o vinculada (linked clone, basada en una instantánea)."
+});
+
+DATOS.virtualizacion.test.medio.push({
+  p: "Un «clon vinculado» (linked clone) se caracteriza por:",
+  op: ["Copiar todo el disco y ser totalmente independiente", "No poder eliminarse nunca",
+       "Compartir el disco base con la original a través de una instantánea, ahorrando espacio",
+       "Funcionar solo con discos en reserva fija"], r: 2,
+  e: "Si se elimina la instantánea en la que se basa, el clon vinculado deja de ser válido."
+});
+
+/* ---------- AVANZADO (16 nuevas) ---------- */
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV en modo NAT ofrece un servicio web en el puerto 80, pero no es accesible desde otros equipos. ¿Qué hay que configurar?",
+  op: ["Instalar las Guest Additions", "Aumentar la memoria base",
+       "Configurar la redirección de puertos (port forwarding) en el adaptador NAT",
+       "Desactivar el Extension Pack"], r: 2,
+  e: "NAT oculta la MV tras el host; el port forwarding publica un puerto del host hacia el invitado."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "¿Cómo configurar una MV que necesita Internet pero debe ser alcanzable desde el host con una IP privada fija?",
+  op: ["Un único adaptador en modo Red interna",
+       "Adaptador 1 en NAT (salida a Internet) y Adaptador 2 en Solo host (acceso desde el host)",
+       "Un único adaptador en NAT sin más opciones",
+       "Sin adaptador de red, usando solo las Guest Additions"], r: 1,
+  e: "Es la configuración típica: NAT para navegar y host-only para administrar la MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "En una Red Interna con varias MVs y sin router, ¿quién asigna las direcciones IP?",
+  op: ["VirtualBox lo hace automáticamente mediante NAT", "El Extension Pack",
+       "No hay DHCP por defecto: hay que asignar IPs estáticas o configurar un servidor DHCP en esa red interna",
+       "El host mediante Wi-Fi"], r: 2,
+  e: "La red interna es un segmento aislado: conviene planificar el direccionamiento o montar DHCP."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Tienes la instantánea «Limpia» y, desde ella, la instantánea «Con programa». Si quieres volver al estado Limpia sin perder la otra rama, debes:",
+  op: ["Borrar todas las instantáneas", "Restaurar (Restore) la instantánea «Limpia»",
+       "Clonar la MV completa", "Apagar y volver a encender la MV"], r: 1,
+  e: "Restaurar cambia el estado actual al de esa instantánea, pero conserva el resto del árbol de instantáneas."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV con muchas instantáneas ocupa mucho más espacio en el host de lo esperado. ¿Por qué?",
+  op: ["Cada instantánea crea un disco de diferencias (.vdi) con los cambios posteriores",
+       "El Extension Pack duplica todos los discos",
+       "La RAM de la MV se guarda como archivo de disco", "NAT genera copias de seguridad"], r: 0,
+  e: "Borrar las instantáneas que ya no se necesitan permite recuperar espacio."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "¿En qué escenario conviene elegir «reserva fija» para el disco virtual?",
+  op: ["Cuando se quiere ahorrar espacio en el host",
+       "Cuando el disco va a estar en una unidad FAT32",
+       "Cuando la MV solo tiene 1 vCPU",
+       "Cuando se prioriza rendimiento y se prevé que el disco crecerá bastante"], r: 3,
+  e: "La reserva fija es algo más rápida y evita el riesgo de quedarse sin espacio al crecer."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Hay que ampliar de 20 GB a 40 GB un disco .vdi con la MV apagada. El procedimiento correcto es:",
+  op: ["Borrar el disco y crear uno nuevo desde cero",
+       "Usar VBoxManage modifymedium (modifyhd) con --resize 40960 y después ampliar la partición dentro del invitado",
+       "Convertir el disco a formato ISO", "Aumentar la memoria base de la MV"], r: 1,
+  e: "El comando cambia el tamaño del archivo; el SO invitado aún debe expandir su partición."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Al importar un appliance OVA procedente de otro fabricante, la MV puede dar problemas porque:",
+  op: ["Los archivos OVA solo funcionan en VMware", "Falta instalar el Extension Pack",
+       "Los controladores, el formato de disco o el chipset pueden no ser totalmente compatibles y hay que revisarlos",
+       "La MV debe estar encendida para importarse"], r: 2,
+  e: "OVF es un estándar, pero conviene adaptar la configuración de hardware tras la importación."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Una MV con aplicaciones de diseño dibuja la pantalla muy despacio. Si el host tiene una GPU compatible, ¿qué ayudará?",
+  op: ["Activar la aceleración gráfica 3D en Configuración > Pantalla e instalar las Guest Additions",
+       "Desactivar VT-x en la BIOS", "Poner la tarjeta de red en modo puente",
+       "Reducir la memoria base por debajo de 512 MB"], r: 0,
+  e: "Sin aceleración, los gráficos se renderizan por software; la GPU virtual no sustituye a una gráfica física dedicada."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Con 8 GB de RAM en el host, pretendes ejecutar tres MVs de Windows a la vez. Lo más previsible es:",
+  op: ["Saturación de memoria: el host empieza a usar swap y todo va muy lento",
+       "Ningún problema: VirtualBox crea RAM virtual ilimitada",
+       "Las MVs se apagan solas automáticamente", "Se duplican las direcciones IP"], r: 0,
+  e: "El conjunto de MVs no debería superar aproximadamente la mitad de la RAM real del host."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Conectas un disco USB 3.0 a la MV y solo lo reconoce como USB 1.1. La causa más probable es:",
+  op: ["La MV está en modo NAT", "El disco está formateado en exFAT",
+       "Faltan vCPUs asignadas",
+       "No está instalado el Extension Pack y/o no se ha elegido el controlador USB 3.0 (xHCI)"], r: 3,
+  e: "El Extension Pack aporta USB 2.0/3.0; para cambiar el controlador hay que apagar la MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Tras cambiar una MV a Adaptador Puente, no recibe dirección IP. ¿Qué hay que revisar primero?",
+  op: ["Que el puente esté asociado a la tarjeta física correcta (Wi-Fi o Ethernet) y que haya DHCP en esa red",
+       "Que falte el Extension Pack", "Que la MV tenga asignadas 2 vCPUs",
+       "Que el disco sea de reserva dinámica"], r: 0,
+  e: "Con puente la MV depende de la red física: si elige el adaptador equivocado o no hay DHCP, no tendrá IP."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Desde el host no puedes acceder al servicio de una MV en NAT usando su IP privada 10.0.2.15. ¿Por qué?",
+  op: ["Porque la MV está apagada", "Porque faltan las Guest Additions",
+       "Porque el host tiene desactivado el firewall",
+       "Porque esa IP pertenece a la red NAT interna del invitado: el host no la ve directamente; usa port forwarding o cambia de modo"], r: 3,
+  e: "La red NAT aísla al invitado; el host solo lo alcanza mediante redirección de puertos u otro modo de red."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Necesitas dos copias de una MV que se modifiquen y se borren por separado sin afectar a la original. Debes usar:",
+  op: ["Dos instantáneas de la misma MV", "Un clon completo de la MV (uno para cada copia)",
+       "La opción Pausar", "Cambiar el modo de red a Red interna"], r: 1,
+  e: "El clon completo crea discos propios; las instantáneas son parte del historial de una sola MV."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Si cifras el disco de una MV con el Extension Pack y pierdes la contraseña:",
+  op: ["Se puede recuperar reinstalando las Guest Additions",
+       "VirtualBox la muestra en Archivo > Preferencias",
+       "No se puede acceder al disco: habrá que restaurar desde una copia o instantánea anterior",
+       "El cifrado se desactiva automáticamente"], r: 2,
+  e: "El cifrado protege el archivo .vdi; sin la clave no existe forma de descifrarlo."
+});
+
+DATOS.virtualizacion.test.avanzado.push({
+  p: "Instalaste las Guest Additions, pero el escritorio de la MV no se ajusta al tamaño de la ventana. ¿Qué revisar?",
+  op: ["Que la tarjeta de red esté en modo puente",
+       "Que el SO invitado se haya reiniciado tras la instalación y que la memoria de vídeo sea suficiente",
+       "Que el disco esté en reserva fija", "Que el Extension Pack esté desinstalado"], r: 1,
+  e: "Las Guest Additions requieren reiniciar el invitado; también influye la memoria de vídeo asignada."
+});
+
 </script>
 <script>
 /* =========================================================
@@ -1376,6 +1954,224 @@ DATOS.windows = {
       explicacion: "De ahí que aparezcan etiquetas como «versión beta»." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de preguntas del tema WINDOWS
+   (16 básicas + 13 medias + 13 avanzadas = 30 por nivel)
+   ========================================================= */
+
+DATOS.windows.test.basico.push(
+  { p: "¿En qué elemento de la interfaz se encuentra normalmente el botón de Inicio y los programas anclados?",
+    op: ["En la Papelera de Reciclaje", "En la barra de tareas", "En el Panel de control", "Dentro de una unidad de disco"], r: 1,
+    e: "La barra de tareas suele estar abajo y contiene Inicio, apps ancladas, la ventana activa y el área de notificación." },
+
+  { p: "El área de notificación (bandeja del sistema) de la barra de tareas muestra:",
+    op: ["La hora y avisos, además de iconos como red, volumen o antivirus", "Solo los archivos eliminados",
+         "El contenido completo del disco C:", "La lista de controladores instalados"], r: 0,
+    e: "En la bandeja se ven los iconos del sistema, las notificaciones de las apps y la hora." },
+
+  { p: "Un acceso directo del escritorio es:",
+    op: ["Una copia completa del programa", "Un tipo especial de carpeta",
+         "Un icono que apunta al archivo o programa original", "Un archivo de texto con instrucciones"], r: 2,
+    e: "Es un puntero al elemento original: si se borra este, el acceso directo deja de funcionar." },
+
+  { p: "En Windows, un icono es:",
+    op: ["Una pequeña imagen que representa un archivo, carpeta o programa", "Un tipo de contraseña",
+         "Una unidad de almacenamiento", "Una orden escrita en texto"], r: 0,
+    e: "Los iconos identifican visualmente los elementos del escritorio y del Explorador." },
+
+  { p: "Para cambiar el fondo del escritorio se acude normalmente a:",
+    op: ["Administrador de tareas > Rendimiento", "Inicio > Configuración > Personalización",
+         "La Papelera de Reciclaje", "El Editor del Registro"], r: 1,
+    e: "En Personalización se ajustan el fondo, los colores, el tema y la pantalla de bloqueo." },
+
+  { p: "La extensión .xlsx corresponde normalmente a un documento de:",
+    op: ["PowerPoint", "Word", "Excel", "Bloc de notas"], r: 2,
+    e: "xlsx → Excel; docx → Word; pptx → PowerPoint; txt → Bloc de notas." },
+
+  { p: "¿Qué extensión suele tener un archivo de texto plano creado con el Bloc de notas?",
+    op: [".txt", ".docx", ".jpg", ".exe"], r: 0,
+    e: "El Bloc de notas guarda texto sin formato; la extensión habitual es .txt." },
+
+  { p: "¿Cuál de estas extensiones corresponde normalmente a una imagen?",
+    op: [".exe", ".mp3", ".docx", ".jpg"], r: 3,
+    e: "jpg y png son formatos de imagen; mp3 es audio, docx es documento y exe es ejecutable." },
+
+  { p: "En el Explorador de archivos, una carpeta sirve principalmente para:",
+    op: ["Organizar y agrupar archivos y otras carpetas", "Aumentar la memoria RAM",
+         "Establecer la conexión a Internet", "Ejecutar programas al arrancar"], r: 0,
+    e: "Las carpetas organizan la información en una estructura jerárquica o árbol de directorios." },
+
+  { p: "La ruta (path) de un archivo en Windows indica:",
+    op: ["El tamaño del archivo en bytes", "La ubicación completa desde la unidad hasta el archivo",
+         "La contraseña de acceso al archivo", "El programa que lo creó"], r: 1,
+    e: "Por ejemplo, C:\\Usuarios\\MARA\\Documentos\\tarea.docx es la ruta de un archivo." },
+
+  { p: "La operación «arrastrar y soltar» en el Explorador permite:",
+    op: ["Borrar definitivamente los archivos", "Cambiar el nombre de la unidad",
+         "Mover o copiar archivos llevándolos con el ratón a otra carpeta", "Apagar el equipo"], r: 2,
+    e: "Al arrastrar dentro de la misma unidad se mueve; a otra unidad se copia (Ctrl fuerza copiar)." },
+
+  { p: "El menú Inicio de Windows permite, entre otras cosas:",
+    op: ["Buscar programas y archivos, abrir ajustes y apagar o reiniciar el equipo",
+         "Solamente consultar la hora del sistema", "Desfragmentar el disco duro", "Editar directamente el Registro"], r: 0,
+    e: "Es el punto de acceso principal a aplicaciones, ajustes, energía y búsqueda." },
+
+  { p: "Vaciar la Papelera de Reciclaje implica:",
+    op: ["Mover los archivos a otra carpeta", "Eliminar definitivamente los archivos que contiene",
+         "Restaurar los archivos a su ubicación original", "Comprimir los archivos para ahorrar espacio"], r: 1,
+    e: "Después de vaciarla, los archivos ya no se pueden recuperar con las opciones habituales." },
+
+  { p: "La combinación de teclas Ctrl + C sirve para:",
+    op: ["Cortar el elemento seleccionado", "Pegar lo copiado", "Deshacer la última acción",
+         "Copiar el elemento seleccionado"], r: 3,
+    e: "Ctrl+C copia, Ctrl+V pega, Ctrl+X corta y Ctrl+Z deshace." },
+
+  { p: "La combinación de teclas Ctrl + Z permite:",
+    op: ["Guardar el documento actual", "Cerrar todas las ventanas", "Cambiar de usuario",
+         "Deshacer la última acción realizada"], r: 3,
+    e: "Es muy útil para revertir un borrado o un movimiento hecho por error." },
+
+  { p: "La combinación Windows + L sirve para:",
+    op: ["Apagar el equipo", "Abrir el Explorador de archivos", "Bloquear la sesión",
+         "Cambiar el fondo de escritorio"], r: 2,
+    e: "Bloquea la sesión sin cerrar los programas; hará falta la contraseña para volver." }
+);
+
+DATOS.windows.test.medio.push(
+  { p: "El comando de CMD que copia un archivo a otra ubicación es:",
+    op: ["del", "move", "copy", "cls"], r: 2,
+    e: "copy origen destino crea una copia; move desplaza el original y del lo borra." },
+
+  { p: "Para cambiar el nombre de un archivo desde el símbolo del sistema se usa:",
+    op: ["ren (o rename)", "copy", "md", "cls"], r: 0,
+    e: "ren antiguo.txt nuevo.txt cambia el nombre sin desplazar el archivo." },
+
+  { p: "El Administrador de tareas permite:",
+    op: ["Ver y finalizar procesos y consultar el uso de CPU, memoria y disco",
+         "Desfragmentar el disco duro", "Editar el Registro de Windows", "Crear particiones nuevas"], r: 0,
+    e: "Se abre con Ctrl+Mayús+Esc o desde la pantalla de Ctrl+Alt+Supr." },
+
+  { p: "Para impedir que un programa se inicie automáticamente al encender el equipo se configura en:",
+    op: ["El Desfragmentador de disco", "Configuración > Aplicaciones > Inicio (o Administrador de tareas > Inicio)",
+         "La Papelera de Reciclaje", "diskpart"], r: 1,
+    e: "Desactivarlo agiliza el arranque; no desinstala el programa." },
+
+  { p: "La forma recomendable de desinstalar un programa en Windows 10/11 es:",
+    op: ["Borrar su carpeta de Archivos de programa", "Vaciar la Papelera de Reciclaje",
+         "Inicio > Configuración > Aplicaciones > Desinstalar", "Ejecutar chkdsk"], r: 2,
+    e: "Así se eliminan también las entradas del Registro y los archivos asociados." },
+
+  { p: "Para conectarse a una red Wi-Fi se suele usar:",
+    op: ["El Administrador de tareas", "diskpart", "El Bloc de notas",
+         "El icono de red del área de notificación > Red e Internet"], r: 3,
+    e: "Desde Configuración > Red e Internet se elige la red y se introduce la contraseña." },
+
+  { p: "El comando para liberar la dirección IP y solicitar una nueva es:",
+    op: ["ipconfig /all", "ping -t", "ipconfig /release e ipconfig /renew", "tracert"], r: 2,
+    e: "release libera la IP asignada por DHCP y renew vuelve a pedirla al servidor." },
+
+  { p: "Para compartir una carpeta con otros equipos de la red se configuran:",
+    op: ["Las opciones de uso compartido del Explorador y los permisos de la carpeta",
+         "El Desfragmentador de disco", "chkdsk", "La herramienta Recortes"], r: 0,
+    e: "Además conviene marcar la red como privada y conceder permisos de lectura o escritura." },
+
+  { p: "El Control de cuentas de usuario (UAC) sirve para:",
+    op: ["Aumentar la velocidad de Internet", "Pedir confirmación cuando un programa intenta cambiar ajustes importantes",
+         "Crear copias de seguridad automáticas", "Reparar sectores defectuosos"], r: 1,
+    e: "Es el aviso «¿Desea permitir esta aplicación?» que evita cambios no autorizados." },
+
+  { p: "El firewall de Windows se encarga de:",
+    op: ["Comprimir los archivos del disco", "Reparar el Registro", "Aumentar la memoria disponible",
+         "Permitir o bloquear el tráfico de red según unas reglas"], r: 3,
+    e: "Actúa como barrera frente a accesos no deseados desde la red." },
+
+  { p: "Un antivirus protege el equipo:",
+    op: ["Detectando y eliminando malware y manteniendo actualizadas sus firmas",
+         "Desfragmentando el disco", "Gestionando las contraseñas de Wi-Fi", "Repartiendo la memoria entre los procesos"], r: 0,
+    e: "Microsoft Defender viene incluido en Windows; conviene mantenerlo activo y actualizado." },
+
+  { p: "Un punto de restauración se crea desde:",
+    op: ["La Papelera de Reciclaje", "Panel de control > Sistema > Protección del sistema > Crear",
+         "El Administrador de tareas", "La herramienta chkdsk"], r: 1,
+    e: "Es recomendable crear uno antes de instalar software o cambiar ajustes importantes." },
+
+  { p: "La herramienta Historial de archivos sirve para:",
+    op: ["Guardar copias periódicas de las carpetas personales en otro disco", "Borrar archivos temporales",
+         "Actualizar los controladores", "Crear nuevas particiones"], r: 0,
+    e: "Permite recuperar versiones anteriores de archivos y carpetas." }
+);
+
+DATOS.windows.test.avanzado.push(
+  { p: "La principal ventaja de NTFS frente a FAT32 es:",
+    op: ["Es compatible con cualquier dispositivo antiguo", "No necesita permisos de usuario",
+         "Admite archivos de más de 4 GB, permisos, cifrado y journaling", "Ocupa siempre menos espacio que FAT32"], r: 2,
+    e: "FAT32 no permite archivos mayores de 4 GB ni permisos avanzados." },
+
+  { p: "En NTFS, los permisos de una carpeta:",
+    op: ["Se asignan a usuarios o grupos e incluyen lectura, escritura y ejecución, entre otros",
+         "Solo pueden modificarse desde la BIOS", "Son idénticos en todas las unidades siempre",
+         "No se pueden heredar de la carpeta padre"], r: 0,
+    e: "Se gestionan en la pestaña Seguridad y suelen heredarse de la carpeta superior." },
+
+  { p: "Si Windows avisa de que un archivo está en uso y no se puede borrar, lo recomendable es:",
+    op: ["Formatear la unidad", "Cerrar la aplicación que lo usa o finalizar su proceso desde el Administrador de tareas",
+         "Eliminar la carpeta Windows", "Desinstalar el antivirus"], r: 1,
+    e: "También puede ayudar reiniciar: el bloqueo suele venir de un proceso todavía abierto." },
+
+  { p: "Al conectar un dispositivo USB que no funciona, conviene revisar:",
+    op: ["Reinstalar Windows de inmediato", "Vaciar la Papelera de Reciclaje", "Cambiar la contraseña de usuario",
+         "El puerto/cable y su estado en el Administrador de Dispositivos"], r: 3,
+    e: "Si aparece con un signo de advertencia, se puede actualizar o reinstalar su controlador." },
+
+  { p: "Una pantalla azul (BSOD) indica:",
+    op: ["Que el navegador necesita una actualización", "Que el monitor está averiado",
+         "Que el disco tiene demasiados documentos",
+         "Un error crítico del sistema, a menudo por controladores o hardware, que deja un volcado para analizar"], r: 3,
+    e: "El Visor de eventos y los archivos de volcado ayudan a identificar la causa." },
+
+  { p: "El Visor de eventos de Windows permite:",
+    op: ["Editar directamente el Registro del sistema",
+         "Consultar registros de errores, advertencias e información del sistema y las aplicaciones",
+         "Crear particiones en el disco", "Gestionar las impresoras instaladas"], r: 1,
+    e: "Sus registros de aplicación, seguridad y sistema son clave para diagnosticar fallos." },
+
+  { p: "Dentro de las fases del software, una versión RC (Release Candidate) es:",
+    op: ["La primera versión de prueba, todavía incompleta", "La versión reservada solo a los programadores",
+         "La versión prácticamente final, salvo que surjan errores graves", "El manual de instalación del producto"], r: 2,
+    e: "Si no aparecen fallos graves, se publica la versión RTM o estable." },
+
+  { p: "Una versión beta de un programa se caracteriza por:",
+    op: ["No existir todavía", "Ser la versión final y definitiva",
+         "Tener ya las funcionalidades previstas, pero seguir en revisión y con posibles errores",
+         "Estar disponible solo para el fabricante del hardware"], r: 2,
+    e: "La fase alfa es anterior y más incompleta; en beta suelen probarla también los usuarios." },
+
+  { p: "¿Qué es Windows PE (Preinstallation Environment)?",
+    op: ["Un formato de imagen de disco", "Un entorno mínimo usado para instalar, recuperar o reparar Windows",
+         "Un navegador incluido en el sistema", "Un tipo de cuenta de usuario"], r: 1,
+    e: "Es la base del arranque del instalador y de los medios de recuperación." },
+
+  { p: "Arrancar en modo seguro sirve para:",
+    op: ["Acelerar el equipo de forma permanente", "Cargar Windows con servicios y controladores mínimos para diagnosticar fallos",
+         "Instalar actualizaciones automáticamente", "Ocultar los archivos del sistema"], r: 1,
+    e: "Es útil cuando un controlador o un malware impide el arranque normal." },
+
+  { p: "El comando sfc /scannow permite:",
+    op: ["Borrar todos los archivos temporales", "Crear una nueva partición", "Mostrar la configuración de red",
+         "Comprobar y reparar archivos protegidos del sistema"], r: 3,
+    e: "System File Checker sustituye archivos del sistema dañados o alterados." },
+
+  { p: "La opción «Restablecer este PC» permite:",
+    op: ["Cambiar únicamente la contraseña del usuario", "Desfragmentar el disco duro",
+         "Reinstalar Windows conservando o borrando los archivos personales", "Crear un punto de restauración"], r: 2,
+    e: "Se encuentra en Configuración > Actualización y seguridad > Recuperación." },
+
+  { p: "BitLocker es la utilidad de Windows que permite:",
+    op: ["Cifrar unidades completas para proteger los datos", "Comprimir discos duros",
+         "Crear cuentas de usuario", "Reparar sectores defectuosos"], r: 0,
+    e: "La clave de recuperación hay que guardarla en un sitio seguro (cuenta Microsoft o impresa)." }
+);
 
 </script>
 <script>
@@ -1700,6 +2496,200 @@ DATOS.ubuntu = {
       explicacion: "Conviene trabajar siempre con el usuario común y usar root solo cuando sea necesario." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de test (nivel 1º Bachillerato)
+   ========================================================= */
+
+DATOS.ubuntu.test.basico.push(
+  { p: "¿Qué comando se usa para cambiar de directorio en la terminal?",
+    op: ["pwd", "cd", "ls", "mkdir"], r: 1,
+    e: "cd /home entra en esa carpeta; cd sin argumentos vuelve a la carpeta personal del usuario." },
+
+  { p: "¿Cuál es el directorio raíz del sistema en GNU/Linux?",
+    op: ["/home", "/etc", "/", "/var"], r: 2,
+    e: "Todo cuelga de /; a diferencia de Windows no hay letras de unidad como C:." },
+
+  { p: "¿Cómo se indica al comando cd que queremos subir al directorio padre?",
+    op: ["cd .", "cd ..", "cd ~", "cd /"], r: 1,
+    e: "cd . no cambia de carpeta; cd ~ lleva a la carpeta personal." },
+
+  { p: "En la terminal, el símbolo ~ representa:",
+    op: ["la raíz del sistema", "el directorio personal del usuario", "el directorio actual", "la papelera"], r: 1,
+    e: "~/Documentos equivale a /home/usuario/Documentos." },
+
+  { p: "¿Qué muestra la opción -l del comando ls?",
+    op: ["Los permisos, el propietario, el tamaño y la fecha de cada archivo",
+         "Solo los archivos ocultos", "El contenido de todos los archivos", "La lista de procesos"], r: 0,
+    e: "ls -l da el listado en formato largo; ls -a incluye también los archivos ocultos." },
+
+  { p: "¿Qué contiene el directorio /bin de GNU/Linux?",
+    op: ["Archivos de configuración", "Los documentos del usuario",
+         "Programas ejecutables esenciales", "Archivos temporales"], r: 2,
+    e: "/etc guarda la configuración, /home los usuarios y /tmp los archivos temporales." },
+
+  { p: "¿Qué comando elimina una carpeta vacía?",
+    op: ["rmdir", "rmfile", "del", "erase"], r: 0,
+    e: "rmdir solo funciona si la carpeta está vacía; para borrar una carpeta con contenido se usa rm -r." },
+
+  { p: "En el símbolo del sistema de la terminal, el carácter # indica que:",
+    op: ["Se está trabajando como root", "Hay un error de sintaxis",
+         "El equipo está apagado", "Falta un archivo"], r: 0,
+    e: "Con un usuario normal el símbolo es $; con el superusuario root es #." },
+
+  { p: "¿Cómo se reconocen los archivos ocultos en GNU/Linux?",
+    op: ["Su nombre empieza por un punto", "Su nombre empieza por una arroba",
+         "Siempre se llaman oculto.txt", "No se pueden crear desde la terminal"], r: 0,
+    e: "Por ejemplo .bashrc; para verlos hay que usar ls -a." },
+
+  { p: "¿Qué comando muestra un archivo de texto pantalla a pantalla?",
+    op: ["cat", "more", "pwd", "touch"], r: 1,
+    e: "cat lo muestra todo de una vez; more avanza con la barra espaciadora." },
+
+  { p: "¿Para qué sirve el comando echo?",
+    op: ["Para mostrar un texto en pantalla", "Para crear una carpeta",
+         "Para copiar un archivo", "Para cambiar de directorio"], r: 0,
+    e: "echo Hola escribe Hola; también se usa para redirigir texto a un archivo con >." },
+
+  { p: "¿Qué tecla completa automáticamente el nombre de un comando o archivo en la terminal?",
+    op: ["Intro", "Tabulador (Tab)", "Escape", "Suprimir"], r: 1,
+    e: "Pulsando dos veces Tab se muestran las posibles coincidencias." },
+
+  { p: "¿Qué es un shell?",
+    op: ["Un intérprete que lee y ejecuta las órdenes del usuario",
+         "Un editor de imágenes", "Un gestor de particiones", "Un tipo de archivo comprimido"], r: 0,
+    e: "Es la interfaz de texto entre el usuario y el núcleo del sistema." },
+
+  { p: "¿Para qué se usa el directorio /tmp?",
+    op: ["Para guardar la configuración", "Para archivos temporales",
+         "Para los programas instalados", "Para los archivos de arranque"], r: 1,
+    e: "Su contenido suele borrarse al reiniciar; /boot guarda el núcleo y los archivos de arranque." },
+
+  { p: "¿Cuál es el intérprete de comandos (shell) por defecto en Ubuntu?",
+    op: ["cmd", "bash", "PowerShell", "csh"], r: 1,
+    e: "bash = Bourne Again SHell; otros shells como zsh se pueden instalar después." },
+
+  { p: "¿Qué comando cierra la sesión de la terminal?",
+    op: ["exit", "clear", "stop", "close"], r: 0,
+    e: "También funciona Ctrl+D; clear solo borra lo mostrado en pantalla." }
+);
+
+DATOS.ubuntu.test.medio.push(
+  { p: "¿Qué comando comprueba si hay conexión con otro equipo enviando paquetes?",
+    op: ["ping", "ipconfig", "net use", "ls"], r: 0,
+    e: "ping envía paquetes y muestra el tiempo de respuesta; ipconfig es el comando de Windows." },
+
+  { p: "¿Qué orden muestra la ruta que siguen los paquetes hasta un destino?",
+    op: ["ping", "ip a", "traceroute", "who"], r: 2,
+    e: "En Windows el equivalente es tracert; en Linux se usa traceroute." },
+
+  { p: "¿Qué permite hacer el comando sudo?",
+    op: ["Cambiar la contraseña del usuario", "Ejecutar una orden con privilegios de root",
+         "Apagar el equipo", "Listar los archivos del sistema"], r: 1,
+    e: "sudo nombre_de_orden pide la contraseña del usuario y ejecuta esa sola orden como root." },
+
+  { p: "¿Qué comando cambia el propietario de un archivo?",
+    op: ["chmod", "chown", "chgrp", "whoami"], r: 1,
+    e: "chown usuario:grupo archivo cambia dueño y grupo; chmod cambia los permisos." },
+
+  { p: "¿Qué opción de cp permite copiar carpetas con todo su contenido?",
+    op: ["-r", "-v", "-f", "-n"], r: 0,
+    e: "cp -r origen destino copia de forma recursiva; -v muestra el progreso." },
+
+  { p: "¿Cuál es el gestor de paquetes que Ubuntu usa desde la terminal para instalar paquetes .deb?",
+    op: ["rpm", "apt", "yum", "msi"], r: 1,
+    e: "rpm es de Fedora/Red Hat, yum se usó en distribuciones antiguas de Red Hat y msi es de Windows." },
+
+  { p: "¿Qué hace sudo apt upgrade?",
+    op: ["Instala un paquete nuevo", "Actualiza los paquetes instalados a las versiones disponibles",
+         "Elimina todos los paquetes", "Cambia el gestor de arranque"], r: 1,
+    e: "apt update actualiza el índice de los repositorios; apt upgrade actualiza los paquetes instalados." },
+
+  { p: "¿Cómo se instala desde la terminal una aplicación en formato Snap?",
+    op: ["snap install nombre", "apt install snap", "snap setup nombre", "snadd nombre"], r: 0,
+    e: "Snap son paquetes autocontenidos; apt instala los paquetes .deb de los repositorios." },
+
+  { p: "¿Para qué sirve el comando grep?",
+    op: ["Comprimir archivos", "Buscar líneas que coinciden con un patrón de texto",
+         "Borrar las líneas de un archivo", "Contar los procesos"], r: 1,
+    e: "grep texto archivo muestra las líneas que contienen ese texto; -i ignora mayúsculas." },
+
+  { p: "¿Qué significa el símbolo | (pipe) en la terminal?",
+    op: ["Redirigir la salida a un archivo", "Pasar la salida de una orden como entrada de otra",
+         "Ejecutar la orden en segundo plano", "Separar los parámetros de una orden"], r: 1,
+    e: "cat archivo | grep palabra busca texto dentro del archivo." },
+
+  { p: "¿Qué muestra el comando history?",
+    op: ["Las órdenes ejecutadas anteriormente", "Los procesos en ejecución",
+         "Los archivos ocultos", "El espacio libre en disco"], r: 0,
+    e: "Se puede repetir una orden con !número; df -h muestra el espacio en disco." },
+
+  { p: "¿Qué información ofrece uname -a?",
+    op: ["La fecha y hora del sistema", "El espacio ocupado por los archivos",
+         "Datos del núcleo y del equipo, como la versión y la arquitectura",
+         "La lista de usuarios conectados"], r: 2,
+    e: "who muestra los usuarios conectados; date muestra la fecha." }
+);
+
+DATOS.ubuntu.test.avanzado.push(
+  { p: "Un archivo con permisos 600 significa:",
+    op: ["El propietario puede leer y escribir; el grupo y los demás no tienen permisos",
+         "Todos pueden leerlo", "El propietario puede ejecutarlo", "Solo el grupo puede escribir"], r: 0,
+    e: "6 = 4+2 (rw-), 0 = sin permisos para el grupo y el resto." },
+
+  { p: "¿Qué valor numérico de chmod corresponde a rwxr-xr--?",
+    op: ["754", "744", "755", "645"], r: 0,
+    e: "rwx = 7, r-x = 5 y r-- = 4, en ese orden: propietario, grupo y resto." },
+
+  { p: "¿Qué hace el símbolo > al redirigir la salida de una orden?",
+    op: ["Crea o sobrescribe un archivo con la salida", "Añade la salida al final del archivo",
+         "Toma la entrada desde un archivo", "Muestra los permisos del archivo"], r: 0,
+    e: "ls > lista.txt guarda el listado; con >> se añade sin borrar lo anterior." },
+
+  { p: "¿Qué diferencia hay entre > y >> en una redirección?",
+    op: ["> y >> hacen exactamente lo mismo",
+         ">> añade la salida al final del archivo, mientras que > lo sobrescribe",
+         "> solo funciona con errores", ">> solo funciona con carpetas"], r: 1,
+    e: "Por eso >> se usa para acumular datos, por ejemplo en un archivo de registro." },
+
+  { p: "¿Qué se consigue con 2> archivo.log?",
+    op: ["Guardar la salida normal en el archivo", "Guardar los mensajes de error en el archivo",
+         "Leer el archivo como entrada", "Ejecutar la orden en segundo plano"], r: 1,
+    e: "La salida estándar es 1 y la de errores es 2; 2> redirige los mensajes de error." },
+
+  { p: "¿Cuál es la diferencia entre sudo y su?",
+    op: ["su inicia una sesión como otro usuario; sudo ejecuta una sola orden con privilegios (de root por defecto) sin cambiar de sesión",
+         "sudo y su son exactamente iguales", "sudo solo sirve para instalar software",
+         "su solo sirve para ver archivos"], r: 0,
+    e: "sudo -i abre una sesión de root; conviene usar sudo solo para la orden necesaria." },
+
+  { p: "¿Qué comando envía una señal para terminar un proceso del que conocemos su PID?",
+    op: ["rm", "kill", "top", "halt"], r: 1,
+    e: "kill 1234 termina el proceso 1234; kill -9 1234 lo fuerza si no responde." },
+
+  { p: "¿Qué comando muestra los procesos en tiempo real y su consumo de CPU y memoria?",
+    op: ["free", "top", "du", "uptime"], r: 1,
+    e: "ps muestra una instantánea; top se actualiza continuamente y se sale con q." },
+
+  { p: "¿Qué significa el carácter & al final de una orden?",
+    op: ["Repetir la orden varias veces", "Ocultar los mensajes de error",
+         "Ejecutar la orden en segundo plano", "Cambiar los permisos del archivo"], r: 2,
+    e: "Así la terminal queda libre mientras la orden sigue ejecutándose." },
+
+  { p: "Estás en /home/alumno y quieres listar el contenido de /etc usando una ruta absoluta. ¿Qué orden es correcta?",
+    op: ["ls etc", "ls /etc", "cd /etc ls", "dir /etc"], r: 1,
+    e: "La ruta absoluta empieza por /; ls etc buscaría /home/alumno/etc." },
+
+  { p: "¿Qué orden busca todos los archivos con extensión .txt dentro de /home?",
+    op: ["find /home -name '*.txt'", "grep -r '*.txt' /home",
+         "find /home -type '*.txt'", "ls /home/*.txt"], r: 0,
+    e: "Las comillas evitan que el shell expanda el comodín antes de que find lo use." },
+
+  { p: "¿Qué efecto tiene chmod -x archivo?",
+    op: ["Añade permiso de ejecución a todos", "Quita el permiso de ejecución a propietario, grupo y resto",
+         "Cambia el propietario del archivo", "Quita solo el permiso de lectura"], r: 1,
+    e: "Con chmod u+x solo se añade la ejecución al propietario; con -x se quita a las tres figuras." }
+);
 
 </script>
 <script>
@@ -2037,6 +3027,189 @@ DATOS.redes = {
       explicacion: "La fibra óptica, por contra, es muy segura frente a escuchas." }
   ]
 };
+
+/* =========================================================
+   Ampliación del banco de test: hasta 30 preguntas por nivel
+   ========================================================= */
+
+DATOS.redes.test.basico.push(
+  { p: "El modelo OSI de interoperabilidad de sistemas abiertos está formado por:",
+    op: ["7 capas", "4 capas", "5 capas", "3 capas"], r: 0,
+    e: "De inferior a superior: física, enlace, red, transporte, sesión, presentación y aplicación." },
+
+  { p: "En el modelo OSI, la capa que se encarga del direccionamiento lógico y del enrutamiento es la capa:",
+    op: ["Física", "Enlace de datos", "Red", "Aplicación"], r: 2,
+    e: "En ella trabajan el protocolo IP y los routers; la capa 2 usa direcciones MAC." },
+
+  { p: "El protocolo de transporte sin conexión, ligero y que no garantiza la entrega es:",
+    op: ["TCP", "UDP", "HTTP", "FTP"], r: 1,
+    e: "UDP se usa en streaming, DNS y VoIP, donde la velocidad importa más que la fiabilidad." },
+
+  { p: "El servicio que traduce un nombre de dominio, como www.example.com, en su dirección IP es:",
+    op: ["FTP", "SMTP", "DHCP", "DNS"], r: 3,
+    e: "DNS es la 'guía telefónica' de Internet: guarda la correspondencia nombre-IP." },
+
+  { p: "El protocolo que se utiliza normalmente para solicitar y recibir páginas web es:",
+    op: ["HTTP", "FTP", "POP3", "SMTP"], r: 0,
+    e: "HTTP funciona en modo cliente-servidor; HTTPS es su versión cifrada." },
+
+  { p: "HTTPS se diferencia de HTTP en que:",
+    op: ["Transmite más rápido sin control de errores", "No necesita servidor",
+         "Cifra la comunicación mediante TLS/SSL", "Está reservado al correo electrónico"], r: 2,
+    e: "El cifrado protege contraseñas y datos; el puerto habitual es 443 frente al 80 de HTTP." },
+
+  { p: "El protocolo FTP sirve principalmente para:",
+    op: ["Enviar correo electrónico", "Transferir archivos entre un cliente y un servidor",
+         "Asignar direcciones IP", "Comprobar la conectividad"], r: 1,
+    e: "Normalmente usa los puertos 21 (control) y 20 (datos)." },
+
+  { p: "El protocolo SMTP se utiliza para:",
+    op: ["Recibir correo del servidor", "Transferir ficheros", "Navegar por Internet",
+         "Enviar mensajes de correo electrónico"], r: 3,
+    e: "SMTP envía el correo; POP3 o IMAP se encargan de recibirlo." },
+
+  { p: "Los protocolos POP3 e IMAP permiten:",
+    op: ["Recibir y gestionar el correo almacenado en el servidor", "Enviar correo",
+         "Repartir direcciones IP", "Comprimir archivos"], r: 0,
+    e: "IMAP mantiene los mensajes sincronizados en el servidor; POP3 suele descargarlos al cliente." },
+
+  { p: "El protocolo ICMP se asocia sobre todo a:",
+    op: ["La transferencia de archivos", "Mensajes de control y diagnóstico, como el ping",
+         "El cifrado de la conexión", "La asignación automática de IPs"], r: 1,
+    e: "ping envía paquetes ICMP de eco y mide el tiempo de respuesta (RTT)." },
+
+  { p: "Un firewall es un sistema que:",
+    op: ["Aumenta el ancho de banda contratado", "Asigna direcciones IP a los equipos",
+         "Filtra el tráfico de red según reglas de seguridad", "Almacena las contraseñas de los usuarios"], r: 2,
+    e: "Puede ser software o hardware y se coloca en el perímetro de la red." },
+
+  { p: "Una VPN permite:",
+    op: ["Crear una conexión cifrada a través de una red pública como Internet",
+         "Sustituir el cable de red por fibra", "Convertir una LAN en una WAN físicamente",
+         "Aumentar la memoria del router"], r: 0,
+    e: "Es un 'túnel' cifrado: muy usado para trabajar desde casa de forma segura." },
+
+  { p: "WPA2 y WPA3 son estándares de:",
+    op: ["Velocidad del Wi-Fi", "Cifrado y seguridad de las redes Wi-Fi",
+         "Numeración de canales", "Nombre del punto de acceso"], r: 1,
+    e: "Protegeron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
+
+  { p: "El comando ping se emplea para:",
+    op: ["Mostrar la configuración de la tarjeta de red", "Crear una nueva subred",
+         "Listar los archivos de un servidor",
+         "Comprobar la conectividad enviando paquetes de eco a otra IP"], r: 3,
+    e: "Si responde, indica que hay comunicación; el tiempo de respuesta se mide en milisegundos." },
+
+  { p: "Sobre las unidades de velocidad y tamaño, es correcto que:",
+    op: ["1 byte equivale a 1000 bits", "1 Mbps significa 1 millón de bytes por segundo",
+         "1 byte equivale a 8 bits y 1 Gbps a 10^9 bits por segundo",
+         "1 MHz mide la velocidad de la red"], r: 2,
+    e: "Los bits por segundo (bps) miden velocidad; los bytes, tamaño. 1 Mbps = 10^6 bps." }
+);
+
+DATOS.redes.test.medio.push(
+  { p: "Sobre TCP y UDP, la afirmación correcta es:",
+    op: ["TCP es orientado a conexión y UDP no", "UDP garantiza la entrega y TCP no",
+         "Ambos pertenecen a la capa de red (capa 3)", "TCP solo puede usarse con fibra óptica"], r: 0,
+    e: "TCP controla errores, orden y reenvíos; UDP es más rápido y no establece conexión previa." },
+
+  { p: "El modelo TCP/IP se organiza en:",
+    op: ["7 capas, como el OSI", "5 capas: física, enlace, red, transporte y aplicación",
+         "3 capas: aplicación, transporte y red",
+         "4 capas: aplicación, transporte, internet y acceso a la red"], r: 3,
+    e: "Es un modelo más simple que el OSI: agrupa las capas de sesión y presentación en la aplicación." },
+
+  { p: "En una videollamada se prefiere UDP antes que TCP porque:",
+    op: ["UDP cifra mejor los datos", "UDP funciona solo en IPv6",
+         "Evita reenvíos y retrasos: se tolera perder algún paquete antes que esperar",
+         "TCP no puede usar el puerto 80"], r: 2,
+    e: "En tiempo real, un paquete tardío no sirve: la fluidez importa más que la integridad." },
+
+  { p: "Un PC obtiene IP por DHCP, hace ping a 8.8.8.8 correctamente pero no abre páginas web. Lo más probable es que falle:",
+    op: ["La resolución DNS", "El cable de red", "La puerta de enlace", "La tarjeta de red"], r: 0,
+    e: "Si llegan paquetes a una IP pública, la conectividad y el gateway funcionan: falta resolver nombres." },
+
+  { p: "Una dirección IPv6 se representa:",
+    op: ["Con cuatro números decimales separados por puntos", "Con 6 pares hexadecimales",
+         "Con 128 números decimales",
+         "Con 8 grupos de hexadecimales separados por dos puntos"], r: 3,
+    e: "Son 128 bits; los grupos de ceros consecutivos se pueden comprimir con '::'." },
+
+  { p: "La fibra óptica es inmune a las interferencias electromagnéticas porque:",
+    op: ["Lleva un blindaje de cobre", "Usa 8 pares trenzados",
+         "Transmite luz en lugar de impulsos eléctricos", "Funciona solo en interiores"], r: 2,
+    e: "Al no conducir corriente, no capta ruido y es difícil de interceptar sin cortar el cable." },
+
+  { p: "La principal mejora de WPA3 frente a WPA2 es:",
+    op: ["Refuerza el cifrado y la autenticación de la red (SAE)", "Duplica el alcance de la señal",
+         "Añade más canales de 2,4 GHz", "Elimina la necesidad de contraseña"], r: 0,
+    e: "WPA2 usa PSK y AES-CCMP; WPA3 incorpora autenticación SAE, más resistente a ataques de diccionario." },
+
+  { p: "Frente a la banda de 2,4 GHz, la banda de 5 GHz ofrece:",
+    op: ["Mayor alcance y mejor penetración de muros", "Más interferencias de microondas",
+         "Menos interferencias y más velocidad, pero menor alcance", "Solo permite conectarse con cable"], r: 2,
+    e: "2,4 GHz alcanza más distancia pero está saturada; 5 GHz es más limpia y rápida." },
+
+  { p: "El comando tracert (traceroute en Linux) sirve para:",
+    op: ["Mostrar la ruta y el tiempo hasta cada router intermedio", "Ver la configuración TCP/IP",
+         "Borrar la caché DNS", "Renovar la IP asignada por DHCP"], r: 0,
+    e: "Permite localizar en qué salto de la ruta se pierden los paquetes." },
+
+  { p: "En Windows, el comando 'ipconfig /release' sirve para:",
+    op: ["Liberar espacio en el disco duro", "Liberar la dirección IP asignada por DHCP",
+         "Reiniciar el router", "Mostrar la tabla de enrutamiento"], r: 1,
+    e: "Después se usa 'ipconfig /renew' para pedir una nueva dirección al servidor DHCP." },
+
+  { p: "Un cable Cat 6a admite hasta:",
+    op: ["100 Mbps a 100 m", "1 Gbps solo a 50 m", "10 Gbps a 100 m", "40 Gbps a 100 m"], r: 2,
+    e: "Cat 6 llega a 10 Gbps hasta unos 55 m; Cat 6a amplía el límite a 100 m. Cat 8 se usa a distancias cortas." },
+
+  { p: "En el modelo OSI, la capa de presentación se encarga de:",
+    op: ["Enrutar los paquetes entre redes", "Cifrar, comprimir y convertir el formato de los datos",
+         "Generar la señal eléctrica en el cable", "Asignar direcciones IP"], r: 1,
+    e: "Es la capa 6: asegura que la aplicación receptora interprete correctamente la información." }
+);
+
+DATOS.redes.test.avanzado.push(
+  { p: "La dirección de red y la de broadcast de 10.20.30.77/27 son, respectivamente:",
+    op: ["10.20.30.64 y 10.20.30.95", "10.20.30.77 y 10.20.30.95",
+         "10.20.30.64 y 10.20.30.127", "10.20.30.0 y 10.20.30.255"], r: 0,
+    e: "/27 = 255.255.255.224: bloques de 32 (.0, .32, .64, .96...). La .77 está entre .64 y .95." },
+
+  { p: "¿Cuántos hosts utilizables ofrece una red /22?",
+    op: ["510", "1022", "1024", "4094"], r: 1,
+    e: "32 − 22 = 10 bits de host → 2^10 = 1024 direcciones, menos red y broadcast = 1022 hosts." },
+
+  { p: "Partiendo de 192.168.10.0/24 se necesitan al menos 6 subredes con 25 hosts cada una. La máscara adecuada es:",
+    op: ["255.255.255.240 (/28)", "255.255.255.192 (/26)",
+         "255.255.255.224 (/27)", "255.255.255.128 (/25)"], r: 2,
+    e: "Con 3 bits prestados (/27) se obtienen 8 subredes de 32 IPs (30 hosts útiles); /28 da solo 14 hosts y /26 solo 4 subredes." },
+
+  { p: "Para una subred de exactamente 14 equipos dentro de 192.168.5.0/24, la máscara que aprovecha mejor el espacio es:",
+    op: ["255.255.255.252 (/30)", "255.255.255.224 (/27)",
+         "255.255.255.0 (/24)", "255.255.255.240 (/28)"], r: 3,
+    e: "/28 deja 4 bits de host: 2^4 − 2 = 14 hosts. /30 solo da 2 hosts y /27 da 30." },
+
+  { p: "Un PC 192.168.1.20/24 hace ping a su gateway 192.168.1.1 y funciona, pero no llega a 192.168.2.10. La causa más probable es:",
+    op: ["La tarjeta de red del PC está averiada", "Falta una ruta o el router no conecta ambas redes",
+         "El cable del PC está suelto", "El servidor DNS está caído"], r: 1,
+    e: "Si responde la puerta de enlace, la red local está bien: el fallo está en el enrutamiento entre redes." },
+
+  { p: "Un cliente de correo descarga los mensajes y los elimina del servidor. El protocolo que está usando es:",
+    op: ["SMTP", "HTTP", "POP3", "DHCP"], r: 2,
+    e: "POP3 descarga y borra del servidor por defecto; IMAP mantiene los mensajes sincronizados. SMTP solo envía." },
+
+  { p: "Si dos equipos de una misma LAN usan la misma dirección IP:",
+    op: ["No pasa nada: el switch los diferencia por su MAC",
+         "Aparece un conflicto y las conexiones fallan o se interrumpen",
+         "El router les asigna una IP nueva automáticamente", "Se crea una VLAN automáticamente"], r: 1,
+    e: "La IP debe ser única en la red; DHCP evita repetirlas y ARP permite detectar duplicados." },
+
+  { p: "La forma abreviada correcta de 2001:0db8:0000:0000:0000:ff00:0042:8329 es:",
+    op: ["2001:db8::ff00:42:8329", "2001:0db8::::ff00:0042:8329",
+         "2001:db8:0:0:0:ff00:0042:8329:0001", "2001-db8-ff00-42-8329"], r: 0,
+    e: "Se quitan los ceros a la izquierda de cada grupo y los grupos de ceros seguidos se resumen con '::' una sola vez." }
+);
 
 </script>
 
