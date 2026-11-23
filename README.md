@@ -29,6 +29,10 @@ Todo funciona **sin conexión a internet**: no hay que instalar nada.
 Doble clic en **[`Repaso-TIC.html`](Repaso-TIC.html)**. Se abre en el navegador
 (Chrome, Edge, Firefox…) y ya está lista para usar.
 
+El botón **«Ir al inicio»** de la cabecera permite salir de cualquier actividad
+y volver a la pantalla inicial. Si hay respuestas o ejercicios en curso, antes
+de descartarlos aparece un aviso pidiendo confirmación.
+
 También puedes verla online en GitHub Pages:
 *Configuración del repositorio → Pages → rama `main` → Save*, y aparecerá en
 `https://<usuario>.github.io/repaso-tic-batxillerat/`.

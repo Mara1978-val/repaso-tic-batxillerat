@@ -238,5 +238,29 @@ const Conversiones = (() => {
     // Los ejercicios y resultados se conservan al cambiar de bloque.
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return (
+      marca.unidades.total > 0 ||
+      marca.binario.total > 0 ||
+      (ejUnidades && ejUnidades.corregida) ||
+      (ejBinario && ejBinario.corregida)
+    );
+  }
+
+  function reiniciar() {
+    marca.unidades.bien = 0;
+    marca.unidades.total = 0;
+    marca.binario.bien = 0;
+    marca.binario.total = 0;
+    $("conv-valor").value = "2.5";
+    $("conv-desde").value = "GB";
+    $("conv-hasta").value = "MB";
+    $("bin-entrada").value = "101101";
+    calcularUnidades();
+    calcularBinario();
+    generarEjUnidades();
+    generarEjBinario();
+  }
+
+  return { iniciar, volverAConfig, hayProgreso, reiniciar };
 })();

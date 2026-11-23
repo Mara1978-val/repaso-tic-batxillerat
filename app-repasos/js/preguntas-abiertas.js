@@ -211,5 +211,9 @@ const Abiertas = (() => {
     });
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return respondidas > 0;
+  }
+
+  return { iniciar, volverAConfig, hayProgreso };
 })();

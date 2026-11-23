@@ -297,5 +297,9 @@ const TestMultiple = (() => {
     $("btn-cambiar").addEventListener("click", volverAConfig);
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return respuestas.some((r) => r !== -1);
+  }
+
+  return { iniciar, volverAConfig, hayProgreso };
 })();

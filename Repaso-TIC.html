@@ -85,6 +85,12 @@ body{
 }
 .btn-nav:hover{background:rgba(255,255,255,.28)}
 .btn-nav.activo{background:#fff;color:var(--azul-oscuro);font-weight:600;border-color:#fff}
+.btn-inicio{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.75);
+  padding:9px 15px;border-radius:999px;font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:.15s;
+}
+.btn-inicio:hover{background:rgba(255,255,255,.22);border-color:#fff}
 
 /* ---------- Estructura ---------- */
 main{
@@ -423,6 +429,7 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
     <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
     <button class="btn-nav" data-modo="abiertas">Preguntas abiertas</button>
     <button class="btn-nav" data-modo="conversiones">Conversiones</button>
+    <button class="btn-inicio" id="btn-inicio" title="Salir de la actividad y volver al inicio">Ir al inicio</button>
   </nav>
 </header>
 
@@ -3786,7 +3793,11 @@ const TestMultiple = (() => {
     $("btn-cambiar").addEventListener("click", volverAConfig);
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return respuestas.some((r) => r !== -1);
+  }
+
+  return { iniciar, volverAConfig, hayProgreso };
 })();
 
 </script>
@@ -4004,7 +4015,11 @@ const Abiertas = (() => {
     });
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return respondidas > 0;
+  }
+
+  return { iniciar, volverAConfig, hayProgreso };
 })();
 
 </script>
@@ -4249,7 +4264,31 @@ const Conversiones = (() => {
     // Los ejercicios y resultados se conservan al cambiar de bloque.
   }
 
-  return { iniciar, volverAConfig };
+  function hayProgreso() {
+    return (
+      marca.unidades.total > 0 ||
+      marca.binario.total > 0 ||
+      (ejUnidades && ejUnidades.corregida) ||
+      (ejBinario && ejBinario.corregida)
+    );
+  }
+
+  function reiniciar() {
+    marca.unidades.bien = 0;
+    marca.unidades.total = 0;
+    marca.binario.bien = 0;
+    marca.binario.total = 0;
+    $("conv-valor").value = "2.5";
+    $("conv-desde").value = "GB";
+    $("conv-hasta").value = "MB";
+    $("bin-entrada").value = "101101";
+    calcularUnidades();
+    calcularBinario();
+    generarEjUnidades();
+    generarEjBinario();
+  }
+
+  return { iniciar, volverAConfig, hayProgreso, reiniciar };
 })();
 
 </script>
@@ -4289,12 +4328,33 @@ function cambiarModo(modo) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function irAlInicio() {
+  const hayProgreso =
+    TestMultiple.hayProgreso() ||
+    Abiertas.hayProgreso() ||
+    Conversiones.hayProgreso();
+
+  if (
+    hayProgreso &&
+    !confirm("Al salir perderás el progreso de la actividad. ¿Seguro que quieres volver al inicio?")
+  ) {
+    return;
+  }
+
+  TestMultiple.volverAConfig();
+  Abiertas.volverAConfig();
+  Conversiones.reiniciar();
+  cambiarModo("test");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   registrarTemas();
 
   document.querySelectorAll(".btn-nav").forEach((btn) => {
     btn.addEventListener("click", () => cambiarModo(btn.dataset.modo));
   });
+  $("btn-inicio").addEventListener("click", irAlInicio);
 
   TestMultiple.iniciar();
   Abiertas.iniciar();

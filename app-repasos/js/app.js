@@ -33,12 +33,33 @@ function cambiarModo(modo) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function irAlInicio() {
+  const hayProgreso =
+    TestMultiple.hayProgreso() ||
+    Abiertas.hayProgreso() ||
+    Conversiones.hayProgreso();
+
+  if (
+    hayProgreso &&
+    !confirm("Al salir perderás el progreso de la actividad. ¿Seguro que quieres volver al inicio?")
+  ) {
+    return;
+  }
+
+  TestMultiple.volverAConfig();
+  Abiertas.volverAConfig();
+  Conversiones.reiniciar();
+  cambiarModo("test");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   registrarTemas();
 
   document.querySelectorAll(".btn-nav").forEach((btn) => {
     btn.addEventListener("click", () => cambiarModo(btn.dataset.modo));
   });
+  $("btn-inicio").addEventListener("click", irAlInicio);
 
   TestMultiple.iniciar();
   Abiertas.iniciar();
