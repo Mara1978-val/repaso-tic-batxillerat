@@ -569,7 +569,7 @@ DATOS.hardware = {
         op: ["3.500 ciclos por segundo", "3.500 millones de ciclos por segundo", "3,5 ciclos por segundo", "35 millones de ciclos por segundo"], r: 1,
         e: "GHz = 1.000.000.000. 3,5 GHz = 3.500 millones de ciclos/s." },
 
-      { p: "¿Cuánto pesa el número binario 11011001 en decimal?",
+      { p: "¿Cuánto vale el número binario 11011001 en decimal?",
         op: ["177", "201", "217", "225"], r: 2,
         e: "128 + 64 + 16 + 8 + 1 = 217." },
 
@@ -609,7 +609,7 @@ DATOS.hardware = {
               "Usar módulos de distinta capacidad",
               "Conectar la RAM al bus de vídeo",
               "Habilitar la memoria virtual en el disco"], r: 0,
-        e: "Dos módulos idénticos en los bancos del mismo color, que comparten canal." }
+        e: "Dos módulos idénticos en los bancos del mismo color (uno por canal), que trabajan en paralelo." }
     ],
 
     avanzado: [
@@ -947,7 +947,7 @@ DATOS.hardware.test.avanzado.push(
 
   { p: "Comparando un SSD SATA (550 MB/s) con un HDD (120 MB/s), el SSD es aproximadamente:",
     op: ["2 veces más rápido", "4,6 veces más rápido", "10 veces más rápido", "20 veces más rápido"], r: 1,
-    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia supera las 25 veces." },
+    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia ronda las 25 veces." },
 
   { p: "¿Cuántos bits como mínimo se necesitan para representar 1.000 valores distintos?",
     op: ["8 bits", "9 bits", "10 bits", "16 bits"], r: 2,
@@ -1172,11 +1172,11 @@ DATOS.virtualizacion = {
         e: "Dos ficheros: el hipervisor para tu SO y el complemento «All supported platforms»." },
 
       { p: "Si cambias la carpeta predeterminada de máquinas a una unidad externa, a partir de ese momento:",
-        op: ["Solo se guardarán allí las MV creadas a partir de ese momento",
-              "Todos los .vdi se guardarán en la unidad externa, incluidos los nuevos y los clonados",
+        op: ["Se guardarán allí únicamente los archivos .iso, no los discos .vdi",
+              "Los discos .vdi de las MV nuevas y de los clones se crearán en la unidad externa",
               "Se mueven automáticamente las MV antiguas",
               "Deja de funcionar el disco del host"], r: 1,
-        e: "Las MV ya creadas hay que moverlas o clonarlas manualmente a la nueva ruta." },
+        e: "El cambio afecta solo a las MV que se creen desde entonces; las ya existentes hay que moverlas o clonarlas manualmente a la nueva ruta." },
 
       { p: "Una «Red Interna» (Internal Network) en VirtualBox sirve para:",
         op: ["Aislar varias MV entre sí sin salir al exterior",
@@ -1185,12 +1185,12 @@ DATOS.virtualizacion = {
               "Montar el ISO"], r: 0,
         e: "Útil para prácticas: solo se comunican las MVs de esa red interna." },
 
-      { p: "Un sistema de archivos FAT32 no sirve para las MVs porque:",
-        op: ["Limita el tamaño de fichero a 4 GB, insuficiente para un .vdi",
-              "No admite carpetas",
-              "Solo lo entiende macOS",
-              "Es de solo lectura"], r: 0,
-        e: "Por eso se exige exFAT o NTFS en el disco externo." },
+      { p: "¿Cuál es la diferencia entre el Extension Pack y las Guest Additions de VirtualBox?",
+        op: ["El Extension Pack se instala en el host (en el programa VirtualBox) y las Guest Additions dentro del SO invitado",
+              "Ambos se instalan dentro del sistema operativo invitado",
+              "Ambos se instalan en el sistema anfitrión",
+              "El Extension Pack se instala en el invitado y las Guest Additions en el host"], r: 0,
+        e: "El Extension Pack amplía el hipervisor (USB 2.0/3.0, cifrado, cámara); las Guest Additions son controladores y utilidades para el invitado (ratón, vídeo, portapapeles, carpetas compartidas)." },
 
       { p: "El hipervisor de tipo 2 se apoya en:",
         op: ["Las extensiones de virtualización del micro (Intel VT-x / AMD-V)",
@@ -1683,7 +1683,7 @@ DATOS.windows = {
         op: ["Menú Inicio", "Menú Archivo", "Menú Ayuda", "Menú Ver"], r: 0,
         e: "Windows 95 introdujo el menú Inicio, la barra de tareas y el plug and play." },
 
-      { p: "¿Qué versión de Windows fue la primera con arquitectura NT y se lanzó en 2001?",
+      { p: "¿Qué versión de Windows, lanzada en 2001, fue la primera de la gama de usuario en usar la arquitectura NT?",
         op: ["Windows 98", "Windows XP", "Windows 2000", "Windows Vista"], r: 1,
         e: "Windows XP (2001) une la arquitectura NT con la facilidad de uso de la rama 9x." },
 
@@ -1761,11 +1761,11 @@ DATOS.windows = {
 
       { p: "¿Qué herramienta permite ver la ruta que siguen los paquetes y el tiempo en cada router?",
         op: ["ping", "tracert", "mkdir", "rename"], r: 1,
-        e: "tracert (trafert) rastrea la ruta hop a hop hasta el destino." },
+        e: "tracert (equivalente a traceroute en Linux) rastrea la ruta salto a salto (hop a hop) hasta el destino." },
 
       { p: "La herramienta interactiva de particionado de discos de Windows es:",
         op: ["chkdsk", "diskpart", "taskmgr", "regedit"], r: 1,
-        e: "Dentro de ella se usa list disk para ver los discos y clean para borrar la partición; se sale con exit." },
+        e: "Dentro de ella se usa list disk para ver los discos y clean para borrar todas las particiones del disco seleccionado; se sale con exit." },
 
       { p: "El comando que analiza y repara el sistema de archivos de una unidad es:",
         op: ["chkdsk C: /f", "del C:", "cd C:", "copy C:"], r: 0,
@@ -1793,7 +1793,7 @@ DATOS.windows = {
 
       { p: "La utilidad que libera espacio eliminando temporales y cachés es:",
         op: ["Liberador de Espacio en Disco", "Editor del Registro", "Monitor de Recursos", "Configuración de Inicio"], r: 0,
-        e: "El Monitor de Recursos vigila CPU, RAM y disco para encontrar cuellos de botella." },
+        e: "Borra archivos temporales, cachés y otros elementos innecesarios para liberar espacio en disco." },
 
       { p: "El Desfragmentador de Disco sirve para:",
         op: ["Agrupar los datos contiguos y ganar velocidad",
@@ -2811,7 +2811,7 @@ DATOS.redes = {
 
       { p: "Bluetooth trabaja en la banda de 2,4 GHz y su estándar es el IEEE:",
         op: ["802.15.1", "802.11ac", "802.3", "802.16"], r: 0,
-        e: "Clase III = 10 m, Clase II = 15-20 m y Clase I = 100 m." },
+        e: "Según la potencia: Clase I = 100 m, Clase II = 10 m y Clase III = 1 m." },
 
       { p: "La dirección IPv4 está formada por:",
         op: ["32 bits en cuatro octetos separados por puntos",
@@ -3092,7 +3092,7 @@ DATOS.redes.test.basico.push(
   { p: "WPA2 y WPA3 son estándares de:",
     op: ["Velocidad del Wi-Fi", "Cifrado y seguridad de las redes Wi-Fi",
          "Numeración de canales", "Nombre del punto de acceso"], r: 1,
-    e: "Protegeron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
+    e: "Protegieron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
 
   { p: "El comando ping se emplea para:",
     op: ["Mostrar la configuración de la tarjeta de red", "Crear una nueva subred",
@@ -3260,18 +3260,18 @@ function esCorrecta(respuestaAlumno, formasAceptadas) {
   });
 }
 
-/** Devuelve el índice de la pregunta más parecida (para mostrar pista si falla) */
+/** Mensaje según el porcentaje obtenido (0-100) */
 function mensajeNivel(nota) {
-  if (nota >= 9) return "¡Excelente! Dominas este tema.";
-  if (nota >= 7) return "¡Muy bien! Casi lo tienes perfecto.";
-  if (nota >= 5) return "¡Suficiente! Repasa un poco más los fallos.";
+  if (nota >= 90) return "¡Excelente! Dominas este tema.";
+  if (nota >= 70) return "¡Muy bien! Casi lo tienes perfecto.";
+  if (nota >= 50) return "¡Suficiente! Repasa un poco más los fallos.";
   return "Hay que repasar el tema, inténtalo de nuevo.";
 }
 
-/** Clase CSS para la nota según el porcentaje */
+/** Clase CSS para la nota según el porcentaje (0-100) */
 function claseNota(nota) {
-  if (nota >= 7) return "sobresaliente";
-  if (nota >= 5) return "suficiente";
+  if (nota >= 70) return "sobresaliente";
+  if (nota >= 50) return "suficiente";
   return "suspenso";
 }
 

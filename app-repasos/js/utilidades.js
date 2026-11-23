@@ -43,18 +43,18 @@ function esCorrecta(respuestaAlumno, formasAceptadas) {
   });
 }
 
-/** Devuelve el índice de la pregunta más parecida (para mostrar pista si falla) */
+/** Mensaje según el porcentaje obtenido (0-100) */
 function mensajeNivel(nota) {
-  if (nota >= 9) return "¡Excelente! Dominas este tema.";
-  if (nota >= 7) return "¡Muy bien! Casi lo tienes perfecto.";
-  if (nota >= 5) return "¡Suficiente! Repasa un poco más los fallos.";
+  if (nota >= 90) return "¡Excelente! Dominas este tema.";
+  if (nota >= 70) return "¡Muy bien! Casi lo tienes perfecto.";
+  if (nota >= 50) return "¡Suficiente! Repasa un poco más los fallos.";
   return "Hay que repasar el tema, inténtalo de nuevo.";
 }
 
-/** Clase CSS para la nota según el porcentaje */
+/** Clase CSS para la nota según el porcentaje (0-100) */
 function claseNota(nota) {
-  if (nota >= 7) return "sobresaliente";
-  if (nota >= 5) return "suficiente";
+  if (nota >= 70) return "sobresaliente";
+  if (nota >= 50) return "suficiente";
   return "suspenso";
 }
 

@@ -98,7 +98,7 @@ DATOS.hardware = {
         op: ["3.500 ciclos por segundo", "3.500 millones de ciclos por segundo", "3,5 ciclos por segundo", "35 millones de ciclos por segundo"], r: 1,
         e: "GHz = 1.000.000.000. 3,5 GHz = 3.500 millones de ciclos/s." },
 
-      { p: "¿Cuánto pesa el número binario 11011001 en decimal?",
+      { p: "¿Cuánto vale el número binario 11011001 en decimal?",
         op: ["177", "201", "217", "225"], r: 2,
         e: "128 + 64 + 16 + 8 + 1 = 217." },
 
@@ -138,7 +138,7 @@ DATOS.hardware = {
               "Usar módulos de distinta capacidad",
               "Conectar la RAM al bus de vídeo",
               "Habilitar la memoria virtual en el disco"], r: 0,
-        e: "Dos módulos idénticos en los bancos del mismo color, que comparten canal." }
+        e: "Dos módulos idénticos en los bancos del mismo color (uno por canal), que trabajan en paralelo." }
     ],
 
     avanzado: [
@@ -476,7 +476,7 @@ DATOS.hardware.test.avanzado.push(
 
   { p: "Comparando un SSD SATA (550 MB/s) con un HDD (120 MB/s), el SSD es aproximadamente:",
     op: ["2 veces más rápido", "4,6 veces más rápido", "10 veces más rápido", "20 veces más rápido"], r: 1,
-    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia supera las 25 veces." },
+    e: "550 ÷ 120 ≈ 4,6. Frente a un NVMe (≈3.000 MB/s), la diferencia ronda las 25 veces." },
 
   { p: "¿Cuántos bits como mínimo se necesitan para representar 1.000 valores distintos?",
     op: ["8 bits", "9 bits", "10 bits", "16 bits"], r: 2,

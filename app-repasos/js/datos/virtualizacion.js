@@ -214,11 +214,11 @@ DATOS.virtualizacion = {
         e: "Dos ficheros: el hipervisor para tu SO y el complemento «All supported platforms»." },
 
       { p: "Si cambias la carpeta predeterminada de máquinas a una unidad externa, a partir de ese momento:",
-        op: ["Solo se guardarán allí las MV creadas a partir de ese momento",
-              "Todos los .vdi se guardarán en la unidad externa, incluidos los nuevos y los clonados",
+        op: ["Se guardarán allí únicamente los archivos .iso, no los discos .vdi",
+              "Los discos .vdi de las MV nuevas y de los clones se crearán en la unidad externa",
               "Se mueven automáticamente las MV antiguas",
               "Deja de funcionar el disco del host"], r: 1,
-        e: "Las MV ya creadas hay que moverlas o clonarlas manualmente a la nueva ruta." },
+        e: "El cambio afecta solo a las MV que se creen desde entonces; las ya existentes hay que moverlas o clonarlas manualmente a la nueva ruta." },
 
       { p: "Una «Red Interna» (Internal Network) en VirtualBox sirve para:",
         op: ["Aislar varias MV entre sí sin salir al exterior",
@@ -227,12 +227,12 @@ DATOS.virtualizacion = {
               "Montar el ISO"], r: 0,
         e: "Útil para prácticas: solo se comunican las MVs de esa red interna." },
 
-      { p: "Un sistema de archivos FAT32 no sirve para las MVs porque:",
-        op: ["Limita el tamaño de fichero a 4 GB, insuficiente para un .vdi",
-              "No admite carpetas",
-              "Solo lo entiende macOS",
-              "Es de solo lectura"], r: 0,
-        e: "Por eso se exige exFAT o NTFS en el disco externo." },
+      { p: "¿Cuál es la diferencia entre el Extension Pack y las Guest Additions de VirtualBox?",
+        op: ["El Extension Pack se instala en el host (en el programa VirtualBox) y las Guest Additions dentro del SO invitado",
+              "Ambos se instalan dentro del sistema operativo invitado",
+              "Ambos se instalan en el sistema anfitrión",
+              "El Extension Pack se instala en el invitado y las Guest Additions en el host"], r: 0,
+        e: "El Extension Pack amplía el hipervisor (USB 2.0/3.0, cifrado, cámara); las Guest Additions son controladores y utilidades para el invitado (ratón, vídeo, portapapeles, carpetas compartidas)." },
 
       { p: "El hipervisor de tipo 2 se apoya en:",
         op: ["Las extensiones de virtualización del micro (Intel VT-x / AMD-V)",

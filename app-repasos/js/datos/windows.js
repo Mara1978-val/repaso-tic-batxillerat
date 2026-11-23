@@ -22,7 +22,7 @@ DATOS.windows = {
         op: ["Menú Inicio", "Menú Archivo", "Menú Ayuda", "Menú Ver"], r: 0,
         e: "Windows 95 introdujo el menú Inicio, la barra de tareas y el plug and play." },
 
-      { p: "¿Qué versión de Windows fue la primera con arquitectura NT y se lanzó en 2001?",
+      { p: "¿Qué versión de Windows, lanzada en 2001, fue la primera de la gama de usuario en usar la arquitectura NT?",
         op: ["Windows 98", "Windows XP", "Windows 2000", "Windows Vista"], r: 1,
         e: "Windows XP (2001) une la arquitectura NT con la facilidad de uso de la rama 9x." },
 
@@ -100,11 +100,11 @@ DATOS.windows = {
 
       { p: "¿Qué herramienta permite ver la ruta que siguen los paquetes y el tiempo en cada router?",
         op: ["ping", "tracert", "mkdir", "rename"], r: 1,
-        e: "tracert (trafert) rastrea la ruta hop a hop hasta el destino." },
+        e: "tracert (equivalente a traceroute en Linux) rastrea la ruta salto a salto (hop a hop) hasta el destino." },
 
       { p: "La herramienta interactiva de particionado de discos de Windows es:",
         op: ["chkdsk", "diskpart", "taskmgr", "regedit"], r: 1,
-        e: "Dentro de ella se usa list disk para ver los discos y clean para borrar la partición; se sale con exit." },
+        e: "Dentro de ella se usa list disk para ver los discos y clean para borrar todas las particiones del disco seleccionado; se sale con exit." },
 
       { p: "El comando que analiza y repara el sistema de archivos de una unidad es:",
         op: ["chkdsk C: /f", "del C:", "cd C:", "copy C:"], r: 0,
@@ -132,7 +132,7 @@ DATOS.windows = {
 
       { p: "La utilidad que libera espacio eliminando temporales y cachés es:",
         op: ["Liberador de Espacio en Disco", "Editor del Registro", "Monitor de Recursos", "Configuración de Inicio"], r: 0,
-        e: "El Monitor de Recursos vigila CPU, RAM y disco para encontrar cuellos de botella." },
+        e: "Borra archivos temporales, cachés y otros elementos innecesarios para liberar espacio en disco." },
 
       { p: "El Desfragmentador de Disco sirve para:",
         op: ["Agrupar los datos contiguos y ganar velocidad",

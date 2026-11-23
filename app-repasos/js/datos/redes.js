@@ -116,7 +116,7 @@ DATOS.redes = {
 
       { p: "Bluetooth trabaja en la banda de 2,4 GHz y su estándar es el IEEE:",
         op: ["802.15.1", "802.11ac", "802.3", "802.16"], r: 0,
-        e: "Clase III = 10 m, Clase II = 15-20 m y Clase I = 100 m." },
+        e: "Según la potencia: Clase I = 100 m, Clase II = 10 m y Clase III = 1 m." },
 
       { p: "La dirección IPv4 está formada por:",
         op: ["32 bits en cuatro octetos separados por puntos",
@@ -397,7 +397,7 @@ DATOS.redes.test.basico.push(
   { p: "WPA2 y WPA3 son estándares de:",
     op: ["Velocidad del Wi-Fi", "Cifrado y seguridad de las redes Wi-Fi",
          "Numeración de canales", "Nombre del punto de acceso"], r: 1,
-    e: "Protegeron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
+    e: "Protegieron las redes inalámbricas; WEP y WPA (originales) quedaron obsoletos." },
 
   { p: "El comando ping se emplea para:",
     op: ["Mostrar la configuración de la tarjeta de red", "Crear una nueva subred",
