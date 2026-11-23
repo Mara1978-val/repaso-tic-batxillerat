@@ -1,5 +1,7 @@
 # Repaso TIC · 1º de Bachillerato
 
+**Autora: Mara Vañó**
+
 Aplicación web de repaso para **Informática y Digitalización / TIC · 1º de Bachillerato**,
 con dos bloques de práctica:
 
@@ -139,5 +141,5 @@ y Ubuntu) y temas de Redes. El material de origen **no** se incluye en este repo
 
 ## Licencia
 
-Material educativo de aula. Los PDFs de origen pertenecen a sus autores y no se
-han reproducido aquí.
+Material educativo de aula · **Autora: Mara Vañó**.
+Los PDFs de origen pertenecen a sus autores y no se han reproducido aquí.

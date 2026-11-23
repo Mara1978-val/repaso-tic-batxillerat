@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repaso TIC · 1º Bachillerato</title>
+<title>Repaso TIC · 1º Bachillerato · Mara Vañó</title>
 <style>
 /* =========================================================
    Repaso TIC · 1º Bachillerato
@@ -11,21 +11,21 @@
    ========================================================= */
 
 :root{
-  --azul:#1f4fd8;
-  --azul-oscuro:#16379b;
-  --azul-claro:#e8eefc;
+  --azul:#9061e0;
+  --azul-oscuro:#6f3fd0;
+  --azul-claro:#f1e9ff;
   --verde:#189a4a;
   --verde-claro:#e4f7eb;
   --rojo:#d92b2b;
   --rojo-claro:#fdeaea;
   --ambar:#e08a00;
-  --fondo:#f4f6fb;
+  --fondo:#f7f4ff;
   --tarjeta:#ffffff;
-  --texto:#1d2433;
-  --texto-suave:#5b6478;
-  --borde:#dfe4ef;
+  --texto:#241d33;
+  --texto-suave:#635a7a;
+  --borde:#e7defb;
   --radio:14px;
-  --sombra:0 4px 16px rgba(20,35,80,.08);
+  --sombra:0 4px 16px rgba(90,50,160,.10);
 }
 
 *{box-sizing:border-box}
@@ -51,6 +51,17 @@ body{
 }
 .cabecera h1{margin:0;font-size:1.5rem}
 .cabecera-info p{margin:4px 0 0;opacity:.85;font-size:.92rem}
+.cabecera-info .autora{
+  margin-top:7px;
+  opacity:1;
+  font-size:.88rem;
+  background:rgba(255,255,255,.20);
+  border:1px solid rgba(255,255,255,.45);
+  display:inline-block;
+  padding:3px 11px;
+  border-radius:999px;
+}
+.cabecera-info .autora strong{font-weight:700}
 
 .nav-modos{display:flex;gap:8px;flex-wrap:wrap}
 .btn-nav{
@@ -146,7 +157,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
 }
 .barra-progreso span{font-weight:600;color:var(--texto-suave)}
 .progreso{flex:1;min-width:140px;height:8px;background:var(--borde);border-radius:999px;overflow:hidden}
-.progreso-relleno{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#4f7bff);transition:width .3s}
+.progreso-relleno{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#b794f6);transition:width .3s}
 .btn-peq{
   background:#fff;border:1.5px solid var(--borde);color:var(--texto-suave);
   padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.85rem;
@@ -183,7 +194,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
   align-items:flex-start;
   gap:11px;
   border:1.5px solid var(--borde);
-  background:#fbfcff;
+  background:#fdfbff;
   border-radius:10px;
   padding:11px 14px;
   cursor:pointer;
@@ -246,7 +257,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
   font-family:inherit;
   font-size:1rem;
   resize:vertical;
-  background:#fbfcff;
+  background:#fdfbff;
 }
 #respuesta-alumno:focus{outline:none;border-color:var(--azul);background:#fff}
 
@@ -292,6 +303,8 @@ footer{
   font-size:.85rem;
   border-top:1px solid var(--borde);
 }
+footer p{margin:3px 0}
+footer .autora-pie strong{color:var(--azul-oscuro)}
 
 @media (max-width:640px){
   .cabecera{flex-direction:column;align-items:flex-start}
@@ -306,6 +319,7 @@ footer{
   <div class="cabecera-info">
     <h1>Repaso TIC · 1º de Bachillerato</h1>
     <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes</p>
+    <p class="autora">Autora: <strong>Mara Vañó</strong></p>
   </div>
   <nav class="nav-modos">
     <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
@@ -451,6 +465,7 @@ footer{
 
 <footer>
   <p>Material de repaso · Informática y Digitalización · 1º de Bachillerato</p>
+  <p class="autora-pie">Autora: <strong>Mara Vañó</strong></p>
 </footer>
 
 <!-- Datos: un fichero por tema. Para añadir preguntas, edita solo estos ficheros. -->
