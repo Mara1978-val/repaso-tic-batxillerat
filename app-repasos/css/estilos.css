@@ -344,6 +344,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
   margin-top:10px;padding:11px 13px;font-size:.89rem;line-height:1.55;
   background:#fff8e6;border-left:4px solid var(--ambar);border-radius:9px;
 }
+.conv-nota{margin:0 0 12px;font-size:.85rem;color:var(--texto-suave);line-height:1.45}
 .conv-enunciado{
   background:#fdfbff;border:1px solid var(--borde);border-radius:9px;
   padding:11px 13px;font-size:.95rem;margin:0 0 12px;

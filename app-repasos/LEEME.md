@@ -8,7 +8,7 @@ Aplicación de repaso con tres bloques:
    pregunta y una revisión completa de todo el test.
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
    aplicación le dice **si es correcta o no**, muestra la respuesta oficial y una pista.
-3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (base 1024 o 1000)
+3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
    y de binario a decimal, con resultado, explicación y aciertos.
 
 Todo funciona **sin conexión a internet**: no hay que instalar nada.

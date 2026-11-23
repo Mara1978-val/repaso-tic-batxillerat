@@ -159,7 +159,7 @@
 
     <div class="conv-intro">
       <h2>Práctica de conversiones</h2>
-      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) y números binarios a decimal.
+      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) en base binaria (1024) y números binarios a decimal.
          Usa la calculadora para ver el resultado y su explicación, o resuelve ejercicios aleatorios.</p>
     </div>
 
@@ -191,13 +191,8 @@
                 <option value="KB">KB</option>
               </select>
             </label>
-            <label>Base
-              <select id="conv-base">
-                <option value="1024" selected>Binaria (1024)</option>
-                <option value="1000">Decimal (1000)</option>
-              </select>
-            </label>
           </div>
+          <p class="conv-nota">Usamos siempre base binaria: 1 KB = 1024 B, 1 MB = 1024 KB, 1 GB = 1024 MB y 1 TB = 1024 GB.</p>
           <button class="btn-grande" id="btn-calcular-unidades">Calcular</button>
           <div class="conv-resultado">
             <span class="conv-resultado-titulo">Resultado</span>

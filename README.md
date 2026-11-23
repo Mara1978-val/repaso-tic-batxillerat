@@ -13,7 +13,7 @@ con tres bloques de práctica:
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
    aplicación le dice **si es correcta o no**, mostrando la respuesta oficial y una pista.
 3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
-   (en base binaria 1024 o decimal 1000) y **números binarios a decimal**, con resultado,
+   (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
    explicación paso a paso y contador de aciertos.
 
 **450 preguntas de test + 61 preguntas abiertas**, redactadas a partir de los

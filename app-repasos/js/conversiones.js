@@ -11,6 +11,7 @@ const Conversiones = (() => {
 
   const EXP = { KB: 1, MB: 2, GB: 3, TB: 4 };
   const UNIDADES = Object.keys(EXP);
+  const BASE = 1024; // Solo base binaria: 1 KB = 1024 B
 
   let ejUnidades = null;
   let ejBinario = null;
@@ -30,36 +31,30 @@ const Conversiones = (() => {
     return Number.isFinite(valor) ? valor : null;
   }
 
-  function nombreBase(base) {
-    return base === 1024
-      ? "base binaria (1 KB = 1024 B)"
-      : "base decimal (1 KB = 1000 B)";
+  function convertir(valor, desde, hasta) {
+    return valor * Math.pow(BASE, EXP[desde] - EXP[hasta]);
   }
 
-  function convertir(valor, desde, hasta, base) {
-    return valor * Math.pow(base, EXP[desde] - EXP[hasta]);
-  }
-
-  function explicarUnidades(valor, desde, hasta, base, resultado) {
+  function explicarUnidades(valor, desde, hasta, resultado) {
     const diff = EXP[desde] - EXP[hasta];
     let operacion;
     if (diff === 0) {
       operacion = "Son la misma unidad, por eso el valor no cambia.";
     } else if (diff > 0) {
       operacion =
-        "1 " + desde + " = " + base + "^" + diff + " " + hasta +
-        " = " + fmt(Math.pow(base, diff)) + " " + hasta +
-        ". Multiplicamos: " + fmt(valor) + " × " + fmt(Math.pow(base, diff)) +
+        "1 " + desde + " = " + BASE + "^" + diff + " " + hasta +
+        " = " + fmt(Math.pow(BASE, diff)) + " " + hasta +
+        ". Multiplicamos: " + fmt(valor) + " × " + fmt(Math.pow(BASE, diff)) +
         " = " + fmt(resultado) + " " + hasta + ".";
     } else {
       const n = -diff;
       operacion =
-        "1 " + desde + " = 1/" + base + "^" + n + " " + hasta +
-        " (un " + desde + " vale " + fmt(1 / Math.pow(base, n)) + " " + hasta +
-        "). Dividimos: " + fmt(valor) + " ÷ " + fmt(Math.pow(base, n)) +
+        "1 " + desde + " = 1/" + BASE + "^" + n + " " + hasta +
+        " (un " + desde + " vale " + fmt(1 / Math.pow(BASE, n)) + " " + hasta +
+        "). Dividimos: " + fmt(valor) + " ÷ " + fmt(Math.pow(BASE, n)) +
         " = " + fmt(resultado) + " " + hasta + ".";
     }
-    return "Usamos " + nombreBase(base) + ". " + operacion;
+    return "Usamos base binaria (1 KB = 1024 B). " + operacion;
   }
 
   function aDecimal(bits) {
@@ -90,7 +85,6 @@ const Conversiones = (() => {
     const valor = num($("conv-valor").value);
     const desde = $("conv-desde").value;
     const hasta = $("conv-hasta").value;
-    const base = parseInt($("conv-base").value, 10);
 
     if (valor === null || valor < 0) {
       $("conv-resultado").textContent = "—";
@@ -98,9 +92,9 @@ const Conversiones = (() => {
       return;
     }
 
-    const resultado = convertir(valor, desde, hasta, base);
+    const resultado = convertir(valor, desde, hasta);
     $("conv-resultado").textContent = fmt(resultado) + " " + hasta;
-    $("conv-explicacion").textContent = explicarUnidades(valor, desde, hasta, base, resultado);
+    $("conv-explicacion").textContent = explicarUnidades(valor, desde, hasta, resultado);
   }
 
   /* ---------- Calculadora binaria ---------- */
@@ -125,7 +119,6 @@ const Conversiones = (() => {
   }
 
   function generarEjUnidades() {
-    const base = Math.random() < 0.5 ? 1024 : 1000;
     let desde = UNIDADES[azar(0, 3)];
     let hasta = UNIDADES[azar(0, 3)];
     while (hasta === desde) hasta = UNIDADES[azar(0, 3)];
@@ -134,18 +127,19 @@ const Conversiones = (() => {
     if (EXP[desde] > EXP[hasta]) {
       valor = azar(1, 25);
     } else {
-      valor = azar(1, 25) * Math.pow(base, EXP[hasta] - EXP[desde]);
+      valor = azar(1, 25) * Math.pow(BASE, EXP[hasta] - EXP[desde]);
     }
 
-    const resultado = convertir(valor, desde, hasta, base);
+    const resultado = convertir(valor, desde, hasta);
     ejUnidades = {
-      valor, desde, hasta, base, resultado,
-      explicacion: explicarUnidades(valor, desde, hasta, base, resultado),
+      valor, desde, hasta, resultado,
+      explicacion: explicarUnidades(valor, desde, hasta, resultado),
       corregida: false,
     };
 
     $("ej-unidades-enunciado").textContent =
-      "Convierte " + fmt(valor) + " " + desde + " a " + hasta + " usando " + nombreBase(base) + ". Escribe solo el número.";
+      "Convierte " + fmt(valor) + " " + desde + " a " + hasta +
+      " (base binaria, 1 KB = 1024 B). Escribe solo el número.";
     $("ej-unidades-respuesta").value = "";
     $("ej-unidades-respuesta").disabled = false;
     $("ej-unidades-feedback").className = "conv-feedback test-oculto";
