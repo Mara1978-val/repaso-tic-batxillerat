@@ -1,9 +1,9 @@
-# Repaso TIC · 1º de Bachillerato
+# Repaso TIC · Bachillerato
 
 **Autora: Mara Vañó**
 
-Aplicación web de repaso para **Informática y Digitalización / TIC · 1º de Bachillerato**,
-con dos bloques de práctica:
+Aplicación web de repaso para **Informática y Digitalización / TIC · Bachillerato**,
+con tres bloques de práctica:
 
 1. **Tests de opción múltiple** — el alumno elige tema (Hardware, Máquinas Virtuales,
    Windows, Ubuntu, Redes), nivel (**Básico / Medio / Avanzado**) y número de preguntas
@@ -12,6 +12,9 @@ con dos bloques de práctica:
    pregunta y una revisión completa del test.
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
    aplicación le dice **si es correcta o no**, mostrando la respuesta oficial y una pista.
+3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
+   (en base binaria 1024 o decimal 1000) y **números binarios a decimal**, con resultado,
+   explicación paso a paso y contador de aciertos.
 
 **450 preguntas de test + 61 preguntas abiertas**, redactadas a partir de los
 materiales del curso. Hay 30 preguntas de test por tema y nivel, para poder elegir
@@ -48,6 +51,7 @@ repaso-tic-batxillerat/
         ├── utilidades.js              → barajar, comparar respuestas, notas
         ├── test-opcion-multiple.js    → lógica del test con puntuación
         ├── preguntas-abiertas.js      → lógica de las preguntas abiertas
+        ├── conversiones.js            → calculadora y ejercicios de conversiones
         └── datos/                     → ← aquí están las preguntas
             ├── hardware.js
             ├── virtualizacion.js

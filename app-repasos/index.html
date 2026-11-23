@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repaso TIC · 1º Bachillerato · Mara Vañó</title>
+<title>Repaso TIC · Bachillerato · Mara Vañó</title>
 <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
 <header class="cabecera">
   <div class="cabecera-info">
-    <h1>Repaso TIC · 1º de Bachillerato</h1>
+    <h1>Repaso TIC · Bachillerato</h1>
     <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes</p>
     <p class="autora">Autora: <strong>Mara Vañó</strong></p>
   </div>
   <nav class="nav-modos">
     <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
     <button class="btn-nav" data-modo="abiertas">Preguntas abiertas</button>
+    <button class="btn-nav" data-modo="conversiones">Conversiones</button>
   </nav>
 </header>
 
@@ -153,10 +154,118 @@
 
   </section>
 
+  <!-- ================= BLOQUE 3: CONVERSIONES ================= -->
+  <section id="panel-conversiones" class="panel test-oculto">
+
+    <div class="conv-intro">
+      <h2>Práctica de conversiones</h2>
+      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) y números binarios a decimal.
+         Usa la calculadora para ver el resultado y su explicación, o resuelve ejercicios aleatorios.</p>
+    </div>
+
+    <div class="conv-grid">
+
+      <!-- Unidades de almacenamiento -->
+      <div class="conv-card">
+        <h3>Unidades de almacenamiento</h3>
+
+        <div class="conv-bloque">
+          <h4>Calculadora</h4>
+          <div class="conv-fila">
+            <label>Cantidad
+              <input type="text" inputmode="decimal" id="conv-valor" value="2.5" placeholder="Ej.: 2.5">
+            </label>
+            <label>Desde
+              <select id="conv-desde">
+                <option value="TB">TB</option>
+                <option value="GB" selected>GB</option>
+                <option value="MB">MB</option>
+                <option value="KB">KB</option>
+              </select>
+            </label>
+            <label>Hasta
+              <select id="conv-hasta">
+                <option value="TB">TB</option>
+                <option value="GB">GB</option>
+                <option value="MB" selected>MB</option>
+                <option value="KB">KB</option>
+              </select>
+            </label>
+            <label>Base
+              <select id="conv-base">
+                <option value="1024" selected>Binaria (1024)</option>
+                <option value="1000">Decimal (1000)</option>
+              </select>
+            </label>
+          </div>
+          <button class="btn-grande" id="btn-calcular-unidades">Calcular</button>
+          <div class="conv-resultado">
+            <span class="conv-resultado-titulo">Resultado</span>
+            <strong id="conv-resultado">—</strong>
+          </div>
+          <div class="conv-explicacion" id="conv-explicacion"></div>
+        </div>
+
+        <div class="conv-bloque">
+          <h4>Ejercicio aleatorio</h4>
+          <p class="conv-enunciado" id="ej-unidades-enunciado"></p>
+          <div class="conv-fila">
+            <label>Tu respuesta
+              <input type="text" inputmode="decimal" id="ej-unidades-respuesta" placeholder="Solo el número">
+            </label>
+          </div>
+          <div class="acciones">
+            <button class="btn-grande" id="btn-ej-unidades-comprobar">Comprobar</button>
+            <button class="btn-grande secundario" id="btn-ej-unidades-nuevo">Nuevo ejercicio</button>
+          </div>
+          <div class="conv-feedback test-oculto" id="ej-unidades-feedback"></div>
+          <p class="conv-marcador" id="ej-unidades-marcador">Aciertos: 0 / 0</p>
+        </div>
+      </div>
+
+      <!-- Binario a decimal -->
+      <div class="conv-card">
+        <h3>Binario a decimal</h3>
+
+        <div class="conv-bloque">
+          <h4>Calculadora</h4>
+          <div class="conv-fila">
+            <label>Número binario
+              <input type="text" id="bin-entrada" value="101101" placeholder="Ej.: 101101">
+            </label>
+          </div>
+          <button class="btn-grande" id="btn-calcular-binario">Convertir a decimal</button>
+          <div class="conv-resultado">
+            <span class="conv-resultado-titulo">Resultado</span>
+            <strong id="bin-resultado">—</strong>
+          </div>
+          <div class="conv-explicacion" id="bin-explicacion"></div>
+        </div>
+
+        <div class="conv-bloque">
+          <h4>Ejercicio aleatorio</h4>
+          <p class="conv-enunciado" id="ej-bin-enunciado"></p>
+          <div class="conv-fila">
+            <label>Tu respuesta
+              <input type="text" inputmode="numeric" id="ej-bin-respuesta" placeholder="Solo el número">
+            </label>
+          </div>
+          <div class="acciones">
+            <button class="btn-grande" id="btn-ej-bin-comprobar">Comprobar</button>
+            <button class="btn-grande secundario" id="btn-ej-bin-nuevo">Nuevo ejercicio</button>
+          </div>
+          <div class="conv-feedback test-oculto" id="ej-bin-feedback"></div>
+          <p class="conv-marcador" id="ej-bin-marcador">Aciertos: 0 / 0</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <footer>
-  <p>Material de repaso · Informática y Digitalización · 1º de Bachillerato</p>
+  <p>Material de repaso · Informática y Digitalización · Bachillerato</p>
   <p class="autora-pie">Autora: <strong>Mara Vañó</strong></p>
 </footer>
 
@@ -171,6 +280,7 @@
 <script src="js/utilidades.js"></script>
 <script src="js/test-opcion-multiple.js"></script>
 <script src="js/preguntas-abiertas.js"></script>
+<script src="js/conversiones.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-# Repaso TIC · 1º de Bachillerato
+# Repaso TIC · Bachillerato
 
-Aplicación de repaso con dos bloques:
+Aplicación de repaso con tres bloques:
 
 1. **Tests de opción múltiple** — el alumno elige tema (Hardware, Máquinas Virtuales,
    Windows, Ubuntu, Redes), nivel (Básico / Medio / Avanzado) y número de preguntas.
@@ -8,6 +8,8 @@ Aplicación de repaso con dos bloques:
    pregunta y una revisión completa de todo el test.
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
    aplicación le dice **si es correcta o no**, muestra la respuesta oficial y una pista.
+3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (base 1024 o 1000)
+   y de binario a decimal, con resultado, explicación y aciertos.
 
 Todo funciona **sin conexión a internet**: no hay que instalar nada.
 
@@ -28,7 +30,7 @@ Aplicacion BAT/
     ├── index.html
     ├── LEEME.md
     ├── css/estilos.css
-    └── js/… y js/datos/…
+    └── js/… (incluye conversiones.js) y js/datos/…
 ```
 
 **Para usar la aplicación basta con `Repaso-TIC.html`**: es un solo fichero con el

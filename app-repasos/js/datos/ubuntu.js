@@ -321,7 +321,7 @@ DATOS.ubuntu = {
 };
 
 /* =========================================================
-   Ampliación del banco de test (nivel 1º Bachillerato)
+   Ampliación del banco de test (nivel Bachillerato)
    ========================================================= */
 
 DATOS.ubuntu.test.basico.push(

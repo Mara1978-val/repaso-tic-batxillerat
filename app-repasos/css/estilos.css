@@ -1,5 +1,5 @@
 /* =========================================================
-   Repaso TIC · 1º Bachillerato
+   Repaso TIC · Bachillerato
    Hoja de estilos principal
    ========================================================= */
 
@@ -288,6 +288,74 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
 .item-revision .resp{margin:3px 0;color:var(--texto-suave)}
 .item-revision .resp b.ok{color:var(--verde)}
 .item-revision .resp b.ko{color:var(--rojo)}
+
+/* ---------- Conversiones ---------- */
+.conv-intro{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:18px 22px;
+  margin-bottom:16px;
+}
+.conv-intro h2{margin:0 0 6px;font-size:1.2rem}
+.conv-intro p{margin:0;color:var(--texto-suave);font-size:.93rem}
+
+.conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.conv-card{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:20px;
+}
+.conv-card h3{margin:0 0 16px;font-size:1.1rem}
+.conv-bloque{
+  border-top:1px solid var(--borde);
+  padding-top:14px;
+  margin-top:14px;
+}
+.conv-bloque:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.conv-bloque h4{
+  margin:0 0 10px;font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--texto-suave);
+}
+.conv-fila{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:12px}
+.conv-fila label{
+  display:flex;flex-direction:column;gap:4px;
+  font-size:.82rem;font-weight:600;color:var(--texto-suave);flex:1;min-width:92px;
+}
+.conv-fila input,.conv-fila select{
+  width:100%;padding:9px 10px;font:inherit;font-size:.95rem;
+  border:1.5px solid var(--borde);border-radius:9px;background:#fdfbff;color:var(--texto);
+}
+.conv-fila input:focus,.conv-fila select:focus{outline:none;border-color:var(--azul);background:#fff}
+.conv-card .btn-grande{padding:10px 18px;font-size:.92rem}
+
+.conv-resultado{
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  background:var(--azul-claro);border-radius:10px;padding:12px 14px;margin-top:14px;
+}
+.conv-resultado-titulo{
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-suave);
+}
+.conv-resultado strong{font-size:1.4rem;color:var(--azul-oscuro);word-break:break-word}
+.conv-explicacion{
+  margin-top:10px;padding:11px 13px;font-size:.89rem;line-height:1.55;
+  background:#fff8e6;border-left:4px solid var(--ambar);border-radius:9px;
+}
+.conv-enunciado{
+  background:#fdfbff;border:1px solid var(--borde);border-radius:9px;
+  padding:11px 13px;font-size:.95rem;margin:0 0 12px;
+}
+.conv-feedback{
+  margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5;
+  border:1.5px solid;
+}
+.conv-feedback.conv-ok{background:var(--verde-claro);border-color:var(--verde)}
+.conv-feedback.conv-ko{background:var(--rojo-claro);border-color:var(--rojo)}
+.conv-feedback.conv-aviso{background:#fff8e6;border-color:var(--ambar)}
+.conv-marcador{margin:10px 0 0;font-size:.85rem;font-weight:600;color:var(--texto-suave)}
 
 footer{
   text-align:center;

@@ -24,13 +24,12 @@ function cambiarModo(modo) {
 
   $("panel-test").classList.toggle("test-oculto", modo !== "test");
   $("panel-abiertas").classList.toggle("test-oculto", modo !== "abiertas");
+  $("panel-conversiones").classList.toggle("test-oculto", modo !== "conversiones");
 
-  // Volvemos siempre a la pantalla de configuración del bloque activo
-  if (modo === "test") {
-    Abiertas.volverAConfig();
-  } else {
-    TestMultiple.volverAConfig();
-  }
+  // Al cambiar de bloque cerramos los tests en curso
+  if (modo !== "test") TestMultiple.volverAConfig();
+  if (modo !== "abiertas") Abiertas.volverAConfig();
+  if (modo !== "conversiones") Conversiones.volverAConfig();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -43,4 +42,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   TestMultiple.iniciar();
   Abiertas.iniciar();
+  Conversiones.iniciar();
 });
