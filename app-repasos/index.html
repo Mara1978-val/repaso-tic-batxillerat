@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso TIC · 1º Bachillerato</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="cabecera-info">
+    <h1>Repaso TIC · 1º de Bachillerato</h1>
+    <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes</p>
+  </div>
+  <nav class="nav-modos">
+    <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
+    <button class="btn-nav" data-modo="abiertas">Preguntas abiertas</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= BLOQUE 1: TESTS ================= -->
+  <section id="panel-test" class="panel">
+
+    <div class="config" id="config-test">
+      <div class="bloque-config">
+        <h2>Tema</h2>
+        <div class="chips" id="chips-tema"></div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Nivel de dificultad</h2>
+        <div class="chips" id="chips-nivel">
+          <button class="chip" data-nivel="basico">Básico</button>
+          <button class="chip activo" data-nivel="medio">Medio</button>
+          <button class="chip" data-nivel="avanzado">Avanzado</button>
+        </div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Número de preguntas</h2>
+        <div class="chips" id="chips-numero">
+          <button class="chip" data-numero="5">5</button>
+          <button class="chip activo" data-numero="10">10</button>
+          <button class="chip" data-numero="15">15</button>
+          <button class="chip" data-numero="99">Todas</button>
+        </div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Opciones</h2>
+        <label class="opcion"><input type="checkbox" id="chk-explicacion" checked> Ver explicación al terminar</label>
+        <label class="opcion"><input type="checkbox" id="chk-aleatorio" checked> Barajar preguntas y respuestas</label>
+      </div>
+
+      <button class="btn-grande" id="btn-empezar">Empezar el test</button>
+      <p class="aviso" id="aviso-test"></p>
+    </div>
+
+    <div class="test-oculto" id="zona-test">
+      <div class="barra-progreso">
+        <div class="progreso">
+          <div class="progreso-relleno" id="barra-avance"></div>
+        </div>
+        <span id="contador">Pregunta 1 / 10</span>
+        <span id="marcador-vivo">Aciertos: 0</span>
+        <button class="btn-peq" id="btn-salir">Salir</button>
+      </div>
+
+      <div id="contenedor-preguntas"></div>
+
+      <div class="acciones">
+        <button class="btn-grande" id="btn-terminar">Terminar y corregir</button>
+      </div>
+    </div>
+
+    <div class="test-oculto" id="zona-resultado">
+      <div class="tarjeta-resultado">
+        <h2 id="titulo-resultado"></h2>
+        <div class="nota" id="nota-final"></div>
+        <p id="detalle-resultado"></p>
+        <p class="mensaje-resultado" id="mensaje-resultado"></p>
+        <div class="botones-resultado">
+          <button class="btn-grande" id="btn-repetir">Repetir test</button>
+          <button class="btn-grande secundario" id="btn-cambiar">Cambiar tema o nivel</button>
+        </div>
+      </div>
+      <div id="revision"></div>
+    </div>
+
+  </section>
+
+  <!-- ================= BLOQUE 2: PREGUNTAS ABIERTAS ================= -->
+  <section id="panel-abiertas" class="panel test-oculto">
+
+    <div class="config" id="config-abiertas">
+      <div class="bloque-config">
+        <h2>Tema</h2>
+        <div class="chips" id="chips-tema-abiertas"></div>
+      </div>
+      <div class="bloque-config">
+        <h2>Nivel de dificultad</h2>
+        <div class="chips" id="chips-nivel-abiertas">
+          <button class="chip activo" data-nivel="todos">Todos</button>
+          <button class="chip" data-nivel="basico">Básico</button>
+          <button class="chip" data-nivel="medio">Medio</button>
+          <button class="chip" data-nivel="avanzado">Avanzado</button>
+        </div>
+      </div>
+      <button class="btn-grande" id="btn-empezar-abiertas">Empezar</button>
+      <p class="aviso" id="aviso-abiertas"></p>
+    </div>
+
+    <div class="test-oculto" id="zona-abiertas">
+      <div class="barra-progreso">
+        <span id="contador-abiertas"></span>
+        <span id="marcador-abiertas">Correctas: 0 / 0</span>
+        <button class="btn-peq" id="btn-salir-abiertas">Salir</button>
+      </div>
+
+      <div class="tarjeta-pregunta" id="tarjeta-abierta">
+        <p class="etiqueta-tema" id="etiqueta-abierta"></p>
+        <h2 id="enunciado-abierta"></h2>
+        <textarea id="respuesta-alumno" rows="3" placeholder="Escribe aquí tu respuesta…"></textarea>
+        <div class="acciones">
+          <button class="btn-grande" id="btn-comprobar-abierta">Comprobar respuesta</button>
+          <button class="btn-grande secundario" id="btn-siguiente-abierta" hidden>Siguiente pregunta</button>
+        </div>
+        <div class="veredicto test-oculto" id="veredicto">
+          <div class="veredicto-icono" id="veredicto-icono"></div>
+          <div class="veredicto-texto">
+            <strong id="veredicto-titulo"></strong>
+            <p id="veredicto-explicacion"></p>
+            <p class="respuesta-correcta" id="respuesta-correcta"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-oculto" id="zona-resultado-abiertas">
+      <div class="tarjeta-resultado">
+        <h2>Resultado</h2>
+        <div class="nota" id="nota-abiertas"></div>
+        <p id="detalle-abiertas"></p>
+        <div class="botones-resultado">
+          <button class="btn-grande" id="btn-repetir-abiertas">Repetir</button>
+          <button class="btn-grande secundario" id="btn-cambiar-abiertas">Cambiar tema</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>Material de repaso · Informática y Digitalización · 1º de Bachillerato</p>
+</footer>
+
+<!-- Datos: un fichero por tema. Para añadir preguntas, edita solo estos ficheros. -->
+<script src="js/datos/hardware.js"></script>
+<script src="js/datos/virtualizacion.js"></script>
+<script src="js/datos/windows.js"></script>
+<script src="js/datos/ubuntu.js"></script>
+<script src="js/datos/redes.js"></script>
+
+<!-- Lógica de la aplicación -->
+<script src="js/utilidades.js"></script>
+<script src="js/test-opcion-multiple.js"></script>
+<script src="js/preguntas-abiertas.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

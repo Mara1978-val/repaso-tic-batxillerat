@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso TIC · 1º Bachillerato</title>
+<style>
+/* =========================================================
+   Repaso TIC · 1º Bachillerato
+   Hoja de estilos principal
+   ========================================================= */
+
+:root{
+  --azul:#1f4fd8;
+  --azul-oscuro:#16379b;
+  --azul-claro:#e8eefc;
+  --verde:#189a4a;
+  --verde-claro:#e4f7eb;
+  --rojo:#d92b2b;
+  --rojo-claro:#fdeaea;
+  --ambar:#e08a00;
+  --fondo:#f4f6fb;
+  --tarjeta:#ffffff;
+  --texto:#1d2433;
+  --texto-suave:#5b6478;
+  --borde:#dfe4ef;
+  --radio:14px;
+  --sombra:0 4px 16px rgba(20,35,80,.08);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--fondo);
+  color:var(--texto);
+  line-height:1.5;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera{
+  background:linear-gradient(120deg,var(--azul),var(--azul-oscuro));
+  color:#fff;
+  padding:22px 24px 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+}
+.cabecera h1{margin:0;font-size:1.5rem}
+.cabecera-info p{margin:4px 0 0;opacity:.85;font-size:.92rem}
+
+.nav-modos{display:flex;gap:8px;flex-wrap:wrap}
+.btn-nav{
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.4);
+  padding:9px 16px;
+  border-radius:999px;
+  font-size:.92rem;
+  cursor:pointer;
+  transition:.15s;
+}
+.btn-nav:hover{background:rgba(255,255,255,.28)}
+.btn-nav.activo{background:#fff;color:var(--azul-oscuro);font-weight:600;border-color:#fff}
+
+/* ---------- Estructura ---------- */
+main{max-width:1000px;margin:0 auto;padding:24px 16px 40px}
+.panel{display:block}
+.test-oculto{display:none !important}
+
+/* ---------- Bloques de configuración ---------- */
+.config{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:22px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+  align-items:start;
+}
+.bloque-config h2{
+  font-size:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--texto-suave);
+  margin:0 0 10px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  background:#fff;
+  border:1.5px solid var(--borde);
+  color:var(--texto);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:.92rem;
+  cursor:pointer;
+  transition:.15s;
+}
+.chip:hover{border-color:var(--azul);color:var(--azul)}
+.chip.activo{background:var(--azul);border-color:var(--azul);color:#fff;font-weight:600}
+.chip.nivel-basico.activo{background:var(--verde);border-color:var(--verde)}
+.chip.nivel-medio.activo{background:var(--ambar);border-color:var(--ambar)}
+.chip.nivel-avanzado.activo{background:var(--rojo);border-color:var(--rojo)}
+.chip[disabled]{opacity:.45;cursor:not-allowed}
+
+.opcion{display:block;font-size:.92rem;margin:6px 0;color:var(--texto-suave);cursor:pointer}
+.opcion input{margin-right:7px;accent-color:var(--azul)}
+
+.btn-grande{
+  background:var(--azul);
+  color:#fff;
+  border:none;
+  padding:13px 24px;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:.15s;
+  grid-column:1/-1;
+  justify-self:start;
+}
+.btn-grande:hover{background:var(--azul-oscuro)}
+.btn-grande.secundario{background:#fff;color:var(--azul);border:1.5px solid var(--azul)}
+.btn-grande.secundario:hover{background:var(--azul-claro)}
+
+.aviso{grid-column:1/-1;margin:0;color:var(--rojo);font-size:.9rem;min-height:1.2em}
+
+/* ---------- Barra de progreso ---------- */
+.barra-progreso{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  padding:12px 16px;
+  margin-bottom:16px;
+  box-shadow:var(--sombra);
+  flex-wrap:wrap;
+  font-size:.92rem;
+}
+.barra-progreso span{font-weight:600;color:var(--texto-suave)}
+.progreso{flex:1;min-width:140px;height:8px;background:var(--borde);border-radius:999px;overflow:hidden}
+.progreso-relleno{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#4f7bff);transition:width .3s}
+.btn-peq{
+  background:#fff;border:1.5px solid var(--borde);color:var(--texto-suave);
+  padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.85rem;
+}
+.btn-peq:hover{border-color:var(--rojo);color:var(--rojo)}
+
+/* ---------- Preguntas de test ---------- */
+.tarjeta-pregunta{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:22px;
+  margin-bottom:16px;
+}
+.etiqueta-tema{
+  display:inline-block;
+  background:var(--azul-claro);
+  color:var(--azul-oscuro);
+  font-size:.75rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  padding:4px 10px;
+  border-radius:999px;
+  margin:0 0 10px;
+}
+.num-pregunta{color:var(--texto-suave);font-size:.85rem;margin:0 0 4px;font-weight:600}
+.tarjeta-pregunta h3{margin:0 0 16px;font-size:1.05rem;font-weight:600}
+
+.opciones{display:grid;gap:9px}
+.opcion-test{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  border:1.5px solid var(--borde);
+  background:#fbfcff;
+  border-radius:10px;
+  padding:11px 14px;
+  cursor:pointer;
+  transition:.12s;
+  font-size:.95rem;
+}
+.opcion-test:hover{border-color:var(--azul);background:var(--azul-claro)}
+.opcion-test input{margin-top:3px;accent-color:var(--azul);flex-shrink:0}
+.opcion-test.sel{border-color:var(--azul);background:var(--azul-claro);font-weight:600}
+
+/* Estados tras corregir */
+.opcion-test.correcta{border-color:var(--verde);background:var(--verde-claro);font-weight:600}
+.opcion-test.incorrecta{border-color:var(--rojo);background:var(--rojo-claro)}
+.opcion-test.bloqueada{pointer-events:none;opacity:.75}
+.opcion-test.correcta.bloqueada{opacity:1}
+
+.explicacion{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:10px;
+  font-size:.9rem;
+  background:#fff8e6;
+  border-left:4px solid var(--ambar);
+}
+.explicacion b{color:var(--ambar)}
+
+.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.acciones .btn-grande{grid-column:auto;justify-self:auto}
+
+/* ---------- Resultado ---------- */
+.tarjeta-resultado{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:28px 22px;
+  text-align:center;
+  margin-bottom:18px;
+}
+.tarjeta-resultado h2{margin:0 0 8px}
+.nota{
+  font-size:3.4rem;
+  font-weight:800;
+  color:var(--azul);
+  margin:6px 0;
+}
+.nota.sobresaliente{color:var(--verde)}
+.nota.suficiente{color:var(--ambar)}
+.nota.suspenso{color:var(--rojo)}
+.mensaje-resultado{font-size:1.05rem;color:var(--texto-suave);margin-top:4px}
+.botones-resultado{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.botones-resultado .btn-grande{grid-column:auto}
+
+/* ---------- Preguntas abiertas ---------- */
+#respuesta-alumno{
+  width:100%;
+  border:1.5px solid var(--borde);
+  border-radius:10px;
+  padding:12px 14px;
+  font-family:inherit;
+  font-size:1rem;
+  resize:vertical;
+  background:#fbfcff;
+}
+#respuesta-alumno:focus{outline:none;border-color:var(--azul);background:#fff}
+
+.veredicto{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  margin-top:16px;
+  padding:16px;
+  border-radius:12px;
+  border:1.5px solid;
+}
+.veredicto.ok{background:var(--verde-claro);border-color:var(--verde)}
+.veredicto.ko{background:var(--rojo-claro);border-color:var(--rojo)}
+.veredicto-icono{font-size:1.9rem;line-height:1}
+.veredicto-texto strong{font-size:1.05rem}
+.veredicto.ok .veredicto-texto strong{color:var(--verde)}
+.veredicto.ko .veredicto-texto strong{color:var(--rojo)}
+.veredicto-texto p{margin:5px 0 0;font-size:.93rem;color:var(--texto-suave)}
+.respuesta-correcta{font-weight:600;color:var(--texto) !important}
+
+/* ---------- Revisión detallada ---------- */
+#revision{display:grid;gap:12px}
+.item-revision{
+  background:var(--tarjeta);
+  border:1px solid var(--borde);
+  border-left:5px solid var(--borde);
+  border-radius:10px;
+  padding:14px 16px;
+  font-size:.93rem;
+}
+.item-revision.ok{border-left-color:var(--verde)}
+.item-revision.ko{border-left-color:var(--rojo)}
+.item-revision .preg{font-weight:600;margin:0 0 6px}
+.item-revision .resp{margin:3px 0;color:var(--texto-suave)}
+.item-revision .resp b.ok{color:var(--verde)}
+.item-revision .resp b.ko{color:var(--rojo)}
+
+footer{
+  text-align:center;
+  padding:18px;
+  color:var(--texto-suave);
+  font-size:.85rem;
+  border-top:1px solid var(--borde);
+}
+
+@media (max-width:640px){
+  .cabecera{flex-direction:column;align-items:flex-start}
+  .nota{font-size:2.6rem}
+}
+
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="cabecera-info">
+    <h1>Repaso TIC · 1º de Bachillerato</h1>
+    <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes</p>
+  </div>
+  <nav class="nav-modos">
+    <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
+    <button class="btn-nav" data-modo="abiertas">Preguntas abiertas</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= BLOQUE 1: TESTS ================= -->
+  <section id="panel-test" class="panel">
+
+    <div class="config" id="config-test">
+      <div class="bloque-config">
+        <h2>Tema</h2>
+        <div class="chips" id="chips-tema"></div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Nivel de dificultad</h2>
+        <div class="chips" id="chips-nivel">
+          <button class="chip" data-nivel="basico">Básico</button>
+          <button class="chip activo" data-nivel="medio">Medio</button>
+          <button class="chip" data-nivel="avanzado">Avanzado</button>
+        </div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Número de preguntas</h2>
+        <div class="chips" id="chips-numero">
+          <button class="chip" data-numero="5">5</button>
+          <button class="chip activo" data-numero="10">10</button>
+          <button class="chip" data-numero="15">15</button>
+          <button class="chip" data-numero="99">Todas</button>
+        </div>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Opciones</h2>
+        <label class="opcion"><input type="checkbox" id="chk-explicacion" checked> Ver explicación al terminar</label>
+        <label class="opcion"><input type="checkbox" id="chk-aleatorio" checked> Barajar preguntas y respuestas</label>
+      </div>
+
+      <button class="btn-grande" id="btn-empezar">Empezar el test</button>
+      <p class="aviso" id="aviso-test"></p>
+    </div>
+
+    <div class="test-oculto" id="zona-test">
+      <div class="barra-progreso">
+        <div class="progreso">
+          <div class="progreso-relleno" id="barra-avance"></div>
+        </div>
+        <span id="contador">Pregunta 1 / 10</span>
+        <span id="marcador-vivo">Aciertos: 0</span>
+        <button class="btn-peq" id="btn-salir">Salir</button>
+      </div>
+
+      <div id="contenedor-preguntas"></div>
+
+      <div class="acciones">
+        <button class="btn-grande" id="btn-terminar">Terminar y corregir</button>
+      </div>
+    </div>
+
+    <div class="test-oculto" id="zona-resultado">
+      <div class="tarjeta-resultado">
+        <h2 id="titulo-resultado"></h2>
+        <div class="nota" id="nota-final"></div>
+        <p id="detalle-resultado"></p>
+        <p class="mensaje-resultado" id="mensaje-resultado"></p>
+        <div class="botones-resultado">
+          <button class="btn-grande" id="btn-repetir">Repetir test</button>
+          <button class="btn-grande secundario" id="btn-cambiar">Cambiar tema o nivel</button>
+        </div>
+      </div>
+      <div id="revision"></div>
+    </div>
+
+  </section>
+
+  <!-- ================= BLOQUE 2: PREGUNTAS ABIERTAS ================= -->
+  <section id="panel-abiertas" class="panel test-oculto">
+
+    <div class="config" id="config-abiertas">
+      <div class="bloque-config">
+        <h2>Tema</h2>
+        <div class="chips" id="chips-tema-abiertas"></div>
+      </div>
+      <div class="bloque-config">
+        <h2>Nivel de dificultad</h2>
+        <div class="chips" id="chips-nivel-abiertas">
+          <button class="chip activo" data-nivel="todos">Todos</button>
+          <button class="chip" data-nivel="basico">Básico</button>
+          <button class="chip" data-nivel="medio">Medio</button>
+          <button class="chip" data-nivel="avanzado">Avanzado</button>
+        </div>
+      </div>
+      <button class="btn-grande" id="btn-empezar-abiertas">Empezar</button>
+      <p class="aviso" id="aviso-abiertas"></p>
+    </div>
+
+    <div class="test-oculto" id="zona-abiertas">
+      <div class="barra-progreso">
+        <span id="contador-abiertas"></span>
+        <span id="marcador-abiertas">Correctas: 0 / 0</span>
+        <button class="btn-peq" id="btn-salir-abiertas">Salir</button>
+      </div>
+
+      <div class="tarjeta-pregunta" id="tarjeta-abierta">
+        <p class="etiqueta-tema" id="etiqueta-abierta"></p>
+        <h2 id="enunciado-abierta"></h2>
+        <textarea id="respuesta-alumno" rows="3" placeholder="Escribe aquí tu respuesta…"></textarea>
+        <div class="acciones">
+          <button class="btn-grande" id="btn-comprobar-abierta">Comprobar respuesta</button>
+          <button class="btn-grande secundario" id="btn-siguiente-abierta" hidden>Siguiente pregunta</button>
+        </div>
+        <div class="veredicto test-oculto" id="veredicto">
+          <div class="veredicto-icono" id="veredicto-icono"></div>
+          <div class="veredicto-texto">
+            <strong id="veredicto-titulo"></strong>
+            <p id="veredicto-explicacion"></p>
+            <p class="respuesta-correcta" id="respuesta-correcta"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-oculto" id="zona-resultado-abiertas">
+      <div class="tarjeta-resultado">
+        <h2>Resultado</h2>
+        <div class="nota" id="nota-abiertas"></div>
+        <p id="detalle-abiertas"></p>
+        <div class="botones-resultado">
+          <button class="btn-grande" id="btn-repetir-abiertas">Repetir</button>
+          <button class="btn-grande secundario" id="btn-cambiar-abiertas">Cambiar tema</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>Material de repaso · Informática y Digitalización · 1º de Bachillerato</p>
+</footer>
+
+<!-- Datos: un fichero por tema. Para añadir preguntas, edita solo estos ficheros. -->
+<script>
+/* =========================================================
+   datos/hardware.js
+   Preguntas del tema HARDWARE
+   ---------------------------------------------------------
+   test     : { basico:[], medio:[], avanzado:[] }
+              cada pregunta = { p:"enunciado", op:["a","b","c","d"],
+                                r:índice de la correcta, e:"explicación" }
+   abiertas : [ { q, respuestas:[formas aceptadas], solucion,
+                  nivel:"basico|medio|avanzado", explicacion } ]
+   ========================================================= */
+
+window.DATOS = window.DATOS || {};
+
+DATOS.hardware = {
+  nombre: "Hardware",
+
+  test: {
+    basico: [
+      { p: "¿Cuántos bits forman un byte?",
+        op: ["4", "8", "16", "32"], r: 1,
+        e: "Un byte (octeto) = 8 bits. Con un byte se representa un carácter en ASCII." },
+
+      { p: "La parte física y tangible del ordenador (cables, caja, componentes) se denomina:",
+        op: ["Software", "Hardware", "Periférico", "Sistema operativo"], r: 1,
+        e: "Hardware = lo físico; software = los programas e instrucciones." },
+
+      { p: "¿Cuál es la unidad de medida de la frecuencia (velocidad de un procesador)?",
+        op: ["Vatios (W)", "Bytes (B)", "Hercio (Hz)", "Metros (m)"], r: 2,
+        e: "1 Hz = 1 ciclo por segundo. Se usan kHz, MHz y GHz." },
+
+      { p: "¿Qué componente se considera el «cerebro» del ordenador?",
+        op: ["La RAM", "El disco duro", "La CPU", "La fuente de alimentación"], r: 2,
+        e: "La CPU interpreta y ejecuta las instrucciones; el microprocesador es la CPU en un solo circuito." },
+
+      { p: "¿Cuál de estos periféricos es de SALIDA?",
+        op: ["Ratón", "Teclado", "Impresora", "Webcam"], r: 2,
+        e: "De salida: monitor, impresora, plotter, altavoces. De entrada: teclado, ratón, escáner, webcam." },
+
+      { p: "La memoria de trabajo del ordenador, volátil y de acceso aleatorio, es:",
+        op: ["RAM", "ROM", "BIOS", "GPU"], r: 0,
+        e: "RAM = memoria volátil que se borra al apagar; ROM es permanente (guarda la BIOS)." },
+
+      { p: "¿Qué componente conecta, alimenta e interconecta todos los demás?",
+        op: ["La placa base", "La tarjeta gráfica", "El monitor", "El cable de red"], r: 0,
+        e: "La placa base es el «esqueleto» del PC: por ella circulan los buses." },
+
+      { p: "Las redes se miden en… y los archivos en…",
+        op: ["bytes y bits", "bits y bytes", "hercios y vatios", "vatios y hercios"], r: 1,
+        e: "Redes en bits (Mbps/Gbps); archivos en bytes (MB/GB)." },
+
+      { p: "¿Qué tipo de memoria NO tiene partes móviles?",
+        op: ["HDD", "SSD", "Disquete", "Unidad óptica"], r: 1,
+        e: "El SSD usa memoria flash: sin cabezales ni platos, es más rápido y resistente a golpes." },
+
+      { p: "Un periférico que tanto recibe datos como los envía es:",
+        op: ["De entrada", "De salida", "De entrada/salida (E/S)", "De proceso"], r: 2,
+        e: "Ejemplo: la pantalla táctil, que muestra información y recoge el toque del usuario." },
+
+      { p: "¿Cuál de estos es un factor de forma de placa base?",
+        op: ["ATX", "USB", "RJ-45", "HDMI"], r: 0,
+        e: "Los principales son ATX, Micro-ATX y Mini-ITX. USB, RJ-45 y HDMI son conectores." },
+
+      { p: "El componente que convierte la corriente de la red eléctrica para que funcione el PC es:",
+        op: ["La fuente de alimentación (PSU)", "El ventilador", "La batería CR2032", "El SSD"], r: 0,
+        e: "La PSU se mide en vatios (W) y suele llevar la certificación 80 PLUS." },
+
+      { p: "La memoria que guarda la BIOS y la rutina de arranque es:",
+        op: ["RAM", "ROM", "Caché", "VRAM"], r: 1,
+        e: "ROM: memoria permanente de solo lectura." },
+
+      { p: "¿Cuál es un periférico de ENTRADA?",
+        op: ["Altavoces", "Monitor", "Ratón", "Impresora"], r: 2,
+        e: "El ratón envía datos al ordenador; los otros tres muestran o devuelven información." }
+    ],
+
+    medio: [
+      { p: "¿Cuántos pines tiene un módulo de memoria DDR4?",
+        op: ["184", "240", "288", "320"], r: 2,
+        e: "DDR3 = 240 pines; DDR4 = 288 pines (mayor rendimiento y menor consumo)." },
+
+      { p: "La velocidad máxima de una interfaz SATA III es:",
+        op: ["1,5 Gb/s", "3 Gb/s", "6 Gb/s", "10 Gb/s"], r: 2,
+        e: "SATA II = 3 Gb/s y SATA III = 6 Gb/s." },
+
+      { p: "1 gigabyte (GB) equivale exactamente a:",
+        op: ["1.000 MB", "1.024 MB", "1.048.576 MB", "8 MB"], r: 1,
+        e: "Cada escalón binario multiplica por 1.024: 1 GB = 1.024 MB = 1.073.741.824 bytes." },
+
+      { p: "La configuración de la BIOS se guarda en la memoria:",
+        op: ["CMOS (alimentada por la pila CR2032)", "ROM flash de vídeo", "RAM principal", "Disco SSD"], r: 0,
+        e: "Si la pila CR2032 se agota, la BIOS pierde la fecha y la configuración." },
+
+      { p: "Una CPU de 32 bits puede direccionar como máximo:",
+        op: ["4 GB de RAM", "8 GB de RAM", "16 GB de RAM", "2 GB de RAM"], r: 0,
+        e: "2³² = 4.294.967.296 direcciones → máximo 4 GB. Con 64 bits la RAM es prácticamente ilimitada." },
+
+      { p: "Un procesador de 3,5 GHz ejecuta aproximadamente:",
+        op: ["3.500 ciclos por segundo", "3.500 millones de ciclos por segundo", "3,5 ciclos por segundo", "35 millones de ciclos por segundo"], r: 1,
+        e: "GHz = 1.000.000.000. 3,5 GHz = 3.500 millones de ciclos/s." },
+
+      { p: "¿Cuánto pesa el número binario 11011001 en decimal?",
+        op: ["177", "201", "217", "225"], r: 2,
+        e: "128 + 64 + 16 + 8 + 1 = 217." },
+
+      { p: "Si la velocidad de la red es de 300 Mbps, la descarga real máxima es de:",
+        op: ["300 MB/s", "37,5 MB/s", "3.000 MB/s", "3,75 MB/s"], r: 1,
+        e: "MB/s = Mbps ÷ 8 → 300 ÷ 8 = 37,5 MB/s." },
+
+      { p: "Para dimensionar la fuente de alimentación se recomienda:",
+        op: ["Consumo total × 1,3", "Consumo total ÷ 2", "Consumo total + 50 W siempre", "Consumo total × 0,5"], r: 0,
+        e: "Se deja un margen del 30%: 500 W de consumo → fuente de 650 W." },
+
+      { p: "¿Qué tipo de impresora ofrece la mejor calidad y es la más rápida y silenciosa?",
+        op: ["Inyección de tinta", "Térmica", "Láser", "Sublimación"], r: 2,
+        e: "La láser usa tambor electrostático, toner y calor; la sublimación es la de calidad fotográfica." },
+
+      { p: "Una pantalla LCD se diferencia de la LED en que:",
+        op: ["La LED usa diodos emisores de luz: más colores, menos consumo y más duración",
+              "La LED no puede mostrar imágenes en movimiento",
+              "La LCD consume menos que la LED",
+              "La LCD no necesita retroiluminación"], r: 0,
+        e: "LCD TFT (transistores, en desuso) frente a LED (diodos emisores de luz)." },
+
+      { p: "Una tarjeta microSDHC admite hasta:",
+        op: ["2 GB", "32 GB", "2 TB", "128 GB"], r: 1,
+        e: "SDHC (High Capacity) hasta 32 GB; SDXC (Extended Capacity) hasta 2 TB." },
+
+      { p: "Una fotografía de 1920 × 1080 píxeles tiene aproximadamente:",
+        op: ["0,2 MP", "2 MP", "12 MP", "20 MP"], r: 1,
+        e: "1920 × 1080 = 2.073.600 píxeles ≈ 2 megapíxeles." },
+
+      { p: "En un disco duro mecánico, cada cara de cada plato tiene:",
+        op: ["Dos cabezales", "Una cabeza de lectura/escritura", "Cuatro cabezales", "Ningún cabezal"], r: 1,
+        e: "Una sola cabeza por cara; los platos giran a 7.200 rpm." },
+
+      { p: "La configuración «doble canal» de la memoria RAM consiste en:",
+        op: ["Instalar dos módulos iguales para duplicar la velocidad de acceso",
+              "Usar módulos de distinta capacidad",
+              "Conectar la RAM al bus de vídeo",
+              "Habilitar la memoria virtual en el disco"], r: 0,
+        e: "Dos módulos idénticos en los bancos del mismo color, que comparten canal." }
+    ],
+
+    avanzado: [
+      { p: "El número decimal 77 expresado en binario es:",
+        op: ["1001001", "1001101", "1100101", "1011101"], r: 1,
+        e: "Divisiones sucesivas por 2 y los restos leídos al revés: 77 → 1001101." },
+
+      { p: "Un disco etiquetado por el fabricante como «1 TB» aparece en Windows como aprox.:",
+        op: ["1.000 GB", "931 GB", "1.024 GB", "100 GB"], r: 1,
+        e: "El fabricante usa 1.000 (decimal) y el SO usa 1.024 (binario): 10¹² B = 931 GB." },
+
+      { p: "Un disco de 500 GB del fabricante corresponde a cuántos GB en el sistema operativo?",
+        op: ["500 GB", "465,66 GB", "512 GB", "488 GB"], r: 1,
+        e: "500.000.000.000 bytes ÷ 1.073.741.824 = 465,66 GB." },
+
+      { p: "El TDP de un procesador se expresa en vatios e indica:",
+        op: ["La cantidad de RAM que admite",
+              "El calor máximo que disipa, condicionando la refrigeración",
+              "La velocidad de reloj máxima",
+              "El número de núcleos disponibles"], r: 1,
+        e: "A mayor TDP, hace falta una refrigeración más potente." },
+
+      { p: "Con la tecnología Hyper-Threading, cada núcleo de la CPU puede ejecutar:",
+        op: ["Una sola tarea", "Dos tareas simultáneamente", "Cuatro tareas", "Ocho tareas"], r: 1,
+        e: "Por eso una CPU puede mostrar «8 núcleos / 16 hilos»." },
+
+      { p: "La velocidad típica de un SSD conectado por NVMe es de hasta:",
+        op: ["150 MB/s", "550 MB/s", "3.000 MB/s", "120 MB/s"], r: 2,
+        e: "HDD ≈ 120 MB/s, SSD SATA ≈ 550 MB/s y NVMe hasta 3.000 MB/s o más." },
+
+      { p: "¿Cuántas películas de 1,5 GB caben en un disco de 3 TB?",
+        op: ["1.024", "2.048", "3.072", "512"], r: 1,
+        e: "3 TB = 3.072 GB ÷ 1,5 GB = 2.048 películas." },
+
+      { p: "1 Gbps equivale exactamente a:",
+        op: ["100 MB/s", "125 MB/s", "1.000 MB/s", "8.192 MB/s"], r: 1,
+        e: "1.000 Mbps ÷ 8 = 125 MB/s." },
+
+      { p: "¿Cuánto tarda en descargarse un archivo de 2 GB con una conexión de 300 Mbps?",
+        op: ["5,4 s", "54,6 s", "8,2 s", "546 s"], r: 1,
+        e: "2 GB = 2.048 MB; 300 Mbps = 37,5 MB/s → 2.048 ÷ 37,5 = 54,6 s." },
+
+      { p: "La tecnología que permite que los módulos DDR3 tengan 240 pines, frente a los 288 de la DDR4, se denomina:",
+        op: ["DIMM de escritorio estándar en ambos casos", "Diferente generación: DDR3 y DDR4", "Mismo módulo con adaptador", "Ranura SO-DIMM de portátil en ambos"], r: 1,
+        e: "Son generaciones distintas de DIMM: DDR3 = 240 pines, DDR4 = 288 pines." },
+
+      { p: "En un disco duro, la distancia a la que se acercan los cabezales a los platos es del orden de:",
+        op: ["3 milímetros", "3 nanómetros", "3 centímetros", "3 micrómetros"], r: 1,
+        e: "A 3 nm de distancia, por eso un golpe o un polvo pueden dañar el disco." },
+
+      { p: "Una CPU con arquitectura ARM se caracteriza por:",
+        op: ["Ser un diseño RISC con componentes integrados (GPU, módem), usado en móviles",
+              "Solo poder ejecutar Windows",
+              "Estar siempre soldada a la placa base",
+              "Trabajar solo a 32 bits"], r: 0,
+        e: "ARM (Advanced RISC Machines) usa arquitectura RISC; la llevan móviles, relojes y coches." },
+
+      { p: "El fabricante de un SSD anuncia un MTBF de 2 millones de horas. Este dato indica:",
+        op: ["La vida útil antes de un fallo medio", "La velocidad de lectura", "La capacidad máxima", "El consumo en vatios"], r: 0,
+        e: "MTBF = tiempo medio entre fallos (Mean Time Between Failures)." },
+
+      { p: "Los primeros 3 pares de una dirección MAC identifican:",
+        op: ["El fabricante de la tarjeta de red", "La IP del equipo", "El número de serie del disco", "La versión del navegador"], r: 0,
+        e: "La MAC tiene 48 bits (6 pares hexadecimales); los 3 primeros son el OUI del fabricante." }
+    ]
+  },
+
+  abiertas: [
+    { q: "¿Qué es el hardware y qué diferencia tiene con el software?",
+      respuestas: ["parte fisica", "componentes fisicos", "tangible", "cuerpo", "programas e instrucciones"],
+      solucion: "El hardware es la parte física y tangible del ordenador (componentes, cables, caja, periféricos); el software son los programas e instrucciones que se ejecutan en él.",
+      nivel: "basico",
+      explicacion: "Piensa en el «cuerpo» y la «mente» del ordenador." },
+
+    { q: "¿Cuántos bits hay en un byte y cómo se llama también ese conjunto?",
+      respuestas: ["8 bits", "ocho bits", "octeto", "8"],
+      solucion: "8 bits. También se llama octeto, y representa un carácter en ASCII.",
+      nivel: "basico",
+      explicacion: "La letra «b» minúscula es bit y la «B» mayúscula es byte." },
+
+    { q: "Menciona tres periféricos de entrada y tres de salida.",
+      respuestas: ["teclado, raton, escaner", "teclado raton escaner", "monitor impresora altavoz"],
+      solucion: "Entrada: teclado, ratón, escáner, webcam, micrófono. Salida: monitor, impresora, plotter, altavoces.",
+      nivel: "basico",
+      explicacion: "Los de entrada envían datos; los de salida muestran información." },
+
+    { q: "¿Qué es la RAM y por qué se dice que es memoria volátil?",
+      respuestas: ["memoria de trabajo", "volatil", "se borra al apagar", "borra al apagarse"],
+      solucion: "Es la memoria de trabajo del ordenador, de acceso aleatorio; es volátil porque su contenido se pierde al apagar o reiniciar el equipo.",
+      nivel: "basico",
+      explicacion: "A diferencia de la ROM o del disco, que son no volátiles." },
+
+    { q: "Explica la diferencia entre 1 MB según el fabricante y según el sistema operativo.",
+      respuestas: ["1.000.000", "1.048.576", "1024 kb", "decimal y binario", "1000 y 1024"],
+      solucion: "El fabricante usa el decimal: 1 MB = 1.000.000 bytes. El SO usa el binario: 1 MB = 1.024 KB = 1.048.576 bytes. Por eso un disco de 1 TB aparece como 931 GB.",
+      nivel: "medio",
+      explicacion: "Cada escalón binario multiplica por 1.024." },
+
+    { q: "¿Cuántos pines tienen los módulos DDR3 y DDR4? ¿Cuál es más rápida?",
+      respuestas: ["240 y 288", "240", "288"],
+      solucion: "DDR3 tiene 240 pines y DDR4 tiene 288 pines; la DDR4 ofrece mayor rendimiento y menor consumo.",
+      nivel: "medio",
+      explicacion: "Se distinguen además por la posición de la muesca de la ranura." },
+
+    { q: "¿Qué función cumple la BIOS y dónde se guarda su configuración?",
+      respuestas: ["basic input output", "identifica el hardware", "cmos", "arranque", "pila"],
+      solucion: "La BIOS (Basic Input Output System) identifica el hardware conectado y realiza la autocomprobación al arrancar; su configuración se guarda en la CMOS, alimentada por la pila CR2032.",
+      nivel: "medio",
+      explicacion: "Sin la BIOS la placa base no funciona." },
+
+    { q: "¿Qué es la jerarquía de memoria? Ordena de más rápida a más lenta.",
+      respuestas: ["registros", "cache", "ram", "disco", "ssd", "hdd", "armario"],
+      solucion: "Registros y caché de la CPU (rapidísimas y pequeñas) → RAM (rápida) → SSD/HDD (lentas pero de gran capacidad). Como metáfora: la RAM es la mesa de trabajo y los discos, el armario.",
+      nivel: "medio",
+      explicacion: "Cuanto más arriba, más rápida y más cara por GB." },
+
+    { q: "Explica la regla de cálculo de la fuente de alimentación y aplícala a 320 W de consumo.",
+      respuestas: ["416", "1.3", "1,3", "x1.3", "320 * 1.3"],
+      solucion: "Fuente = consumo total × 1,3 (margen del 30%). 320 W × 1,3 = 416 W, por lo que conviene una fuente de unos 400-450 W.",
+      nivel: "avanzado",
+      explicacion: "El margen deja sitio para picos y futuras ampliaciones." },
+
+    { q: "Convierte 11011001 de binario a decimal justificando el proceso.",
+      respuestas: ["217", "128+64+16+8+1"],
+      solucion: "Se numeran los bits de derecha a izquierda (0 a 7) y se suman las potencias de 2 encendidas: 128 + 64 + 16 + 8 + 1 = 217.",
+      nivel: "avanzado",
+      explicacion: "Bit 7 = 128, bit 6 = 64, bit 5 = 0, bit 4 = 16, bit 3 = 8, bit 2 = 0, bit 1 = 0, bit 0 = 1." },
+
+    { q: "Una conexión es de 1 Gbps. ¿Cuántos MB/s son y en cuánto tiempo baja un archivo de 3 GB?",
+      respuestas: ["125", "24.6", "24,6", "24 s"],
+      solucion: "1 Gbps = 1.000 Mbps ÷ 8 = 125 MB/s. 3 GB = 3.072 MB → 3.072 ÷ 125 = 24,6 s.",
+      nivel: "avanzado",
+      explicacion: "MB/s = Mbps ÷ 8: la confusión más habitual en los ejercicios." },
+
+    { q: "¿Qué diferencias principales encuentras entre un HDD y un SSD?",
+      respuestas: ["partes moviles", "flash", "sin partes moviles", "rapido", "silencioso", "golpes", "cabezales", "platos"],
+      solucion: "El HDD es mecánico (platos, cabezales, grabación magnética, ≈120 MB/s, ruidoso y sensible a golpes). El SSD usa memoria flash sin partes móviles: hasta 10 veces más rápido (SATA ≈550 MB/s, NVMe ≈3.000 MB/s), sin ruido, más resistente, pero más caro.",
+      nivel: "avanzado",
+      explicacion: "También es más fiable (MTBF de millones de horas) pero no recuperable en laboratorio." }
+  ]
+};
+
+</script>
+<script>
+/* =========================================================
+   datos/virtualizacion.js
+   Preguntas del tema MÁQUINAS VIRTUALES / VIRTUALIZACIÓN
+   ========================================================= */
+
+window.DATOS = window.DATOS || {};
+
+DATOS.virtualizacion = {
+  nombre: "Máquinas Virtuales",
+
+  test: {
+    basico: [
+      { p: "La virtualización permite:",
+        op: ["Usar el hardware de un equipo para ejecutar varios entornos operativos a la vez",
+              "Aumentar la velocidad de la CPU",
+              "Evitar la instalación de sistemas operativos",
+              "Sustituir al sistema anfitrión"], r: 0,
+        e: "Se ejecutan de forma simultánea, segura y aislada sobre el mismo hardware físico." },
+
+      { p: "El equipo físico real sobre el que se ejecutan las máquinas virtuales se llama:",
+        op: ["Guest", "Host (sistema anfitrión)", "Servidor", "Hipervisor"], r: 1,
+        e: "Host = anfitrión (el PC real); Guest = invitado (el SO dentro de la MV)." },
+
+      { p: "El sistema operativo que se instala dentro de una máquina virtual se denomina:",
+        op: ["Sistema anfitrión", "Sistema invitado (guest)", "Sistema de arranque", "Sistema BIOS"], r: 1,
+        e: "Guest es el SO que corre dentro de la MV; el del PC real es el host." },
+
+      { p: "Una Máquina Virtual (MV) es:",
+        op: ["Un ordenador emulado mediante software",
+              "Un segundo ordenador físico conectado",
+              "Un tipo de monitor",
+              "Una memoria RAM especial"], r: 0,
+        e: "Arranca con su propia BIOS/UEFI, tiene componentes virtuales y ejecuta su propio SO completo." },
+
+      { p: "¿Qué ventaja ofrece el aislamiento de una máquina virtual?",
+        op: ["Acelera el disco del host",
+              "Un fallo o virus dentro de la MV no afecta al equipo real",
+              "Permite usar una sola licencia para todo",
+              "Evita tener que instalar el SO invitado"], r: 1,
+        e: "Ese es el gran valor de la virtualización: pruebas destructivas sin riesgo para el host." },
+
+      { p: "Oracle VM VirtualBox es un programa de tipo:",
+        op: ["Hipervisor", "Antivirus", "Controlador de dispositivos", "Sistema de archivos"], r: 0,
+        e: "VirtualBox es un hipervisor (también llamado monitor de máquinas virtuales o VMM)." },
+
+      { p: "La imagen de instalación de un sistema operativo que se «inserta» en la MV es un archivo:",
+        op: [".iso", ".txt", ".exe de Windows", ".jpg"], r: 0,
+        e: "La unidad óptica virtual lee imágenes .iso, como si fueran discos físicos." },
+
+      { p: "El archivo que hace de disco duro dentro de VirtualBox suele tener la extensión:",
+        op: [".iso", ".vdi", ".docx", ".png"], r: 1,
+        e: "VDI = VirtualBox Disk Image; en reserva dinámica solo ocupa lo que el SO va usando." },
+
+      { p: "La descarga oficial de VirtualBox debe hacerse desde:",
+        op: ["Cualquier web de descargas", "https://www.virtualbox.org", "La web de Microsoft", "Una tienda de apps"], r: 1,
+        e: "Siempre desde la web oficial del proyecto, menú Downloads." },
+
+      { p: "El complemento Extension Pack de VirtualBox es:",
+        op: ["Un antivirus para la MV",
+              "Un complemento con USB 2.0/3.0, cifrado del disco y captura de cámaras",
+              "Un paquete de idiomas",
+              "Un disco operativo extra"], r: 1,
+        e: "Es idéntico para todos los sistemas operativos y se instala con doble clic." },
+
+      { p: "Para que una MV funcione con velocidad, la CPU del PC debe tener activadas las extensiones:",
+        op: ["Intel VT-x o AMD-V", "Hyper-V siempre", "NVIDIA CUDA", "Bluetooth"], r: 0,
+        e: "Son las instrucciones de virtualización del microprocesador." },
+
+      { p: "¿Cuántos vCPUs se recomienda asignar a una MV para que fluya sin saturar el PC?",
+        op: ["1", "2", "8", "Todos los núcleos"], r: 1,
+        e: "Se recomiendan 2 vCPUs: suficiente fluidez sin saturar el procesador real." },
+
+      { p: "Una máquina virtual se apaga correctamente desde:",
+        op: ["Desconectar el cable de la MV", "Inicio > Apagar del SO invitado", "Apagando el host directamente", "Quitando la pila del PC"], r: 1,
+        e: "Apaga siempre el invitado y cierra VirtualBox antes de desconectar cualquier cosa." },
+
+      { p: "El disco virtual que está en reserva dinámica:",
+        op: ["Ocupa siempre el tamaño máximo desde el principio",
+              "Solo ocupa en el disco real los GB que el SO va usando",
+              "No se puede ampliar jamás",
+              "Debe estar en FAT32"], r: 1,
+        e: "Por eso crece a medida que instalamos cosas dentro del invitado." }
+    ],
+
+    medio: [
+      { p: "VirtualBox es un hipervisor de tipo:",
+        op: ["Tipo 1 (bare metal)", "Tipo 2 (alojado)", "Tipo 3", "Tipo 0"], r: 1,
+        e: "Tipo 2 = se instala como un programa ordinario dentro del SO del ordenador." },
+
+      { p: "Un hipervisor de tipo 1 se instala:",
+        op: ["Directamente sobre el hardware, sin SO previo",
+              "Dentro de Windows como cualquier aplicación",
+              "Solo en móviles",
+              "Junto al Extension Pack"], r: 0,
+        e: "VirtualBox es tipo 2 (alojado); los hipervisores tipo 1 van sobre el hardware desnudo." },
+
+      { p: "El Extension Pack aporta, entre otras funciones:",
+        op: ["Cifrado del disco virtual y USB 2.0/3.0",
+              "Un segundo procesador virtual",
+              "El sistema operativo invitado",
+              "La licencia de Windows"], r: 0,
+        e: "También permite captura de cámaras web integradas." },
+
+      { p: "Si al iniciar la MV aparece un error de «VT-x/AMD-V no disponible», hay que:",
+        op: ["Reinstalar Windows", "Habilitar la virtualización en la BIOS/UEFI", "Comprar más RAM", "Desactivar el antivirus"], r: 1,
+        e: "Reinicia, entra a la BIOS (F2, F10, F12 o Supr) y activa Intel VT-x o SVM Mode; guarda con F10." },
+
+      { p: "En procesadores AMD, la opción que hay que habilitar en la BIOS es:",
+        op: ["Intel VT-x", "SVM Mode", "Hyper-V Core", "Turbo Boost"], r: 1,
+        e: "En Intel es Intel Virtualization Technology; en AMD es SVM Mode." },
+
+      { p: "Para guardar las máquinas virtuales en un disco externo, el formato de archivo recomendado es:",
+        op: ["FAT32", "exFAT o NTFS", "ext4", "ISO"], r: 1,
+        e: "Nunca FAT32: no admite ficheros de más de 4 GB y el disco virtual fallaría." },
+
+      { p: "¿Por qué no se debe usar FAT32 para el disco de las máquinas virtuales?",
+        op: ["Porque no permite ficheros de más de 4 GB",
+              "Porque va demasiado lento",
+              "Porque solo funciona en Linux",
+              "Porque no admite carpetas"], r: 0,
+        e: "El .vdi supera con facilidad los 4 GB y FAT32 lo rechazaría." },
+
+      { p: "En VirtualBox, la carpeta predeterminada de máquinas se cambia en:",
+        op: ["Archivo > Preferencias > General", "Máquina > Programador", "Ayuda > Acerca de", "Sistema > Red"], r: 0,
+        e: "En el apartado «Carpeta predeterminada de máquinas» (Default Machine Folder) se elige la ruta externa." },
+
+      { p: "¿Cuánto puede ocupar un sistema virtual completo como Windows 10 u Ubuntu?",
+        op: ["Entre 15 GB y 50 GB", "Entre 500 MB y 1 GB", "Solo 100 MB", "Nunca más de 5 GB"], r: 0,
+        e: "Por eso conviene poder mover las MV a un disco externo o SSD rápido." },
+
+      { p: "El modo de red que permite conectar la MV a Internet traduciendo direcciones es:",
+        op: ["NAT", "Red interna", "Solo host-only", "Disco"], r: 0,
+        e: "NAT da salida a Internet; el Adaptador Puente usa la red física y la Red Interna aísla equipos." },
+
+      { p: "El modo «Adaptador Puente» de la tarjeta de red virtual:",
+        op: ["Aísla la MV del resto", "Conecta la MV a la red física como si fuera un equipo más",
+              "Bloquea Internet", "Crea una red virtual interna"], r: 1,
+        e: "La MV obtiene IP de la red real, igual que el host." },
+
+      { p: "En macOS, si VirtualBox no carga por seguridad, hay que ir a:",
+        op: ["Ajustes del Sistema > Privacidad y Seguridad > Permitir",
+              "Finder > Programas", "Terminal > sudo", "App Store"], r: 0,
+        e: "Hay que permitir la carga de los controladores de Oracle America, Inc." },
+
+      { p: "En macOS con procesadores Apple Silicon (M1-M4), el instalador de VirtualBox es:",
+        op: ["VirtualBox-x.x.x-Win.exe", "VirtualBox-x.x-x-OSX.dmg con paquete .pkg", "Un .iso", "Un .exe de 64 bits"], r: 1,
+        e: "Se abre el .dmg y a continuación el paquete .pkg." },
+
+      { p: "La regla de oro para los discos externos con MV es:",
+        op: ["Desconectar el USB cuando la MV esté encendida",
+              "Nunca desconectar el USB con la MV en ejecución o pausada",
+              "Usar siempre FAT32", "Formatear el disco cada semana"], r: 1,
+        e: "Apaga el invitado, cierra VirtualBox y luego expulsa la unidad." },
+
+      { p: "El componente físico «Tarjeta de red» se emula en VirtualBox como:",
+        op: ["vCPU", "Adaptador de red virtual", "Unidad óptica", "Memoria base"], r: 1,
+        e: "Permite NAT, puente o red interna." }
+    ],
+
+    avanzado: [
+      { p: "La memoria base asignada a una MV nunca debe superar:",
+        op: ["El 100% de la RAM", "La franja verde del 50% de la RAM", "El 10% de la RAM", "4 GB en ningún caso"], r: 1,
+        e: "Superarlo satura al host y el equipo empieza a usar el disco como memoria virtual." },
+
+      { p: "¿Qué papel desempeña el hipervisor respecto a los recursos reales?",
+        op: ["Los reparte entre el sistema anfitrión y las máquinas virtuales",
+              "Los aumenta artificialmente",
+              "Los bloquea para el host",
+              "Los asigna solo al invitado"], r: 0,
+        e: "El hipervisor (VMM) coordina y reparte CPU, RAM y discos entre host y MVs." },
+
+      { p: "Una MV arranca con:",
+        op: ["La BIOS del host directamente",
+              "Su propia BIOS/UEFI y componentes virtuales parametrizables",
+              "El gestor de arranque GRUB del host",
+              "Nada: siempre arranca en red"], r: 1,
+        e: "Funciona exactamente como un ordenador real, pero emulado por software." },
+
+      { p: "Si asignas 4 vCPUs a una MV en un PC con 4 hilos, lo más probable es:",
+        op: ["La MV funcione mejor siempre", "El host se sature y todo vaya lento",
+              "La MV no pueda arrancar", "Se duplique la RAM"], r: 1,
+        e: "Por eso se recomiendan 2 vCPUs: no saturar el procesador real." },
+
+      { p: "El disco en «reserva dinámica» (dynamic) frente a «reserva fija» (fixed):",
+        op: ["La dinámica ocupa solo lo usado y crece al instalar; la fija reserva todo de inicio",
+              "La fija crece según se use",
+              "Ambas ocupan igual siempre",
+              "La dinámica no se puede ampliar"], r: 0,
+        e: "La fija es algo más rápida; la dinámica gana espacio en el host." },
+
+      { p: "El orden correcto para extraer un disco externo donde viven las MV es:",
+        op: ["Apagar el SO invitado → cerrar VirtualBox → expulsar la unidad",
+              "Desconectar el USB directamente",
+              "Pausar la MV y desconectar",
+              "Cerrar solo la ventana del navegador"], r: 0,
+        e: "Nunca con la MV en ejecución o pausada: se corrompería el .vdi." },
+
+      { p: "¿Por qué la virtualización garantiza que un virus dentro de la MV no dañe el PC?",
+        op: ["Porque la MV no tiene acceso a ningún recurso",
+              "Porque el aislamiento impide que el software invitado acceda a los archivos del host",
+              "Porque VirtualBox es un antivirus",
+              "Porque el SO invitado no puede ejecutar código"], r: 1,
+        e: "Ejecuta su propio SO completo pero solo ve los recursos que el hipervisor le asigna." },
+
+      { p: "En la BIOS/UEFI, la tecla de acceso habitual para entrar no es siempre la misma. ¿Cuáles se citan?",
+        op: ["F1, F2 y F3", "F2, F10, F12 o Supr", "Solo F12", "Ctrl + Alt + Supr"], r: 1,
+        e: "Depende del fabricante; tras activar la virtualización se guarda con F10." },
+
+      { p: "El par de opciones a instalar obligatoriamente desde la web oficial es:",
+        op: ["El instalador base (.exe o .dmg) y el Extension Pack",
+              "VirtualBox y Windows",
+              "El Extension Pack y un antivirus",
+              "El SO invitado y el host"], r: 0,
+        e: "Dos ficheros: el hipervisor para tu SO y el complemento «All supported platforms»." },
+
+      { p: "Si cambias la carpeta predeterminada de máquinas a una unidad externa, a partir de ese momento:",
+        op: ["Solo se guardarán allí las MV creadas a partir de ese momento",
+              "Todos los .vdi se guardarán en la unidad externa, incluidos los nuevos y los clonados",
+              "Se mueven automáticamente las MV antiguas",
+              "Deja de funcionar el disco del host"], r: 1,
+        e: "Las MV ya creadas hay que moverlas o clonarlas manualmente a la nueva ruta." },
+
+      { p: "Una «Red Interna» (Internal Network) en VirtualBox sirve para:",
+        op: ["Aislar varias MV entre sí sin salir al exterior",
+              "Conectar a Internet directamente",
+              "Compartir el escritorio del host",
+              "Montar el ISO"], r: 0,
+        e: "Útil para prácticas: solo se comunican las MVs de esa red interna." },
+
+      { p: "Un sistema de archivos FAT32 no sirve para las MVs porque:",
+        op: ["Limita el tamaño de fichero a 4 GB, insuficiente para un .vdi",
+              "No admite carpetas",
+              "Solo lo entiende macOS",
+              "Es de solo lectura"], r: 0,
+        e: "Por eso se exige exFAT o NTFS en el disco externo." },
+
+      { p: "El hipervisor de tipo 2 se apoya en:",
+        op: ["Las extensiones de virtualización del micro (Intel VT-x / AMD-V)",
+              "En la memoria ROM",
+              "En el Extension Pack",
+              "En la tarjeta gráfica exclusivamente"], r: 0,
+        e: "Gracias a eso ejecuta el código del invitado a gran velocidad." },
+
+      { p: "Al clonar o crear MVs en una ruta externa, los ficheros pesados que se generan son:",
+        op: ["Ficheros .vdi", "Ficheros .txt", "Ficheros .lnk", "Ficheros .dll del host"], r: 0,
+        e: "Todos los .vdi ocupan el espacio de la unidad externa, no del portátil." }
+    ]
+  },
+
+  abiertas: [
+    { q: "¿Qué es la virtualización y qué es una máquina virtual?",
+      respuestas: ["hardware para ejecutar multiples entornos", "ordenador emulado", "software", "simultanea", "aislada"],
+      solucion: "La virtualización usa el hardware de un equipo para ejecutar varios entornos operativos de forma simultánea, segura y aislada. Una MV es un ordenador emulado por software: arranca con su propia BIOS/UEFI y ejecuta su propio SO completo.",
+      nivel: "basico",
+      explicacion: "También se le llama Guest al SO dentro de la MV." },
+
+    { q: "Diferencia el sistema anfitrión (host) del sistema invitado (guest).",
+      respuestas: ["anfitrion es el pc real", "host es el equipo fisico", "guest es el so dentro", "invitado corre dentro de la mv"],
+      solucion: "El host (anfitrión) es el equipo físico real; el guest (invitado) es el sistema operativo que se instala y corre dentro de la máquina virtual.",
+      nivel: "basico",
+      explicacion: "El hipervisor reparte los recursos del host entre los guests." },
+
+    { q: "¿Cuáles son las cuatro principales virtudes de una MV al ejecutar software o virus?",
+      respuestas: ["aislamiento", "no afecta al equipo real", "seguridad", "prueba", "destruccion"],
+      solucion: "El aislamiento: cualquier fallo, virus o prueba destructiva dentro de la MV no afecta en absoluto a los archivos ni a la estabilidad del equipo real.",
+      nivel: "basico",
+      explicacion: "Por eso se usa tanto en laboratorios y pruebas." },
+
+    { q: "Menciona los componentes de una MV que emulan el hardware físico en VirtualBox.",
+      respuestas: ["vcpus", "memoria base", "vdi", "adaptador de red", "lector virtual", "virtual"],
+      solucion: "Procesador → vCPUs; RAM → memoria base asignada; disco → archivo .vdi; tarjeta de red → adaptador de red virtual (NAT, puente o red interna); unidad óptica → lector virtual de imágenes ISO.",
+      nivel: "medio",
+      explicacion: "Se recomiendan 2 vCPUs y no pasar del 50% de la RAM." },
+
+    { q: "¿Qué es un hipervisor y de qué tipo es VirtualBox?",
+      respuestas: ["tipo 2", "alojado", "vmm", "monitor de maquinas virtuales", "reparte recursos"],
+      solucion: "Es el monitor de máquinas virtuales (VMM) que reparte los recursos reales entre el host y las MVs. VirtualBox es un hipervisor de tipo 2 (alojado): se instala como un programa ordinario dentro del SO y se apoya en Intel VT-x o AMD-V.",
+      nivel: "medio",
+      explicacion: "El tipo 1 (bare metal) va directamente sobre el hardware." },
+
+    { q: "¿Qué debes hacer si VirtualBox te da el error «VT-x/AMD-V no disponible»?",
+      respuestas: ["bios", "uefi", "svm", "intel virtualization", "f10", "habilitar", "reiniciar"],
+      solucion: "Reiniciar el PC, entrar en la BIOS/UEFI con F2, F10, F12 o Supr, habilitar Intel Virtualization Technology (Intel) o SVM Mode (AMD), guardar con F10 y volver a arrancar Windows.",
+      nivel: "medio",
+      explicacion: "Es el requisito imprescindible para que las MV corran a velocidad." },
+
+    { q: "¿Por qué no conviene usar FAT32 en el disco externo donde guardamos las máquinas virtuales?",
+      respuestas: ["4 gb", "no permite ficheros de mas de", "exfat", "ntfs"],
+      solucion: "FAT32 no admite ficheros de más de 4 GB, y el disco virtual .vdi lo supera con facilidad, por lo que fallaría al instalar el sistema invitado. Debe tener formato exFAT o NTFS.",
+      nivel: "medio",
+      explicacion: "Es el error más común al mover las MV a un pendrive." },
+
+    { q: "¿Qué es el Extension Pack y qué funciones aporta?",
+      respuestas: ["usb", "cifrado", "camara", "all supported platforms", "complemento"],
+      solucion: "Es el complemento oficial «All supported platforms», idéntico para todos los sistemas operativos; añade compatibilidad con USB 2.0 y USB 3.0, cifrado del disco virtual y captura de cámaras web integradas.",
+      nivel: "medio",
+      explicacion: "Se descarga de la misma web oficial junto al instalador." },
+
+    { q: "Explica la diferencia entre los modos de red NAT, Adaptador Puente y Red Interna.",
+      respuestas: ["nat", "puente", "interna", "internet", "red fisica", "aisla"],
+      solucion: "NAT: la MV sale a Internet a través del host. Adaptador Puente: la MV se conecta a la red física como si fuera un equipo más (IP propia de la red). Red Interna: aísla equipos entre sí sin salir al exterior.",
+      nivel: "avanzado",
+      explicacion: "Es el modo más usado para prácticas con varias MVs." },
+
+    { q: "¿Cuál es el procedimiento correcto para guardar las MV en un disco externo?",
+      respuestas: ["preferencias", "general", "carpeta predeterminada", "otro", "expulsar", "exfat", "ntfs"],
+      solucion: "1) Formatear el disco en exFAT o NTFS. 2) En Windows: Archivo > Preferencias > General (en macOS: VirtualBox > Ajustes > General). 3) En «Carpeta predeterminada de máquinas» pulsar Otro… y elegir una carpeta del disco externo. 4) Aceptar: todos los .vdi nuevos se guardarán allí. 5) Nunca desconectar el USB con la MV encendida o pausada: apaga el invitado, cierra VirtualBox y expulsa la unidad.",
+      nivel: "avanzado",
+      explicacion: "Un sistema virtual completo ocupa entre 15 GB y 50 GB." },
+
+    { q: "Menciona los pasos para instalar VirtualBox en Windows.",
+      respuestas: ["ejecutar como administrador", "next", "install", "extension pack", "acepto", "finish"],
+      solucion: "1) Clic derecho en VirtualBox-x.x.x-Win.exe → Ejecutar como administrador. 2) Next y aceptar ruta y componentos por defecto. 3) En la advertencia de red pulsar Yes. 4) Install y Finish. 5) Doble clic al Extension Pack y aceptar la licencia (Acepto).",
+      nivel: "avanzado",
+      explicacion: "En macOS se usa el .dmg y el paquete .pkg, autorizando en Privacidad y Seguridad." },
+
+    { q: "¿Qué ventajas e inconvenientes tiene usar un disco externo o SSD para las máquinas virtuales?",
+      respuestas: ["no gasta espacio", "portatil", "pendrive", "rapido", "riesgo desconectar", "externo"],
+      solucion: "Ventajas: ahorra el espacio interno del portátil (cada MV ocupa 15-50 GB) y un SSD rápido da buena fluidez. Inconvenientes: exige formato exFAT/NTFS y hay el riesgo de desconectar el USB en mal momento, lo que corrompería el disco virtual.",
+      nivel: "avanzado",
+      explicacion: "Requisito: nunca desconectar con la MV en ejecución o pausada." }
+  ]
+};
+
+</script>
+<script>
+/* =========================================================
+   datos/windows.js
+   Preguntas del tema WINDOWS
+   ========================================================= */
+
+window.DATOS = window.DATOS || {};
+
+DATOS.windows = {
+  nombre: "Windows",
+
+  test: {
+    basico: [
+      { p: "Windows es un sistema operativo creado por:",
+        op: ["Apple", "Microsoft", "Canonical", "Google"], r: 1,
+        e: "Microsoft, fundada por Bill Gates y Paul Allen en 1975." },
+
+      { p: "La primera versión de Windows se comercializó en:",
+        op: ["1975", "1981", "noviembre de 1985", "1995"], r: 2,
+        e: "Anunciada en 1983 y comercializada en noviembre de 1985 como complemento de MS-DOS." },
+
+      { p: "El menú que incorporó Windows 95 y que sigue siendo el punto de acceso principal es:",
+        op: ["Menú Inicio", "Menú Archivo", "Menú Ayuda", "Menú Ver"], r: 0,
+        e: "Windows 95 introdujo el menú Inicio, la barra de tareas y el plug and play." },
+
+      { p: "¿Qué versión de Windows fue la primera con arquitectura NT y se lanzó en 2001?",
+        op: ["Windows 98", "Windows XP", "Windows 2000", "Windows Vista"], r: 1,
+        e: "Windows XP (2001) une la arquitectura NT con la facilidad de uso de la rama 9x." },
+
+      { p: "¿Qué versión introdujo la interfaz de mosaicos tipo tableta en 2012?",
+        op: ["Windows 7", "Windows 8", "Windows 10", "Windows 11"], r: 1,
+        e: "Windows 8 (2012) apostó por pantallas táctiles y una pantalla de inicio con mosaicos." },
+
+      { p: "El área donde aparecen los iconos, el fondo y la bandeja de notificaciones se llama:",
+        op: ["Escritorio", "Explorador", "Panel de control", "Menú Inicio"], r: 0,
+        e: "El escritorio incluye iconos (accesos directos), el fondo y la barra de tareas." },
+
+      { p: "Los archivos eliminados que se pueden recuperar se envían a:",
+        op: ["Papelera de Reciclaje", "El registro", "La BIOS", "Windows Update"], r: 0,
+        e: "Desde la Papelera se pueden restaurar; «Mover a la papelera» es la operación estándar." },
+
+      { p: "El programa que permite navegar por carpetas y ver la ruta completa es el:",
+        op: ["Explorador de archivos", "Administrador de tareas", "Bloc de notas", "Visor de eventos"], r: 0,
+        e: "En Windows se llama explorer; en Ubuntu, nautilus." },
+
+      { p: "Para cambiar el nombre de un archivo sin moverlo se usa:",
+        op: ["Copiar", "Cortar", "Renombrar", "Comprimir"], r: 2,
+        e: "Renombrar (o rename) cambia el nombre sin desplazarlo de su sitio." },
+
+      { p: "El acceso rápido al Administrador de Dispositivos permite:",
+        op: ["Ver el hardware instalado, detectar errores y actualizar drivers",
+              "Jugar a Buscaminas", "Editar el fondo de pantalla", "Desfragmentar la RAM"], r: 0,
+        e: "Los drivers los proporciona el fabricante del hardware y deben adaptarse a cada SO." },
+
+      { p: "La herramienta que actualiza el sistema con parches de seguridad y controladores es:",
+        op: ["Windows Update", "El Registro", "Diskpart", "La Papelera"], r: 0,
+        e: "Actualiza el SO, los controladores y permite configurar las actualizaciones automáticas." },
+
+      { p: "La extensión .docx corresponde normalmente a un documento de:",
+        op: ["Word", "Excel", "PowerPoint", "Bloc de Notas"], r: 0,
+        e: "txt → Bloc de Notas; pptx → PowerPoint; iso → imagen de disco; pdf → Acrobat Reader." },
+
+      { p: "Windows distingue mayúsculas y minúsculas en los nombres de archivo:",
+        op: ["Sí, siempre", "No: CONTROL1.odt y control1.odt son el mismo archivo",
+              "Solo en las carpetas", "Solo en la unidad D:"], r: 1,
+        e: "Windows es insensible a mayúsculas; Linux sí distingue (son archivos distintos)." },
+
+      { p: "Las unidades en Windows se identifican con:",
+        op: ["Letras y dos puntos (C:, D:, E:)", "Barras (hda1)", "Números romanos", "Colores"], r: 0,
+        e: "Linux usa hdX con número (hda1, hda2) y puntos de montaje." }
+    ],
+
+    medio: [
+      { p: "El comando que muestra la lista de archivos y carpetas de la ubicación actual es:",
+        op: ["dir", "cd", "mkdir", "type"], r: 0,
+        e: "dir muestra archivos, carpetas, tamaños y fechas; con /p se pausa la salida." },
+
+      { p: "Para retroceder un nivel hacia la carpeta padre en CMD se usa:",
+        op: ["cd ..", "cd /", "cd -", "cd ~"], r: 0,
+        e: "cd .. sube un nivel; cd / (o cd \\) lleva directamente a la raíz de la unidad." },
+
+      { p: "¿Qué comando crea una carpeta nueva?",
+        op: ["rmdir", "mkdir (o md)", "del", "copy"], r: 1,
+        e: "mkdir crea el directorio; rmdir lo elimina (con /s si contiene elementos)." },
+
+      { p: "El comando que elimina permanentemente un archivo es:",
+        op: ["copy", "rename", "del", "type"], r: 2,
+        e: "del temporal.txt borra el fichero del disco (no lo lleva a la Papelera)." },
+
+      { p: "¿Qué comando muestra el contenido de un archivo de texto por pantalla?",
+        op: ["type", "dir", "ping", "copy"], r: 0,
+        e: "type ficha.txt muestra el texto completo del fichero." },
+
+      { p: "Para ver los parámetros de red (IPv4, máscara, router) se usa:",
+        op: ["ipconfig", "chkdsk", "diskpart", "tracert"], r: 0,
+        e: "ipconfig /all da la información completa de las tarjetas de red." },
+
+      { p: "El comando que comprueba la conectividad con otro equipo enviando paquetes ICMP es:",
+        op: ["tracert", "ping", "dir", "ipconfig"], r: 1,
+        e: "ping 8.8.8.8 o ping google.com comprueba si hay respuesta de red." },
+
+      { p: "¿Qué herramienta permite ver la ruta que siguen los paquetes y el tiempo en cada router?",
+        op: ["ping", "tracert", "mkdir", "rename"], r: 1,
+        e: "tracert (trafert) rastrea la ruta hop a hop hasta el destino." },
+
+      { p: "La herramienta interactiva de particionado de discos de Windows es:",
+        op: ["chkdsk", "diskpart", "taskmgr", "regedit"], r: 1,
+        e: "Dentro de ella se usa list disk para ver los discos y clean para borrar la partición; se sale con exit." },
+
+      { p: "El comando que analiza y repara el sistema de archivos de una unidad es:",
+        op: ["chkdsk C: /f", "del C:", "cd C:", "copy C:"], r: 0,
+        e: "chkdsk comprueba la integridad y repara sectores defectuosos." },
+
+      { p: "La utilidad que reúne ajustes de sistema, cuentas, red, hardware y aplicaciones es:",
+        op: ["El Panel de control o la aplicación Configuración", "El Bloc de notas", "El Explorador", "La Papelera"], r: 0,
+        e: "Ambas ofrecen el mismo alcance; Configuración tiene diseño táctil." },
+
+      { p: "En el Panel de control, la sección para crear, modificar o eliminar cuentas de usuario es:",
+        op: ["Sistema y Seguridad", "Cuentas de usuario", "Apariencia", "Redes"], r: 1,
+        e: "También permite gestionar los privilegios de cada cuenta." },
+
+      { p: "¿Cuántos tipos de cuenta tiene Windows 10?",
+        op: ["Dos: estándar y administrador", "Tres: estándar, administrador e invitado", "Una sola", "Cuatro"], r: 1,
+        e: "La cuenta estándar para el día a día, la administradora con control total y la invitada temporal." },
+
+      { p: "La primera cuenta creada durante la instalación de Windows es:",
+        op: ["Invitado", "Estándar", "Administrador", "Microsoft 365"], r: 2,
+        e: "Por eso conviene crear después una cuenta estándar para el uso diario." },
+
+      { p: "El comando que cambia el tipo de usuario de Windows es:",
+        op: ["control \"userpasswords2\"", "ipconfig /renew", "mkdir usuarios", "net user /all"], r: 0,
+        e: "Abre la ventana avanzada de cuentas de usuario." },
+
+      { p: "La utilidad que libera espacio eliminando temporales y cachés es:",
+        op: ["Liberador de Espacio en Disco", "Editor del Registro", "Monitor de Recursos", "Configuración de Inicio"], r: 0,
+        e: "El Monitor de Recursos vigila CPU, RAM y disco para encontrar cuellos de botella." },
+
+      { p: "El Desfragmentador de Disco sirve para:",
+        op: ["Agrupar los datos contiguos y ganar velocidad",
+              "Borrar todos los archivos", "Ampliar la RAM", "Crear particiones"], r: 0,
+        e: "En los SSD no es necesario: no tienen partes móviles." }
+    ],
+
+    avanzado: [
+      { p: "¿Quién fundó Microsoft y en qué año?",
+        op: ["Steve Jobs en 1976", "Bill Gates y Paul Allen en 1975", "Linus Torvalds en 1991", "Richard Stallman en 1984"], r: 1,
+        e: "Su primer éxito fue MS-DOS, diseñado para los equipos IBM." },
+
+      { p: "Windows 3.1 (abril de 1992) incorporó como novedad:",
+        op: ["El menú Inicio", "El juego Buscaminas", "El Explorador de archivos", "La bandeja de notificaciones"], r: 1,
+        e: "La 3.0 (1990) trajo el Program Manager y el File Manager; la 3.1, el Buscaminas." },
+
+      { p: "Windows 98 introdujo como novedad el sistema de archivos:",
+        op: ["NTFS", "FAT32", "ext4", "exFAT"], r: 1,
+        e: "Windows 2000 pasó a la tecnología NT; el FAT32 llegó con el 98." },
+
+      { p: "La filosofía «Windows as a Service» corresponde a:",
+        op: ["Windows XP", "Windows 7", "Windows 10", "Windows 95"], r: 2,
+        e: "Windows 10 (2015) recibe actualizaciones continuas y unifica PC, tabletas y móviles." },
+
+      { p: "¿Qué versión de Windows, publicada en 2021, cambió el diseño de iconos y el menú Inicio?",
+        op: ["Windows 9", "Windows 11", "Windows 12", "Windows 8.1"], r: 1,
+        e: "Windows 11 (2021) supuso un rediseño importante respecto al 10." },
+
+      { p: "Los requisitos de instalación de Windows no incluyen:",
+        op: ["CPU con arquitectura de 32/64 bits", "Espacio en disco y RAM mínima",
+              "Configurar la BIOS/UEFI para arrancar desde DVD/USB", "Tener siempre impresora conectada"], r: 3,
+        e: "Se necesitan hardware, drivers, Internet para actualizaciones y la BIOS/UEFI bien configurada." },
+
+      { p: "Microsoft Pluton, asociado a Windows 12, es:",
+        op: ["Un nuevo navegador", "Un chip de seguridad integrado en la CPU (tipo TPM)",
+              "Un sistema de archivos", "Una red social"], r: 1,
+        e: "Se habla de que podría hacer obligatoria la cuenta Microsoft." },
+
+      { p: "El usuario invitado, en una red, conviene:",
+        op: ["Habilitarlo siempre", "Deshabilitarlo: no tiene contraseña y sus documentos se pierden al cerrar sesión",
+              "Darle privilegios de administrador", "Cambiarle la contraseña cada día"], r: 1,
+        e: "Es un agujero de seguridad claro en entornos con red." },
+
+      { p: "Un miembro de un grupo de Windows:",
+        op: ["Hereda los privilegios del grupo y puede pertenecer a varios",
+              "No hereda nada", "Solo puede estar en un grupo", "Siempre es administrador"], r: 0,
+        e: "Los grupos simplifican la administración; los predefinidos se crean al instalar el SO." },
+
+      { p: "La Restauración del Sistema permite:",
+        op: ["Volver a un estado anterior sin tocar los documentos personales",
+              "Borrar todos los documentos", "Formatear el disco", "Instalar otro SO"], r: 0,
+        e: "Para respaldo se usan además Copia de Seguridad y el Historial de Archivos." },
+
+      { p: "Restablecer o reparar una aplicación se hace en:",
+        op: ["Configuración > Aplicaciones", "El Explorador de archivos", "El Registro", "El menú Inicio > Ejecutar"], r: 0,
+        e: "También permite desinstalar, ver notificaciones y gestionar permisos de la app." },
+
+      { p: "El Editor del Registro de Windows sirve para:",
+        op: ["Modificar ajustes avanzados del Registro del sistema",
+              "Editar documentos de texto", "Ver la velocidad de la red", "Desfragmentar el disco"], r: 0,
+        e: "Es una herramienta para usuarios avanzados: un error puede inestabilizar el sistema." },
+
+      { p: "Un servicio de Windows se diferencia de una aplicación en que:",
+        op: ["Se activa solo al arrancar, en segundo plano y sin interfaz gráfica",
+              "Siempre muestra una ventana", "Solo existe en Linux", "Hay que abrirlo a mano cada vez"], r: 0,
+        e: "Las aplicaciones las ejecuta el usuario cuando las necesita." },
+
+      { p: "En Windows, el driver de un dispositivo:",
+        op: ["Lo proporciona el fabricante del hardware y debe adaptarse al sistema operativo",
+              "Lo genera el usuario", "Viene siempre en la BIOS", "Es un tipo de archivo .txt"], r: 0,
+        e: "El SO se comunica con el dispositivo gracias a ese controlador." },
+
+      { p: "La operación «Mover» un archivo se realiza con:",
+        op: ["Copiar + Pegar", "Cortar + Pegar", "Renombrar + Pegar", "Comprimir + Pegar"], r: 1,
+        e: "Copiar + Pegar duplica; Cortar + Pegar desplaza." },
+
+      { p: "Para seleccionar archivos NO consecutivos en el Explorador se mantiene pulsada la tecla:",
+        op: ["Mayúsculas", "Control", "Alt", "Intro"], r: 1,
+        e: "Mayúsculas selecciona de forma consecutiva (del primero al último)." },
+
+      { p: "El comando de navegación que lleva directamente a la raíz de la unidad actual es:",
+        op: ["cd /", "dir /", "cd ..", "type /"], r: 0,
+        e: "cd / te lleva a C:\\ (o a la unidad que corresponda) sin importar la profundidad." }
+    ]
+  },
+
+  abiertas: [
+    { q: "¿Quiénes fundaron Microsoft y cuál fue su primer gran éxito?",
+      respuestas: ["bill gates", "paul allen", "1975", "ms-dos", "msdos"],
+      solucion: "Bill Gates y Paul Allen fundaron Microsoft en 1975; su primer gran éxito fue MS-DOS, un sistema operativo diseñado para los equipos IBM.",
+      nivel: "basico",
+      explicacion: "Windows apareció como complemento gráfico de MS-DOS." },
+
+    { q: "Menciona cuatro componentes o elementos del escritorio de Windows.",
+      respuestas: ["iconos", "fondo", "barra de tareas", "notificacion", "menu inicio", "hora"],
+      solucion: "Iconos (accesos directos), fondo de pantalla, barra de tareas con el menú Inicio y el área de notificación (iconos, avisos y hora).",
+      nivel: "basico",
+      explicacion: "El menú Inicio da acceso a apps, anclados y funciones de energía." },
+
+    { q: "¿Qué hace el comando cd y cómo se usa para subir un nivel y volver a la raíz?",
+      respuestas: ["cambia de directorio", "cd ..", "cd /", "retroceder", "raiz"],
+      solucion: "cd cambia de directorio (carpeta actual). «cd ..» retrocede un nivel hacia la carpeta padre y «cd /» (o cd \\) lleva directamente a la raíz de la unidad actual.",
+      nivel: "basico",
+      explicacion: "Es el comando de navegación básico del símbolo del sistema." },
+
+    { q: "Escribe los comandos para crear la carpeta Tareas_TIC, entrar en ella y listar su contenido.",
+      respuestas: ["mkdir", "cd tareas_tic", "dir"],
+      solucion: "mkdir Tareas_TIC (o md), cd Tareas_TIC y dir.",
+      nivel: "medio",
+      explicacion: "dir /p muestra la salida paginada." },
+
+    { q: "¿Qué diferencia hay entre copy, move y rename?",
+      respuestas: ["copia", "mueve", "renombrar", "cortar", "duplicar", "desplazar"],
+      solucion: "copy duplica un archivo a otro destino, move lo desplaza de sitio y rename cambia su nombre sin moverlo. También se puede mover con «Cortar + Pegar» en el Explorador.",
+      nivel: "medio",
+      explicacion: "del elimina archivos directamente del disco." },
+
+    { q: "¿Qué comandos se usan para diagnosticar la red en Windows y para qué sirve cada uno?",
+      respuestas: ["ipconfig", "ping", "tracert", "conectividad", "ruta", "tcp/ip"],
+      solucion: "ipconfig muestra los parámetros TCP/IP (IPv4, máscara, router); ping comprueba la conectividad con otro equipo enviando paquetes de eco ICMP; tracert rastrea la ruta y el tiempo en cada router intermedio.",
+      nivel: "medio",
+      explicacion: "ipconfig /all da la información completa de las tarjetas." },
+
+    { q: "Explica qué son los drivers y por qué hay que actualizarlos.",
+      respuestas: ["controlador", "comunicarse con dispositivos", "fabricante", "hardware", "software"],
+      solucion: "Son los programas que permiten al sistema operativo comunicarse con los dispositivos (impresora, escáner, tarjeta de red…). Los proporciona el fabricante del hardware y deben adaptarse a cada SO, por lo que hay que actualizarlos desde el Administrador de Dispositivos.",
+      nivel: "medio",
+      explicacion: "Sin driver correcto el dispositivo no funciona o lo hace mal." },
+
+    { q: "Enumera los tres tipos de cuenta de Windows 10 y las funciones de cada una.",
+      respuestas: ["estandar", "administrador", "invitado"],
+      solucion: "Cuenta estándar: para el trabajo diario con privilegios limitados. Cuenta administradora: control total, solo cuando sea necesario. Cuenta invitado: acceso temporal; sus documentos se pierden al cerrar sesión y conviene deshabilitarla en red.",
+      nivel: "medio",
+      explicacion: "La primera cuenta creada en la instalación es administradora." },
+
+    { q: "¿Qué utilidades de Windows se usan para el mantenimiento del equipo? Explica al menos tres.",
+      respuestas: ["liberador de espacio", "desfragmentador", "monitor de recursos", "administrador de tareas", "historial de archivos", "restaurar"],
+      solucion: "Liberador de Espacio en Disco (borra temporales y cachés), Desfragmentador de Disco (agrupa datos contiguos), Monitor de Recursos (detecta cuellos de botella en CPU, RAM y disco), Configuración de Inicio (programas automáticos) y el Administrador de Tareas. Además, Historial de Archivos o copias para el respaldo.",
+      nivel: "avanzado",
+      explicacion: "En los SSD el desfragmentado no es necesario." },
+
+    { q: "Diferencia un servicio de una aplicación en Windows.",
+      respuestas: ["segundo plano", "background", "sin interfaz", "arrancar", "automatico"],
+      solucion: "Las aplicaciones las ejecuta el usuario cuando las necesita y suelen tener interfaz gráfica; los servicios se activan solos al arrancar, trabajan en segundo plano (background) y no tienen interfaz gráfica.",
+      nivel: "avanzado",
+      explicacion: "Ejemplos de servicios: impresión, red o actualizaciones." },
+
+    { q: "¿En qué se diferencian el Panel de control y la aplicación Configuración?",
+      respuestas: ["configuracion", "panel de control", "diseno tactil", "mismo alcance", "ajustes"],
+      solucion: "Tienen el mismo alcance (sistema, cuentas, red, hardware, aplicaciones, privacidad…), pero el Panel de control es la vista clásica de escritorio y la aplicación Configuración tiene diseño táctil y es la ruta recomendada en Windows 10/11.",
+      nivel: "avanzado",
+      explicacion: "Desinstalar programas se hace en Inicio > Configuración > Aplicaciones." },
+
+    { q: "Explica las fases por las que pasa el software antes de su distribución.",
+      respuestas: ["alfa", "beta", "rc", "rtm", "estable", "revision"],
+      solucion: "Alfa: primera versión de prueba, aún sin todas las funcionalidades. Beta: versión completa pendiente de revisión. RC (Release Candidate): final salvo errores. RTM/Estable: versión final lista para distribución.",
+      nivel: "avanzado",
+      explicacion: "De ahí que aparezcan etiquetas como «versión beta»." }
+  ]
+};
+
+</script>
+<script>
+/* =========================================================
+   datos/ubuntu.js
+   Preguntas del tema UBUNTU / GNU-LINUX
+   ========================================================= */
+
+window.DATOS = window.DATOS || {};
+
+DATOS.ubuntu = {
+  nombre: "Ubuntu",
+
+  test: {
+    basico: [
+      { p: "Ubuntu es una distribución de GNU/Linux desarrollada por:",
+        op: ["Microsoft", "Apple", "Canonical Ltd.", "Oracle"], r: 2,
+        e: "Financiada por Mark Shuttleworth y basada en Debian." },
+
+      { p: "El nombre Ubuntu procede de las lenguas zulú/xhosa y significa:",
+        op: ["Rapidez", "Humanidad hacia los otros", "Libertad total", "Servidor"], r: 1,
+        e: "Su lema es «linux for human beings» (Linux para los seres humanos)." },
+
+      { p: "El escritorio por defecto de Ubuntu es:",
+        op: ["KDE Plasma", "GNOME", "Xfce", "MATE"], r: 1,
+        e: "GNOME es también un proyecto de software libre relacionado con GNU." },
+
+      { p: "La herramienta que permite probar Ubuntu sin instalarlo es:",
+        op: ["Live CD/USB", "El registro", "El BIOS", "Nautilus"], r: 0,
+        e: "Se necesita para ello la imagen .iso del sistema." },
+
+      { p: "El explorador de archivos de Ubuntu se llama:",
+        op: ["explorer", "nautilus", "chrome", "finder"], r: 1,
+        e: "En Windows es explorer; en Ubuntu, nautilus." },
+
+      { p: "El comando que muestra la ruta del directorio actual es:",
+        op: ["pwd", "dir", "ls", "cd"], r: 0,
+        e: "pwd = print working directory." },
+
+      { p: "El comando que muestra el contenido de un directorio es:",
+        op: ["cd", "ls", "pwd", "man"], r: 1,
+        e: "ls /home/oracle lista el contenido; equivale al dir de Windows." },
+
+      { p: "El comando que crea una carpeta en Linux es:",
+        op: ["mkdir", "md", "rmdir", "touch"], r: 0,
+        e: "mkdir Documents; para borrar una carpeta vacía, rmdir." },
+
+      { p: "El directorio personal de cada usuario en GNU/Linux es:",
+        op: ["/etc", "/home", "/var", "/tmp"], r: 1,
+        e: "Por ejemplo /home/nombredeusuario. La raíz de todo el sistema es /." },
+
+      { p: "El comando que limpia la pantalla de la terminal es:",
+        op: ["clear", "ls", "exit", "pwd"], r: 0,
+        e: "clear borra la salida; exit sale del programa o del shell." },
+
+      { p: "El comando que muestra el manual en línea de una orden es:",
+        op: ["man", "help", "info.txt", "dir"], r: 0,
+        e: "man pwd muestra el manual del comando pwd." },
+
+      { p: "Los permisos básicos de un archivo en Linux son:",
+        op: ["lectura, escritura y ejecución (r, w, x)",
+              "Copiar, cortar y pegar", "Rojo, verde y azul", "Alta, media y baja"], r: 0,
+        e: "Se aplican a propietario, grupo y resto." },
+
+      { p: "En Linux, ¿qué significa que los nombres de archivo distingan mayúsculas?",
+        op: ["CONTROL.odt y control.odt son el mismo archivo",
+              "CONTROL.odt y control.odt son archivos distintos",
+              "No se pueden usar mayúsculas", "Solo las carpetas las distinguen"], r: 1,
+        e: "Windows es insensible a mayúsculas; Linux sí es sensible." },
+
+      { p: "La extensión de los scripts (ficheros de órdenes) en Linux suele ser:",
+        op: [".exe", ".com", ".sh", ".bat"], r: 2,
+        e: ".exe y .com son ejecutables de Windows; en Linux es .sh o la marca de ejecutable." }
+    ],
+
+    medio: [
+      { p: "Ubuntu publica una nueva versión normal cada:",
+        op: ["6 meses", "12 meses", "2 años", "cada semana"], r: 0,
+        e: "Se soporta al menos 18 meses; las LTS salen cada 2 años con 5 años de apoyo." },
+
+      { p: "Las versiones LTS de Ubuntu se publican cada 2 años con soporte de:",
+        op: ["6 meses", "18 meses", "5 años", "10 años"], r: 2,
+        e: "LTS = Long Term Support, pensada para equipos de trabajo." },
+
+      { p: "Cuatro de los repositorios oficiales de Ubuntu son:",
+        op: ["Main, Restricted, Universe y Multiverse",
+              "Inicio, Medio, Avanzado y Final", "Rojo, Verde, Azul y Amarillo", "A, B, C y D"], r: 0,
+        e: "Main (100% libre), Restricted (controladores no libres), Universe (comunidad) y Multiverse (restringidos)." },
+
+      { p: "El repositorio Main de Ubuntu contiene:",
+        op: ["Software 100% libre mantenido por el equipo de Ubuntu",
+              "Solo juegos", "Controladores propietarios", "Archivos de usuario"], r: 0,
+        e: "Restricted reúne los no libres, como los controladores de red o vídeo." },
+
+      { p: "Antes de instalar paquetes conviene actualizar los índices de los repositorios. Estos se guardan en:",
+        op: ["/var/lib/apt/lists (gestor de paquetes APT/APDO)", "/home", "/media", "/boot"], r: 0,
+        e: "El gestor de paquetes también comprueba las actualizaciones disponibles." },
+
+      { p: "En Ubuntu, la partición de intercambio (swap) sirve para:",
+        op: ["Memoria virtual / área de intercambio", "Guardar fotos", "Arrancar el sistema", "Montar USB"], r: 0,
+        e: "La instalación de Ubuntu necesita dos particiones: raíz / con ext4 y Linux-swap." },
+
+      { p: "El sistema de ficheros de la partición raíz en Ubuntu es habitualmente:",
+        op: ["NTFS", "FAT32", "ext4", "exFAT"], r: 2,
+        e: "ext2/ext3/ext4 son los sistemas de ficheros de Linux; NTFS es de Windows." },
+
+      { p: "El comando que copia un archivo en Linux es:",
+        op: ["cp", "copy", "mv", "cat"], r: 0,
+        e: "cp /home/bart/1.txt /home — el equivalente en Windows es copy." },
+
+      { p: "¿Qué comando mueve un archivo de un sitio a otro?",
+        op: ["mv", "cp", "rm", "ls"], r: 0,
+        e: "mv también sirve para renombrar; rm elimina archivos." },
+
+      { p: "El comando que elimina un archivo (sin ir a la papelera) es:",
+        op: ["del", "rm", "rmdir", "kill"], r: 1,
+        e: "rm /home/bart/1.txt; rmdir elimina carpetas vacías." },
+
+      { p: "El comando que cambia los permisos de un archivo es:",
+        op: ["chmod 755 archivo", "chown -l archivo", "perm archivo", "rights archivo"], r: 0,
+        e: "chmod usa cifras octales (r=4, w=2, x=1) para propietario, grupo y resto." },
+
+      { p: "El comando que muestra la lista de procesos en ejecución es:",
+        op: ["ps", "ls", "pwd", "cd"], r: 0,
+        e: "ps lista los procesos; find busca archivos (find /home/oracle -type f -name 1.txt)." },
+
+      { p: "El comando que crea un archivo vacío o actualiza su marca de tiempo es:",
+        op: ["touch", "new", "create", "mk"], r: 0,
+        e: "touch /home/oracle/1.txt: si no existe lo crea; si existe, cambia la hora de acceso." },
+
+      { p: "El comando cat muestra:",
+        op: ["Todo el contenido de un archivo de una vez",
+              "Solo la primera pantalla", "El manual", "Los permisos"], r: 0,
+        e: "more lo muestra pantalla a pantalla; cat lo muestra entero." },
+
+      { p: "Para conocer los parámetros de red en Ubuntu se usa:",
+        op: ["ipconfig", "ifconfig (o ip a)", "pingconfig", "netstat only"], r: 1,
+        e: "ipconfig es el de Windows; en Ubuntu 22 se usa ifconfig o ip a." },
+
+      { p: "En el editor de texto nano, el atajo para guardar un archivo es:",
+        op: ["Control + O", "Control + Z", "Control + C", "Alt + F4"], r: 0,
+        e: "Control + X sale; el menú inferior muestra los atajos [Control]+[Letra]." },
+
+      { p: "El directorio /etc de GNU/Linux contiene:",
+        op: ["Archivos de configuración", "Programas del usuario", "Dispositivos físicos", "Archivos temporales"], r: 0,
+        e: "/dev = dispositivos, /tmp = temporal, /bin = ejecutables esenciales, /var = información variable." },
+
+      { p: "El directorio donde se montan automáticamente los USB y CD-ROM es:",
+        op: ["/media", "/home", "/usr", "/boot"], r: 0,
+        e: "Al extraer un USB hay que desmontarlo antes de desconectarlo." }
+    ],
+
+    avanzado: [
+      { p: "GNU fue iniciado por Richard Stallman en:",
+        op: ["1969", "1984", "1991", "2004"], r: 1,
+        e: "Proyecto para crear un SO totalmente libre; el núcleo Linux llegó en 1991." },
+
+      { p: "El software libre permite:",
+        op: ["Ejecutar, copiar, modificar y distribuir el programa libremente",
+              "Solo usarlo en casa", "Venderlo sin licencia", "No estudiar su código"], r: 0,
+        e: "Se distribuye bajo la licencia GPL (Licencia Pública General de GNU)." },
+
+      { p: "GNU/Linux se forma por la unión de:",
+        op: ["El núcleo Linux con las herramientas GNU",
+              "Windows y macOS", "Ubuntu y Debian únicamente", "El navegador y el servidor"], r: 0,
+        e: "El núcleo (kernel) en sentido estricto es el SO; las variantes se llaman distribuciones." },
+
+      { p: "Distribuciones de GNU/Linux comercializadas por empresas:",
+        op: ["Fedora (Red Hat), openSUSE (Novell), Ubuntu (Canonical)",
+              "Slackware y Gentoo", "Solo Ubuntu", "MS-DOS y Windows"], r: 0,
+        e: "Debian y Gentoo son comunitarias; Slackware no tiene empresa detrás." },
+
+      { p: "La diferencia entre Ubuntu normal y Ubuntu LTS es:",
+        op: ["La LTS se publica cada 2 años y se soporta 5 años; la normal cada 6 meses con 18 meses",
+              "La LTS no tiene escritorio", "La normal no recibe correcciones",
+              "Solo cambia el color"], r: 0,
+        e: "LTS = soporte a largo plazo, recomendada para equipos de producción." },
+
+      { p: "El comando find /home/oracle -type f -name 1.txt hace:",
+        op: ["Busca el archivo 1.txt dentro de /home/oracle",
+              "Crea el archivo 1.txt", "Borra la carpeta", "Cambia permisos"], r: 0,
+        e: "-type f limita a ficheros; -name indica el nombre buscado." },
+
+      { p: "El valor octal 755 de chmod significa:",
+        op: ["Propietario rwx, grupo r-x, resto r-x",
+              "Todos solo lectura", "Todos sin permisos", "Propietario sin nada"], r: 0,
+        e: "7 = 4+2+1 (lectura, escritura y ejecución) y 5 = 4+1 (lectura y ejecución)." },
+
+      { p: "¿En qué se diferencian la ruta absoluta y la relativa en Linux?",
+        op: ["La absoluta empieza siempre por /; la relativa, no",
+              "La relativa empieza por / y la absoluta no",
+              "Ambas empiezan por C:", "No hay diferencia"], r: 0,
+        e: "Ejemplo absoluto: /home/Profesor/Control.odt; desde /home/Profesor, la relativa sería Control.odt." },
+
+      { p: "La carpeta personal en Ubuntu es /home/usuario, mientras que en Windows 7 es:",
+        op: ["C:\\Usuarios", "C:\\Windows", "/home", "C:\\Archivos"], r: 0,
+        e: "En XP era C:\\Documents and Settings." },
+
+      { p: "Los tipos de usuario en GNU/Linux son:",
+        op: ["root, usuarios especiales del sistema y usuarios comunes",
+              "Administrador e invitado", "Estándar y root", "Solo root"], r: 0,
+        e: "root tiene todos los permisos; los especiales no tienen contraseña ni inician sesión." },
+
+      { p: "El comando man pwd devuelve:",
+        op: ["El manual en línea de la orden pwd",
+              "La ruta actual", "Los permisos del fichero", "La lista de procesos"], r: 0,
+        e: "man = manual; también se puede usar help en algunas órdenes." },
+
+      { p: "El directorio /usr/bin de Ubuntu contiene:",
+        op: ["Programas instalados para el usuario",
+              "Dispositivos físicos", "Archivos de configuración", "La imagen del núcleo"], r: 0,
+        e: "/usr/share guarda los datos compartidos; /boot, la imagen del núcleo." },
+
+      { p: "¿Qué equivalencia existe entre órdenes de Windows y de Linux?",
+        op: ["dir≈ls, copy≈cp, move≈mv, del≈rm, md≈mkdir",
+              "No hay ninguna equivalencia", "dir≈rm, copy≈mv", "ipconfig≈ping"], r: 0,
+        e: "cd es igual en ambos; ipconfig (Windows) corresponde a ifconfig/ip a (Linux)." },
+
+      { p: "Un archivo con permisos 644 en Linux significa:",
+        op: ["Propietario rw-, grupo r--, resto r--",
+              "Todos con ejecución", "Solo lectura para todos", "Nadie puede leerlo"], r: 0,
+        e: "6 = 4+2 (lectura y escritura), 4 = solo lectura." },
+
+      { p: "El comando vi abre:",
+        op: ["El editor de texto vi en la terminal", "El explorador", "El navegador", "La papelera"], r: 0,
+        e: "vi es el editor clásico de Linux; nano es su alternativa más sencilla." },
+
+      { p: "¿Por qué hay que desmontar un USB antes de extraerlo en Ubuntu?",
+        op: ["Para no perder datos ni corromper el sistema de ficheros",
+              "Porque USB no es compatible", "Para ahorrar batería", "Porque Linux no reconoce USB"], r: 0,
+        e: "El montaje asocia la partición a una carpeta (/media); al desmontar se cierra el acceso." },
+
+      { p: "El comando who permite:",
+        op: ["Ver quiénes están conectados al sistema",
+              "Cambiar de usuario", "Ver el uso de CPU", "Ver la fecha"], r: 0,
+        e: "date muestra la fecha y cal el calendario del mes y año." },
+
+      { p: "La ventaja de usar un gestor de paquetes como APT/APDO es:",
+        op: ["Instala, actualiza y dependencias de forma centralizada desde los repositorios",
+              "Permite borrar el sistema", "Sustituye al kernel", "No necesita repositorios"], r: 0,
+        e: "Antes de instalar hay que actualizar los índices de los repositorios." }
+    ]
+  },
+
+  abiertas: [
+    { q: "¿Qué es Ubuntu y quién lo desarrolla?",
+      respuestas: ["canonical", "distribucion", "gnu/linux", "debian", "mark shuttleworth"],
+      solucion: "Ubuntu es una distribución de GNU/Linux desarrollada por Canonical Ltd. y financiada por Mark Shuttleworth; está basada en Debian y usa el escritorio GNOME. Su nombre significa «humanidad hacia los otros» y su lema es «linux for human beings».",
+      nivel: "basico",
+      explicacion: "Es una de las distribuciones más usadas en el ámbito educativo." },
+
+    { q: "Menciona cinco directorios del sistema de archivos GNU/Linux y qué contienen.",
+      respuestas: ["/home", "/etc", "/bin", "/var", "/tmp", "/usr", "/media", "/dev", "/boot", "/sbin"],
+      solucion: "/home (usuarios), /etc (configuración), /bin (ejecutables esenciales), /var (información variable), /tmp (temporal), /usr (programas y datos), /dev (dispositivos), /boot (arranque y núcleo), /media (USB y CD montados), /sbin (administración).",
+      nivel: "basico",
+      explicacion: "Todo cuelga de la raíz /; no hay letras de unidad como en Windows." },
+
+    { q: "¿Para qué sirve el comando pwd y en qué se diferencia de ls?",
+      respuestas: ["ruta", "directorio actual", "listar contenido", "working directory"],
+      solucion: "pwd muestra la ruta completa del directorio actual (print working directory); ls lista el contenido de un directorio (archivos y carpetas que hay dentro).",
+      nivel: "basico",
+      explicacion: "cd cambia de directorio, pwd dice dónde estás." },
+
+    { q: "Escribe las órdenes para crear la carpeta Documentos dentro de /home/alumno y entrar en ella.",
+      respuestas: ["mkdir /home/alumno/documentos", "cd /home/alumno/documentos", "mkdir", "cd"],
+      solucion: "mkdir /home/alumno/Documentos y después cd /home/alumno/Documentos.",
+      nivel: "medio",
+      explicacion: "Para listar el contenido, ls; para volver atrás, cd .." },
+
+    { q: "¿Qué son los permisos r, w y x y a quiénes se aplican?",
+      respuestas: ["lectura", "escritura", "ejecucion", "propietario", "grupo", "resto"],
+      solucion: "r = lectura, w = escritura, x = ejecución. En Linux cada archivo tiene propietario (el que lo creó) y los permisos se aplican a tres figuras: propietario, grupo y resto. Se gestionan con chmod (por ejemplo chmod 755 archivo).",
+      nivel: "medio",
+      explicacion: "7 = lectura+escritura+ejecución, 5 = lectura+ejecución, 4 = solo lectura." },
+
+    { q: "Diferencia el comando cat del comando more.",
+      respuestas: ["todo el contenido", "una pantalla", "pantalla a pantalla"],
+      solucion: "cat muestra todo el contenido del archivo de una vez; more lo muestra de una pantalla en una vez, avanzando con la barra espaciadora.",
+      nivel: "medio",
+      explicacion: "Para texto largo, more es más cómodo." },
+
+    { q: "¿Qué diferencias hay entre las rutas de Windows y las de GNU/Linux?",
+      respuestas: ["barra invertida", "letra de unidad", "absoluta", "relativa", "puntos de montaje", "/"],
+      solucion: "Windows usa letras de unidad con dos puntos y barra invertida (C:\\Usuarios\\Profesor); Linux no tiene letras, usa puntos de montaje con la raíz / y barra normal (/home/usuario). Una ruta absoluta empieza siempre por / y una relativa no (se parte desde donde estás).",
+      nivel: "medio",
+      explicacion: "Además Windows no distingue mayúsculas y Linux sí." },
+
+    { q: "Explica las versiones de Ubuntu: normales y LTS.",
+      respuestas: ["6 meses", "18 meses", "2 anos", "5 anos", "lts", "soporte"],
+      solucion: "Ubuntu publica una nueva versión cada 6 meses, soportada al menos 18 meses. Las LTS (Long Term Support) salen cada 2 años y reciben soporte durante 5 años, lo que las hace recomendables para equipos de trabajo.",
+      nivel: "medio",
+      explicacion: "El soporte implica actualizaciones de seguridad del sistema." },
+
+    { q: "Describe los cuatro repositorios oficiales de Ubuntu y sus diferencias.",
+      respuestas: ["main", "restricted", "universe", "multiverse", "libre", "comunidad"],
+      solucion: "Main: software 100% libre mantenido por el equipo de Ubuntu. Restricted: software no libre, como los controladores de red y vídeo. Universe: software libre de la comunidad. Multiverse: software no libre o con restricciones de uso. Antes de instalar hay que actualizar los índices.",
+      nivel: "avanzado",
+      explicacion: "De ahí que a veces haya que habilitarlos para instalar controladores." },
+
+    { q: "¿Cómo se instala Ubuntu? ¿Qué particiones necesita?",
+      respuestas: ["ext4", "swap", "linux-swap", "raiz", "dos particiones", "/"],
+      solucion: "Ubuntu necesita dos particiones: la partición raíz / con sistema de ficheros ext4 y una partición Linux-swap (área de intercambio). Windows XP, en cambio, basta con una partición NTFS, y conviene separar sistema y datos en dos.",
+      nivel: "avanzado",
+      explicacion: "El gestor de arranque GRUB se instala en el MBR y permite elegir SO." },
+
+    { q: "Explica qué es el software libre y qué licencia lo protege.",
+      respuestas: ["gpl", "ejecutar", "copiar", "modificar", "distribuir", "stallman", "gnu"],
+      solucion: "Es el software que se puede ejecutar, copiar, modificar y distribuir libremente. Se rige por la GPL (Licencia Pública General de GNU), proyecto iniciado por Richard Stallman en 1984 para crear un sistema operativo totalmente libre.",
+      nivel: "avanzado",
+      explicacion: "GNU/Linux combina ese proyecto con el núcleo Linux." },
+
+    { q: "Escribe y explica cinco comandos básicos de la terminal de Ubuntu.",
+      respuestas: ["pwd", "ls", "cd", "mkdir", "rm", "cp", "mv", "man", "clear", "chmod"],
+      solucion: "pwd (ruta actual), ls (listar contenido), cd (cambiar de directorio), mkdir (crear carpeta), rm (eliminar archivo), cp (copiar), mv (mover o renombrar), man (manual de una orden), clear (limpiar pantalla) y chmod (cambiar permisos).",
+      nivel: "avanzado",
+      explicacion: "Equivalencias con Windows: dir≈ls, copy≈cp, move≈mv, del≈rm, md≈mkdir." },
+
+    { q: "¿Quién es root y qué tipos de usuario existen en GNU/Linux?",
+      respuestas: ["root", "todos los permisos", "especiales", "comunes", "sistema", "/home"],
+      solucion: "root es el superusuario con todos los permisos (instala software y gestiona cuentas). Además hay usuarios especiales o del sistema, sin contraseña y con privilegios de root solo para tareas concretas (no inician sesión), y usuarios comunes, con su directorio propio en /home.",
+      nivel: "avanzado",
+      explicacion: "Conviene trabajar siempre con el usuario común y usar root solo cuando sea necesario." }
+  ]
+};
+
+</script>
+<script>
+/* =========================================================
+   datos/redes.js
+   Preguntas del tema REDES
+   ========================================================= */
+
+window.DATOS = window.DATOS || {};
+
+DATOS.redes = {
+  nombre: "Redes",
+
+  test: {
+    basico: [
+      { p: "Una red de ordenadores es un conjunto de equipos:",
+        op: ["Conectados para comunicarse e intercambiar información o recursos",
+              "De la misma marca", "Con el mismo monitor", "Sin sistema operativo"], r: 0,
+        e: "La conexión puede ser por cable o inalámbrica." },
+
+      { p: "El dispositivo final capaz de enviar o recibir información se llama:",
+        op: ["Host o nodo", "Router", "Switch", "Cable"], r: 0,
+        e: "Un PC, un smartphone, una impresora de red o una cámara IP son nodos." },
+
+      { p: "Una red que abarca un aula, una vivienda o un edificio es una:",
+        op: ["WAN", "LAN", "MAN", "PAN"], r: 1,
+        e: "LAN = red de área local, privada y sin medios públicos. Con Wi-Fi es WLAN." },
+
+      { p: "La red que conecta equipos a menos de 10 metros (Bluetooth, NFC) se denomina:",
+        op: ["PAN", "WAN", "MAN", "CAN"], r: 0,
+        e: "Personal Area Network; con tecnología inalámbrica, WPAN." },
+
+      { p: "Internet es el mayor ejemplo de red de tipo:",
+        op: ["LAN", "PAN", "WAN", "CAN"], r: 2,
+        e: "WAN = red de área amplia: países o continentes." },
+
+      { p: "La topología en la que todos los nodos se conectan a un nodo central (el switch) es:",
+        op: ["Estrella", "Bus", "Anillo", "Malla"], r: 0,
+        e: "Es la habitual en Ethernet con cable RJ-45." },
+
+      { p: "En la topología en anillo, el método de acceso al medio suele ser:",
+        op: ["Token (testigo)", "Sorteo", "Broadcast", "Ninguno"], r: 0,
+        e: "Token Ring: el testigo circula por el anillo y da permiso para transmitir." },
+
+      { p: "El conector estándar del cable de par trenzado es:",
+        op: ["RJ-45", "RJ-11", "USB", "HDMI"], r: 0,
+        e: "RJ-11 es el telefónico; RJ-45 tiene 8 pines." },
+
+      { p: "El medio de transmisión que usa pulsos de luz es:",
+        op: ["Cable coaxial", "Fibra óptica", "Par trenzado", "Bluetooth"], r: 1,
+        e: "El par trenzado y el coaxial usan impulsos eléctricos; las redes inalámbricas, ondas." },
+
+      { p: "El componente que interconecta los equipos de una LAN analizando direcciones MAC es:",
+        op: ["Switch (conmutador)", "Monitor", "Servidor", "Módem"], r: 0,
+        e: "Reenvía la trama solo por el puerto del destinatario: evita colisiones y mejora la seguridad." },
+
+      { p: "El dispositivo que interconecta redes distintas eligiendo la mejor ruta es:",
+        op: ["Router (enrutador)", "Switch", "Hub", "Tarjeta de red"], r: 0,
+        e: "Trabaja con direcciones IP; el doméstico integra router + switch + punto de acceso." },
+
+      { p: "El punto de acceso Wi-Fi sirve para:",
+        op: ["Unir la red cableada con los equipos inalámbricos",
+              "Aumentar la memoria RAM", "Almacenar archivos", "Sustituir al router siempre"], r: 0,
+        e: "Crea la celda de cobertura Wi-Fi." },
+
+      { p: "Una dirección IP identifica a:",
+        op: ["Un equipo o dispositivo en la red", "Un archivo", "Un usuario", "Un monitor"], r: 0,
+        e: "En la misma red no pueden haber dos equipos con la misma IP." },
+
+      { p: "La dirección MAC:",
+        op: ["Está grabada en la tarjeta de red y es fija",
+              "Se cambia cada día", "Es la misma en todos los equipos", "Solo existe en Internet"], r: 0,
+        e: "Dirección física de 48 bits, identifica de forma única e invariable al dispositivo." },
+
+      { p: "La velocidad de una red se mide en:",
+        op: ["Bits por segundo (bps, Mbps, Gbps)", "Bytes por segundo siempre", "Hercios", "Vatios"], r: 0,
+        e: "El ancho de banda es la capacidad máxima del canal." }
+    ],
+
+    medio: [
+      { p: "El par trenzado está formado por:",
+        op: ["8 hilos de cobre en 4 pares helicoidales",
+              "Un núcleo de vidrio", "Un solo hilo coaxial", "Ondas de radio"], r: 0,
+        e: "El trenzado reduce las interferencias y la diafonía entre pares." },
+
+      { p: "Si en un cable se usan normas T-568A en un extremo y T-568B en el otro, el cable es:",
+        op: ["Directo (PC-switch)", "Cruzado (PC-PC)", "De fibra", "Serial"], r: 1,
+        e: "Mismo extremo en ambos = directo; distinto = cruzado. Hoy las tarjetas tienen Auto-MDIX." },
+
+      { p: "El par trenzado empieza a sufrir atenuación notable a partir de:",
+        op: ["10 metros", "100 metros", "500 metros", "1 kilómetro"], r: 1,
+        e: "Por eso el tramo horizontal típico de la estructurada está en ese límite." },
+
+      { p: "Una categoría de cable Cat 5e permite velocidades de hasta:",
+        op: ["10 Mbps", "100 Mbps", "1 Gbps", "10 Gbps"], r: 2,
+        e: "Cat 5 = 100 Mbps, Cat 5e = 1 Gbps, Cat 6 = 1-10 Gbps, Cat 8 = 25-40 Gbps." },
+
+      { p: "La fibra óptica multimodo se caracteriza por:",
+        op: ["Núcleo de 50 o 62,5 micrómetros con LED, para distancias cortas",
+              "Núcleo de 9 micrómetros con láser", "Usar cobre", "Ser más barata que el par trenzado"], r: 0,
+        e: "La monomodo (9 µm, láser) alcanza decenas de kilómetros." },
+
+      { p: "Principal inconveniente de la fibra óptica:",
+        op: ["Su coste y delicadeza de instalación",
+              "Que solo transmite a 10 Mbps", "Que no admite luz", "Que es magnética"], r: 0,
+        e: "Necesita fusionadoras y personal especializado; a cambio, gran velocidad y seguridad." },
+
+      { p: "La familia de estándares Wi-Fi es la IEEE:",
+        op: ["802.11", "802.3", "802.15.1", "802.1Q"], r: 0,
+        e: "802.3 es Ethernet cableado, 802.15.1 Bluetooth y 802.1Q VLAN." },
+
+      { p: "El estándar 802.11n (Wi-Fi 4) trabaja en las bandas de:",
+        op: ["Solo 2,4 GHz", "2,4 y 5 GHz", "Solo 6 GHz", "400 MHz"], r: 1,
+        e: "802.11b/g: 2,4 GHz y 25-35 m; 802.11n: 2,4/5 GHz y unos 75 m de alcance." },
+
+      { p: "La banda de frecuencias WiFi está organizada en 14 canales. Para evitar por completo la interferencia con una red cercana hace falta separarse:",
+        op: ["1 canal", "4 canales", "14 canales", "Ninguno"], r: 1,
+        e: "La interferencia se evita totalmente con una separación de cuatro canales." },
+
+      { p: "Bluetooth trabaja en la banda de 2,4 GHz y su estándar es el IEEE:",
+        op: ["802.15.1", "802.11ac", "802.3", "802.16"], r: 0,
+        e: "Clase III = 10 m, Clase II = 15-20 m y Clase I = 100 m." },
+
+      { p: "La dirección IPv4 está formada por:",
+        op: ["32 bits en cuatro octetos separados por puntos",
+              "128 bits en hexadecimal", "48 bits en hexadecimales", "16 bits"], r: 0,
+        e: "Ej.: 192.168.1.1. Cada octeto va de 0 a 255 (147.270.2.30 es inválido)." },
+
+      { p: "La clase de direcciones 192.168.0.0 – 192.168.255.255 es la clase:",
+        op: ["A", "B", "C", "D"], r: 2,
+        e: "Clase C: máscara 255.255.255.0, 24 bits de red y 8 de host (254 hosts)." },
+
+      { p: "La máscara de subred permite:",
+        op: ["Distinguir qué parte de la IP es red y qué parte es host",
+              "Acelerar la conexión", "Cifrar los paquetes", "Asignar nombres de dominio"], r: 0,
+        e: "Es una sucesión de unos seguida de ceros hasta completar 32 bits." },
+
+      { p: "El protocolo que asigna direcciones IP de forma dinámica es:",
+        op: ["DHCP", "DNS", "FTP", "SMTP"], r: 0,
+        e: "El servidor DHCP lleva la lista de IPs asignadas a cada MAC y su caducidad." },
+
+      { p: "El dispositivo al que se envían los paquetes destinados a otra red es:",
+        op: ["La puerta de enlace (gateway)", "El switch", "La tarjeta de red", "El servidor DNS"], r: 0,
+        e: "Se comprueba con una operación AND bit a bit entre IP y máscara." },
+
+      { p: "La función NAT de un router permite:",
+        op: ["Traducir las direcciones locales a la IP pública del router",
+              "Aumentar el ancho de banda", "Cifrar el tráfico", "Asignar MAC"], r: 0,
+        e: "Sin ella, los equipos internos no podrían salir a Internet con una sola IP pública." },
+
+      { p: "La dirección 127.0.0.1 es:",
+        op: ["Loopback: redirige los paquetes al propio equipo",
+              "Una IP pública", "La del router", "La de broadcast"], r: 0,
+        e: "Sirve para verificar la pila TCP/IP sin salir del equipo." },
+
+      { p: "El comando para ver la configuración de red en Windows es:",
+        op: ["ipconfig /all", "ifconfig", "ping", "tracert"], r: 0,
+        e: "En Ubuntu se usa ifconfig o ip a." }
+    ],
+
+    avanzado: [
+      { p: "Una IP 172.29.71.151/23 tiene una máscara de:",
+        op: ["255.255.255.0", "255.255.254.0", "255.255.0.0", "255.0.0.0"], r: 1,
+        e: "/23 = 23 unos → 11111111.11111111.11111110.00000000 = 255.255.254.0." },
+
+      { p: "En la red 192.168.1.0/24, la dirección de broadcast es:",
+        op: ["192.168.1.1", "192.168.1.0", "192.168.1.255", "255.255.255.0"], r: 2,
+        e: "La de red acaba en 0; la broadcast tiene todos los bits de host a 1 (255)." },
+
+      { p: "En una red /24, el número de hosts utilizables es:",
+        op: ["256", "254", "255", "248"], r: 1,
+        e: "2^8 = 256 direcciones, menos la de red y la de broadcast = 254 hosts." },
+
+      { p: "Si dividimos 192.168.0.0/24 en 4 subredes, la nueva máscara será:",
+        op: ["255.255.255.0", "255.255.255.192", "255.255.255.128", "255.255.255.224"], r: 1,
+        e: "256/4 = 64 → máscara 256−64 = 192 (255.255.255.192, /26), con 64 IPs y 62 hosts por subred." },
+
+      { p: "Al dividir una red /24 en 2 subredes (/25), cada subred tendrá:",
+        op: ["128 IPs y 126 hosts", "256 IPs y 254 hosts", "64 IPs y 62 hosts", "254 IPs"], r: 0,
+        e: "Máscara 255.255.255.128; broadcast de la primera en .127 y de la segunda en .255." },
+
+      { p: "¿A qué clase pertenece la IP 130.238.44.8?",
+        op: ["Clase A", "Clase B", "Clase C", "Clase D"], r: 1,
+        e: "Clase B: primer byte 128-191, máscara 255.255.0.0, 16 bits de red y 16 de host." },
+
+      { p: "La clase D de direcciones (224-239) se usa para:",
+        op: ["Multidifusión (multicast)", "Direcciones de host", "Broadcast", "El loopback"], r: 0,
+        e: "La clase E (240-255) está reservada para experimentación de la IETF." },
+
+      { p: "¿Cuántas direcciones IPv4 caben en teoría en total?",
+        op: ["4.294.967.296", "65.536", "256", "340 sextillones"], r: 0,
+        e: "2^32 ≈ 4.294.967.296; los 340 sextillones son de IPv6 (128 bits)." },
+
+      { p: "Las direcciones 169.254.0.0 – 169.254.255.255 indican:",
+        op: ["Una IP autoasignada mal cuando no hay servidor DHCP",
+              "Una red privada válida", "El loopback", "Una IP pública"], r: 0,
+        e: "Son APIPA: el equipo no ha podido obtener configuración del servidor DHCP." },
+
+      { p: "Dos equipos con IP 192.168.16.15 y 192.168.5.23 (máscara 255.255.255.0):",
+        op: ["No están en la misma red y no se comunican directamente",
+              "Están en la misma red", "Se comunican por Bluetooth", "Necesitan un switch solamente"], r: 0,
+        e: "Los octetos de red difieren (16 ≠ 5): hace falta un router que los enlace." },
+
+      { p: "Las direcciones privadas de clase B abarcan:",
+        op: ["172.16.0.0 – 172.31.255.255", "172.0.0.0 – 172.255.255.255",
+              "10.0.0.0 – 10.255.255.255", "192.168.0.0 – 192.168.255.255"], r: 0,
+        e: "Clase A: 10.x; clase C: 192.168.x. Solo ven los equipos de la LAN." },
+
+      { p: "¿Qué ventaja aporta el switch frente al concentrador (hub)?",
+        op: ["Filtra por dirección MAC y reenvía solo por el puerto destinatario",
+              "Amplifica la señal a todos los puertos", "Asigna IP automáticamente", "Cifra el tráfico"], r: 0,
+        e: "Reduce colisiones y aumenta la seguridad de la red." },
+
+      { p: "La topología en malla se caracteriza por:",
+        op: ["Múltiples enlaces directos entre nodos, gran tolerancia a fallos",
+              "Un solo cable troncal", "Un nodo central único", "Un único sentido de circulación"], r: 0,
+        e: "Es la base de las WAN; su inconveniente es el coste y el cableado necesario." },
+
+      { p: "La principal ventaja de la topología en bus es:",
+        op: ["Es barata y fácil de instalar (ideal para redes temporales)",
+              "Que un corte no la afecta", "Que es muy rápida al crecer", "Que no necesita terminadores"], r: 0,
+        e: "Inconveniente: un corte en el troncal cae toda la red y el rendimiento baja al añadir equipos." },
+
+      { p: "Una VLAN (IEEE 802.1Q) permite:",
+        op: ["Segmentar lógicamente la red por software sin cableado nuevo",
+              "Sustituir al router", "Aumentar la fibra", "Asignar direcciones MAC"], r: 0,
+        e: "Separa departamentos en la misma infraestructura, mejorando seguridad y rendimiento." },
+
+      { p: "El estándar IEEE 802.16 corresponde a:",
+        op: ["WiMAX / microondas terrestres", "Wi-Fi", "Ethernet", "Bluetooth"], r: 0,
+        e: "Conecta edificios sin necesidad de fibra; el satélite da cobertura WAN global." },
+
+      { p: "Según los apuntes, la velocidad media de la fibra óptica es de unos:",
+        op: ["2 Gbps", "100 Mbps", "54 Mbps", "10 Mbps"], r: 0,
+        e: "El par trenzado va a 100-1000 Mbps y el Wi-Fi ronda los 54 Mbps de media." },
+
+      { p: "La dirección MAC está formada por:",
+        op: ["48 bits en 6 pares hexadecimales",
+              "32 bits en decimal", "128 bits en hexadecimal", "16 bits"], r: 0,
+        e: "Ej.: 00:1A:2B:3C:4D:5E; los 3 primeros pares identifican al fabricante." },
+
+      { p: "IPv6 se diferencia de IPv4 en que:",
+        op: ["Tiene 128 bits, autoconfiguración sin DHCP e IPSec nativo",
+              "Tiene 32 bits", "No admite multicast", "Usa puntos decimales"], r: 0,
+        e: "Anotación hexadecimal (2001:0db8:…); surge por el agotamiento de IPv4." },
+
+      { p: "En el montaje de 8 PC con IPs 192.168.1.10-17, la puerta de enlace habitual es:",
+        op: ["192.168.1.1", "192.168.1.255", "192.168.1.0", "255.255.255.0"], r: 0,
+        e: "Máscara 255.255.255.0; se necesitan un switch de al menos 10 puertos y 9 latiguillos." },
+
+      { p: "Los pasos de instalación de una red cableada incluyen, en orden:",
+        op: ["Tarjeta de red → cableado → driver → configurar TCP/IP → nombre y grupo de trabajo",
+              "Driver → tarjeta → nombre → cableado → TCP/IP", "Solo cableado y TCP/IP",
+              "Grupo de trabajo → driver → tarjeta"], r: 0,
+        e: "El driver permite que el SO reconozca la tarjeta y pueda comunicarse con ella." },
+
+      { p: "El protocolo TCP/IP se caracteriza porque:",
+        op: ["IP direcciona y encamina; TCP garantiza la entrega ordenada y fiable",
+              "TCP solo direcciona", "IP no trabaja con paquetes", "No permite equipos de distinto SO"], r: 0,
+        e: "Es el protocolo de Internet: permite que equipos de distinto hardware y SO se entiendan." }
+    ]
+  },
+
+  abiertas: [
+    { q: "¿Qué es una red de ordenadores y cuáles son los cinco elementos de toda comunicación?",
+      respuestas: ["emisor", "receptor", "mensaje", "medio", "protocolo", "canal"],
+      solucion: "Es un conjunto de equipos conectados por medios físicos o inalámbricos para comunicarse e intercambiar información y recursos. Los cinco elementos son: emisor, receptor, mensaje (información codificada en bits), medio o canal y protocolo (normas del diálogo).",
+      nivel: "basico",
+      explicacion: "Host o nodo es cualquier dispositivo final que envía o recibe información." },
+
+    { q: "Diferencia una LAN de una WAN y da un ejemplo de cada una.",
+      respuestas: ["area local", "area amplia", "edificio", "internet", "pais", "continente"],
+      solucion: "La LAN (área local) cubre un espacio reducido y privado (vivienda, oficina, aula) sin medios públicos; la WAN (área amplia) abarca países o continentes usando fibra troncal, cables submarinos, microondas y satélites. Internet es la mayor WAN.",
+      nivel: "basico",
+      explicacion: "También hay PAN (hasta 10 m) y MAN (cobertura metropolitana)." },
+
+    { q: "Nombra cuatro topologías de red y describe brevemente la estrella y el bus.",
+      respuestas: ["estrella", "bus", "anillo", "malla", "arbol", "switch", "troncal", "token"],
+      solucion: "Estrella, bus, anillo, malla, árbol y mixta. En ESTRELLA todos los nodos se conectan a un nodo central (hoy el switch): si falla un cable solo se afecta a un equipo, pero si cae el switch cae toda la red. En BUS hay un único cable troncal con terminadores: es barata y fácil de instalar, pero un corte la deja fuera de servicio y el rendimiento baja al añadir equipos.",
+      nivel: "basico",
+      explicacion: "El anillo usa token y la malla es la base de las WAN." },
+
+    { q: "¿Cuáles son las principales diferencias entre el par trenzado y la fibra óptica?",
+      respuestas: ["cobre", "luz", "100 metros", "barata", "caro", "interferencias", "electricidad"],
+      solucion: "El par trenzado usa 8 hilos de cobre en 4 pares (impulsos eléctricos), es económico, se limita a unos 100 metros y sufre interferencias. La fibra óptica transmite pulsos de luz por un núcleo de vidrio: mucha más velocidad (Gbps a Tbps), inmunidad a interferencias, baja atenuación y mayor seguridad, pero es cara y delicada de instalar.",
+      nivel: "medio",
+      explicacion: "El coaxial es intermedio: usa blindaje y aún se ve en la TV por cable." },
+
+    { q: "Explica qué es una dirección IP, una dirección MAC y en qué se diferencian.",
+      respuestas: ["logica", "fisica", "32 bits", "48 bits", "cambiar", "grabada", "fabricante"],
+      solucion: "La IP es una dirección LÓGICA de 32 bits (cuatro octetos) que se asigna por software y puede cambiarse; identifica al equipo en la red. La MAC es una dirección FÍSICA de 48 bits grabada de fábrica en la tarjeta de red, fija e invariable; sus tres primeros pares identifican al fabricante. TCP/IP gestiona la correspondencia entre ambas.",
+      nivel: "medio",
+      explicacion: "En la misma red no puede haber dos IPs iguales." },
+
+    { q: "¿Qué hace el servidor DHCP y para qué sirve la máscara de subred?",
+      respuestas: ["dinamica", "automatica", "cada vez que se conecta", "red y host", "subredes", "ones"],
+      solucion: "DHCP asigna direcciones IP de forma dinámica cada vez que un equipo se conecta, llevando registro de las IPs entregadas a cada MAC y su caducidad. La máscara de subred indica qué parte de la IP es la dirección de red y qué parte es la del host, y permite dividir redes grandes en subredes más manejables.",
+      nivel: "medio",
+      explicacion: "Es una sucesión de unos seguida de ceros hasta completar 32 bits." },
+
+    { q: "¿Qué es el NAT y por qué es imprescindible en un router doméstico?",
+      respuestas: ["network address translation", "traducir", "ip publica", "salida a internet", "ingles"],
+      solucion: "NAT (Network Address Translation) traduce las direcciones IP locales de los paquetes que salen de la LAN sustituyéndolas por la IP pública del router, y hace la traducción inversa al recibir la respuesta. Es imprescindible porque solo el router tiene IP pública: sin NAT, los equipos internos no podrían comunicarse con Internet.",
+      nivel: "avanzado",
+      explicacion: "Por eso una misma IP privada puede existir en miles de redes distintas." },
+
+    { q: "Explica cómo se calcula el número de hosts de una red 192.168.0.0/24 y cuál es su broadcast.",
+      respuestas: ["254", "256", "256-2", "2^8", "192.168.0.255", "red y broadcast"],
+      solucion: "/24 significa 24 bits de red y 8 de host: 2^8 = 256 direcciones. Restando la dirección de red (192.168.0.0) y la de broadcast (192.168.0.255, con todos los bits de host a 1) quedan 254 hosts utilizables (de .1 a .254).",
+      nivel: "avanzado",
+      explicacion: "Los dos primeros y el último siempre se reservan." },
+
+    { q: "Divide 192.168.0.0/24 en 4 subredes e indica máscara, IPs por subred y hosts utilizables.",
+      respuestas: ["255.255.255.192", "/26", "64", "62", "192"],
+      solucion: "256/4 = 64 direcciones por subred → máscara 256−64 = 192, es decir 255.255.255.192 (/26, 26 unos y 6 ceros). Cada subred tiene 64 IPs y 62 hosts utilizables, con bloques .0, .64, .128 y .192 (broadcast en .63, .127, .191 y .255).",
+      nivel: "avanzado",
+      explicacion: "En vez de /25 (126 hosts), aquí se necesitan bits menos prestados." },
+
+    { q: "¿Cuáles son las diferencias entre IP pública y privada? Da los rangos privados.",
+      respuestas: ["10.", "172.16", "192.168", "unicas en internet", "solo lan", "router"],
+      solucion: "Las públicas son únicas en Internet y las gestiona organismos internacionales (RIR); las privadas solo tienen validez dentro de la LAN, se repiten en cualquier red del mundo y las ve solo la red local. Rangos: clase A 10.0.0.0-10.255.255.255, clase B 172.16.0.0-172.31.255.255 y clase C 192.168.0.0-192.168.255.255.",
+      nivel: "avanzado",
+      explicacion: "El router es el único equipo de la LAN con IP pública." },
+
+    { q: "Menciona los comandos para comprobar la red en Windows y en Linux y para qué sirve cada uno.",
+      respuestas: ["ipconfig", "ifconfig", "ip a", "ping", "tracert", "conectividad", "ruta"],
+      solucion: "En Windows: ipconfig /all (parámetros TCP/IP de las tarjetas), ping (conectividad con otro equipo mediante paquetes ICMP de eco) y tracert (ruta y tiempo en cada router intermedio). En Linux: ifconfig o ip a para la configuración de red, y ping con el mismo significado.",
+      nivel: "medio",
+      explicacion: "ping 8.8.8.8 comprueba si hay salida a Internet." },
+
+    { q: "¿Por qué las redes inalámbricas necesitan cifrado y qué estándares de seguridad se citan?",
+      respuestas: ["wpa2", "wpa3", "cifrado", "interferencias", "banda abierta", "no exclusiva"],
+      solucion: "La banda de frecuencias WiFi es de uso no exclusivo: cualquiera puede usarla sin autorización, lo que la hace vulnerable a escuchas. Por eso exige un cifrado robusto, como WPA2 o WPA3. Además hay que vigilar las interferencias (microondas, teléfonos inalámbricos, otras redes) y la ubicación de los equipos y obstáculos.",
+      nivel: "avanzado",
+      explicacion: "La fibra óptica, por contra, es muy segura frente a escuchas." }
+  ]
+};
+
+</script>
+
+<!-- Lógica de la aplicación -->
+<script>
+/* =========================================================
+   utilidades.js  ·  Funciones comunes
+   ========================================================= */
+
+/** Baraja un array (Fisher-Yates) sin modificar el original */
+function barajar(array) {
+  const copia = array.slice();
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+/** Normaliza texto: minúsculas, sin acentos ni signos raros */
+function normalizar(texto) {
+  return String(texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[.,;:¿?¡!"'()\[\]]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Compara la respuesta del alumno con la respuesta oficial.
+ * Devuelve true si el texto normalizado contiene alguna forma aceptada.
+ */
+function esCorrecta(respuestaAlumno, formasAceptadas) {
+  const alumno = normalizar(respuestaAlumno);
+  if (!alumno) return false;
+
+  const lista = Array.isArray(formasAceptadas) ? formasAceptadas : [formasAceptadas];
+
+  return lista.some((forma) => {
+    const objetivo = normalizar(forma);
+    if (!objetivo) return false;
+    // Coincidencia exacta
+    if (alumno === objetivo) return true;
+    // Contención: la respuesta oficial aparece en lo que ha escrito el alumno
+    return alumno.includes(objetivo);
+  });
+}
+
+/** Devuelve el índice de la pregunta más parecida (para mostrar pista si falla) */
+function mensajeNivel(nota) {
+  if (nota >= 9) return "¡Excelente! Dominas este tema.";
+  if (nota >= 7) return "¡Muy bien! Casi lo tienes perfecto.";
+  if (nota >= 5) return "¡Suficiente! Repasa un poco más los fallos.";
+  return "Hay que repasar el tema, inténtalo de nuevo.";
+}
+
+/** Clase CSS para la nota según el porcentaje */
+function claseNota(nota) {
+  if (nota >= 7) return "sobresaliente";
+  if (nota >= 5) return "suficiente";
+  return "suspenso";
+}
+
+/** Selecciona N elementos al azar de un array */
+function seleccionarAlAzar(array, n) {
+  return barajar(array).slice(0, Math.min(n, array.length));
+}
+
+/** Elemento por id, más corto */
+const $ = (id) => document.getElementById(id);
+
+</script>
+<script>
+/* =========================================================
+   test-opcion-multiple.js  ·  Lógica del bloque de tests
+   ========================================================= */
+
+const TestMultiple = (() => {
+
+  // Estado actual
+  let tema = "hardware";
+  let nivel = "medio";
+  let numeroPreguntas = 10;
+  let preguntas = [];      // preguntas ya seleccionadas y barajadas
+  let respuestas = [];     // índice elegido por el alumno (-1 = sin responder)
+  let explicaAlFinal = true;
+  let barajarTodo = true;
+
+  /* -------------------------------------------------------
+     Configuración inicial (chips)
+  ------------------------------------------------------- */
+  function pintarTemas() {
+    const cont = $("chips-tema");
+    cont.innerHTML = "";
+    TEMAS.forEach((clave) => {
+      const b = document.createElement("button");
+      b.className = "chip" + (clave === tema ? " activo" : "");
+      b.dataset.tema = clave;
+      b.textContent = DATOS[clave].nombre;
+      b.addEventListener("click", () => {
+        tema = clave;
+        marcarActivo(cont, b);
+      });
+      cont.appendChild(b);
+    });
+  }
+
+  function marcarActivo(contenedor, boton) {
+    contenedor.querySelectorAll(".chip").forEach((c) => c.classList.remove("activo"));
+    boton.classList.add("activo");
+  }
+
+  function prepararChips() {
+    // Chips de nivel con su color
+    $("chips-nivel").querySelectorAll(".chip").forEach((c) => {
+      c.classList.add("nivel-" + c.dataset.nivel);
+      c.addEventListener("click", () => {
+        nivel = c.dataset.nivel;
+        marcarActivo($("chips-nivel"), c);
+      });
+    });
+
+    // Chips de número
+    $("chips-numero").querySelectorAll(".chip").forEach((c) => {
+      c.addEventListener("click", () => {
+        numeroPreguntas = parseInt(c.dataset.numero, 10);
+        marcarActivo($("chips-numero"), c);
+      });
+    });
+
+    // Opciones
+    $("chk-explicacion").addEventListener("change", (e) => (explicaAlFinal = e.target.checked));
+    $("chk-aleatorio").addEventListener("change", (e) => (barajarTodo = e.target.checked));
+  }
+
+  /* -------------------------------------------------------
+     Arranque del test
+  ------------------------------------------------------- */
+  function empezar() {
+    const banco = DATOS[tema].test[nivel] || [];
+
+    if (banco.length === 0) {
+      $("aviso-test").textContent =
+        "Todavía no hay preguntas de nivel " + nivel + " en " + DATOS[tema].nombre + ".";
+      return;
+    }
+
+    $("aviso-test").textContent = "";
+
+    const cuantas = Math.min(numeroPreguntas, banco.length);
+    preguntas = barajarTodo ? seleccionarAlAzar(banco, cuantas) : banco.slice(0, cuantas);
+    respuestas = new Array(preguntas.length).fill(-1);
+
+    $("config-test").classList.add("test-oculto");
+    $("zona-resultado").classList.add("test-oculto");
+    $("zona-test").classList.remove("test-oculto");
+
+    pintarPreguntas();
+    actualizarBarra();
+  }
+
+  /* -------------------------------------------------------
+     Pintado de preguntas
+  ------------------------------------------------------- */
+  function pintarPreguntas() {
+    const cont = $("contenedor-preguntas");
+    cont.innerHTML = "";
+
+    preguntas.forEach((pregunta, i) => {
+      const tarjeta = document.createElement("div");
+      tarjeta.className = "tarjeta-pregunta";
+      tarjeta.id = "preg-" + i;
+
+      let ordenOpciones = pregunta.op.map((_, k) => k);
+      if (barajarTodo) ordenOpciones = barajar(ordenOpciones);
+
+      const p = document.createElement("p");
+      p.className = "num-pregunta";
+      p.textContent = "Pregunta " + (i + 1) + " de " + preguntas.length;
+      tarjeta.appendChild(p);
+
+      const h3 = document.createElement("h3");
+      h3.textContent = pregunta.p;
+      tarjeta.appendChild(h3);
+
+      const lista = document.createElement("div");
+      lista.className = "opciones";
+
+      ordenOpciones.forEach((idxOpcion) => {
+        const label = document.createElement("label");
+        label.className = "opcion-test";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "preg-" + i;
+        radio.value = idxOpcion;
+
+        const span = document.createElement("span");
+        span.textContent = pregunta.op[idxOpcion];
+
+        radio.addEventListener("change", () => {
+          respuestas[i] = idxOpcion;
+          lista.querySelectorAll(".opcion-test").forEach((l) => l.classList.remove("sel"));
+          label.classList.add("sel");
+          actualizarBarra();
+        });
+
+        label.appendChild(radio);
+        label.appendChild(span);
+        lista.appendChild(label);
+      });
+
+      tarjeta.appendChild(lista);
+
+      // Contenedor para la explicación (se rellena al corregir)
+      const exp = document.createElement("div");
+      exp.className = "explicacion test-oculto";
+      exp.id = "exp-" + i;
+      tarjeta.appendChild(exp);
+
+      cont.appendChild(tarjeta);
+    });
+  }
+
+  function actualizarBarra() {
+    const respondidas = respuestas.filter((r) => r !== -1).length;
+    const total = preguntas.length;
+    $("contador").textContent = "Pregunta " + Math.min(respondidas + 1, total) + " / " + total;
+    $("barra-avance").style.width = (respondidas / total) * 100 + "%";
+    const aciertos = contarAciertos();
+    $("marcador-vivo").textContent = "Respondidas: " + respondidas + " · Aciertos: " + aciertos;
+  }
+
+  function contarAciertos() {
+    return respuestas.reduce(
+      (n, r, i) => n + (r !== -1 && r === preguntas[i].r ? 1 : 0),
+      0
+    );
+  }
+
+  /* -------------------------------------------------------
+     Corrección y resultado
+  ------------------------------------------------------- */
+  function corregir() {
+    const sinResponder = respuestas.filter((r) => r === -1).length;
+    if (
+      sinResponder > 0 &&
+      !confirm("Quedan " + sinResponder + " preguntas sin responder. ¿Terminar y corregir?")
+    ) {
+      return;
+    }
+
+    const total = preguntas.length;
+
+    preguntas.forEach((pregunta, i) => {
+      const tarjeta = $("preg-" + i);
+      const opciones = tarjeta.querySelectorAll(".opcion-test");
+      const elegida = respuestas[i];
+
+      opciones.forEach((label, k) => {
+        const valor = parseInt(label.querySelector("input").value, 10);
+        label.classList.add("bloqueada");
+        label.querySelector("input").disabled = true;
+
+        if (valor === pregunta.r) label.classList.add("correcta");
+        else if (valor === elegida) label.classList.add("incorrecta");
+      });
+
+      // Explicación
+      if (explicaAlFinal && pregunta.e) {
+        const exp = $("exp-" + i);
+        exp.innerHTML = "<b>Explicación:</b> " + escapeHTML(pregunta.e);
+        exp.classList.remove("test-oculto");
+      }
+    });
+
+    // Recuento final de aciertos
+    const aciertos = contarAciertos();
+
+    mostrarResultado(aciertos, total);
+  }
+
+  function mostrarResultado(aciertos, total) {
+    const nota = Math.round((aciertos / total) * 100);
+    const temaNombre = DATOS[tema].nombre;
+    const nivelNombre = { basico: "Básico", medio: "Medio", avanzado: "Avanzado" }[nivel];
+
+    $("zona-test").classList.add("test-oculto");
+    $("zona-resultado").classList.remove("test-oculto");
+
+    $("titulo-resultado").textContent = temaNombre + " · Nivel " + nivelNombre;
+    $("nota-final").textContent = nota + "%";
+    $("nota-final").className = "nota " + claseNota(nota);
+    $("detalle-resultado").textContent =
+      "Has acertado " + aciertos + " de " + total + " preguntas.";
+    $("mensaje-resultado").textContent = mensajeNivel(nota);
+
+    pintarRevision();
+    $("zona-resultado").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function pintarRevision() {
+    const cont = $("revision");
+    cont.innerHTML = "";
+
+    preguntas.forEach((pregunta, i) => {
+      const bien = respuestas[i] === pregunta.r;
+      const item = document.createElement("div");
+      item.className = "item-revision " + (bien ? "ok" : "ko");
+
+      const respuestaAlumno =
+        respuestas[i] === -1 ? "(sin responder)" : pregunta.op[respuestas[i]];
+
+      item.innerHTML =
+        '<p class="preg">' + (i + 1) + ". " + escapeHTML(pregunta.p) + "</p>" +
+        '<p class="resp">Tu respuesta: <b class="' + (bien ? "ok" : "ko") + '">' +
+          escapeHTML(respuestaAlumno) + "</b></p>" +
+        (bien
+          ? ""
+          : '<p class="resp">Respuesta correcta: <b class="ok">' +
+            escapeHTML(pregunta.op[pregunta.r]) + "</b></p>") +
+        (pregunta.e && !bien
+          ? '<p class="resp">' + escapeHTML(pregunta.e) + "</p>"
+          : "");
+
+      cont.appendChild(item);
+    });
+  }
+
+  function escapeHTML(t) {
+    return String(t)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  /* -------------------------------------------------------
+     Salir / repetir
+  ------------------------------------------------------- */
+  function salir() {
+    if (
+      respuestas.some((r) => r !== -1) &&
+      !confirm("¿Seguro que quieres salir del test? Se perderá tu progreso.")
+    ) {
+      return;
+    }
+    volverAConfig();
+  }
+
+  function volverAConfig() {
+    $("zona-test").classList.add("test-oculto");
+    $("zona-resultado").classList.add("test-oculto");
+    $("config-test").classList.remove("test-oculto");
+    preguntas = [];
+    respuestas = [];
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* -------------------------------------------------------
+     Arranque
+  ------------------------------------------------------- */
+  function iniciar() {
+    pintarTemas();
+    prepararChips();
+
+    $("btn-empezar").addEventListener("click", empezar);
+    $("btn-terminar").addEventListener("click", corregir);
+    $("btn-salir").addEventListener("click", salir);
+    $("btn-repetir").addEventListener("click", empezar);
+    $("btn-cambiar").addEventListener("click", volverAConfig);
+  }
+
+  return { iniciar, volverAConfig };
+})();
+
+</script>
+<script>
+/* =========================================================
+   preguntas-abiertas.js  ·  Lógica del bloque de preguntas abiertas
+   El alumno escribe la respuesta y la aplicación le dice
+   si es correcta (o no) y muestra la respuesta oficial.
+   ========================================================= */
+
+const Abiertas = (() => {
+
+  let tema = "hardware";
+  let nivel = "todos";
+  let banco = [];        // preguntas seleccionadas
+  let indice = 0;
+  let aciertos = 0;
+  let respondidas = 0;
+  let corregida = false; // si la pregunta actual ya fue comprobada
+
+  /* -------------------------------------------------------
+     Configuración
+  ------------------------------------------------------- */
+  function pintarTemas() {
+    const cont = $("chips-tema-abiertas");
+    cont.innerHTML = "";
+    TEMAS.forEach((clave) => {
+      const b = document.createElement("button");
+      b.className = "chip" + (clave === tema ? " activo" : "");
+      b.dataset.tema = clave;
+      b.textContent = DATOS[clave].nombre;
+      b.addEventListener("click", () => {
+        tema = clave;
+        marcarActivo(cont, b);
+      });
+      cont.appendChild(b);
+    });
+  }
+
+  function marcarActivo(contenedor, boton) {
+    contenedor.querySelectorAll(".chip").forEach((c) => c.classList.remove("activo"));
+    boton.classList.add("activo");
+  }
+
+  function prepararChips() {
+    $("chips-nivel-abiertas").querySelectorAll(".chip").forEach((c) => {
+      c.classList.add("nivel-" + (c.dataset.nivel === "todos" ? "medio" : c.dataset.nivel));
+      c.addEventListener("click", () => {
+        nivel = c.dataset.nivel;
+        marcarActivo($("chips-nivel-abiertas"), c);
+      });
+    });
+  }
+
+  /* -------------------------------------------------------
+     Arranque
+  ------------------------------------------------------- */
+  function empezar() {
+    const todas = DATOS[tema].abiertas || [];
+    const filtradas =
+      nivel === "todos" ? todas : todas.filter((q) => (q.nivel || "medio") === nivel);
+
+    if (filtradas.length === 0) {
+      $("aviso-abiertas").textContent =
+        "No hay preguntas abiertas de nivel " + nivel + " en " + DATOS[tema].nombre + ".";
+      return;
+    }
+
+    $("aviso-abiertas").textContent = "";
+
+    banco = barajar(filtradas);
+    indice = 0;
+    aciertos = 0;
+    respondidas = 0;
+    corregida = false;
+
+    $("config-abiertas").classList.add("test-oculto");
+    $("zona-resultado-abiertas").classList.add("test-oculto");
+    $("zona-abiertas").classList.remove("test-oculto");
+
+    pintarPregunta();
+  }
+
+  function pintarPregunta() {
+    const q = banco[indice];
+    corregida = false;
+
+    $("contador-abiertas").textContent = "Pregunta " + (indice + 1) + " / " + banco.length;
+    $("marcador-abiertas").textContent = "Correctas: " + aciertos + " / " + respondidas;
+
+    const nivelTxt = { basico: "Básico", medio: "Medio", avanzado: "Avanzado" }[q.nivel] || "Medio";
+    $("etiqueta-abierta").textContent = DATOS[tema].nombre + " · " + nivelTxt;
+    $("enunciado-abierta").textContent = q.q;
+
+    $("respuesta-alumno").value = "";
+    $("respuesta-alumno").disabled = false;
+    $("respuesta-alumno").focus();
+
+    $("veredicto").classList.add("test-oculto");
+    $("btn-comprobar-abierta").hidden = false;
+    $("btn-siguiente-abierta").hidden = true;
+    $("btn-siguiente-abierta").textContent =
+      indice === banco.length - 1 ? "Ver resultado" : "Siguiente pregunta";
+  }
+
+  /* -------------------------------------------------------
+     Comprobación
+  ------------------------------------------------------- */
+  function comprobar() {
+    if (corregida) return;
+
+    const q = banco[indice];
+    const respuesta = $("respuesta-alumno").value.trim();
+
+    if (!respuesta) {
+      alert("Escribe una respuesta antes de comprobar.");
+      return;
+    }
+
+    corregida = true;
+    respondidas++;
+
+    const bien = esCorrecta(respuesta, q.respuestas);
+    if (bien) aciertos++;
+
+    const v = $("veredicto");
+    v.classList.remove("test-oculto", "ok", "ko");
+    v.classList.add(bien ? "ok" : "ko");
+
+    $("veredicto-icono").textContent = bien ? "✔" : "✘";
+    $("veredicto-titulo").textContent = bien
+      ? "¡Correcto! Tu respuesta es válida."
+      : "Incorrecto. La respuesta no es la esperada.";
+
+    $("veredicto-explicacion").textContent = bien
+      ? (q.explicacion ? q.explicacion : "Encaja con la respuesta oficial del tema.")
+      : (q.explicacion ? "Pista: " + q.explicacion : "Repasa este concepto y vuelve a intentarlo.");
+
+    $("respuesta-correcta").textContent = "Respuesta oficial: " + q.solucion;
+
+    $("respuesta-alumno").disabled = true;
+    $("btn-comprobar-abierta").hidden = true;
+    $("btn-siguiente-abierta").hidden = false;
+
+    $("marcador-abiertas").textContent = "Correctas: " + aciertos + " / " + respondidas;
+  }
+
+  function siguiente() {
+    if (indice === banco.length - 1) {
+      mostrarResultado();
+      return;
+    }
+    indice++;
+    pintarPregunta();
+  }
+
+  function mostrarResultado() {
+    const total = banco.length;
+    const nota = Math.round((aciertos / total) * 100);
+
+    $("zona-abiertas").classList.add("test-oculto");
+    $("zona-resultado-abiertas").classList.remove("test-oculto");
+
+    $("nota-abiertas").textContent = aciertos + " / " + total;
+    $("nota-abiertas").className = "nota " + claseNota(nota);
+    $("detalle-abiertas").textContent =
+      "Has contestado bien " + aciertos + " de las " + total +
+      " preguntas (" + nota + "%). " + mensajeNivel(nota);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* -------------------------------------------------------
+     Salir / repetir
+  ------------------------------------------------------- */
+  function salir() {
+    if (
+      respondidas > 0 &&
+      respondidas < banco.length &&
+      !confirm("¿Seguro que quieres salir? Se perderá tu progreso.")
+    ) {
+      return;
+    }
+    volverAConfig();
+  }
+
+  function volverAConfig() {
+    $("zona-abiertas").classList.add("test-oculto");
+    $("zona-resultado-abiertas").classList.add("test-oculto");
+    $("config-abiertas").classList.remove("test-oculto");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* -------------------------------------------------------
+     Arranque
+  ------------------------------------------------------- */
+  function iniciar() {
+    pintarTemas();
+    prepararChips();
+
+    $("btn-empezar-abiertas").addEventListener("click", empezar);
+    $("btn-comprobar-abierta").addEventListener("click", comprobar);
+    $("btn-siguiente-abierta").addEventListener("click", siguiente);
+    $("btn-salir-abiertas").addEventListener("click", salir);
+    $("btn-repetir-abiertas").addEventListener("click", empezar);
+    $("btn-cambiar-abiertas").addEventListener("click", volverAConfig);
+
+    // Intro con Enter
+    $("respuesta-alumno").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        if (!corregida) comprobar();
+        else siguiente();
+      }
+    });
+  }
+
+  return { iniciar, volverAConfig };
+})();
+
+</script>
+<script>
+/* =========================================================
+   app.js  ·  Navegación entre bloques y arranque general
+   ========================================================= */
+
+// Lista de temas disponibles. Se genera a partir de los ficheros de datos:
+// si añades un fichero nuevo en js/datos/ con su clave, aparecerá solo.
+let TEMAS = [];
+
+function registrarTemas() {
+  TEMAS = Object.keys(DATOS);
+  // Orden deseado en la interfaz, si existe
+  const orden = ["hardware", "virtualizacion", "windows", "ubuntu", "redes"];
+  TEMAS.sort((a, b) => {
+    const ia = orden.indexOf(a);
+    const ib = orden.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+}
+
+function cambiarModo(modo) {
+  document.querySelectorAll(".btn-nav").forEach((b) =>
+    b.classList.toggle("activo", b.dataset.modo === modo)
+  );
+
+  $("panel-test").classList.toggle("test-oculto", modo !== "test");
+  $("panel-abiertas").classList.toggle("test-oculto", modo !== "abiertas");
+
+  // Volvemos siempre a la pantalla de configuración del bloque activo
+  if (modo === "test") {
+    Abiertas.volverAConfig();
+  } else {
+    TestMultiple.volverAConfig();
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  registrarTemas();
+
+  document.querySelectorAll(".btn-nav").forEach((btn) => {
+    btn.addEventListener("click", () => cambiarModo(btn.dataset.modo));
+  });
+
+  TestMultiple.iniciar();
+  Abiertas.iniciar();
+});
+
+</script>
+</body>
+</html>
