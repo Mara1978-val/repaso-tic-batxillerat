@@ -528,6 +528,35 @@ main{
 .conf-barra-relleno.excedido{background:linear-gradient(90deg,var(--rojo),#ff9b9b)}
 .conf-correcto{color:var(--verde);font-weight:600}
 
+/* ---------- Simulador sencillo: elige una pieza ---------- */
+.mont-opciones{display:grid;gap:10px}
+.mont-opcion{
+  display:flex;align-items:center;gap:12px;width:100%;
+  background:#fff;border:2px solid var(--borde);border-radius:12px;
+  padding:14px 16px;font:inherit;font-size:1rem;font-weight:600;color:var(--texto);
+  cursor:pointer;text-align:left;transition:.15s;box-shadow:0 3px 0 var(--borde);
+}
+.mont-opcion:hover{border-color:var(--azul);background:var(--azul-claro);transform:translateY(-1px)}
+.mont-opcion-icono{font-size:1.8rem;line-height:1;flex-shrink:0}
+.mont-opcion.correcta{border-color:var(--verde);background:var(--verde-claro);box-shadow:0 3px 0 var(--verde)}
+.mont-opcion.incorrecta{border-color:var(--rojo);background:var(--rojo-claro);box-shadow:0 3px 0 var(--rojo)}
+.mont-opcion.bloqueada{pointer-events:none;opacity:.75}
+.mont-opcion.correcta.bloqueada{opacity:1}
+
+.mont-checklist{display:grid;gap:8px}
+.mont-check-item{
+  display:flex;align-items:center;gap:10px;padding:9px 11px;
+  border:1.5px solid var(--borde);border-radius:10px;background:#fdfbff;
+  font-size:.9rem;color:var(--texto-suave);
+}
+.mont-check-item.actual{border-color:var(--azul);background:var(--azul-claro);color:var(--texto);font-weight:700}
+.mont-check-item.hecho{border-color:var(--verde);background:var(--verde-claro);color:var(--verde);font-weight:600}
+.mont-check-icono{
+  width:24px;height:24px;display:grid;place-items:center;border-radius:50%;
+  background:#fff;border:1.5px solid var(--borde);font-size:.85rem;flex-shrink:0;
+}
+.mont-check-item.hecho .mont-check-icono{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:700}
+
 footer{
   text-align:center;
   padding:18px;

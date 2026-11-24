@@ -11,9 +11,10 @@ Aplicación de repaso con cuatro bloques:
 3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
    y de binario a decimal, con resultado, explicación y aciertos.
 4. **Montar un equipo** — dos actividades:
-   - *Simulador de montaje*: se elige una pieza de la bandeja y se pulsa su ranura,
-     siguiendo pasos guiados (placa base y caja). Los errores se explican, hay pistas
-     y la nota final se calcula según los fallos. El progreso se guarda en el navegador.
+   - *Simulador de montaje*: en cada paso hay una pregunta y tres piezas grandes;
+     se pulsa la correcta. Muy fácil para Bachillerato. Dos prácticas (placa base y
+     caja), errores explicados, pistas, lista de progreso y nota final. El progreso
+     se guarda en el navegador.
    - *Configurador de equipo*: se eligen los componentes dentro de un presupuesto y
      se comprueba compatibilidad (socket, memoria, formato de placa, fuente y precio).
 

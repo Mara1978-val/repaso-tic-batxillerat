@@ -264,7 +264,7 @@
 
     <div class="conv-intro mont-intro">
       <h2>Prácticas de montaje de un equipo</h2>
-      <p>Aprende a montar un PC por dentro: coloca cada pieza en su ranura siguiendo los pasos, o diseña una configuración compatible sin pasar del presupuesto.</p>
+      <p>Monta un PC paso a paso eligiendo la pieza correcta entre tres opciones, o diseña una configuración compatible sin pasar del presupuesto.</p>
     </div>
 
     <div class="mont-subnav" id="mont-subnav">
@@ -282,7 +282,7 @@
         </div>
         <div class="bloque-config mont-config-info">
           <h2>Cómo funciona</h2>
-          <p>Selecciona una pieza de la bandeja y pulsa la ranura donde debe ir. Si te equivocas, el simulador te explica por qué. Tu progreso se guarda en este navegador.</p>
+          <p>Muy fácil: en cada paso ves una pregunta y tres piezas. Pulsas la correcta y sigues. Si te equivocas, te explicamos por qué. Tu progreso se guarda en este navegador.</p>
         </div>
         <button class="btn-grande" id="mont-empezar">Empezar el montaje</button>
       </div>
@@ -298,28 +298,28 @@
         <div class="mont-layout">
           <div class="mont-card mont-paso-card">
             <p class="etiqueta-tema" id="mont-etiqueta"></p>
+            <p class="mont-nota" id="mont-subtitulo"></p>
             <h3 id="mont-paso-titulo"></h3>
             <p id="mont-paso-texto"></p>
-            <p class="mont-parcial" id="mont-parcial"></p>
             <div class="mont-ayuda test-oculto" id="mont-ayuda-texto"></div>
             <div class="acciones">
               <button class="btn-peq" id="mont-pista">Ver pista</button>
-              <button class="btn-peq" id="mont-reiniciar">Reiniciar práctica</button>
+              <button class="btn-peq" id="mont-reiniciar">Empezar de nuevo</button>
             </div>
             <div class="mont-feedback test-oculto" id="mont-feedback"></div>
             <button class="btn-grande test-oculto" id="mont-siguiente">Siguiente paso</button>
           </div>
 
           <div class="mont-card">
-            <h3 class="mont-card-titulo">Banco de trabajo</h3>
-            <p class="mont-nota" id="mont-board-title"></p>
-            <div class="mont-board" id="mont-board"></div>
+            <h3 class="mont-card-titulo">¿Qué pieza es?</h3>
+            <p class="mont-nota">Pulsa solo una respuesta.</p>
+            <div class="mont-opciones" id="mont-opciones"></div>
           </div>
 
           <div class="mont-card">
-            <h3 class="mont-card-titulo">Bandeja de componentes</h3>
-            <p class="mont-nota">Pulsa una pieza y después la ranura donde va.</p>
-            <div class="mont-piezas" id="mont-piezas"></div>
+            <h3 class="mont-card-titulo">Tu equipo</h3>
+            <div class="mont-checklist" id="mont-checklist"></div>
+            <p class="mont-nota" id="mont-progreso-texto"></p>
           </div>
         </div>
       </div>

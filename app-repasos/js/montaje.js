@@ -1,188 +1,129 @@
 /* =========================================================
    montaje.js  ·  Prácticas de montaje y configuración de un PC
    ---------------------------------------------------------
-   Dos actividades nuevas:
-   1) Simulador de montaje paso a paso (placa base y caja).
-   2) Configurador de equipo (compatibilidad y presupuesto).
+   Dos actividades:
+   1) Simulador de montaje sencillo: en cada paso se elige una
+      pieza entre tres opciones grandes. Pensado para Bachillerato.
+   2) Configurador de equipo: compatibilidad y presupuesto.
    El progreso se guarda en este navegador (localStorage).
    ========================================================= */
 
 window.Montaje = (function () {
   "use strict";
 
-  const CLAVE_SIM = "repaso-tic-montaje-sim-v1";
+  const CLAVE_SIM = "repaso-tic-montaje-sim-v2";
   const CLAVE_CONF = "repaso-tic-montaje-conf-v1";
 
   /* =======================================================
-     1) DATOS DEL SIMULADOR
+     1) SIMULADOR SENCILLO
+     Cada paso: una instrucción corta y 3 opciones. Solo una es correcta.
      ======================================================= */
   const practicas = {
     placa: {
       nombre: "Montaje de la placa base",
-      subtitulo: "Placa ASUS PRIME B760-PLUS D4, sobre la mesa de trabajo",
-      slots: [
-        { id: "socket", icono: "🔲", label: "Socket LGA1700" },
-        { id: "ram", icono: "▮▮", label: "Ranuras RAM A2 / B2" },
-        { id: "m2", icono: "▬", label: "Ranura M.2_1" },
-        { id: "m2anclaje", icono: "🔩", label: "Anclaje del SSD M.2" },
-        { id: "disipador", icono: "❄️", label: "Zona del disipador" },
-        { id: "cpufan", icono: "🔌", label: "Conector CPU_FAN" }
-      ],
-      piezas: [
-        { id: "cpu", icono: "🧠", label: "Intel Core i5 (LGA1700)" },
-        { id: "cpuGirada", icono: "🔄", label: "CPU girada 90°", motivo: "El triángulo dorado de la CPU debe coincidir con la marca del socket. Girada así no encaja y doblarías los contactos." },
-        { id: "cpuAM4", icono: "🧠", label: "Ryzen 5 (socket AM4)", motivo: "Un procesador AM4 no encaja en un socket LGA1700. Cada socket tiene un tipo de contactos distinto." },
-        { id: "ramDDR4", icono: "▮▮", label: "2× DDR4 16 GB" },
-        { id: "ramDDR5", icono: "▮▮", label: "2× DDR5 16 GB", motivo: "Esta placa es versión D4: usa memorias DDR4. Una DDR5 tiene el hueco de la muesca en otra posición y no entra." },
-        { id: "ssdM2", icono: "▬", label: "SSD M.2 NVMe 1 TB" },
-        { id: "ssdSata", icono: "▭", label: "SSD SATA 2,5″", motivo: "Ese es un SSD SATA de 2,5 pulgadas: va en una bahía y se conecta por cables SATA, no en la ranura M.2." },
-        { id: "tornillo", icono: "🔩", label: "Tornillo M.2" },
-        { id: "pasta", icono: "💧", label: "Pasta térmica" },
-        { id: "disipador", icono: "❄️", label: "Disipador de la CPU" },
-        { id: "cableFan", icono: "🔌", label: "Cable del ventilador" }
-      ],
+      subtitulo: "Primero montamos la placa, antes de meterla en la caja",
       pasos: [
         {
-          titulo: "1 · Preparar el puesto e instalar el procesador",
-          texto: "Coloca la alfombrilla antiestática y la pulsera a tierra. Abre la palanca del socket, pon el procesador en la posición correcta y cierra el mecanismo.",
-          pista: "Fíjate en el triángulo dorado de una esquina de la CPU: debe coincidir con la marca del socket. Nunca fuerces el procesador.",
-          explicacion: "El socket LGA1700 tiene los contactos en la placa (por eso se llama LGA). La muesca y el triángulo garantizan la orientación correcta; si se fuerza, se doblan los pines.",
-          reqs: [{ pieza: "cpu", ranura: "socket" }]
-        },
-        {
-          titulo: "2 · Memoria RAM en doble canal",
-          texto: "Instala los dos módulos DDR4 en las ranuras recomendadas para funcionar en doble canal.",
-          pista: "En una placa de cuatro ranuras, las recomendadas suelen ser A2 y B2, contando desde el procesador. Encaja primero un módulo y después el otro hasta oír el clic.",
-          explicacion: "Las ranuras A2 y B2 forman el par recomendado para doble canal: la memoria trabaja a dos canales y el equipo rinde mejor. La placa D4 solo admite memoria DDR4.",
-          reqs: [{ pieza: "ramDDR4", ranura: "ram" }]
-        },
-        {
-          titulo: "3 · Instalar el SSD M.2 y fijarlo",
-          texto: "Introduce el SSD M.2 NVMe en la ranura libre y fíjalo con su tornillo en el punto de anclaje.",
-          pista: "El SSD se inserta en ángulo, se aprieta suavemente hacia abajo y se sujeta con un tornillo Phillips en el soporte trasero.",
-          explicacion: "El SSD M.2 NVMe va directamente en una ranura de la placa y usa el bus PCIe, mucho más rápido que el SATA. El tornillo evita que se suelte con las vibraciones.",
-          reqs: [
-            { pieza: "ssdM2", ranura: "m2" },
-            { pieza: "tornillo", ranura: "m2anclaje" }
+          titulo: "1 · Pon el procesador",
+          texto: "Elige la pieza que va en el socket de la placa.",
+          pista: "Es el 'cerebro' del ordenador. Entra en el socket respetando el triángulo de una esquina.",
+          explicacion: "El procesador encaja en el socket LGA1700. No hay que forzarlo: la marca de la esquina indica la orientación.",
+          correcta: "cpu",
+          opciones: [
+            { id: "ram", icono: "▮▮", label: "Memoria RAM", motivo: "La memoria no va en el socket, sino en las ranuras largas de al lado." },
+            { id: "cpu", icono: "🧠", label: "Procesador" },
+            { id: "ssd", icono: "▬", label: "SSD M.2", motivo: "El SSD M.2 es una tarjetita fina que va en su propia ranura." }
           ]
         },
         {
-          titulo: "4 · Disipador y ventilador de la CPU",
-          texto: "Aplica un punto de pasta térmica, coloca el disipador apretando los anclajes en diagonal y conecta el ventilador al conector CPU_FAN.",
-          pista: "La pasta del tamaño de un guisante va en el centro. Aprieta los anclajes alternando lados (en diagonal) para que la presión sea uniforme.",
-          explicacion: "La pasta térmica elimina el aire entre CPU y disipador. El ventilador debe ir en CPU_FAN para que la placa controle su velocidad según la temperatura. Apretar en diagonal evita presiones desiguales.",
-          reqs: [
-            { pieza: "pasta", ranura: "disipador" },
-            { pieza: "disipador", ranura: "disipador" },
-            { pieza: "cableFan", ranura: "cpufan" }
+          titulo: "2 · Instala la memoria RAM",
+          texto: "Elige la memoria que corresponde a esta placa (versión D4).",
+          pista: "Fíjate en las siglas: esta placa usa DDR4, no DDR5. Además conviene usar dos módulos iguales.",
+          explicacion: "Dos módulos DDR4 en las ranuras A2 y B2 trabajan en doble canal. La placa D4 no admite memorias DDR5.",
+          correcta: "ram",
+          opciones: [
+            { id: "ddr5", icono: "▮▮", label: "Memoria DDR5", motivo: "Esta placa es D4: la DDR5 tiene la muesca en otro sitio y no encaja." },
+            { id: "disipador", icono: "❄️", label: "Disipador", motivo: "El disipador va encima del procesador, no en las ranuras de memoria." },
+            { id: "ram", icono: "▮▮", label: "Memoria DDR4 (2 módulos)" }
+          ]
+        },
+        {
+          titulo: "3 · Coloca el SSD",
+          texto: "Elige el disco que se enchufa directamente en la ranura M.2.",
+          pista: "Es una tarjeta pequeña, del tamaño de un chicle, que se fija con un tornillo.",
+          explicacion: "El SSD M.2 NVMe va en la ranura M.2 y usa el bus PCIe, mucho más rápido que un disco SATA.",
+          correcta: "ssd",
+          opciones: [
+            { id: "hdd", icono: "💽", label: "Disco duro 3,5″", motivo: "El disco duro va en una jaula de la caja con cables SATA, no en la placa." },
+            { id: "ssd", icono: "▬", label: "SSD M.2 NVMe" },
+            { id: "grafica", icono: "🎮", label: "Tarjeta gráfica", motivo: "La gráfica va en la ranura PCIe x16, mucho más grande." }
+          ]
+        },
+        {
+          titulo: "4 · Pón el disipador",
+          texto: "Elige qué pieza va encima del procesador para refrigerarlo.",
+          pista: "Lleva un ventilador que se conecta al conector CPU_FAN de la placa.",
+          explicacion: "El disipador con su ventilador evita que la CPU se caliente. Se fija apretando los anclajes en diagonal.",
+          correcta: "disipador",
+          opciones: [
+            { id: "fuente", icono: "⚡", label: "Fuente de alimentación", motivo: "La fuente va en la caja, no sobre el procesador." },
+            { id: "disipador", icono: "❄️", label: "Disipador con ventilador" },
+            { id: "tapa", icono: "🪟", label: "Tapa lateral", motivo: "La tapa cierra la caja al final de todo." }
           ]
         }
       ]
     },
 
     caja: {
-      nombre: "Montaje de componentes en la caja",
-      subtitulo: "Chasis ATX: placa, fuente, conexiones internas, gráfica y cierre",
-      slots: [
-        { id: "separadores", icono: "🔩", label: "Separadores del chasis" },
-        { id: "bandeja", icono: "▤", label: "Bandeja de la placa" },
-        { id: "tornillosPlaca", icono: "🔩", label: "Fijación de la placa" },
-        { id: "bahiaFuente", icono: "⚡", label: "Bahía de la fuente" },
-        { id: "atx", icono: "🔌", label: "ATX 24 pines" },
-        { id: "eps", icono: "🔌", label: "EPS 8 pines (4+4)" },
-        { id: "usb3", icono: "🔌", label: "Cabecera USB 3.0" },
-        { id: "audio", icono: "🔌", label: "Cabecera HD AUDIO" },
-        { id: "panel", icono: "🔌", label: "Conectores del frontal" },
-        { id: "pcie", icono: "🎮", label: "Ranura PCIe x16" },
-        { id: "pciePower", icono: "🔌", label: "Alimentación PCIe" },
-        { id: "cableado", icono: "🧵", label: "Gestión de cables" },
-        { id: "tapa", icono: "🪟", label: "Tapa lateral" }
-      ],
-      piezas: [
-        { id: "revision", icono: "🔍", label: "Comprobar separadores" },
-        { id: "placa", icono: "▤", label: "Placa base ya montada" },
-        { id: "tornillos", icono: "🔩", label: "4 tornillos de la placa" },
-        { id: "fuente", icono: "⚡", label: "Fuente ATX 650 W" },
-        { id: "fuenteSFX", icono: "⚡", label: "Fuente SFX 300 W", motivo: "Una fuente SFX de 300 W no encaja en una bahía ATX y además no daría potencia suficiente a la gráfica." },
-        { id: "cableATX", icono: "🔌", label: "Cable ATX 24 pines" },
-        { id: "cableEPS", icono: "🔌", label: "Cable EPS 8 pines (4+4)" },
-        { id: "cableUSB3", icono: "🔌", label: "Cable USB 3.0 frontal" },
-        { id: "cableAudio", icono: "🔌", label: "Cable HD AUDIO frontal" },
-        { id: "cablePanel", icono: "🔌", label: "POWER / RESET / LED" },
-        { id: "cableIDE", icono: "🔌", label: "Cable IDE 40 pines", motivo: "El cable IDE es de discos antiguos: hoy no se usa para el frontal ni para alimentar una gráfica." },
-        { id: "grafica", icono: "🎮", label: "Tarjeta gráfica PCIe x16" },
-        { id: "cablePCIe", icono: "🔌", label: "Cable PCIe de 6 pines" },
-        { id: "bridas", icono: "🧵", label: "Bridas de cableado" },
-        { id: "tapa", icono: "🪟", label: "Tapa lateral" }
-      ],
+      nombre: "Montaje dentro de la caja",
+      subtitulo: "La placa ya está preparada: ahora la metemos en la caja",
       pasos: [
         {
-          titulo: "1 · Comprobar los separadores",
-          texto: "Antes de colocar la placa, revisa que los separadores metálicos coincidan con los agujeros de fijación del formato ATX.",
-          pista: "Si hay un separador donde la placa no tiene agujero, puede cortar una pista. Si falta, la placa queda sin apoyo.",
-          explicacion: "Los separadores (standoffs) mantienen la placa separada del chasis y la subjectan. Deben coincidir exactamente con los tornillos de la placa.",
-          reqs: [{ pieza: "revision", ranura: "separadores" }]
-        },
-        {
-          titulo: "2 · Colocar la placa en la bandeja",
-          texto: "Introduce la placa con los puertos traseros hacia su abertura, alinéala y apóyala sobre los separadores.",
-          pista: "La placa entra inclinada: primero encaja el lateral de los puertos traseros en la abertura y después baja el resto.",
-          explicacion: "La placa se monta sobre los separadores con la chapa de E/S trasera encajada en su hueco. Nunca debe tocar directamente la chapa metálica de la caja.",
-          reqs: [{ pieza: "placa", ranura: "bandeja" }]
-        },
-        {
-          titulo: "3 · Fijar la placa con tornillos",
-          texto: "Atornilla la placa a los separadores con un destornillador Phillips, sin apretar en exceso.",
-          pista: "Empieza por un tornillo de una esquina para que la placa no se mueva, y después coloca los demás.",
-          explicacion: "Los tornillos sujetan la placa y garantizan el contacto a tierra. Apretar demasiado puede deformar el PCB o dañar los separadores.",
-          reqs: [{ pieza: "tornillos", ranura: "tornillosPlaca" }]
-        },
-        {
-          titulo: "4 · Colocar la fuente de alimentación",
-          texto: "Introduce la fuente ATX en su bahía, con el ventilador orientado a la rejilla, y atorníllala al chasis.",
-          pista: "La fuente se Coloca desde el interior de la caja y se fija por la parte trasera con cuatro tornillos.",
-          explicacion: "La fuente ATX se atornilla al chasis. Su ventilador suele tomar aire por la rejilla trasera y expulsarlo hacia dentro.",
-          reqs: [{ pieza: "fuente", ranura: "bahiaFuente" }]
-        },
-        {
-          titulo: "5 · Conectar la alimentación de la placa",
-          texto: "Conecta el conector ATX de 24 pines y el EPS de 8 pines (4+4) de la CPU.",
-          pista: "Ambos conectores tienen una guía y una muesca: encajan solo en una posición. El EPS no se debe confundir con un PCIe.",
-          explicacion: "El ATX de 24 pines alimenta la placa y el EPS 4+4 alimenta al procesador. Son independientes: si falta el EPS, el equipo no arranca.",
-          reqs: [
-            { pieza: "cableATX", ranura: "atx" },
-            { pieza: "cableEPS", ranura: "eps" }
+          titulo: "1 · Mete la placa en la caja",
+          texto: "Elige qué componente se fija a la bandeja del chasis.",
+          pista: "Los puertos traseros deben quedar mirando a la abertura de la caja.",
+          explicacion: "La placa se apoya sobre los separadores metálicos y se atornilla. No debe tocar directamente la chapa.",
+          correcta: "placa",
+          opciones: [
+            { id: "placa", icono: "▤", label: "Placa base montada" },
+            { id: "fuente", icono: "⚡", label: "Fuente de alimentación", motivo: "La fuente va en su propia bahía, debajo de la placa." },
+            { id: "grafica", icono: "🎮", label: "Tarjeta gráfica", motivo: "La gráfica se enchufa en la placa, no se atornilla a la bandeja." }
           ]
         },
         {
-          titulo: "6 · Conectar el panel frontal",
-          texto: "Conecta USB 3.0, HD AUDIO y los cables POWER SW, RESET SW, POWER LED y HDD LED del frontal.",
-          pista: "Los conectores del frontal son pequeños y llevan escrito su nombre. Los LEDs tienen polaridad: si no encienden, invierte el conector.",
-          explicacion: "El panel frontal agrupa USB, audio y los botones de encendido y reinicio. Los cables de señal respetan la polaridad en el caso de los indicadores LED.",
-          reqs: [
-            { pieza: "cableUSB3", ranura: "usb3" },
-            { pieza: "cableAudio", ranura: "audio" },
-            { pieza: "cablePanel", ranura: "panel" }
+          titulo: "2 · Coloca la fuente",
+          texto: "Elige la pieza que da energía a todo el equipo.",
+          pista: "Va en la bahía inferior o superior de la caja y se atornilla por detrás.",
+          explicacion: "La fuente ATX convierte la corriente de la red en las tensiones que usa el ordenador.",
+          correcta: "fuente",
+          opciones: [
+            { id: "ssd", icono: "▬", label: "SSD M.2", motivo: "El SSD ya está en la placa y no necesita bahía." },
+            { id: "ram", icono: "▮▮", label: "Memoria RAM", motivo: "La RAM ya está instalada en la placa." },
+            { id: "fuente", icono: "⚡", label: "Fuente ATX" }
           ]
         },
         {
-          titulo: "7 · Instalar la tarjeta gráfica",
-          texto: "Inserta la tarjeta en la ranura PCIe x16, fíjala a la caja y conecta su cable de alimentación PCIe.",
-          pista: "Retira la tapa de la ranura trasera, alinea la tarjeta hasta oír el clic y atorníllala al chasis antes de conectar el cable.",
-          explicacion: "La gráfica va en PCIe x16. El conector de alimentación PCIe (6 u 8 pines) es distinto del EPS de la CPU, aunque se parecen.",
-          reqs: [
-            { pieza: "grafica", ranura: "pcie" },
-            { pieza: "cablePCIe", ranura: "pciePower" }
+          titulo: "3 · Conecta los cables",
+          texto: "Elige el conector que alimenta la placa (24 pines).",
+          pista: "Es el conector más grande y ancho de la fuente.",
+          explicacion: "El conector ATX de 24 pines alimenta la placa. El cable EPS de 4+4 va aparte, para el procesador.",
+          correcta: "atx",
+          opciones: [
+            { id: "usb", icono: "🔌", label: "Cable USB del frontal", motivo: "Ese cable lleva datos al panel frontal, no alimenta la placa." },
+            { id: "atx", icono: "🔌", label: "Conector ATX de 24 pines" },
+            { id: "audio", icono: "🔌", label: "Cable de audio", motivo: "El conector de audio es pequeño y va a la cabecera HD AUDIO." }
           ]
         },
         {
-          titulo: "8 · Ordenar los cables y cerrar la caja",
-          texto: "Recoge los cables con bridas, sin tensarlos y dejando libres los ventiladores, y coloca la tapa lateral con sus tornillos.",
-          pista: "Deja holgura para no tirar de los conectores y revisa que ningún cable toque las aspas de un ventilador.",
-          explicacion: "Una buena gestión de cables mejora el flujo de aire y evita tirones. La caja se cierra solo con el equipo desconectado de la red eléctrica.",
-          reqs: [
-            { pieza: "bridas", ranura: "cableado" },
-            { pieza: "tapa", ranura: "tapa" }
+          titulo: "4 · Instala la gráfica",
+          texto: "Elige la pieza que va en la ranura PCIe x16.",
+          pista: "Es la tarjeta más larga y ocupa la ranura ancha cerca del procesador.",
+          explicacion: "La tarjeta gráfica se enchufa en PCIe x16 y se atornilla a la caja. Después se le conecta su cable de alimentación.",
+          correcta: "grafica",
+          opciones: [
+            { id: "grafica", icono: "🎮", label: "Tarjeta gráfica" },
+            { id: "tapa", icono: "🪟", label: "Tapa lateral", motivo: "La tapa se pone al final, cuando ya está todo dentro." },
+            { id: "ssd", icono: "▬", label: "SSD M.2", motivo: "El SSD M.2 ya está colocado en la placa." }
           ]
         }
       ]
@@ -192,7 +133,7 @@ window.Montaje = (function () {
   const ordenPracticas = ["placa", "caja"];
 
   /* =======================================================
-     2) DATOS DEL CONFIGURADOR
+     2) CONFIGURADOR (sin cambios respecto a la versión anterior)
      ======================================================= */
   const perfiles = {
     ofimatica: { nombre: "Ofimática y estudio", presupuesto: 650 },
@@ -278,18 +219,16 @@ window.Montaje = (function () {
     practicaId: "placa",
     paso: 0,
     errores: 0,
-    instalados: {},   // { ranuraId: [piezaId, ...] }
     activo: false,
     esperando: false
   };
 
   let conf = {
     perfil: "ofimatica",
-    seleccion: {},    // { categoriaId: opcionId }
+    seleccion: {},
     intentos: 0
   };
 
-  let piezaSeleccionada = null;
   let subActiva = "simulador";
 
   function leer(clave, porDefecto) {
@@ -304,15 +243,11 @@ window.Montaje = (function () {
   function guardar(clave, objeto) {
     try {
       localStorage.setItem(clave, JSON.stringify(objeto));
-    } catch (e) { /* modo sin almacenamiento: seguimos en memoria */ }
+    } catch (e) { /* sin almacenamiento: seguimos en memoria */ }
   }
 
   function guardarSim() { guardar(CLAVE_SIM, sim); }
   function guardarConf() { guardar(CLAVE_CONF, conf); }
-
-  function piezaPorId(practica, id) {
-    return practica.piezas.find((p) => p.id === id);
-  }
 
   function opcionPorId(categoria, id) {
     return categoria.opciones.find((o) => o.id === id);
@@ -342,12 +277,8 @@ window.Montaje = (function () {
       b.dataset.practica = id;
       b.addEventListener("click", () => {
         if (id === sim.practicaId) return;
-        if (sim.activo && !confirm("Cambiar de práctica reiniciará el montaje actual. ¿Continuar?")) return;
-        sim = {
-          practicaId: id, paso: 0, errores: 0, instalados: {},
-          activo: false, esperando: false
-        };
-        piezaSeleccionada = null;
+        if (sim.activo && !confirm("Cambiar de práctica reiniciará el montaje. ¿Continuar?")) return;
+        sim = { practicaId: id, paso: 0, errores: 0, activo: false, esperando: false };
         guardarSim();
         renderPracticas();
         actualizarBotonEmpezar();
@@ -357,99 +288,34 @@ window.Montaje = (function () {
   }
 
   function actualizarBotonEmpezar() {
-    const b = $("mont-empezar");
-    const hayAvance = sim.paso > 0 || Object.keys(sim.instalados || {}).length > 0;
-    b.textContent = sim.activo && hayAvance
+    $("mont-empezar").textContent = sim.activo && sim.paso > 0
       ? "Continuar el montaje guardado"
       : "Empezar el montaje";
   }
 
-  function renderBoard() {
+  function renderChecklist() {
     const p = practicas[sim.practicaId];
-    const paso = p.pasos[sim.paso];
-    const yaHechos = paso.reqs.filter((r) =>
-      (sim.instalados[r.ranura] || []).includes(r.pieza)
-    ).length;
-
-    $("mont-board-title").textContent = p.subtitulo;
-    const board = $("mont-board");
-    board.innerHTML = "";
-
-    p.slots.forEach((slot) => {
-      const btn = document.createElement("button");
-      btn.className = "mont-slot";
-      btn.dataset.ranura = slot.id;
-
-      const esRequerido = paso.reqs.some((r) => r.ranura === slot.id && !(sim.instalados[slot.id] || []).includes(r.pieza));
-      if (esRequerido) btn.classList.add("requerido");
-      if ((sim.instalados[slot.id] || []).length) btn.classList.add("ocupado");
-
-      const icono = document.createElement("span");
-      icono.className = "mont-slot-icono";
-      icono.textContent = slot.icono;
-      const label = document.createElement("span");
-      label.className = "mont-slot-label";
-      label.textContent = slot.label;
-
-      btn.appendChild(icono);
-      btn.appendChild(label);
-
-      const chips = document.createElement("span");
-      chips.className = "mont-slot-chips";
-      (sim.instalados[slot.id] || []).forEach((pid) => {
-        const pieza = piezaPorId(p, pid);
-        if (!pieza) return;
-        const chip = document.createElement("span");
-        chip.className = "mont-chip";
-        chip.textContent = "✓ " + pieza.label;
-        chips.appendChild(chip);
-      });
-      btn.appendChild(chips);
-
-      btn.addEventListener("click", () => tratarRanura(slot.id));
-      board.appendChild(btn);
-    });
-
-    $("mont-parcial").textContent = `${yaHechos} / ${paso.reqs.length} conexiones de este paso`;
-  }
-
-  function renderPiezas() {
-    const p = practicas[sim.practicaId];
-    const cont = $("mont-piezas");
+    const cont = $("mont-checklist");
     cont.innerHTML = "";
-
-    p.piezas.forEach((pieza) => {
-      const usada = Object.values(sim.instalados).some((arr) => arr.includes(pieza.id));
-      const b = document.createElement("button");
-      b.className = "mont-pieza" + (piezaSeleccionada === pieza.id ? " seleccionada" : "") + (usada ? " usada" : "");
-      b.dataset.pieza = pieza.id;
-      b.title = pieza.motivo || pieza.label;
+    p.pasos.forEach((paso, i) => {
+      const item = document.createElement("div");
+      item.className = "mont-check-item";
+      if (i < sim.paso) item.classList.add("hecho");
+      else if (i === sim.paso) item.classList.add("actual");
 
       const icono = document.createElement("span");
-      icono.className = "mont-pieza-icono";
-      icono.textContent = pieza.icono;
-      const nombre = document.createElement("span");
-      nombre.className = "mont-pieza-label";
-      nombre.textContent = pieza.label;
+      icono.className = "mont-check-icono";
+      const opcion = paso.opciones.find((o) => o.id === paso.correcta);
+      icono.textContent = i < sim.paso ? "✓" : (i === sim.paso ? opcion.icono : "·");
 
-      b.appendChild(icono);
-      b.appendChild(nombre);
-      b.addEventListener("click", () => {
-        if (sim.esperando) return;
-        if (usada) {
-          feedback("aviso", "Esa pieza ya está instalada. No hace falta repetirla.");
-          return;
-        }
-        piezaSeleccionada = piezaSeleccionada === pieza.id ? null : pieza.id;
-        renderPiezas();
-        if (piezaSeleccionada) {
-          feedback("aviso", `Has cogido <strong>${pieza.label}</strong>. Ahora pulsa la ranura o conector donde debe ir.`);
-        } else {
-          ocultarFeedback();
-        }
-      });
-      cont.appendChild(b);
+      const texto = document.createElement("span");
+      texto.textContent = paso.titulo.replace(/^\d+ · /, "");
+
+      item.appendChild(icono);
+      item.appendChild(texto);
+      cont.appendChild(item);
     });
+    $("mont-progreso-texto").textContent = `${sim.paso} de ${p.pasos.length} pasos terminados`;
   }
 
   function renderPaso() {
@@ -457,87 +323,59 @@ window.Montaje = (function () {
     const paso = p.pasos[sim.paso];
 
     $("mont-contador").textContent = `Paso ${sim.paso + 1} / ${p.pasos.length}`;
-    $("mont-errores").textContent = `Errores: ${sim.errores}`;
     $("mont-barra").style.width = (sim.paso / p.pasos.length * 100) + "%";
+    $("mont-errores").textContent = `Errores: ${sim.errores}`;
     $("mont-etiqueta").textContent = p.nombre;
+    $("mont-subtitulo").textContent = p.subtitulo;
     $("mont-paso-titulo").textContent = paso.titulo;
     $("mont-paso-texto").textContent = paso.texto;
     $("mont-ayuda-texto").textContent = paso.pista;
     $("mont-ayuda-texto").classList.add("test-oculto");
-    $("mont-siguiente").classList.add("test-oculto");
     $("mont-pista").textContent = "Ver pista";
+    $("mont-siguiente").classList.add("test-oculto");
 
-    piezaSeleccionada = null;
-    renderBoard();
-    renderPiezas();
+    const cont = $("mont-opciones");
+    cont.innerHTML = "";
+    paso.opciones.forEach((op) => {
+      const b = document.createElement("button");
+      b.className = "mont-opcion";
+      b.dataset.opcion = op.id;
+      const icono = document.createElement("span");
+      icono.className = "mont-opcion-icono";
+      icono.textContent = op.icono;
+      const nombre = document.createElement("span");
+      nombre.textContent = op.label;
+      b.appendChild(icono);
+      b.appendChild(nombre);
+      b.addEventListener("click", () => elegir(op, b));
+      cont.appendChild(b);
+    });
+
+    renderChecklist();
+    ocultarFeedback();
   }
 
-  function tratarRanura(ranuraId) {
-    if (sim.esperando) return;
-
-    if (!piezaSeleccionada) {
-      feedback("aviso", "Primero selecciona una pieza de la bandeja y después pulsa la ranura donde va.");
-      return;
-    }
-
+  function elegir(op, boton) {
+    if (sim.esperando || boton.classList.contains("incorrecta")) return;
     const p = practicas[sim.practicaId];
     const paso = p.pasos[sim.paso];
-    const pieza = piezaPorId(p, piezaSeleccionada);
-    const req = paso.reqs.find((r) => r.ranura === ranuraId && !(sim.instalados[ranuraId] || []).includes(r.pieza));
 
-    if (!req) {
-      if (paso.reqs.some((r) => r.ranura === ranuraId)) {
-        feedback("aviso", "Esa ranura ya tiene la pieza de este paso. Sigue con la siguiente conexión.");
-      } else {
-        feedback("ko", "Esa ranura no interviene en este paso. Lee otra vez la instrucción y vuelve a intentarlo.");
-      }
-      registrarError();
-      return;
-    }
-
-    if (req.pieza !== pieza.id) {
-      if (paso.reqs.some((r) => r.pieza === pieza.id)) {
-        feedback("ko", `<strong>${pieza.label}</strong> es la pieza correcta, pero no va en esa ranura. Busca su conector correspondiente.`);
-      } else if (pieza.motivo) {
-        feedback("ko", `<strong>${pieza.label}</strong> no sirve aquí. ${pieza.motivo}`);
-      } else {
-        feedback("ko", `<strong>${pieza.label}</strong> no es la pieza que pide este paso. Prueba con otra.`);
-      }
-      registrarError();
-      return;
-    }
-
-    // Colocación correcta
-    if (!sim.instalados[ranuraId]) sim.instalados[ranuraId] = [];
-    sim.instalados[ranuraId].push(pieza.id);
-    piezaSeleccionada = null;
-    feedback("ok", `<strong>¡Correcto!</strong> ${pieza.label} colocado en su sitio. ${paso.explicacion}`);
-
-    const completado = paso.reqs.every((r) => (sim.instalados[r.ranura] || []).includes(r.pieza));
-    guardarSim();
-
-    if (completado) {
+    if (op.id === paso.correcta) {
       sim.esperando = true;
+      boton.classList.add("correcta");
+      $("mont-opciones").querySelectorAll(".mont-opcion").forEach((b) => b.classList.add("bloqueada"));
+      feedback("ok", `<strong>¡Correcto!</strong> ${paso.explicacion}`);
       $("mont-barra").style.width = ((sim.paso + 1) / p.pasos.length * 100) + "%";
-      $("mont-parcial").textContent = `${paso.reqs.length} / ${paso.reqs.length} conexiones de este paso`;
-      if (sim.paso === p.pasos.length - 1) {
-        $("mont-siguiente").textContent = "Ver resultado";
-      } else {
-        $("mont-siguiente").textContent = "Siguiente paso";
-      }
+      $("mont-siguiente").textContent = sim.paso === p.pasos.length - 1 ? "Ver resultado" : "Siguiente paso";
       $("mont-siguiente").classList.remove("test-oculto");
-      renderPiezas();
-      document.querySelectorAll(".mont-slot").forEach((el) => el.classList.add("bloqueado"));
+      guardarSim();
     } else {
-      renderBoard();
-      renderPiezas();
+      boton.classList.add("incorrecta");
+      sim.errores++;
+      $("mont-errores").textContent = `Errores: ${sim.errores}`;
+      feedback("ko", `<strong>No es esa.</strong> ${op.motivo || "Prueba con otra opción."}`);
+      guardarSim();
     }
-  }
-
-  function registrarError() {
-    sim.errores++;
-    $("mont-errores").textContent = `Errores: ${sim.errores}`;
-    guardarSim();
   }
 
   function avanzarPaso() {
@@ -564,7 +402,7 @@ window.Montaje = (function () {
     $("mont-zona-resultado").classList.remove("test-oculto");
     $("mont-sim-nota").textContent = nota;
     $("mont-sim-nota").className = "nota " + claseNota(nota * 10);
-    $("mont-sim-titulo").textContent = "Montaje terminado: " + p.nombre;
+    $("mont-sim-titulo").textContent = "¡Equipo montado!";
     $("mont-sim-detalle").textContent =
       `Has completado ${p.pasos.length} pasos con ${sim.errores} error${sim.errores === 1 ? "" : "es"}.`;
     $("mont-sim-mensaje").textContent = mensajeNivel(nota * 10);
@@ -576,7 +414,7 @@ window.Montaje = (function () {
       item.className = "item-revision ok";
       const titulo = document.createElement("p");
       titulo.className = "preg";
-      titulo.textContent = `${i + 1}. ${paso.titulo}`;
+      titulo.textContent = `${i + 1}. ${paso.titulo.replace(/^\d+ · /, "")}`;
       const texto = document.createElement("p");
       texto.className = "resp";
       texto.textContent = paso.explicacion;
@@ -589,21 +427,17 @@ window.Montaje = (function () {
   function empezarSim() {
     sim.activo = true;
     if (sim.paso >= practicas[sim.practicaId].pasos.length) {
-      sim = {
-        practicaId: sim.practicaId, paso: 0, errores: 0,
-        instalados: {}, activo: true, esperando: false
-      };
+      sim = { practicaId: sim.practicaId, paso: 0, errores: 0, activo: true, esperando: false };
     }
     guardarSim();
     $("mont-config-sim").classList.add("test-oculto");
     $("mont-zona-resultado").classList.add("test-oculto");
     $("mont-zona").classList.remove("test-oculto");
-    ocultarFeedback();
     renderPaso();
   }
 
   /* =======================================================
-     5) CONFIGURADOR · INTERFAZ
+     5) CONFIGURADOR
      ======================================================= */
   function construirSelectores() {
     const cont = $("conf-categorias");
@@ -786,7 +620,7 @@ window.Montaje = (function () {
   }
 
   /* =======================================================
-     6) NAVEGACIÓN ENTRE SUBACTIVIDADES Y API PÚBLICA
+     6) NAVEGACIÓN Y API PÚBLICA
      ======================================================= */
   function cambiarSub(sub) {
     subActiva = sub;
@@ -803,16 +637,13 @@ window.Montaje = (function () {
     $("mont-zona-resultado").classList.add("test-oculto");
     sim.activo = false;
     sim.esperando = false;
-    piezaSeleccionada = null;
     guardarSim();
     actualizarBotonEmpezar();
     ocultarFeedbackConf();
   }
 
   function hayProgreso() {
-    const simProgreso = sim.activo && sim.paso > 0;
-    const confProgreso = Object.values(conf.seleccion).some((v) => !!v);
-    return simProgreso || confProgreso;
+    return (sim.activo && sim.paso > 0) || Object.values(conf.seleccion).some((v) => !!v);
   }
 
   function reiniciar() {
@@ -821,7 +652,6 @@ window.Montaje = (function () {
   }
 
   function iniciar() {
-    // Restaurar estado guardado
     const simGuardado = leer(CLAVE_SIM, sim);
     if (ordenPracticas.includes(simGuardado.practicaId)) sim = simGuardado;
     const confGuardado = leer(CLAVE_CONF, conf);
@@ -852,15 +682,10 @@ window.Montaje = (function () {
     $("mont-salir").addEventListener("click", volverAConfig);
     $("mont-reiniciar").addEventListener("click", () => {
       const id = sim.practicaId;
-      if (!confirm("Se perderá el progreso de esta práctica. ¿Reiniciar?")) return;
-      sim = {
-        practicaId: id, paso: 0, errores: 0, instalados: {},
-        activo: true, esperando: false
-      };
-      piezaSeleccionada = null;
+      if (!confirm("¿Empezar esta práctica desde el principio?")) return;
+      sim = { practicaId: id, paso: 0, errores: 0, activo: true, esperando: false };
       guardarSim();
       renderPaso();
-      ocultarFeedback();
     });
     $("mont-pista").addEventListener("click", () => {
       const caja = $("mont-ayuda-texto");
@@ -870,11 +695,7 @@ window.Montaje = (function () {
     });
     $("mont-repetir").addEventListener("click", () => {
       const id = sim.practicaId;
-      sim = {
-        practicaId: id, paso: 0, errores: 0, instalados: {},
-        activo: false, esperando: false
-      };
-      piezaSeleccionada = null;
+      sim = { practicaId: id, paso: 0, errores: 0, activo: false, esperando: false };
       guardarSim();
       empezarSim();
     });
