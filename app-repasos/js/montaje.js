@@ -721,6 +721,10 @@ window.Montaje = (function () {
     document.querySelectorAll("[data-avanzado]").forEach((b) => {
       b.addEventListener("click", () => mostrarAvanzado(b.dataset.avanzado));
     });
+    $("mont-ayuda-toggle").addEventListener("click", () => {
+      const oculto = $("mont-ayuda-contenido").classList.toggle("test-oculto");
+      $("mont-ayuda-toggle").textContent = oculto ? "Mostrar ayuda" : "Ocultar ayuda";
+    });
     document.querySelectorAll("[data-perfil]").forEach((b) => {
       b.addEventListener("click", () => {
         conf.perfil = b.dataset.perfil;

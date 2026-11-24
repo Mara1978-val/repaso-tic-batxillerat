@@ -418,6 +418,28 @@ main{
 
 /* ---------- Montar un equipo ---------- */
 .mont-intro{background-image:none}
+/* Ayuda visible dentro del bloque de montaje */
+.mont-ayuda-general{
+  background:var(--tarjeta);border:1px solid var(--borde);border-radius:var(--radio);
+  box-shadow:var(--sombra);padding:16px 20px;margin-bottom:16px;
+}
+.mont-ayuda-cabecera{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mont-ayuda-cabecera h3{margin:0;font-size:1rem;color:var(--azul-oscuro)}
+.mont-ayuda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.mont-ayuda-card{
+  background:#fdfbff;border:1px solid var(--borde);border-radius:11px;padding:13px 14px;
+}
+.mont-ayuda-card strong{display:block;margin:6px 0 5px;font-size:.94rem}
+.mont-ayuda-card p{margin:0;font-size:.85rem;color:var(--suave);line-height:1.5}
+.mont-ayuda-icono{font-size:1.4rem;line-height:1}
+.mont-ayuda-contexto{
+  background:#fff8e6;border-left:4px solid var(--ambar);border-radius:9px;
+  padding:12px 14px;margin-bottom:16px;font-size:.9rem;line-height:1.55;
+}
+.mont-ayuda-contexto strong{color:var(--ambar)}
+.mont-ayuda-lista{margin:8px 0 14px;padding-left:20px;font-size:.88rem;line-height:1.55;color:var(--suave)}
+.mont-ayuda-lista li{margin:4px 0}
+.mont-ayuda-lista strong{color:var(--texto)}
 .mont-subnav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 
 .mont-config{grid-template-columns:1fr 2fr}
@@ -940,6 +962,31 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
       <button class="chip" data-sub="avanzado">🔧 Modo avanzado (2D y 3D)</button>
     </div>
 
+    <!-- ---------- AYUDA SIEMPRE VISIBLE ---------- -->
+    <div class="mont-ayuda-general" id="mont-ayuda-general">
+      <div class="mont-ayuda-cabecera">
+        <h3>❓ ¿Qué hace cada botón?</h3>
+        <button class="btn-peq" id="mont-ayuda-toggle">Ocultar ayuda</button>
+      </div>
+      <div class="mont-ayuda-grid" id="mont-ayuda-contenido">
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">🌐</span>
+          <strong>Eniun PC Lab (recomendado)</strong>
+          <p>Se abre el simulador 3D de Eniun en una pestaña nueva. Necesita internet. Es el más completo: montaje paso a paso, tests y certificado.</p>
+        </div>
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">⚙️</span>
+          <strong>Configurador de equipo</strong>
+          <p>Aquí no hay que montar nada: eliges CPU, placa, RAM, disco, gráfica, fuente y caja. La web comprueba si son compatibles y si caben en el presupuesto.</p>
+        </div>
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">🔧</span>
+          <strong>Modo avanzado (2D y 3D)</strong>
+          <p>Son dos talleres de esta web, sin internet. Primero eliges <em>Taller 2D</em> o <em>Taller 3D</em> y después haces clic en «Empezar».</p>
+        </div>
+      </div>
+    </div>
+
     <!-- ---------- ENIUN PC LAB: OPCIÓN PRINCIPAL ---------- -->
     <div id="mont-eniun">
       <div class="mont-card eniun-card">
@@ -960,7 +1007,11 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
     <!-- ---------- MODO AVANZADO ---------- -->
     <div class="test-oculto mont-avanzado-cabecera" id="mont-avanzado-cabecera">
         <h3>Talleres avanzados de este sitio</h3>
-        <p class="mont-nota">Son los talleres 2D y 3D que habíamos preparado. Funcionan sin internet, pero son más complejos.</p>
+        <p class="mont-nota">Elige uno de los dos botones y después pulsa «Empezar». Funcionan sin internet.</p>
+        <ul class="mont-ayuda-lista">
+          <li><strong>Taller 2D:</strong> arrastra la pieza a la zona marcada en morado (o pulsa la pieza y después la zona).</li>
+          <li><strong>Taller 3D:</strong> gira con el ratón y acerca con la rueda; pulsa la pieza y su ranura. Si te cuesta, usa los botones con los nombres de las ranuras.</li>
+        </ul>
         <div class="mont-subnav mont-subnav-pequeno">
           <button class="chip activo" data-avanzado="simulador">Taller 2D</button>
           <button class="chip" data-avanzado="taller3d">Taller 3D</button>
@@ -1039,6 +1090,9 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
 
     <!-- ---------- CONFIGURADOR ---------- -->
     <div class="test-oculto" id="mont-configurador">
+      <div class="mont-ayuda-contexto">
+        <strong>Cómo usarlo:</strong> ① elige un perfil (cambia el presupuesto) → ② elige un componente en cada lista → ③ pulsa «Comprobar configuración». Si algo no encaja, te dirá qué falla. Puedes usar «Ver configuración de ejemplo» si te atascas.
+      </div>
       <div class="config conf-config">
         <div class="bloque-config">
           <h2>Perfil de uso</h2>
@@ -5501,6 +5555,10 @@ window.Montaje = (function () {
     });
     document.querySelectorAll("[data-avanzado]").forEach((b) => {
       b.addEventListener("click", () => mostrarAvanzado(b.dataset.avanzado));
+    });
+    $("mont-ayuda-toggle").addEventListener("click", () => {
+      const oculto = $("mont-ayuda-contenido").classList.toggle("test-oculto");
+      $("mont-ayuda-toggle").textContent = oculto ? "Mostrar ayuda" : "Ocultar ayuda";
     });
     document.querySelectorAll("[data-perfil]").forEach((b) => {
       b.addEventListener("click", () => {

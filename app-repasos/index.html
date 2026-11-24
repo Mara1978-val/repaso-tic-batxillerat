@@ -273,6 +273,31 @@
       <button class="chip" data-sub="avanzado">🔧 Modo avanzado (2D y 3D)</button>
     </div>
 
+    <!-- ---------- AYUDA SIEMPRE VISIBLE ---------- -->
+    <div class="mont-ayuda-general" id="mont-ayuda-general">
+      <div class="mont-ayuda-cabecera">
+        <h3>❓ ¿Qué hace cada botón?</h3>
+        <button class="btn-peq" id="mont-ayuda-toggle">Ocultar ayuda</button>
+      </div>
+      <div class="mont-ayuda-grid" id="mont-ayuda-contenido">
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">🌐</span>
+          <strong>Eniun PC Lab (recomendado)</strong>
+          <p>Se abre el simulador 3D de Eniun en una pestaña nueva. Necesita internet. Es el más completo: montaje paso a paso, tests y certificado.</p>
+        </div>
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">⚙️</span>
+          <strong>Configurador de equipo</strong>
+          <p>Aquí no hay que montar nada: eliges CPU, placa, RAM, disco, gráfica, fuente y caja. La web comprueba si son compatibles y si caben en el presupuesto.</p>
+        </div>
+        <div class="mont-ayuda-card">
+          <span class="mont-ayuda-icono">🔧</span>
+          <strong>Modo avanzado (2D y 3D)</strong>
+          <p>Son dos talleres de esta web, sin internet. Primero eliges <em>Taller 2D</em> o <em>Taller 3D</em> y después haces clic en «Empezar».</p>
+        </div>
+      </div>
+    </div>
+
     <!-- ---------- ENIUN PC LAB: OPCIÓN PRINCIPAL ---------- -->
     <div id="mont-eniun">
       <div class="mont-card eniun-card">
@@ -293,7 +318,11 @@
     <!-- ---------- MODO AVANZADO ---------- -->
     <div class="test-oculto mont-avanzado-cabecera" id="mont-avanzado-cabecera">
         <h3>Talleres avanzados de este sitio</h3>
-        <p class="mont-nota">Son los talleres 2D y 3D que habíamos preparado. Funcionan sin internet, pero son más complejos.</p>
+        <p class="mont-nota">Elige uno de los dos botones y después pulsa «Empezar». Funcionan sin internet.</p>
+        <ul class="mont-ayuda-lista">
+          <li><strong>Taller 2D:</strong> arrastra la pieza a la zona marcada en morado (o pulsa la pieza y después la zona).</li>
+          <li><strong>Taller 3D:</strong> gira con el ratón y acerca con la rueda; pulsa la pieza y su ranura. Si te cuesta, usa los botones con los nombres de las ranuras.</li>
+        </ul>
         <div class="mont-subnav mont-subnav-pequeno">
           <button class="chip activo" data-avanzado="simulador">Taller 2D</button>
           <button class="chip" data-avanzado="taller3d">Taller 3D</button>
@@ -372,6 +401,9 @@
 
     <!-- ---------- CONFIGURADOR ---------- -->
     <div class="test-oculto" id="mont-configurador">
+      <div class="mont-ayuda-contexto">
+        <strong>Cómo usarlo:</strong> ① elige un perfil (cambia el presupuesto) → ② elige un componente en cada lista → ③ pulsa «Comprobar configuración». Si algo no encaja, te dirá qué falla. Puedes usar «Ver configuración de ejemplo» si te atascas.
+      </div>
       <div class="config conf-config">
         <div class="bloque-config">
           <h2>Perfil de uso</h2>
