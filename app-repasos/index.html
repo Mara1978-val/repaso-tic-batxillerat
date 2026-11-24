@@ -264,7 +264,7 @@
 
     <div class="conv-intro mont-intro">
       <h2>Prácticas de montaje de un equipo</h2>
-      <p>Monta un PC paso a paso eligiendo la pieza correcta entre tres opciones, o diseña una configuración compatible sin pasar del presupuesto.</p>
+      <p>Entra en el taller: arrastra cada pieza a su sitio sobre la placa o dentro de la caja, y comprueba si tu configuración es compatible.</p>
     </div>
 
     <div class="mont-subnav" id="mont-subnav">
@@ -282,7 +282,7 @@
         </div>
         <div class="bloque-config mont-config-info">
           <h2>Cómo funciona</h2>
-          <p>Muy fácil: en cada paso ves una pregunta y tres piezas. Pulsas la correcta y sigues. Si te equivocas, te explicamos por qué. Tu progreso se guarda en este navegador.</p>
+          <p>En cada paso aparece una pieza: arrástrala a la zona marcada con el borde morado (o pulsa la pieza y después la zona). Si te equivocas, te explicamos por qué. Tu progreso se guarda en este navegador.</p>
         </div>
         <button class="btn-grande" id="mont-empezar">Empezar el montaje</button>
       </div>
@@ -311,13 +311,16 @@
           </div>
 
           <div class="mont-card">
-            <h3 class="mont-card-titulo">¿Qué pieza es?</h3>
-            <p class="mont-nota">Pulsa solo una respuesta.</p>
-            <div class="mont-opciones" id="mont-opciones"></div>
+            <h3 class="mont-card-titulo">Banco de trabajo</h3>
+            <p class="mont-nota" id="mont-subtitulo"></p>
+            <div class="mont-banco" id="mont-banco"></div>
           </div>
 
           <div class="mont-card">
-            <h3 class="mont-card-titulo">Tu equipo</h3>
+            <h3 class="mont-card-titulo">Pieza a colocar</h3>
+            <p class="mont-nota">Arrastra la pieza a la zona marcada, o pulsa la pieza y después la zona.</p>
+            <div id="mont-pieza"></div>
+            <h3 class="mont-card-titulo mont-segundo-titulo">Tu equipo</h3>
             <div class="mont-checklist" id="mont-checklist"></div>
             <p class="mont-nota" id="mont-progreso-texto"></p>
           </div>

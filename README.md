@@ -16,10 +16,11 @@ con cuatro bloques de práctica:
    (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
    explicación paso a paso y contador de aciertos.
 4. **Montar un equipo** — dos actividades nuevas:
-   - **Simulador de montaje**: muy sencillo e intuitivo. En cada paso se muestra una
-     pregunta corta y tres piezas grandes; el alumno pulsa la correcta (CPU, RAM,
-     SSD, disipador, fuente, gráfica…). Si se equivoca se le explica por qué. Dos
-     prácticas (placa base y caja), pistas, lista de progreso y nota final.
+   - **Taller de montaje visual**: inspirado en Eniun PC Lab, pero sencillo y sin
+     internet. En cada paso aparece una pieza (CPU, RAM, SSD, disipador, fuente,
+     gráfica, tapa…) que se arrastra —o se pulsa— hasta la zona marcada de una
+     placa o caja dibujada. Si se coloca mal se explica el error. Dos prácticas
+     (placa base y caja), pistas, lista de progreso y nota final.
    - **Configurador de equipo**: elige CPU, placa, RAM, disco, gráfica, fuente y caja
      dentro de un presupuesto; comprueba socket, tipo de memoria, formato de la placa,
      potencia de la fuente y precio total.
