@@ -270,6 +270,7 @@
     <div class="mont-subnav" id="mont-subnav">
       <button class="chip activo" data-sub="simulador">🔧 Simulador de montaje</button>
       <button class="chip" data-sub="configurador">⚙️ Configurador de equipo</button>
+      <button class="chip" data-sub="taller3d">🧊 Taller 3D</button>
     </div>
 
     <!-- ---------- SIMULADOR ---------- -->
@@ -384,6 +385,80 @@
       </div>
     </div>
 
+    <!-- ---------- TALLER 3D ---------- -->
+    <div class="test-oculto" id="mont-taller3d">
+
+      <div class="config mont-config" id="t3d-config">
+        <div class="bloque-config">
+          <h2>Práctica 3D</h2>
+          <div class="chips" id="t3d-practicas"></div>
+        </div>
+        <div class="bloque-config mont-config-info">
+          <h2>Taller 3D</h2>
+          <p>Gira la escena con el ratón y acércate con la rueda. En cada paso pulsa la pieza y después su ranura, que aparece marcada en morado.</p>
+        </div>
+        <button class="btn-grande" id="t3d-empezar">Empezar el montaje 3D</button>
+      </div>
+
+      <div class="test-oculto" id="t3d-zona">
+        <div class="barra-progreso">
+          <span id="t3d-contador">Paso 1 / 4</span>
+          <div class="progreso"><div class="progreso-relleno" id="t3d-barra"></div></div>
+          <span id="t3d-errores">Errores: 0</span>
+          <button class="btn-peq" id="t3d-reset">Centrar vista</button>
+          <button class="btn-peq" id="t3d-salir">Salir</button>
+        </div>
+
+        <div class="mont-layout">
+          <div class="mont-card mont-paso-card">
+            <p class="etiqueta-tema" id="t3d-etiqueta"></p>
+            <p class="mont-nota" id="t3d-subtitulo"></p>
+            <h3 id="t3d-titulo"></h3>
+            <p id="t3d-texto"></p>
+            <div class="mont-ayuda test-oculto" id="t3d-ayuda"></div>
+            <div class="acciones">
+              <button class="btn-peq" id="t3d-pista">Ver pista</button>
+              <button class="btn-peq" id="t3d-reiniciar">Empezar de nuevo</button>
+            </div>
+            <div class="mont-feedback test-oculto" id="t3d-feedback"></div>
+            <button class="btn-grande test-oculto" id="t3d-siguiente">Siguiente paso</button>
+          </div>
+
+          <div class="mont-card">
+            <h3 class="mont-card-titulo">Escena 3D</h3>
+            <p class="mont-nota">Arrastra para girar · rueda para acercar · pulsa la pieza y su ranura.</p>
+            <div class="t3d-canvas" id="t3d-canvas"></div>
+            <p class="mont-nota" style="margin:10px 0 0">Si te cuesta pulsar en 3D, usa estos botones:</p>
+            <div class="t3d-slots" id="t3d-slots"></div>
+          </div>
+
+          <div class="mont-card">
+            <h3 class="mont-card-titulo">Pieza actual</h3>
+            <button class="mont-pieza-activa" id="t3d-pieza">
+              <span class="mont-pieza-activa-icono">🧩</span>
+              <span class="mont-pieza-activa-label" id="t3d-pieza-label"></span>
+            </button>
+            <h3 class="mont-card-titulo mont-segundo-titulo">Tu equipo</h3>
+            <div class="mont-checklist" id="t3d-checklist"></div>
+            <p class="mont-nota" id="t3d-progreso"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-oculto" id="t3d-zona-resultado">
+        <div class="tarjeta-resultado">
+          <h2 id="t3d-titulo-final"></h2>
+          <div class="nota" id="t3d-nota"></div>
+          <p id="t3d-detalle"></p>
+          <p class="mensaje-resultado" id="t3d-mensaje"></p>
+          <div class="botones-resultado">
+            <button class="btn-grande" id="t3d-repetir">Repetir</button>
+            <button class="btn-grande secundario" id="t3d-cambiar">Cambiar práctica</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
 </main>
@@ -406,6 +481,9 @@
 <script src="js/preguntas-abiertas.js"></script>
 <script src="js/conversiones.js"></script>
 <script src="js/montaje.js"></script>
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/OrbitControls.js"></script>
+<script src="js/taller-3d.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

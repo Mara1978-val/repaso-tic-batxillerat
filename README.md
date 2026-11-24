@@ -21,6 +21,8 @@ con cuatro bloques de práctica:
      gráfica, tapa…) que se arrastra —o se pulsa— hasta la zona marcada de una
      placa o caja dibujada. Si se coloca mal se explica el error. Dos prácticas
      (placa base y caja), pistas, lista de progreso y nota final.
+   - **Taller 3D**: escena con Three.js (incluido en el HTML, sin internet) donde se
+     gira y acerca la cámara y se colocan las piezas sobre ranuras 3D marcadas.
    - **Configurador de equipo**: elige CPU, placa, RAM, disco, gráfica, fuente y caja
      dentro de un presupuesto; comprueba socket, tipo de memoria, formato de la placa,
      potencia de la fuente y precio total.

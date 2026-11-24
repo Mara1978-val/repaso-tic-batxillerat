@@ -31,7 +31,10 @@ function cambiarModo(modo) {
   if (modo !== "test") TestMultiple.volverAConfig();
   if (modo !== "abiertas") Abiertas.volverAConfig();
   if (modo !== "conversiones") Conversiones.volverAConfig();
-  if (modo !== "montaje") Montaje.volverAConfig();
+  if (modo !== "montaje") {
+    Montaje.volverAConfig();
+    Taller3D.volverAConfig();
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -40,7 +43,8 @@ function irAlInicio() {
     TestMultiple.hayProgreso() ||
     Abiertas.hayProgreso() ||
     Conversiones.hayProgreso() ||
-    Montaje.hayProgreso();
+    Montaje.hayProgreso() ||
+    Taller3D.hayProgreso();
 
   if (
     hayProgreso &&
@@ -53,6 +57,7 @@ function irAlInicio() {
   Abiertas.volverAConfig();
   Conversiones.reiniciar();
   Montaje.reiniciar();
+  Taller3D.reiniciar();
   cambiarModo("test");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -69,4 +74,5 @@ document.addEventListener("DOMContentLoaded", () => {
   Abiertas.iniciar();
   Conversiones.iniciar();
   Montaje.iniciar();
+  Taller3D.iniciar();
 });

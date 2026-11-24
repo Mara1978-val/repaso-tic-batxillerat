@@ -16,6 +16,9 @@ Aplicación de repaso con cuatro bloques:
      Eniun PC Lab pero sin 3D ni internet. Dos prácticas (placa base y caja),
      errores explicados, pistas, lista de progreso y nota final. El progreso se
      guarda en el navegador.
+   - *Taller 3D*: escena Three.js (incluida en el HTML) con cámara giratoria; las
+     piezas se colocan sobre ranuras 3D marcadas. Si el navegador no tiene WebGL,
+     se avisa y se puede usar el taller 2D.
    - *Configurador de equipo*: se eligen los componentes dentro de un presupuesto y
      se comprueba compatibilidad (socket, memoria, formato de placa, fuente y precio).
 

@@ -600,6 +600,18 @@ main{
 .mont-pieza-activa.colocada{border-color:var(--verde);opacity:.75;cursor:default}
 .mont-segundo-titulo{margin-top:20px !important}
 
+/* ---------- Escena 3D ---------- */
+.t3d-canvas{
+  width:100%;height:420px;border-radius:12px;overflow:hidden;
+  border:1px solid var(--borde);
+  background:linear-gradient(180deg,#f3edff 0%,#e9f5ea 100%);
+}
+.t3d-canvas canvas{display:block;width:100%;height:100%}
+.t3d-slots{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.t3d-slots .btn-peq.destacado{border-color:var(--azul);color:var(--azul);background:var(--azul-claro)}
+#t3d-pieza{width:100%;justify-content:flex-start;text-align:left}
+#t3d-pieza.seleccionada{border-color:var(--verde);background:var(--verde-claro);box-shadow:0 0 0 3px var(--verde)}
+
 footer{
   text-align:center;
   padding:18px;

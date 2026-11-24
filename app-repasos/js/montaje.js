@@ -665,6 +665,7 @@ window.Montaje = (function () {
     });
     $("mont-simulador").classList.toggle("test-oculto", sub !== "simulador");
     $("mont-configurador").classList.toggle("test-oculto", sub !== "configurador");
+    $("mont-taller3d").classList.add("test-oculto");
   }
 
   function volverAConfig() {
