@@ -25,11 +25,13 @@ function cambiarModo(modo) {
   $("panel-test").classList.toggle("test-oculto", modo !== "test");
   $("panel-abiertas").classList.toggle("test-oculto", modo !== "abiertas");
   $("panel-conversiones").classList.toggle("test-oculto", modo !== "conversiones");
+  $("panel-montaje").classList.toggle("test-oculto", modo !== "montaje");
 
   // Al cambiar de bloque cerramos los tests en curso
   if (modo !== "test") TestMultiple.volverAConfig();
   if (modo !== "abiertas") Abiertas.volverAConfig();
   if (modo !== "conversiones") Conversiones.volverAConfig();
+  if (modo !== "montaje") Montaje.volverAConfig();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -37,7 +39,8 @@ function irAlInicio() {
   const hayProgreso =
     TestMultiple.hayProgreso() ||
     Abiertas.hayProgreso() ||
-    Conversiones.hayProgreso();
+    Conversiones.hayProgreso() ||
+    Montaje.hayProgreso();
 
   if (
     hayProgreso &&
@@ -49,6 +52,7 @@ function irAlInicio() {
   TestMultiple.volverAConfig();
   Abiertas.volverAConfig();
   Conversiones.reiniciar();
+  Montaje.reiniciar();
   cambiarModo("test");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -64,4 +68,5 @@ document.addEventListener("DOMContentLoaded", () => {
   TestMultiple.iniciar();
   Abiertas.iniciar();
   Conversiones.iniciar();
+  Montaje.iniciar();
 });

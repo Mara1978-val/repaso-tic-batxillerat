@@ -12,13 +12,14 @@
   <button class="btn-inicio" id="btn-inicio" title="Salir de la actividad y volver al inicio">Ir al inicio</button>
   <div class="cabecera-info">
     <h1>Repaso TIC · Bachillerato</h1>
-    <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes</p>
+    <p>Hardware · Máquinas Virtuales · Windows · Ubuntu · Redes · Montaje de equipos</p>
     <p class="autora">Autora: <strong>Mara Vañó</strong></p>
   </div>
   <nav class="nav-modos">
     <button class="btn-nav activo" data-modo="test">Tests de opción múltiple</button>
     <button class="btn-nav" data-modo="abiertas">Preguntas abiertas</button>
     <button class="btn-nav" data-modo="conversiones">Conversiones</button>
+    <button class="btn-nav" data-modo="montaje">Montar un equipo</button>
   </nav>
 </header>
 
@@ -258,6 +259,130 @@
     </div>
   </section>
 
+  <!-- ================= BLOQUE 4: MONTAR UN EQUIPO ================= -->
+  <section id="panel-montaje" class="panel test-oculto">
+
+    <div class="conv-intro mont-intro">
+      <h2>Prácticas de montaje de un equipo</h2>
+      <p>Aprende a montar un PC por dentro: coloca cada pieza en su ranura siguiendo los pasos, o diseña una configuración compatible sin pasar del presupuesto.</p>
+    </div>
+
+    <div class="mont-subnav" id="mont-subnav">
+      <button class="chip activo" data-sub="simulador">🔧 Simulador de montaje</button>
+      <button class="chip" data-sub="configurador">⚙️ Configurador de equipo</button>
+    </div>
+
+    <!-- ---------- SIMULADOR ---------- -->
+    <div id="mont-simulador">
+
+      <div class="config mont-config" id="mont-config-sim">
+        <div class="bloque-config">
+          <h2>Práctica</h2>
+          <div class="chips" id="mont-practicas"></div>
+        </div>
+        <div class="bloque-config mont-config-info">
+          <h2>Cómo funciona</h2>
+          <p>Selecciona una pieza de la bandeja y pulsa la ranura donde debe ir. Si te equivocas, el simulador te explica por qué. Tu progreso se guarda en este navegador.</p>
+        </div>
+        <button class="btn-grande" id="mont-empezar">Empezar el montaje</button>
+      </div>
+
+      <div class="test-oculto" id="mont-zona">
+        <div class="barra-progreso">
+          <span id="mont-contador">Paso 1 / 4</span>
+          <div class="progreso"><div class="progreso-relleno" id="mont-barra"></div></div>
+          <span id="mont-errores">Errores: 0</span>
+          <button class="btn-peq" id="mont-salir">Salir</button>
+        </div>
+
+        <div class="mont-layout">
+          <div class="mont-card mont-paso-card">
+            <p class="etiqueta-tema" id="mont-etiqueta"></p>
+            <h3 id="mont-paso-titulo"></h3>
+            <p id="mont-paso-texto"></p>
+            <p class="mont-parcial" id="mont-parcial"></p>
+            <div class="mont-ayuda test-oculto" id="mont-ayuda-texto"></div>
+            <div class="acciones">
+              <button class="btn-peq" id="mont-pista">Ver pista</button>
+              <button class="btn-peq" id="mont-reiniciar">Reiniciar práctica</button>
+            </div>
+            <div class="mont-feedback test-oculto" id="mont-feedback"></div>
+            <button class="btn-grande test-oculto" id="mont-siguiente">Siguiente paso</button>
+          </div>
+
+          <div class="mont-card">
+            <h3 class="mont-card-titulo">Banco de trabajo</h3>
+            <p class="mont-nota" id="mont-board-title"></p>
+            <div class="mont-board" id="mont-board"></div>
+          </div>
+
+          <div class="mont-card">
+            <h3 class="mont-card-titulo">Bandeja de componentes</h3>
+            <p class="mont-nota">Pulsa una pieza y después la ranura donde va.</p>
+            <div class="mont-piezas" id="mont-piezas"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-oculto" id="mont-zona-resultado">
+        <div class="tarjeta-resultado">
+          <h2 id="mont-sim-titulo"></h2>
+          <div class="nota" id="mont-sim-nota"></div>
+          <p id="mont-sim-detalle"></p>
+          <p class="mensaje-resultado" id="mont-sim-mensaje"></p>
+          <div class="botones-resultado">
+            <button class="btn-grande" id="mont-repetir">Repetir práctica</button>
+            <button class="btn-grande secundario" id="mont-cambiar">Cambiar práctica</button>
+          </div>
+        </div>
+        <div id="mont-sim-revision"></div>
+      </div>
+    </div>
+
+    <!-- ---------- CONFIGURADOR ---------- -->
+    <div class="test-oculto" id="mont-configurador">
+      <div class="config conf-config">
+        <div class="bloque-config">
+          <h2>Perfil de uso</h2>
+          <div class="chips" id="conf-perfiles">
+            <button class="chip activo" data-perfil="ofimatica">Ofimática y estudio</button>
+            <button class="chip" data-perfil="estudio">Estudio y gaming ligero</button>
+            <button class="chip" data-perfil="gaming">Diseño y gaming</button>
+          </div>
+        </div>
+        <div class="bloque-config">
+          <h2>Presupuesto máximo</h2>
+          <p class="conf-presupuesto" id="conf-presupuesto">650 €</p>
+        </div>
+        <div class="bloque-config">
+          <h2>Elige los componentes</h2>
+          <p class="mont-nota">Para cada categoría, selecciona una opción. Después comprueba si todo es compatible.</p>
+        </div>
+        <div class="conf-categorias" id="conf-categorias"></div>
+      </div>
+
+      <div class="conf-resumen">
+        <div class="mont-card">
+          <h3 class="mont-card-titulo">Resumen de la configuración</h3>
+          <div class="conf-datos">
+            <div><span>Total</span><strong id="conf-total">0 €</strong></div>
+            <div><span>Consumo estimado</span><strong id="conf-consumo">0 W</strong></div>
+            <div><span>Fuente recomendada</span><strong id="conf-necesario">≈ 0 W</strong></div>
+          </div>
+          <div class="progreso conf-progreso"><div class="conf-barra-relleno" id="conf-barra"></div></div>
+          <p class="mont-nota">La barra muestra cuánto presupuesto has gastado. Si se pasa, se pone roja.</p>
+          <div class="acciones">
+            <button class="btn-grande" id="conf-comprobar">Comprobar configuración</button>
+            <button class="btn-grande secundario" id="conf-recomendada">Ver configuración de ejemplo</button>
+            <button class="btn-peq" id="conf-limpiar">Limpiar</button>
+          </div>
+          <div class="mont-feedback test-oculto" id="conf-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
 </main>
 
 <footer>
@@ -277,6 +402,7 @@
 <script src="js/test-opcion-multiple.js"></script>
 <script src="js/preguntas-abiertas.js"></script>
 <script src="js/conversiones.js"></script>
+<script src="js/montaje.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

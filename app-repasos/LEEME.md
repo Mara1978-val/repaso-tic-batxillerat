@@ -1,6 +1,6 @@
 # Repaso TIC · Bachillerato
 
-Aplicación de repaso con tres bloques:
+Aplicación de repaso con cuatro bloques:
 
 1. **Tests de opción múltiple** — el alumno elige tema (Hardware, Máquinas Virtuales,
    Windows, Ubuntu, Redes), nivel (Básico / Medio / Avanzado) y número de preguntas.
@@ -10,6 +10,12 @@ Aplicación de repaso con tres bloques:
    aplicación le dice **si es correcta o no**, muestra la respuesta oficial y una pista.
 3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
    y de binario a decimal, con resultado, explicación y aciertos.
+4. **Montar un equipo** — dos actividades:
+   - *Simulador de montaje*: se elige una pieza de la bandeja y se pulsa su ranura,
+     siguiendo pasos guiados (placa base y caja). Los errores se explican, hay pistas
+     y la nota final se calcula según los fallos. El progreso se guarda en el navegador.
+   - *Configurador de equipo*: se eligen los componentes dentro de un presupuesto y
+     se comprueba compatibilidad (socket, memoria, formato de placa, fuente y precio).
 
 Todo funciona **sin conexión a internet**: no hay que instalar nada.
 
@@ -30,8 +36,12 @@ Aplicacion BAT/
     ├── index.html
     ├── LEEME.md
     ├── css/estilos.css
-    └── js/… (incluye conversiones.js) y js/datos/…
+    ├── js/… (incluye conversiones.js y montaje.js) y js/datos/…
 ```
+
+El código del bloque **Montar un equipo** está en `js/montaje.js`. Ahí están los
+pasos de cada práctica, las piezas (incluidas las incorrectas, con su explicación),
+los componentes del configurador y las reglas de compatibilidad.
 
 **Para usar la aplicación basta con `Repaso-TIC.html`**: es un solo fichero con el
 CSS y todo el JavaScript dentro. No necesita internet, ni carpeta de estilos, ni

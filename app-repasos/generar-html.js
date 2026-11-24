@@ -46,13 +46,15 @@ const nombre = "Repaso-TIC.html";
 fs.writeFileSync(path.join(base, nombre), html, "utf8");
 
 const padre = path.dirname(base);
-const copia = path.join(padre, nombre);
-try {
-  fs.copyFileSync(path.join(base, nombre), copia);
-} catch (e) {
-  console.log("(No se pudo copiar a la carpeta padre: " + e.message + ")");
-}
+const copias = [path.join(padre, nombre), path.join(padre, "index.html")];
+copias.forEach((copia) => {
+  try {
+    fs.copyFileSync(path.join(base, nombre), copia);
+  } catch (e) {
+    console.log("(No se pudo copiar a " + copia + ": " + e.message + ")");
+  }
+});
 
 console.log("OK · " + nombre + "  (" + (html.length / 1024).toFixed(1) + " KB)");
 console.log("   · " + scripts.length + " scripts + CSS inline");
-console.log("   · copia en: " + copia);
+copias.forEach((copia) => console.log("   · copia en: " + copia));

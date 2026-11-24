@@ -3,7 +3,7 @@
 **Autora: Mara Vañó**
 
 Aplicación web de repaso para **Informática y Digitalización / TIC · Bachillerato**,
-con tres bloques de práctica:
+con cuatro bloques de práctica:
 
 1. **Tests de opción múltiple** — el alumno elige tema (Hardware, Máquinas Virtuales,
    Windows, Ubuntu, Redes), nivel (**Básico / Medio / Avanzado**) y número de preguntas
@@ -15,6 +15,14 @@ con tres bloques de práctica:
 3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
    (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
    explicación paso a paso y contador de aciertos.
+4. **Montar un equipo** — dos actividades nuevas:
+   - **Simulador de montaje**: el alumno selecciona piezas (CPU, RAM DDR4, SSD M.2,
+     disipador, fuente, gráfica, cables del frontal…) y las coloca en su ranura
+     siguiendo pasos guiados. Si se equivoca, se le explica el error. Incluye dos
+     prácticas (placa base y caja), pistas, progreso guardado y nota final.
+   - **Configurador de equipo**: elige CPU, placa, RAM, disco, gráfica, fuente y caja
+     dentro de un presupuesto; comprueba socket, tipo de memoria, formato de la placa,
+     potencia de la fuente y precio total.
 
 **450 preguntas de test + 61 preguntas abiertas**, redactadas a partir de los
 materiales del curso. Hay 30 preguntas de test por tema y nivel, para poder elegir
@@ -66,6 +74,10 @@ repaso-tic-batxillerat/
 
 `Repaso-TIC.html` es un solo fichero con el CSS y todo el JavaScript dentro.
 Se puede copiar, mandar por correo o subir al aula virtual tal cual.
+
+El bloque **Montar un equipo** está en `app-repasos/js/montaje.js`: contiene los
+datos de las dos prácticas, las reglas de compatibilidad del configurador y la
+lógica de ambas actividades. No necesita ficheros externos ni conexión a internet.
 
 ---
 
