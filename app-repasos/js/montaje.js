@@ -673,8 +673,13 @@ window.Montaje = (function () {
     });
     $("mont-eniun").classList.toggle("test-oculto", sub !== "eniun");
     $("mont-configurador").classList.toggle("test-oculto", sub !== "configurador");
-    $("mont-avanzado").classList.toggle("test-oculto", sub !== "avanzado");
-    if (sub === "avanzado") mostrarAvanzado("simulador");
+    $("mont-avanzado-cabecera").classList.toggle("test-oculto", sub !== "avanzado");
+    if (sub === "avanzado") {
+      mostrarAvanzado("simulador");
+    } else {
+      $("mont-simulador").classList.add("test-oculto");
+      $("mont-taller3d").classList.add("test-oculto");
+    }
   }
 
   function volverAConfig() {
