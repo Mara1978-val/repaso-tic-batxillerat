@@ -659,13 +659,22 @@ window.Montaje = (function () {
   /* =======================================================
      6) NAVEGACIÓN Y API PÚBLICA
      ======================================================= */
+  function mostrarAvanzado(cual) {
+    document.querySelectorAll("[data-avanzado]").forEach((b) => {
+      b.classList.toggle("activo", b.dataset.avanzado === cual);
+    });
+    $("mont-simulador").classList.toggle("test-oculto", cual !== "simulador");
+    $("mont-taller3d").classList.toggle("test-oculto", cual !== "taller3d");
+  }
+
   function cambiarSub(sub) {
     document.querySelectorAll("[data-sub]").forEach((b) => {
       b.classList.toggle("activo", b.dataset.sub === sub);
     });
-    $("mont-simulador").classList.toggle("test-oculto", sub !== "simulador");
+    $("mont-eniun").classList.toggle("test-oculto", sub !== "eniun");
     $("mont-configurador").classList.toggle("test-oculto", sub !== "configurador");
-    $("mont-taller3d").classList.add("test-oculto");
+    $("mont-avanzado").classList.toggle("test-oculto", sub !== "avanzado");
+    if (sub === "avanzado") mostrarAvanzado("simulador");
   }
 
   function volverAConfig() {
@@ -685,7 +694,7 @@ window.Montaje = (function () {
 
   function reiniciar() {
     volverAConfig();
-    cambiarSub("simulador");
+    cambiarSub("eniun");
   }
 
   function iniciar() {
@@ -703,6 +712,9 @@ window.Montaje = (function () {
 
     document.querySelectorAll("[data-sub]").forEach((b) => {
       b.addEventListener("click", () => cambiarSub(b.dataset.sub));
+    });
+    document.querySelectorAll("[data-avanzado]").forEach((b) => {
+      b.addEventListener("click", () => mostrarAvanzado(b.dataset.avanzado));
     });
     document.querySelectorAll("[data-perfil]").forEach((b) => {
       b.addEventListener("click", () => {
@@ -742,13 +754,14 @@ window.Montaje = (function () {
     $("conf-recomendada").addEventListener("click", rellenarRecomendada);
     $("conf-limpiar").addEventListener("click", limpiarConfig);
 
-    cambiarSub("simulador");
+    cambiarSub("eniun");
   }
 
   return {
     iniciar: iniciar,
     volverAConfig: volverAConfig,
     hayProgreso: hayProgreso,
-    reiniciar: reiniciar
+    reiniciar: reiniciar,
+    mostrarAvanzado: mostrarAvanzado
   };
 })();

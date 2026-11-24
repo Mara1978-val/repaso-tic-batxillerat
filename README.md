@@ -15,17 +15,15 @@ con cuatro bloques de práctica:
 3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
    (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
    explicación paso a paso y contador de aciertos.
-4. **Montar un equipo** — dos actividades nuevas:
-   - **Taller de montaje visual**: inspirado en Eniun PC Lab, pero sencillo y sin
-     internet. En cada paso aparece una pieza (CPU, RAM, SSD, disipador, fuente,
-     gráfica, tapa…) que se arrastra —o se pulsa— hasta la zona marcada de una
-     placa o caja dibujada. Si se coloca mal se explica el error. Dos prácticas
-     (placa base y caja), pistas, lista de progreso y nota final.
-   - **Taller 3D**: escena con Three.js (incluido en el HTML, sin internet) donde se
-     gira y acerca la cámara y se colocan las piezas sobre ranuras 3D marcadas.
-   - **Configurador de equipo**: elige CPU, placa, RAM, disco, gráfica, fuente y caja
-     dentro de un presupuesto; comprueba socket, tipo de memoria, formato de la placa,
-     potencia de la fuente y precio total.
+4. **Montar un equipo** — la actividad principal es un enlace al **simulador oficial
+   de Eniun PC Lab** (`https://pclab.eniun.com/`), que se abre en pestaña nueva.
+   Junto a él está el **configurador de equipo** (elige CPU, placa, RAM, disco,
+   gráfica, fuente y caja dentro de un presupuesto; comprueba socket, memoria,
+   formato de la placa, potencia y precio).
+   En un **Modo avanzado** opcional se conservan los talleres desarrollados
+   anteriormente: el **taller visual 2D** (piezas que se arrastran a su zona) y el
+   **taller 3D** con Three.js incluido (cámara giratoria y ranuras 3D). Ambos
+   funcionan sin internet.
 
 **450 preguntas de test + 61 preguntas abiertas**, redactadas a partir de los
 materiales del curso. Hay 30 preguntas de test por tema y nivel, para poder elegir

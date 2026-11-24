@@ -264,17 +264,45 @@
 
     <div class="conv-intro mont-intro">
       <h2>Prácticas de montaje de un equipo</h2>
-      <p>Entra en el taller: arrastra cada pieza a su sitio sobre la placa o dentro de la caja, y comprueba si tu configuración es compatible.</p>
+      <p>Practica el montaje de un PC con el taller de Eniun, o comprueba si tu configuración es compatible. Si quieres algo más avanzado, los talleres 2D y 3D están al final.</p>
     </div>
 
     <div class="mont-subnav" id="mont-subnav">
-      <button class="chip activo" data-sub="simulador">🔧 Simulador de montaje</button>
+      <button class="chip activo" data-sub="eniun">🌐 Eniun PC Lab (recomendado)</button>
       <button class="chip" data-sub="configurador">⚙️ Configurador de equipo</button>
-      <button class="chip" data-sub="taller3d">🧊 Taller 3D</button>
+      <button class="chip" data-sub="avanzado">🔧 Modo avanzado (2D y 3D)</button>
     </div>
 
-    <!-- ---------- SIMULADOR ---------- -->
-    <div id="mont-simulador">
+    <!-- ---------- ENIUN PC LAB: OPCIÓN PRINCIPAL ---------- -->
+    <div id="mont-eniun">
+      <div class="mont-card eniun-card">
+        <p class="etiqueta-tema">Recomendado para Bachillerato</p>
+        <h3>Simulador de montaje de PC de Eniun</h3>
+        <p>Un taller 3D muy completo donde puedes montar un equipo paso a paso: instalar el procesador, la memoria RAM, el SSD M.2 y el disipador; colocar la placa y la fuente en la caja; conectar los cables y la gráfica; ampliar el almacenamiento y cambiar la pasta térmica.</p>
+        <ul class="eniun-lista">
+          <li>Instrucciones cortas y ayudas en cada paso.</li>
+          <li>Si te equivocas, te explica el error.</li>
+          <li>El progreso se guarda en el navegador.</li>
+          <li>Incluye tests y certificado al superarlos.</li>
+        </ul>
+        <p class="mont-nota">Se abre en una pestaña nueva y necesita conexión a internet. Contenido de Eniun, no de este sitio.</p>
+        <a class="btn-grande eniun-btn" href="https://pclab.eniun.com/" target="_blank" rel="noopener noreferrer">Abrir Eniun PC Lab ↗</a>
+      </div>
+    </div>
+
+    <!-- ---------- MODO AVANZADO ---------- -->
+    <div class="test-oculto" id="mont-avanzado">
+      <div class="mont-avanzado-cabecera">
+        <h3>Talleres avanzados de este sitio</h3>
+        <p class="mont-nota">Son los talleres 2D y 3D que habíamos preparado. Funcionan sin internet, pero son más complejos.</p>
+        <div class="mont-subnav mont-subnav-pequeno">
+          <button class="chip activo" data-avanzado="simulador">Taller 2D</button>
+          <button class="chip" data-avanzado="taller3d">Taller 3D</button>
+        </div>
+      </div>
+
+      <!-- ---------- SIMULADOR 2D ---------- -->
+      <div id="mont-simulador">
 
       <div class="config mont-config" id="mont-config-sim">
         <div class="bloque-config">
@@ -457,6 +485,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
   </section>

@@ -10,19 +10,13 @@ Aplicación de repaso con cuatro bloques:
    aplicación le dice **si es correcta o no**, muestra la respuesta oficial y una pista.
 3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
    y de binario a decimal, con resultado, explicación y aciertos.
-4. **Montar un equipo** — dos actividades:
-   - *Taller de montaje visual*: en cada paso aparece una pieza que se arrastra (o
-     se pulsa) hasta la zona marcada de una placa/caja dibujada, al estilo de
-     Eniun PC Lab pero sin 3D ni internet. Dos prácticas (placa base y caja),
-     errores explicados, pistas, lista de progreso y nota final. El progreso se
-     guarda en el navegador.
-   - *Taller 3D*: escena Three.js (incluida en el HTML) con cámara giratoria; las
-     piezas se colocan sobre ranuras 3D marcadas. Si el navegador no tiene WebGL,
-     se avisa y se puede usar el taller 2D.
-   - *Configurador de equipo*: se eligen los componentes dentro de un presupuesto y
-     se comprueba compatibilidad (socket, memoria, formato de placa, fuente y precio).
+4. **Montar un equipo** — la opción principal es un enlace a **Eniun PC Lab**
+   (`https://pclab.eniun.com/`), que se abre en pestaña nueva. También está el
+   *configurador de equipo* (compatibilidad y presupuesto).
+   En el **Modo avanzado** se conservan el *taller visual 2D* y el *taller 3D* con
+   Three.js incluido, por si se quieren usar. Ambos funcionan sin internet.
 
-Todo funciona **sin conexión a internet**: no hay que instalar nada.
+Todo funciona **sin conexión a internet**, salvo el enlace a Eniun PC Lab.
 
 ---
 

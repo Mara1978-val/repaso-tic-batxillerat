@@ -550,13 +550,8 @@ window.Taller3D = (function () {
     renderPracticas();
     actualizarBoton();
 
-    document.querySelector('[data-sub="taller3d"]').addEventListener("click", () => {
-      document.querySelectorAll("[data-sub]").forEach((b) => {
-        b.classList.toggle("activo", b.dataset.sub === "taller3d");
-      });
-      $("mont-taller3d").classList.remove("test-oculto");
-      $("mont-simulador").classList.add("test-oculto");
-      $("mont-configurador").classList.add("test-oculto");
+    document.querySelector('[data-avanzado="taller3d"]').addEventListener("click", () => {
+      Montaje.mostrarAvanzado("taller3d");
     });
 
     $("t3d-empezar").addEventListener("click", empezar);
