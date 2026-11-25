@@ -19,6 +19,17 @@ const TestMultiple = (() => {
   function pintarTemas() {
     const cont = $("chips-tema");
     cont.innerHTML = "";
+
+    const todos = document.createElement("button");
+    todos.className = "chip chip-todos" + (tema === "todos" ? " activo" : "");
+    todos.dataset.tema = "todos";
+    todos.textContent = "Todos los temas";
+    todos.addEventListener("click", () => {
+      tema = "todos";
+      marcarActivo(cont, todos);
+    });
+    cont.appendChild(todos);
+
     TEMAS.forEach((clave) => {
       const b = document.createElement("button");
       b.className = "chip" + (clave === tema ? " activo" : "");
@@ -63,12 +74,24 @@ const TestMultiple = (() => {
   /* -------------------------------------------------------
      Arranque del test
   ------------------------------------------------------- */
+  function bancoActual() {
+    if (tema === "todos") {
+      return TEMAS.reduce((lista, clave) => {
+        const delTema = (DATOS[clave].test && DATOS[clave].test[nivel]) || [];
+        delTema.forEach((q) => lista.push(Object.assign({}, q, { _tema: DATOS[clave].nombre })));
+        return lista;
+      }, []);
+    }
+    return DATOS[tema].test[nivel] || [];
+  }
+
   function empezar() {
-    const banco = DATOS[tema].test[nivel] || [];
+    const banco = bancoActual();
 
     if (banco.length === 0) {
+      const nombre = tema === "todos" ? "ningún tema" : DATOS[tema].nombre;
       $("aviso-test").textContent =
-        "Todavía no hay preguntas de nivel " + nivel + " en " + DATOS[tema].nombre + ".";
+        "Todavía no hay preguntas de nivel " + nivel + " en " + nombre + ".";
       return;
     }
 
@@ -209,13 +232,14 @@ const TestMultiple = (() => {
 
   function mostrarResultado(aciertos, total) {
     const nota = Math.round((aciertos / total) * 100);
-    const temaNombre = DATOS[tema].nombre;
+    const temaNombre = tema === "todos" ? "Todos los temas" : DATOS[tema].nombre;
     const nivelNombre = { basico: "Básico", medio: "Medio", avanzado: "Avanzado" }[nivel];
 
     $("zona-test").classList.add("test-oculto");
     $("zona-resultado").classList.remove("test-oculto");
 
-    $("titulo-resultado").textContent = temaNombre + " · Nivel " + nivelNombre;
+    $("titulo-resultado").textContent =
+      "1ª EVALUACIÓN · " + temaNombre + " · Nivel " + nivelNombre;
     $("nota-final").textContent = nota + "%";
     $("nota-final").className = "nota " + claseNota(nota);
     $("detalle-resultado").textContent =
@@ -238,7 +262,12 @@ const TestMultiple = (() => {
       const respuestaAlumno =
         respuestas[i] === -1 ? "(sin responder)" : pregunta.op[respuestas[i]];
 
+      const etiqueta = pregunta._tema
+        ? '<p class="tema-tag">' + escapeHTML(pregunta._tema) + "</p>"
+        : "";
+
       item.innerHTML =
+        etiqueta +
         '<p class="preg">' + (i + 1) + ". " + escapeHTML(pregunta.p) + "</p>" +
         '<p class="resp">Tu respuesta: <b class="' + (bien ? "ok" : "ko") + '">' +
           escapeHTML(respuestaAlumno) + "</b></p>" +

@@ -117,6 +117,10 @@ main{
   gap:22px;
   align-items:start;
 }
+.evaluacion-titulo{
+  grid-column:1/-1;margin:0 0 2px;font-size:1.2rem;font-weight:800;
+  color:var(--azul-oscuro);letter-spacing:.02em;
+}
 .bloque-config h2{
   font-size:.85rem;
   text-transform:uppercase;
@@ -146,6 +150,7 @@ main{
 .chip.nivel-medio.activo{background:var(--ambar);border-color:var(--ambar)}
 .chip.nivel-avanzado.activo{background:var(--rojo);border-color:var(--rojo)}
 .chip[disabled]{opacity:.45;cursor:not-allowed}
+.chip-todos{border-style:dashed;border-width:2px;font-weight:700}
 
 .opcion{display:block;font-size:.92rem;margin:6px 0;color:var(--texto-suave);cursor:pointer}
 .opcion input{margin-right:7px;accent-color:var(--azul)}
@@ -331,6 +336,10 @@ main{
 }
 .item-revision.ok{border-left-color:var(--verde)}
 .item-revision.ko{border-left-color:var(--rojo)}
+.tema-tag{
+  display:inline-block;background:var(--azul-claro);color:var(--azul-oscuro);
+  font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;margin:0 0 6px;
+}
 .item-revision .preg{font-weight:600;margin:0 0 6px}
 .item-revision .resp{margin:3px 0;color:var(--texto-suave)}
 .item-revision .resp b.ok{color:var(--verde)}
