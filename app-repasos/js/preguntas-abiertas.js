@@ -20,6 +20,17 @@ const Abiertas = (() => {
   function pintarTemas() {
     const cont = $("chips-tema-abiertas");
     cont.innerHTML = "";
+
+    const todos = document.createElement("button");
+    todos.className = "chip chip-todos" + (tema === "todos" ? " activo" : "");
+    todos.dataset.tema = "todos";
+    todos.textContent = "Todos los temas";
+    todos.addEventListener("click", () => {
+      tema = "todos";
+      marcarActivo(cont, todos);
+    });
+    cont.appendChild(todos);
+
     TEMAS.forEach((clave) => {
       const b = document.createElement("button");
       b.className = "chip" + (clave === tema ? " activo" : "");
@@ -52,13 +63,23 @@ const Abiertas = (() => {
      Arranque
   ------------------------------------------------------- */
   function empezar() {
-    const todas = DATOS[tema].abiertas || [];
+    const todas =
+      tema === "todos"
+        ? TEMAS.reduce((lista, clave) => {
+            (DATOS[clave].abiertas || []).forEach((q) =>
+              lista.push(Object.assign({}, q, { _tema: DATOS[clave].nombre }))
+            );
+            return lista;
+          }, [])
+        : DATOS[tema].abiertas || [];
+
     const filtradas =
       nivel === "todos" ? todas : todas.filter((q) => (q.nivel || "medio") === nivel);
 
     if (filtradas.length === 0) {
+      const nombre = tema === "todos" ? "ningún tema" : DATOS[tema].nombre;
       $("aviso-abiertas").textContent =
-        "No hay preguntas abiertas de nivel " + nivel + " en " + DATOS[tema].nombre + ".";
+        "No hay preguntas abiertas de nivel " + nivel + " en " + nombre + ".";
       return;
     }
 
@@ -85,7 +106,8 @@ const Abiertas = (() => {
     $("marcador-abiertas").textContent = "Correctas: " + aciertos + " / " + respondidas;
 
     const nivelTxt = { basico: "Básico", medio: "Medio", avanzado: "Avanzado" }[q.nivel] || "Medio";
-    $("etiqueta-abierta").textContent = DATOS[tema].nombre + " · " + nivelTxt;
+    const nombreTema = q._tema || DATOS[tema].nombre;
+    $("etiqueta-abierta").textContent = nombreTema + " · " + nivelTxt;
     $("enunciado-abierta").textContent = q.q;
 
     $("respuesta-alumno").value = "";
@@ -160,6 +182,7 @@ const Abiertas = (() => {
     $("nota-abiertas").textContent = aciertos + " / " + total;
     $("nota-abiertas").className = "nota " + claseNota(nota);
     $("detalle-abiertas").textContent =
+      (tema === "todos" ? "Todos los temas. " : "") +
       "Has contestado bien " + aciertos + " de las " + total +
       " preguntas (" + nota + "%). " + mensajeNivel(nota);
 
