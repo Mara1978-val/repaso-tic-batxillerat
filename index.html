@@ -879,7 +879,7 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
 
     <div class="conv-intro">
       <h2>Práctica de conversiones</h2>
-      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) en base binaria (1024) y números binarios a decimal.
+      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) en base binaria (1024) y números entre binario y decimal (binario ↔ decimal, y decimal → binario).
          Usa la calculadora para ver el resultado y su explicación, o resuelve ejercicios aleatorios.</p>
     </div>
 
@@ -971,6 +971,41 @@ footer .autora-pie strong{color:var(--azul-oscuro)}
           </div>
           <div class="conv-feedback test-oculto" id="ej-bin-feedback"></div>
           <p class="conv-marcador" id="ej-bin-marcador">Aciertos: 0 / 0</p>
+        </div>
+      </div>
+
+      <div class="conv-card">
+        <h3>Decimal a binario</h3>
+
+        <div class="conv-bloque">
+          <h4>Calculadora</h4>
+          <div class="conv-fila">
+            <label>Número decimal
+              <input type="text" inputmode="decimal" id="dec-entrada" value="13" placeholder="Ej.: 13">
+            </label>
+          </div>
+          <button class="btn-grande" id="btn-calcular-decimal">Convertir a binario</button>
+          <div class="conv-resultado">
+            <span class="conv-resultado-titulo">Resultado</span>
+            <strong id="dec-resultado">—</strong>
+          </div>
+          <div class="conv-explicacion" id="dec-explicacion"></div>
+        </div>
+
+        <div class="conv-bloque">
+          <h4>Ejercicio aleatorio</h4>
+          <p class="conv-enunciado" id="ej-dec-enunciado"></p>
+          <div class="conv-fila">
+            <label>Tu respuesta
+              <input type="text" inputmode="binary" id="ej-dec-respuesta" placeholder="Solo el binario">
+            </label>
+          </div>
+          <div class="acciones">
+            <button class="btn-grande" id="btn-ej-dec-comprobar">Comprobar</button>
+            <button class="btn-grande secundario" id="btn-ej-dec-nuevo">Nuevo ejercicio</button>
+          </div>
+          <div class="conv-feedback test-oculto" id="ej-dec-feedback"></div>
+          <p class="conv-marcador" id="ej-dec-marcador">Aciertos: 0 / 0</p>
         </div>
       </div>
 
@@ -1526,7 +1561,475 @@ DATOS.hardware = {
       respuestas: ["partes moviles", "flash", "sin partes moviles", "rapido", "silencioso", "golpes", "cabezales", "platos"],
       solucion: "El HDD es mecánico (platos, cabezales, grabación magnética, ≈120 MB/s, ruidoso y sensible a golpes). El SSD usa memoria flash sin partes móviles: hasta 10 veces más rápido (SATA ≈550 MB/s, NVMe ≈3.000 MB/s), sin ruido, más resistente, pero más caro.",
       nivel: "avanzado",
-      explicacion: "También es más fiable (MTBF de millones de horas) pero no recuperable en laboratorio." }
+      explicacion: "También es más fiable (MTBF de millones de horas) pero no recuperable en laboratorio." },
+
+    { q: "¿Qué función tiene el chipset de la placa base?",
+      respuestas: ["coordina CPU, memoria y puertos", "alimenta los discos", "genera el sonido"],
+      solucion: "El chipset (puertos norte y sur) coordina la CPU con la memoria, los puertos PCI/PCIe, SATA y USB de la placa.",
+      nivel: "basico",
+      explicacion: "Es el intermedio entre la CPU y el resto de componentes." },
+
+    { q: "¿En qué se diferencia un ordenador de sobremesa de uno portátil?",
+      respuestas: ["tamaño y potencia", "pantalla", "fuente de alimentación", "ambos"],
+      solucion: "La diferencia principal es física: el portátil integra pantalla, teclado, batería y componentes en una carcasa compacta con menos potencia y autonomia, mientras la sobremesa permite más potencia y expansion.",
+      nivel: "basico",
+      explicacion: "En realidad se solapan: un portátil también admite teclado y ratón externos." },
+
+    { q: "¿Qué es la memoria ROM y para qué sirve?",
+      respuestas: ["almacenamiento no volatil de arranque", "memoria temporal", "registro de la CPU"],
+      solucion: "La ROM (Read Only Memory) guarda datos que no se modifican, como el firmware de arranque de la placa base.",
+      nivel: "basico",
+      explicacion: "Junto con la RAM forma la jerarquía de memoria." },
+
+    { q: "¿Qué son los buses PCI y PCIe y para qué sirven?",
+      respuestas: ["expansion de tarjetas", "audio", "red"],
+      solucion: "PCI y PCIe son buses de expansion que conectan tarjetas (graficas, red...) a la placa base.",
+      nivel: "basico",
+      explicacion: "PCIe es el evolucionado con mayor ancho de banda." },
+
+    { q: "¿Qué función cumple el disipador y la ventilación?",
+      respuestas: ["bajar la temperatura", "alimentar el procesador", "almacenar datos"],
+      solucion: "El disipador (aire o agua) con ventiladores disipa el calor del procesador para que no se sobrecaliente.",
+      nivel: "basico",
+      explicacion: "Sin buena refrigeracion el procesador se reduce su frecuencia." },
+
+    { q: "¿Qué es la fuente de alimentación ATX y qué produce?",
+      respuestas: ["corriente continua de varios voltajes", "corriente alterna de 110 V", "senal de datos"],
+      solucion: "La fuente convierte la corriente alterna de la red en corrientes continuas de varios voltajes (3,3 V, 5 V, 12 V) para los componentes.",
+      nivel: "basico",
+      explicacion: "Los conectores se etiquetan por los voltajes que entregan." },
+
+    { q: "¿Qué son los puertos USB y qué versiones existen?",
+      respuestas: ["conectores para perifericos", "2.0", "3.0", "3.2", "carga rapida"],
+      solucion: "Los puertos USB (2.0, 3.0, 3.2) conectan perifericos como ratones, teclados, discos, impresoras o cargadores.",
+      nivel: "basico",
+      explicacion: "USB 3.x ofrece mas velocidad; USB-C unifica el conector y la carga." },
+
+    { q: "¿Qué es la GPU y cómo se conecta al monitor?",
+      respuestas: ["unidad grafica", "pcie", "pcie x16", "monitores externos"],
+      solucion: "La GPU (tarjeta grafica) procesa las imagenes y se conecta al monitor mediante puertos como HDMI, DisplayPort o los ranuras PCIe x16 de la placa.",
+      nivel: "basico",
+      explicacion: "En los portatiles se integra en la CPU o se usa una tarjeta discreta." },
+
+    { q: "¿Qué función tiene el micrófono como periférico de entrada?",
+      respuestas: ["captar audio", "imprimir texto", "capturar pantalla"],
+      solucion: "El micrófono captura sonido y lo convierte en senal digital que el ordenador procesa.",
+      nivel: "basico",
+      explicacion: "Se usa para voz, videollamadas o entrada de audio." },
+
+    { q: "¿Qué es el escáner y qué captura?",
+      respuestas: ["imprimir documentos", "imágenes", "texto"],
+      solucion: "El escáner captura imagenes o texto de un documento o pantalla y las digitaliza en el ordenador.",
+      nivel: "basico",
+      explicacion: "Produce un archivo digital que se puede editar o guardar." },
+
+    { q: "¿Qué es la impresora y qué tipos de impresión existen?",
+      respuestas: ["dispositivo de salida", "impresion termica", "impresion por chorro", "laser"],
+      solucion: "La impresora es un periférico de salida que transforma documentos digitales en papel mediante impresión por inyección de tinta o láser, o impresión térmica en tickets.",
+      nivel: "basico",
+      explicacion: "Imprime desde el software o el navegador. " },
+
+    { q: "¿Qué función tiene la toma de tierra de la fuente de alimentación?",
+      respuestas: ["proteger contra sobretensiones", "aumentar la potencia", "alimentar discos"],
+      solucion: "La toma de tierra (pin de tierra de la fuente) protege el equipo frente a sobretensiones y cortocircuitos.",
+      nivel: "basico",
+      explicacion: "Sin ella un fallo eléctrico puede dañar componentes." },
+
+    { q: "¿Qué es el altavoz y qué tipos de salida de sonido tiene?",
+      respuestas: ["altavoz", "altavoz de auriculares", "altavoz no portátil"],
+      solucion: "El altavoz reproduce audio; el tipo se distingue entre altavoz de auriculares, portátil y de estudio/salón.",
+      nivel: "basico",
+      explicacion: "Se conecta por jack de audio o USB. " },
+
+    { q: "¿Qué es la pila CMOS y dónde se guarda?",
+      respuestas: ["batería", "memoria volatile", "memoria permanente"],
+      solucion: "La pila CMOS (o batería) guarda la configuración de la placa base (fecha, hora, BIOS) mientras el equipo está apagado.",
+      nivel: "basico",
+      explicacion: "Al fallar se pierde la configuración, pero no los datos del disco. " },
+
+    { q: "¿Qué son los periféricos híbridos?",
+      respuestas: ["teclado y ratón", "monitor y altavoz", "impresora y escáner"],
+      solucion: "Un periférico híbrido combina dos funciones, como el teclado-ratón o el monitor-altavoz en algunos diseños, conectándose por un solo cable.",
+      nivel: "basico",
+      explicacion: "Sirve para ahorrar puertos y cables. " },
+
+    { q: "¿Qué es un puerto paralelo y para qué servía?",
+      respuestas: ["conectar impresoras", "conectar red", "alimentar CPU"],
+      solucion: "El puerto paralelo (LPT) servía para conectar periféricos como la impresora o escáner a la placa base mediante una conexión de 25 pines.",
+      nivel: "basico",
+      explicacion: "Hoy se usa USB. " },
+
+    { q: "¿Qué es un puerto serie y para qué servía?",
+      respuestas: ["conectar ratones", "conectar impresoras", "conectar GPS o móviles"],
+      solucion: "El puerto serie (COM) servía para conectar periféricos como ratones, escáneres o dispositivos industriales mediante un cable serial.",
+      nivel: "basico",
+      explicacion: "Hoy USB reemplaza a la mayoría. " },
+
+    { q: "¿Qué es el teclado y qué conectividad tiene?",
+      respuestas: ["entrada de texto", "ps2", "usb", "bluetooth"],
+      solucion: "El teclado es un periférico de entrada que captura las teclas y las envía a la CPU; se conecta por PS/2, USB o Bluetooth.",
+      nivel: "basico",
+      explicacion: "La mayoría moderna usa USB. " },
+
+    { q: "¿Qué es el ratón y qué conectividad tiene?",
+      respuestas: ["entrada de puntería", "ps2", "usb", "inalambrico"],
+      solucion: "El ratón captura la posición y los clics del puntero y se envía a la CPU por USB, Bluetooth o inalámbrico.",
+      nivel: "basico",
+      explicacion: "El receptor USB recibe los eventos del ratón. " },
+
+    { q: "¿Qué es el monitor y qué tipos de panel tiene?",
+      respuestas: ["salida de imagen", "tn", "ips", "va", "panel"],
+      solucion: "El monitor es un periférico de salida que muestra la imagen; los paneles se clasifican en TN, IPS y VA según el tiempo de respuesta y los ángulos de visión.",
+      nivel: "basico",
+      explicacion: "El panel IPS es el más común en pantallas modernas por sus ángulos de visión. " },
+
+    { q: "¿Qué es la webcam y qué captura?",
+      respuestas: ["video", "audio", "video y audio"],
+      solucion: "La webcam captura video y audio de la imagen/salida de una cámara para videollamadas o captura.",
+      nivel: "basico",
+      explicacion: "Se conecta por USB o WiFi. " },
+
+    { q: "¿Qué es el cable RJ45 y qué función cumple?",
+      respuestas: ["red", "audio", "video"],
+      solucion: "El cable RJ45 es el conector físico del cable de red Ethernet; transporta señales de datos entre el PC y el router/switch.",
+      nivel: "basico",
+      explicacion: "Se distingue por la categoria (Cat5, Cat5e, Cat6) y el pinout. " },
+
+    { q: "¿Qué es el cable VGA y para qué servía?",
+      respuestas: ["salida de video", "audio", "red"],
+      solucion: "El cable VGA (Video Graphics Array) era el estándar de salida de vídeo para monitor antes del HDMI/DisplayPort.",
+      nivel: "basico",
+      explicacion: "Se usaba con resoluciones de hasta 1920×1200. " },
+
+    { q: "¿Qué es un puerto Thunderbolt y para qué se usa?",
+      respuestas: ["alta velocidad", "audio", "video"],
+      solucion: "El puerto Thunderbolt combina conector USB-C y alta velocidad (10 Gbps o más) y lleva video, datos y hasta energía.",
+      nivel: "basico",
+      explicacion: "Permite conectar varios dispositivos en un solo puerto. " },
+
+    { q: "¿Qué es el lector de discos y qué función tiene?",
+      respuestas: ["entrada de discos opticales", "salida de discos", "memoria flash"],
+      solucion: "El lector de discos (CD/DVD) es un periférico de entrada que lee discos ópticos y los digitaliza.",
+      nivel: "basico",
+      explicacion: "Hoy se usa más para grabar o cargar software. " },
+
+    { q: "¿Qué es la memoria virtual y cómo funciona el swapping?",
+      respuestas: ["memoria en disco", "swap", "paginacion", "ram"],
+      solucion: "La memoria virtual usa el disco duro como extension de la RAM: cuando no hay memoria libre se mueven paginas de memoria (swap) al disco.",
+      nivel: "medio",
+      explicacion: "El swapping penaliza mucho el rendimiento por el acceso al disco. " },
+
+    { q: "¿Qué es la paginación y cómo funciona?",
+      respuestas: ["division en bloques", "paginas", "memoria virtual", "swap"],
+      solucion: "La paginacion divide la memoria en bloques (paginas) de tamano fijo; el sistema sabe que pagina esta en memoria y cual esta en disco.",
+      nivel: "medio",
+      explicacion: "Permite que el proceso no necesite toda la RAM de golpe. " },
+
+    { q: "¿Qué son los niveles de privilegio del procesador y qué hace el modo kernel?",
+      respuestas: ["modo usuario", "modo kernel", "privilegio", "sistema operativo"],
+      solucion: "El procesador trabaja en dos modos: modo usuario (aplicaciones) y modo kernel (sistema operativo); el modo kernel tiene privilegios totales.",
+      nivel: "medio",
+      explicacion: "Los sistemas operativos usan esta separacion para la seguridad. " },
+
+    { q: "¿Qué es el controlador SATA y qué ventajas tiene frente al IDE?",
+      respuestas: ["interfaz para discos", "ahci", "pata", "dma"],
+      solucion: "SATA es la interfaz de discos duros que reemplaza al IDE/PATA, con mayor ancho de banda y cableado mas corto.",
+      nivel: "medio",
+      explicacion: "Se usa el controlador AHCI para comunicarse. " },
+
+    { q: "¿Qué es el controlador AHCI y qué hace?",
+      respuestas: ["interfaz SATA", "ahci", "dma", "ncq"],
+      solucion: "AHCI (Advanced Host Controller Interface) es el controlador que gestiona los discos SATA en el host y permite hot-swap.",
+      nivel: "medio",
+      explicacion: "Si se usa IDE el controlador es IDE. " },
+
+    { q: "¿Cómo se dimensiona la RAM para un PC de 8 GB?",
+      respuestas: ["8 GB", "4 GB", "16 GB", "depende del sistema operativo"],
+      solucion: "Un PC de 8 GB lleva 8 GB de RAM, de los cuales el sistema operativo reserva ~2-4 GB para si; con sistemas operativos modernos se recomiendan 8 GB como minimo.",
+      nivel: "medio",
+      explicacion: "Se dimensiona segun el sistema operativo y las aplicaciones. " },
+
+    { q: "¿Qué es el bus PCI Express x16 y qué velocidad tiene?",
+      respuestas: ["16 carriles", "pcie 2.0", "pcie 3.0", "pcie 4.0", "grafica"],
+      solucion: "El bus PCIe x16 es el slot para tarjetas graficas; versiones como PCIe 3.0 ofrecen ~8 GB/s bidireccionales.",
+      nivel: "medio",
+      explicacion: "A mayor generacion, mas ancho de banda. " },
+
+    { q: "¿Qué es el bus USB 3.0 y qué velocidad ofrece?",
+      respuestas: ["5 Gbps", "480 Mbps", "20 Gbps", "usb-c"],
+      solucion: "USB 3.0 ofrece hasta 5 Gbps (USB 2.0: 480 Mbps); USB 3.2 sube a 20 Gbps con USB-C.",
+      nivel: "medio",
+      explicacion: "Para discos externos y videojuegos se usa USB 3.x. " },
+
+    { q: "¿Qué es el microcontrolador y como se diferencia del microprocesador?",
+      respuestas: ["chip con cpu y memoria", "chip con cpu y perifericos integrados", "solo cpu"],
+      solucion: "El microcontrolador integra CPU, memoria y periféricos en un solo chip para tareas concretas; el microprocesador es una CPU generalista dentro de un chipset.",
+      nivel: "medio",
+      explicacion: "Se usa en electronica de consumo, no en PCs de sobremesa. " },
+
+    { q: "¿Qué es el controlador IDE y qué son master y slave?",
+      respuestas: ["disco duro", "master", "slave", "primaria", "secundaria"],
+      solucion: "El controlador IDE gestiona discos ATA; los dispositivos se configuran como master y esclavo (o primary/secondary en las versiones antiguas).",
+      nivel: "medio",
+      explicacion: "IDE fue sustituido por SATA. " },
+
+    { q: "¿Qué es la arquitectura de Von Neumann y qué implica?",
+      respuestas: ["cpu memoria i o compartidos", "cpu separada", "memoria separada"],
+      solucion: "Von Neumann comparte unidad de procesamiento, memoria e I/O mediante un bus comun; Harvard separa memoria de instrucciones y datos.",
+      nivel: "medio",
+      explicacion: "Es la base de la mayoria de los procesadores actuales. " },
+
+    { q: "¿Qué son los buffers (búferes) y qué función tienen en el almacenamiento?",
+      respuestas: ["memoria temporal de datos", "memoria de cache", "registro"],
+      solucion: "Un buffer es una memoria temporal donde se almacenan datos mientras se transfieren entre dispositivos de distinta velocidad.",
+      nivel: "medio",
+      explicacion: "Se usa entre CPU/RAM y disco o red. " },
+
+    { q: "¿Qué es la memoria flash UFS y para qué sirve?",
+      respuestas: ["memoria flash", "android", "celular", "almacenamiento"],
+      solucion: "UFS (Universal Flash Storage) es una memoria flash de alta velocidad usada en moviles para almacenamiento rapido.",
+      nivel: "medio",
+      explicacion: "Es la evolución del eMMC. " },
+
+    { q: "¿Qué es el controlador de interrupciones (APIC) y para qué sirve?",
+      respuestas: ["interrupciones", "cpu", "dispositivos"],
+      solucion: "El APIC distribuye las interrupciones de los dispositivos entre los nucleos de la CPU.",
+      nivel: "medio",
+      explicacion: "Permite que los perifericos pidan atencion al procesador. " },
+
+    { q: "¿Qué es la caché de nivel 3 y cómo funciona?",
+      respuestas: ["memoria cache cpu", "l3", "ram", "disco"],
+      solucion: "La caché L3 es la memoria caché integrada en el procesador que almacena datos y sirve a todos los núcleos.",
+      nivel: "medio",
+      explicacion: "Complementa a la caché L1 y L2 de cada núcleo. " },
+
+    { q: "¿Qué es la virtualización de E/S (IOMMU) y para qué sirve?",
+      respuestas: ["iommu", "passthrough", "dma"],
+      solucion: "La IOMMU traduce las direcciones virtuales de las máquinas virtuales al hardware físico (passthrough) para acelerar las transferencias de E/S.",
+      nivel: "medio",
+      explicacion: "Se usa en virtualización para acceso directo de dispositivos. " },
+
+    { q: "¿Qué es el northbridge y qué función tenía?",
+      respuestas: ["chipset norte", "ram", "gpu"],
+      solucion: "El northbridge era el chipset que gestionaba memoria y gráfica; hoy se integra en el SoC.",
+      nivel: "medio",
+      explicacion: "Antes de los diseños integrados. " },
+
+    { q: "¿Qué es el southbridge y qué función tenía?",
+      respuestas: ["chipset sur", "puertos", "sata"],
+      solucion: "El southbridge gestionaba los puertos de entrada/salida y dispositivos de baja velocidad; hoy se integra en el SoC.",
+      nivel: "medio",
+      explicacion: "Antes de los diseños integrados. " },
+
+    { q: "¿Qué es la unidad de gestión de energía (P-states) y qué hace?",
+      respuestas: ["frecuencia", "consumo", "cpu"],
+      solucion: "Los P-states son estados de energía del procesador que ajustan frecuencia y voltaje según la carga.",
+      nivel: "medio",
+      explicacion: "Se gestionan desde el firmware y el sistema operativo. " },
+
+    { q: "¿Qué es el bus HyperTransport y para qué servía?",
+      respuestas: ["interconexion amd", "pcie", "cpu"],
+      solucion: "HyperTransport era el bus de alta velocidad de AMD para conectar CPU y memoria en arquitecturas anteriores.",
+      nivel: "medio",
+      explicacion: "Hoy se usa PCIe para esas conexiones. " },
+
+    { q: "¿Qué es el bus AGP y para qué servía?",
+      respuestas: ["grafica", "agp", "pcie"],
+      solucion: "AGP (Accelerated Graphics Port) era el bus dedicado a tarjetas gráficas antes del PCIe.",
+      nivel: "medio",
+      explicacion: "Hoy sustituido por PCIe. " },
+
+    { q: "¿Qué es el bus PCI Express y qué velocidad tiene?",
+      respuestas: ["pcie", "2.5", "3.0", "4.0", "8 gb/s"],
+      solucion: "PCIe (Peripheral Component Interconnect Express) es un bus serie de alta velocidad para conectar periféricos como tarjetas gráficas y discos.",
+      nivel: "medio",
+      explicacion: "Las versiones van de 2.5 a 5 GT/s por carril. " },
+
+    { q: "¿Qué es el bus ISA y para qué servía?",
+      respuestas: ["expansion", "pc i", "8 bits"],
+      solucion: "ISA (Industry Standard Architecture) era un bus de expansion de 8 o 16 bits de los anos 80.",
+      nivel: "medio",
+      explicacion: "Sustituido por PCI. " },
+
+    { q: "¿Qué es la tecnología EDO RAM y en qué se diferencia de la DRAM?",
+      respuestas: ["edo", "dram", "memoria"],
+      solucion: "EDO RAM amplía la DRAM permitiendo que una pagina de memoria se reutilice antes de cerrarla, mejorando el rendimiento.",
+      nivel: "medio",
+      explicacion: "Fue una mejora intermedia antes de SDRAM. " },
+
+    { q: "¿Qué es la tecnología de doble canal de memoria?",
+      respuestas: ["dos canales", "ram", "diseno"],
+      solucion: "El doble canal usa dos bus de memoria para leer o escribir dos datos en paralelo, duplicando el ancho de banda.",
+      nivel: "medio",
+      explicacion: "Es el esta-ndar en PCs modernos. " },
+
+    { q: "¿Qué es la memoria RAM DDR5 y qué novedades trae frente a la DDR4?",
+      respuestas: ["ddr5", "5120", "6000", "memoria"],
+      solucion: "La DDR5 duplica el ancho de banda respecto a la DDR4 (bus de 16n frente a 8n) y sube la frecuencia base a 4800 MT/s.",
+      nivel: "medio",
+      explicacion: "La DDR5 usa doble canal interno y mejoras de voltaje y latencia. " },
+
+    { q: "¿Qué es la tecnología overclocking y qué riesgos conlleva?",
+      respuestas: ["aumentar frecuencia", "riesgo sobrecalentamiento", "garantia", "estabilidad"],
+      solucion: "El overclocking aumenta la frecuencia del procesador o la GPU para ganar rendimiento, pero puede causar sobrecalentamiento y anular la garantia.",
+      nivel: "avanzado",
+      explicacion: "Requiere buena refrigeracion y pruebas de estabilidad. " },
+
+    { q: "¿Qué es la tecnología turbo boost y como funciona?",
+      respuestas: ["frecuencia dinamica", "cpu", "algoritmo"],
+      solucion: "El Turbo Boost sube la frecuencia del nucleo cuando quedan nucleos libres y la temperatura lo permite.",
+      nivel: "avanzado",
+      explicacion: "Es automatico y depende de la carga. " },
+
+    { q: "¿Que es el power delivery y por que una fuente de 650 W puede dar mas?",
+      respuestas: ["capacidad maxima", "vatios", "picos"],
+      solucion: "Las fuentes dan potencia nominal; las capacidades superiores permiten picos de consumo sin que el sistema se caiga.",
+      nivel: "avanzado",
+      explicacion: "La regla del factor de forma indica que se debe dar un 20-30% mas de potencia de la carga estimada. " },
+
+    { q: "¿Que es la tecnologia de virtualizacion VT-x o AMD-V y para que sirve?",
+      respuestas: ["aislamiento de VM", "virtualizacion", "extensions"],
+      solucion: "VT-x/AMD-V son extensiones de virtualizacion que permiten ejecutar varias VMs al mismo tiempo de forma eficiente.",
+      nivel: "avanzado",
+      explicacion: "Se habilitan en BIOS/UEFI. " },
+
+    { q: "¿Que es la coherencia de cache y que hace la coherencia entre caches?",
+      respuestas: ["sincronizacion", "cpus", "memoria"],
+      solucion: "La coherencia de cache asegura que los niveles de cache de varios nucleos no tengan datos inconsistentes.",
+      nivel: "avanzado",
+      explicacion: "Es clave en multicore. " },
+
+    { q: "¿Que es el NUMA y por que afecta al rendimiento?",
+      respuestas: ["memoria no uniforme", "nodos", "cpu"],
+      solucion: "NUMA (Non Uniform Memory Access) distribuye la memoria entre nodos de CPU con distinta latencia; hay que acceder a la memoria local cuando sea posible.",
+      nivel: "avanzado",
+      explicacion: "Importante en servidores y multicore. " },
+
+    { q: "¿Que es el bus EPS y por que se le llama EPS?",
+      respuestas: ["12V", "eps", "pcie"],
+      solucion: "El bus EPS entrega corriente de 12 V para la CPU y la grafica en fases separadas, para picos de consumo.",
+      nivel: "avanzado",
+      explicacion: "Distinto del ATX de 24 pines que agrupa varios voltajes. " },
+
+    { q: "¿Que es el error correcto (ECC) de memoria y para que sirve?",
+      respuestas: ["correccion de bit", "error de memoria", "parity"],
+      solucion: "ECC (Error Correcting Code) detecta y corrige errores de paridad en la memoria, usado en servidores.",
+      nivel: "avanzado",
+      explicacion: "No se usa en PCs domesticos. " },
+
+    { q: "¿Que es la DMA y para que sirve en un PC?",
+      respuestas: ["transferencia directa memoria-ahora", "dma", "disco"],
+      solucion: "La DMA permite que un dispositivo (disco, red) acceda a la memoria sin interrumpir a la CPU en cada byte.",
+      nivel: "avanzado",
+      explicacion: "Acelera transferencias. " },
+
+    { q: "¿Que es el prefetch y como mejora el rendimiento?",
+      respuestas: ["pre-carga", "cpu", "memoria"],
+      solucion: "El prefetch anticipa accesos a memoria y los coloca en cache para reducir la latencia.",
+      nivel: "avanzado",
+      explicacion: "Optimizacion del hardware. " },
+
+    { q: "¿Que es el bus QPI y para que sirve?",
+      respuestas: ["interconexion multi-núcleo", "intel", "12 V"],
+      solucion: "El bus QPI (Quick Path Interconnect) es la interconexión de alta velocidad entre CPU y memoria en arquitecturas Intel multiprocesador.",
+      nivel: "avanzado",
+      explicacion: "Permite compartir memoria entre núcleos. " },
+
+    { q: "¿Que es la arquitectura x86 y por qué se llama CISC?",
+      respuestas: ["instrucciones complejas", "cisc", "risc", "pci"],
+      solucion: "La arquitectura x86 es CISC (Complex Instruction Set Computer): el procesador ejecuta instrucciones complejas de varios pasos.",
+      nivel: "avanzado",
+      explicacion: "La alternativa RISC simplifica instrucciones. " },
+
+    { q: "¿Que es la tecnología SpeedShift y cómo actúa?",
+      respuestas: ["frecuencia", "pwr", "cpu"],
+      solucion: "SpeedShift sube/baja la frecuencia del procesador de forma muy rápida desde el firmware, sin pasar por el sistema operativo.",
+      nivel: "avanzado",
+      explicacion: "Optimización de la gestión de energía. " },
+
+    { q: "¿Qué es la tecnología Intel Hyper-Threading?",
+      respuestas: ["hilos", "núcleos", "cpu"],
+      solucion: "Hyper-Threading permite que un núcleo físico comparta su pipeline con un hilo virtual, duplicando la capacidad de ejecución.",
+      nivel: "avanzado",
+      explicacion: "La CPU reporta más hilos que núcleos. " },
+
+    { q: "¿Qué es el controlador de memoria (MC) y qué función tiene?",
+      respuestas: ["controlador de memoria", "dram", "northbridge"],
+      solucion: "El controlador de memoria gestiona la comunicación entre CPU, RAM y unidad gráfica.",
+      nivel: "avanzado",
+      explicacion: "Integra funciones que antes estaban en el chipset. " },
+
+    { q: "¿Qué es la tecnología big.LITTLE y cómo funciona?",
+      respuestas: ["core grande pequeno", "big.little", "arm", "cpu"],
+      solucion: "big.LITTLE combina un núcleo grande (performance) con varios núcleos pequeños (eficiencia) en un mismo SoC.",
+      nivel: "avanzado",
+      explicacion: "El sistema operativo mueve tareas entre núcleos segun su demanda. " },
+
+    { q: "¿Qué es la tecnología Intel Optane y para qué sirve?",
+      respuestas: ["memoria", "optane", "persistencia"],
+      solucion: "Intel Optane es una memoria de estado sólido que actúa como extensión de la RAM con latencia menor que la DRAM.",
+      nivel: "avanzado",
+      explicacion: "Se usa como memoria cache o memoria de datos. " },
+
+    { q: "¿Qué es la tabla de localización (TLB) y qué función tiene?",
+      respuestas: ["mmu", "cache", "virtual"],
+      solucion: "La TLB traduce direcciones virtuales a físicas y se cachea para acelerar la traducción en memoria virtual.",
+      nivel: "avanzado",
+      explicacion: "Sin TLB la traducción sería mucho más lenta. " },
+
+    { q: "¿Qué es el little endian y en qué se diferencia del big endian?",
+      respuestas: ["bit menos significativo", "bit mas significativo", "endian"],
+      solucion: "El little endian almacena los bytes del número empezando por el byte menos significativo; el big endian el primero (mas significativo).",
+      nivel: "avanzado",
+      explicacion: "Cambia el orden de los bytes en la memoria. " },
+
+    { q: "¿Qué es la tecnología Intel SGX y para qué sirve?",
+      respuestas: ["seguridad", "sandbox", "cpu"],
+      solucion: "Intel SGX crea cajas de seguridad (enclaves) en la CPU para proteger datos sensibles de otras aplicaciones.",
+      nivel: "avanzado",
+      explicacion: "Aísla el código y los datos en memoria. " },
+
+    { q: "¿Qué es la tecnología AMD EXPO y en qué se diferencia del Precision Boost?",
+      respuestas: ["expo", "precision boost", "amd", "frecuencia"],
+      solucion: "AMD EXPO permite un voltaje y frecuencia más altos de forma estable que Precision Boost, para overclocking controlado.",
+      nivel: "avanzado",
+      explicacion: "Ajusta voltaje y frecuencia de forma estable. " },
+
+    { q: "¿Qué es el Infinity Fabric y para qué sirve?",
+      respuestas: ["amd", "interconexion", "chiplets"],
+      solucion: "El Infinity Fabric es el bus de interconexión de AMD entre CPU, memoria y otros chiplets.",
+      nivel: "avanzado",
+      explicacion: "Define el ancho de banda en multicore AMD. " },
+
+    { q: "¿Qué es la corrección de errores de memoria ECC y para qué sirve?",
+      respuestas: ["ecc", "ram", "paridad"],
+      solucion: "ECC (Error Correcting Code) detecta y corrige errores de paridad en la memoria, usado en servidores.",
+      nivel: "avanzado",
+      explicacion: "No se usa en PCs domésticos. " },
+
+    { q: "¿Qué es la tecnología CXL y para qué sirve?",
+      respuestas: ["cxl", "memoria", "pcie"],
+      solucion: "CXL (Compute Express Link) es una nueva interfaz que permite compartir memoria entre CPU y aceleradores o entre máquinas.",
+      nivel: "avanzado",
+      explicacion: "Nueva tecnología para memoria pool. " },
+
+    { q: "¿Qué es una tarjeta de memoria SD y dónde se utiliza?",
+      respuestas: ["tarjeta de memoria", "almacenamiento", "camaras", "moviles", "flash"],
+      solucion: "La tarjeta SD (Secure Digital) es un dispositivo de almacenamiento flash extraíble que se usa en cámaras, móviles, tablets y otros dispositivos portátiles.",
+      nivel: "basico",
+      explicacion: "Se clasifica por capacidad (SD, SDHC, SDXC) y por clase de velocidad de escritura." },
+
+    { q: "¿Qué es el bus PCIe 5.0 y qué ancho de banda ofrece por carril?",
+      respuestas: ["32 gt/s", "8 gb/s", "pcie 5", "carril"],
+      solucion: "PCIe 5.0 duplica la tasa de la generación anterior hasta 32 GT/s por carril, es decir, unos 8 GB/s en cada dirección por carril (≈128 GB/s en x16).",
+      nivel: "avanzado",
+      explicacion: "Cada nueva generación de PCIe duplica el ancho de banda manteniendo la compatibilidad con las anteriores." },
+
+    { q: "¿Qué diferencia hay entre memoria gráfica dedicada y memoria compartida (UMA)?",
+      respuestas: ["dedicada", "compartida", "ram", "gddr", "integrada"],
+      solucion: "La memoria dedicada (GDDR) va soldada en la tarjeta gráfica y es exclusiva para ella; la memoria compartida (UMA) usa una parte de la RAM del sistema reservada para la GPU integrada.",
+      nivel: "avanzado",
+      explicacion: "La memoria dedicada es mucho más rápida, mientras que la compartida abarata el equipo pero penaliza el rendimiento y consume RAM." }
   ]
 };
 
@@ -2054,7 +2557,475 @@ DATOS.virtualizacion = {
       respuestas: ["no gasta espacio", "portatil", "pendrive", "rapido", "riesgo desconectar", "externo"],
       solucion: "Ventajas: ahorra el espacio interno del portátil (cada MV ocupa 15-50 GB) y un SSD rápido da buena fluidez. Inconvenientes: exige formato exFAT/NTFS y hay el riesgo de desconectar el USB en mal momento, lo que corrompería el disco virtual.",
       nivel: "avanzado",
-      explicacion: "Requisito: nunca desconectar con la MV en ejecución o pausada." }
+      explicacion: "Requisito: nunca desconectar con la MV en ejecución o pausada." },
+
+    { q: "¿Qué es la virtualización?",
+      respuestas: ["aislados", "la virtualización"],
+      solucion: "La virtualización: tecnología que permite ejecutar varios sistemas aislados en un mismo equipo.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve una máquina virtual?",
+      respuestas: ["emulación", "una máquina virtual"],
+      solucion: "Una máquina virtual: emulación de un ordenador por software.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es VirtualBox.",
+      respuestas: ["gratuito", "virtualbox"],
+      solucion: "VirtualBox: programa gratuito de virtualización.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el host.",
+      respuestas: ["físico", "el host"],
+      solucion: "El host: ordenador físico que ejecuta las máquinas virtuales.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el guest?",
+      respuestas: ["dentro", "el guest"],
+      solucion: "El guest: sistema operativo instalado dentro de la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un hipervisor?",
+      respuestas: ["gestiona", "un hipervisor"],
+      solucion: "Un hipervisor: software que crea y gestiona máquinas virtuales.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un disco virtual.",
+      respuestas: ["archivo", "un disco virtual"],
+      solucion: "Un disco virtual: archivo que actúa como disco duro de la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define un archivo VDI.",
+      respuestas: ["VDI", "un archivo vdi"],
+      solucion: "Un archivo VDI: formato de disco virtual de VirtualBox.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es un archivo OVA?",
+      respuestas: ["portable", "un archivo ova"],
+      solucion: "Un archivo OVA: plantilla de máquina virtual portable.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un snapshot?",
+      respuestas: ["estado", "un snapshot"],
+      solucion: "Un snapshot: copia del estado de una máquina virtual en un momento dado.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el modo puente.",
+      respuestas: ["red física", "el modo puente"],
+      solucion: "El modo puente: modo de red que conecta la MV directamente a la red física.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el modo NAT.",
+      respuestas: ["comparte", "el modo nat"],
+      solucion: "El modo NAT: modo de red que comparte la IP del host.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la RAM de la MV?",
+      respuestas: ["asignada", "la ram de la mv"],
+      solucion: "La RAM de la MV: memoria asignada desde el host a la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve los núcleos virtuales?",
+      respuestas: ["lógicos", "los núcleos virtuales"],
+      solucion: "Los núcleos virtuales: procesadores lógicos asignados a la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la aceleración por hardware.",
+      respuestas: ["instrucciones", "la aceleración por hardware"],
+      solucion: "La aceleración por hardware: uso de instrucciones de virtualización de la CPU.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define VT-x.",
+      respuestas: ["Intel", "vt-x"],
+      solucion: "VT-x: tecnología de Intel para virtualización.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es AMD-V?",
+      respuestas: ["AMD", "amd-v"],
+      solucion: "AMD-V: tecnología de AMD para virtualización.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la BIOS de la MV?",
+      respuestas: ["firmware", "la bios de la mv"],
+      solucion: "La BIOS de la MV: firmware emulado que inicia la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el panel de VirtualBox.",
+      respuestas: ["interfaz", "el panel de virtualbox"],
+      solucion: "El panel de VirtualBox: interfaz donde se gestionan las máquinas virtuales.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el botón Iniciar.",
+      respuestas: ["arranca", "el botón iniciar"],
+      solucion: "El botón Iniciar: acción que arranca la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el estado Apagado?",
+      respuestas: ["ejecutándose", "el estado apagado"],
+      solucion: "El estado Apagado: estado en el que la MV no está ejecutándose.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el estado Guardado?",
+      respuestas: ["conserva", "el estado guardado"],
+      solucion: "El estado Guardado: estado que conserva la memoria de la máquina virtual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el Extension Pack.",
+      respuestas: ["complemento", "el extension pack"],
+      solucion: "El Extension Pack: complemento que añade funciones a VirtualBox.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define las Guest Additions.",
+      respuestas: ["integración", "las guest additions"],
+      solucion: "Las Guest Additions: controladores que mejoran la integración del guest.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el portapapeles compartido?",
+      respuestas: ["copiar", "el portapapeles compartido"],
+      solucion: "El portapapeles compartido: función que permite copiar entre host y guest.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la carpeta compartida?",
+      respuestas: ["accesible", "la carpeta compartida"],
+      solucion: "La carpeta compartida: carpeta accesible desde el host y el guest.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la resolución automática.",
+      respuestas: ["pantalla", "la resolución automática"],
+      solucion: "La resolución automática: función que ajusta la pantalla del guest.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el hipervisor de tipo 1.",
+      respuestas: ["directamente", "el hipervisor de tipo 1"],
+      solucion: "El hipervisor de tipo 1: hipervisor que se ejecuta directamente sobre el hardware.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el hipervisor de tipo 2?",
+      respuestas: ["sobre un sistema", "el hipervisor de tipo 2"],
+      solucion: "El hipervisor de tipo 2: hipervisor que se ejecuta sobre un sistema operativo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la emulación completa?",
+      respuestas: ["todo el hardware", "la emulación completa"],
+      solucion: "La emulación completa: virtualización que emula todo el hardware.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la paravirtualización.",
+      respuestas: ["sabe", "la paravirtualización"],
+      solucion: "La paravirtualización: virtualización donde el guest sabe que está virtualizado.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define la virtualización de hardware.",
+      respuestas: ["CPU", "la virtualización de hardware"],
+      solucion: "La virtualización de hardware: ayuda de la CPU para ejecutar instrucciones privilegiadas.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el error VT-x no disponible?",
+      respuestas: ["desactivada", "el error vt-x no disponible"],
+      solucion: "El error VT-x no disponible: fallo porque la virtualización está desactivada en la BIOS.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la red interna?",
+      respuestas: ["entre sí", "la red interna"],
+      solucion: "La red interna: modo que conecta solo las máquinas virtuales entre sí.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el adaptador puente.",
+      respuestas: ["IP", "el adaptador puente"],
+      solucion: "El adaptador puente: modo que da a la MV una IP de la red física.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el modo solo host.",
+      respuestas: ["privada", "el modo solo host"],
+      solucion: "El modo solo host: modo que crea una red privada entre host y guests.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el controlador SATA virtual?",
+      respuestas: ["recomendado", "el controlador sata virtual"],
+      solucion: "El controlador SATA virtual: controlador recomendado para discos virtuales modernos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el formato VDI?",
+      respuestas: ["nativo", "el formato vdi"],
+      solucion: "El formato VDI: formato nativo de discos de VirtualBox.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el formato VMDK.",
+      respuestas: ["VMware", "el formato vmdk"],
+      solucion: "El formato VMDK: formato de disco compatible con VMware.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el disco dinámico.",
+      respuestas: ["crece", "el disco dinámico"],
+      solucion: "El disco dinámico: disco que crece según se usa.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el disco de tamaño fijo?",
+      respuestas: ["reserva", "el disco de tamaño fijo"],
+      solucion: "El disco de tamaño fijo: disco que reserva todo el espacio desde el inicio.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve una instantánea?",
+      respuestas: ["volver", "una instantánea"],
+      solucion: "Una instantánea: copia del estado de la MV que permite volver atrás.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el almacenamiento en disco externo.",
+      respuestas: ["llevar", "el almacenamiento en disco externo"],
+      solucion: "El almacenamiento en disco externo: forma de llevar las máquinas virtuales a otro equipo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el sistema de archivos NTFS.",
+      respuestas: ["NTFS", "el sistema de archivos ntfs"],
+      solucion: "El sistema de archivos NTFS: sistema recomendado para discos externos grandes.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es FAT32?",
+      respuestas: ["4 GB", "fat32"],
+      solucion: "FAT32: sistema de archivos antiguo con límite de 4 GB por archivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve exFAT?",
+      respuestas: ["externos", "exfat"],
+      solucion: "ExFAT: sistema de archivos adecuado para discos externos grandes.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el arranque desde ISO.",
+      respuestas: ["imagen", "el arranque desde iso"],
+      solucion: "El arranque desde ISO: instalación del guest usando una imagen de disco.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define la unidad óptica virtual.",
+      respuestas: ["monta", "la unidad óptica virtual"],
+      solucion: "La unidad óptica virtual: dispositivo que monta una imagen ISO.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el adaptador de red virtual?",
+      respuestas: ["conectividad", "el adaptador de red virtual"],
+      solucion: "El adaptador de red virtual: componente que da conectividad a la máquina virtual.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la memoria de vídeo?",
+      respuestas: ["pantalla", "la memoria de vídeo"],
+      solucion: "La memoria de vídeo: cantidad de RAM dedicada a la pantalla de la MV.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el controlador USB virtual.",
+      respuestas: ["USB", "el controlador usb virtual"],
+      solucion: "El controlador USB virtual: función del Extension Pack para usar dispositivos USB.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define la virtualización de aplicaciones.",
+      respuestas: ["dependencias", "la virtualización de aplicaciones"],
+      solucion: "La virtualización de aplicaciones: tecnología que empaqueta una aplicación con sus dependencias.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el riesgo de ejecutar malware en una MV?",
+      respuestas: ["sin afectar", "el riesgo de ejecutar malware en una mv"],
+      solucion: "El riesgo de ejecutar malware en una MV: permite analizarlo sin afectar al sistema anfitrión.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el aislamiento de una MV?",
+      respuestas: ["separación", "el aislamiento de una mv"],
+      solucion: "El aislamiento de una MV: separación entre guest y host frente a fallos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la sobreasignación de RAM.",
+      respuestas: ["más memoria", "la sobreasignación de ram"],
+      solucion: "La sobreasignación de RAM: dar más memoria a las MV de la disponible físicamente.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el ballooning.",
+      respuestas: ["recupera", "el ballooning"],
+      solucion: "El ballooning: técnica que recupera memoria no usada del guest.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la paginación de la MV?",
+      respuestas: ["extensión", "la paginación de la mv"],
+      solucion: "La paginación de la MV: uso de disco como extensión de la RAM del host.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve las tablas de páginas anidadas?",
+      respuestas: ["traducción", "las tablas de páginas anidadas"],
+      solucion: "Las tablas de páginas anidadas: traducción de direcciones por hardware para virtualización.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es IOMMU.",
+      respuestas: ["E/S", "iommu"],
+      solucion: "IOMMU: traducción de direcciones de E/S para acceso directo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el passthrough de dispositivos.",
+      respuestas: ["exclusivamente", "el passthrough de dispositivos"],
+      solucion: "El passthrough de dispositivos: asignar un dispositivo físico exclusivamente a una MV.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la vCPU?",
+      respuestas: ["virtual", "la vcpu"],
+      solucion: "La vCPU: unidad de procesamiento virtual asignada a la MV.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la planificación de vCPUs?",
+      respuestas: ["reparto", "la planificación de vcpus"],
+      solucion: "La planificación de vCPUs: reparto de tiempo de CPU entre las máquinas virtuales.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el tiempo de arranque.",
+      respuestas: ["iniciarse", "el tiempo de arranque"],
+      solucion: "El tiempo de arranque: tiempo que tarda una máquina virtual en iniciarse.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define la consolidación de servidores.",
+      respuestas: ["reducir", "la consolidación de servidores"],
+      solucion: "La consolidación de servidores: reducir servidores físicos usando máquinas virtuales.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la migración en vivo?",
+      respuestas: ["sin apagarla", "la migración en vivo"],
+      solucion: "La migración en vivo: mover una MV de un host a otro sin apagarla.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el clúster de hipervisores?",
+      respuestas: ["conjuntamente", "el clúster de hipervisores"],
+      solucion: "El clúster de hipervisores: conjunto de hosts que gestionan MV conjuntamente.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la alta disponibilidad.",
+      respuestas: ["reinicio", "la alta disponibilidad"],
+      solucion: "La alta disponibilidad: reinicio automático de MV si falla el host.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el backup de MV.",
+      respuestas: ["copia", "el backup de mv"],
+      solucion: "El backup de MV: copia de los archivos de disco y configuración.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la replicación?",
+      respuestas: ["otro equipo", "la replicación"],
+      solucion: "La replicación: copia periódica de una MV a otro equipo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el aprovisionamiento ligero?",
+      respuestas: ["bajo demanda", "el aprovisionamiento ligero"],
+      solucion: "El aprovisionamiento ligero: asignación de espacio de disco bajo demanda.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el formato OVF.",
+      respuestas: ["abierto", "el formato ovf"],
+      solucion: "El formato OVF: formato abierto de distribución de máquinas virtuales.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define la huella de carbono.",
+      respuestas: ["menor consumo", "la huella de carbono"],
+      solucion: "La huella de carbono: menor consumo al consolidar servidores.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el laboratorio aislado?",
+      respuestas: ["prácticas", "el laboratorio aislado"],
+      solucion: "El laboratorio aislado: uso de redes internas para prácticas seguras.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el riesgo del modo puente?",
+      respuestas: ["expuesta", "el riesgo del modo puente"],
+      solucion: "El riesgo del modo puente: la MV queda expuesta como un equipo más de la red.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la NAT de VirtualBox.",
+      respuestas: ["10.0.2.15", "la nat de virtualbox"],
+      solucion: "La NAT de VirtualBox: salida a Internet con IP privada 10.0.2.15.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "Define el reenvío de puertos.",
+      respuestas: ["regla", "el reenvío de puertos"],
+      solucion: "El reenvío de puertos: regla para acceder a un servicio de la MV desde el host.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la sincronización de hora?",
+      respuestas: ["reloj", "la sincronización de hora"],
+      solucion: "La sincronización de hora: ajuste del reloj del guest con el host.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el disco diferencial?",
+      respuestas: ["cambios", "el disco diferencial"],
+      solucion: "El disco diferencial: disco que guarda solo los cambios desde una instantánea.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de virtualizacion que conviene repasar antes del examen." }
   ]
 };
 
@@ -2729,7 +3700,475 @@ DATOS.windows = {
       respuestas: ["alfa", "beta", "rc", "rtm", "estable", "revision"],
       solucion: "Alfa: primera versión de prueba, aún sin todas las funcionalidades. Beta: versión completa pendiente de revisión. RC (Release Candidate): final salvo errores. RTM/Estable: versión final lista para distribución.",
       nivel: "avanzado",
-      explicacion: "De ahí que aparezcan etiquetas como «versión beta»." }
+      explicacion: "De ahí que aparezcan etiquetas como «versión beta»." },
+
+    { q: "¿Qué es Microsoft?",
+      respuestas: ["empresa", "microsoft"],
+      solucion: "Microsoft: empresa desarrolladora de Windows.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve Windows 10?",
+      respuestas: ["sistema operativo", "windows 10"],
+      solucion: "Windows 10: sistema operativo de Microsoft muy extendido.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el escritorio.",
+      respuestas: ["pantalla principal", "el escritorio"],
+      solucion: "El escritorio: pantalla principal donde aparecen los iconos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define la barra de tareas.",
+      respuestas: ["franja inferior", "la barra de tareas"],
+      solucion: "La barra de tareas: franja inferior con el botón de inicio y los programas.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el menú Inicio?",
+      respuestas: ["programas", "el menú inicio"],
+      solucion: "El menú Inicio: menú que da acceso a programas y ajustes.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un icono?",
+      respuestas: ["representa", "un icono"],
+      solucion: "Un icono: pequeña imagen que representa un archivo o programa.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la papelera de reciclaje.",
+      respuestas: ["borrados", "la papelera de reciclaje"],
+      solucion: "La papelera de reciclaje: lugar donde van los archivos borrados.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el explorador de archivos.",
+      respuestas: ["carpetas", "el explorador de archivos"],
+      solucion: "El explorador de archivos: programa para navegar por las carpetas.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una carpeta?",
+      respuestas: ["contenedor", "una carpeta"],
+      solucion: "Una carpeta: contenedor de archivos y otras carpetas.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un archivo?",
+      respuestas: ["información", "un archivo"],
+      solucion: "Un archivo: unidad de información almacenada con un nombre.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la extensión de un archivo.",
+      respuestas: ["sufijo", "la extensión de un archivo"],
+      solucion: "La extensión de un archivo: sufijo que indica su tipo.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el comando dir.",
+      respuestas: ["lista", "el comando dir"],
+      solucion: "El comando dir: lista el contenido del directorio actual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando cd?",
+      respuestas: ["cambia", "el comando cd"],
+      solucion: "El comando cd: cambia de directorio.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando mkdir?",
+      respuestas: ["crea", "el comando mkdir"],
+      solucion: "El comando mkdir: crea una carpeta.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando copy.",
+      respuestas: ["copia", "el comando copy"],
+      solucion: "El comando copy: copia archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el comando move.",
+      respuestas: ["mueve", "el comando move"],
+      solucion: "El comando move: mueve archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando del?",
+      respuestas: ["borra", "el comando del"],
+      solucion: "El comando del: borra archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando ren?",
+      respuestas: ["renombra", "el comando ren"],
+      solucion: "El comando ren: renombra archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la barra invertida.",
+      respuestas: ["separador", "la barra invertida"],
+      solucion: "La barra invertida: separador de carpetas en las rutas de Windows.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define la unidad C.",
+      respuestas: ["principal", "la unidad c"],
+      solucion: "La unidad C: partición principal donde se instala Windows.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el símbolo del sistema?",
+      respuestas: ["comandos", "el símbolo del sistema"],
+      solucion: "El símbolo del sistema: intérprete de comandos de texto.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve PowerShell?",
+      respuestas: ["más potente", "powershell"],
+      solucion: "PowerShell: intérprete de comandos más potente que cmd.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el Panel de control.",
+      respuestas: ["configuración", "el panel de control"],
+      solucion: "El Panel de control: herramienta clásica de configuración.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define la aplicación Configuración.",
+      respuestas: ["ajustes", "la aplicación configuración"],
+      solucion: "La aplicación Configuración: interfaz moderna de ajustes de Windows.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el Administrador de tareas?",
+      respuestas: ["procesos", "el administrador de tareas"],
+      solucion: "El Administrador de tareas: herramienta que muestra procesos y rendimiento.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el antivirus?",
+      respuestas: ["protege", "el antivirus"],
+      solucion: "El antivirus: programa que protege frente a malware.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es Windows Update.",
+      respuestas: ["actualizaciones", "windows update"],
+      solucion: "Windows Update: servicio que instala actualizaciones.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define un driver.",
+      respuestas: ["dispositivo", "un driver"],
+      solucion: "Un driver: programa que permite al sistema usar un dispositivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando ipconfig?",
+      respuestas: ["configuración de red", "el comando ipconfig"],
+      solucion: "El comando ipconfig: muestra la configuración de red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando ping en Windows?",
+      respuestas: ["ICMP", "el comando ping en windows"],
+      solucion: "El comando ping en Windows: comprueba la conexión con otro equipo mediante paquetes ICMP.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando tracert en Windows.",
+      respuestas: ["saltos", "el comando tracert en windows"],
+      solucion: "El comando tracert en Windows: muestra la ruta hasta un destino indicando cada salto.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el comando netstat.",
+      respuestas: ["puertos", "el comando netstat"],
+      solucion: "El comando netstat: muestra conexiones y puertos abiertos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando nslookup?",
+      respuestas: ["DNS", "el comando nslookup"],
+      solucion: "El comando nslookup: consulta el DNS.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando chkdsk?",
+      respuestas: ["disco", "el comando chkdsk"],
+      solucion: "El comando chkdsk: comprueba el estado del disco.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando defrag.",
+      respuestas: ["ordena", "el comando defrag"],
+      solucion: "El comando defrag: ordena los datos del disco.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el comando sfc.",
+      respuestas: ["repara", "el comando sfc"],
+      solucion: "El comando sfc: comprueba y repara archivos del sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando tasklist?",
+      respuestas: ["procesos", "el comando tasklist"],
+      solucion: "El comando tasklist: lista los procesos en ejecución.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando taskkill?",
+      respuestas: ["termina", "el comando taskkill"],
+      solucion: "El comando taskkill: termina un proceso.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es una cuenta de administrador.",
+      respuestas: ["permisos completos", "una cuenta de administrador"],
+      solucion: "Una cuenta de administrador: cuenta con permisos completos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define una cuenta estándar.",
+      respuestas: ["limitados", "una cuenta estándar"],
+      solucion: "Una cuenta estándar: cuenta con permisos limitados.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una cuenta de invitado?",
+      respuestas: ["temporal", "una cuenta de invitado"],
+      solucion: "Una cuenta de invitado: cuenta temporal sin contraseña.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el control de cuentas de usuario?",
+      respuestas: ["aviso", "el control de cuentas de usuario"],
+      solucion: "El control de cuentas de usuario: aviso cuando un programa quiere cambiar el sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es los permisos NTFS.",
+      respuestas: ["lectura", "los permisos ntfs"],
+      solucion: "Los permisos NTFS: control de lectura y escritura en archivos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el firewall de Windows.",
+      respuestas: ["filtra", "el firewall de windows"],
+      solucion: "El firewall de Windows: filtra el tráfico de red entrante y saliente.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la restauración del sistema?",
+      respuestas: ["punto anterior", "la restauración del sistema"],
+      solucion: "La restauración del sistema: función que devuelve el equipo a un punto anterior.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un punto de restauración?",
+      respuestas: ["copia", "un punto de restauración"],
+      solucion: "Un punto de restauración: copia del estado del sistema en un momento.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un disco SSD.",
+      respuestas: ["sin partes móviles", "un disco ssd"],
+      solucion: "Un disco SSD: disco sin partes móviles y más rápido.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define la memoria RAM.",
+      respuestas: ["temporal", "la memoria ram"],
+      solucion: "La memoria RAM: memoria temporal de trabajo del equipo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el registro de Windows?",
+      respuestas: ["configuración", "el registro de windows"],
+      solucion: "El registro de Windows: base de datos de configuración del sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el arranque seguro?",
+      respuestas: ["verifica", "el arranque seguro"],
+      solucion: "El arranque seguro: función que verifica el arranque del sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la biblioteca.",
+      respuestas: ["agrupa", "la biblioteca"],
+      solucion: "La biblioteca: vista que agrupa carpetas de varios lugares.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el modo seguro.",
+      respuestas: ["diagnosticar", "el modo seguro"],
+      solucion: "El modo seguro: arranque mínimo para diagnosticar problemas.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es un servicio de Windows?",
+      respuestas: ["segundo plano", "un servicio de windows"],
+      solucion: "Un servicio de Windows: programa en segundo plano sin interfaz.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el administrador de servicios?",
+      respuestas: ["iniciar", "el administrador de servicios"],
+      solucion: "El administrador de servicios: herramienta para iniciar y detener servicios.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un proceso.",
+      respuestas: ["ejecución", "un proceso"],
+      solucion: "Un proceso: programa en ejecución con su propia memoria.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define un hilo.",
+      respuestas: ["dentro", "un hilo"],
+      solucion: "Un hilo: unidad de ejecución dentro de un proceso.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el Monitor de recursos?",
+      respuestas: ["rendimiento", "el monitor de recursos"],
+      solucion: "El Monitor de recursos: herramienta avanzada de rendimiento.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el Visor de eventos?",
+      respuestas: ["registros", "el visor de eventos"],
+      solucion: "El Visor de eventos: herramienta que muestra los registros del sistema.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la limpieza de disco.",
+      respuestas: ["libera espacio", "la limpieza de disco"],
+      solucion: "La limpieza de disco: libera espacio eliminando archivos temporales.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el Desfragmentador.",
+      respuestas: ["reordena", "el desfragmentador"],
+      solucion: "El Desfragmentador: reordena archivos en discos mecánicos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la utilidad msconfig?",
+      respuestas: ["arranque", "la utilidad msconfig"],
+      solucion: "La utilidad msconfig: configura el arranque y los servicios.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la línea de comandos elevada?",
+      respuestas: ["elevados", "la línea de comandos elevada"],
+      solucion: "La línea de comandos elevada: sesión con permisos de administrador.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando gpupdate.",
+      respuestas: ["directivas", "el comando gpupdate"],
+      solucion: "El comando gpupdate: actualiza las directivas de grupo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define las directivas de grupo.",
+      respuestas: ["reglas", "las directivas de grupo"],
+      solucion: "Las directivas de grupo: reglas centralizadas de configuración.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la gestión de discos?",
+      respuestas: ["particiones", "la gestión de discos"],
+      solucion: "La gestión de discos: herramienta para crear particiones y volúmenes.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un volumen dinámico?",
+      respuestas: ["extenderse", "un volumen dinámico"],
+      solucion: "Un volumen dinámico: volumen que puede extenderse.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es RAID en Windows.",
+      respuestas: ["redundancia", "raid en windows"],
+      solucion: "RAID en Windows: combinación de discos con redundancia o velocidad.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el Registro de Windows.",
+      respuestas: ["jerárquica", "el registro de windows"],
+      solucion: "El Registro de Windows: base de datos jerárquica de configuración.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es HKEY_LOCAL_MACHINE?",
+      respuestas: ["global", "hkey_local_machine"],
+      solucion: "HKEY_LOCAL_MACHINE: clave del Registro con la configuración global del equipo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve los escritorios virtuales?",
+      respuestas: ["independientes", "los escritorios virtuales"],
+      solucion: "Los escritorios virtuales: escritorios independientes dentro de Windows.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es Hyper-V.",
+      respuestas: ["hipervisor", "hyper-v"],
+      solucion: "Hyper-V: hipervisor integrado en Windows.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define el Subsistema de Windows para Linux.",
+      respuestas: ["Linux", "el subsistema de windows para linux"],
+      solucion: "El Subsistema de Windows para Linux: capa para ejecutar Linux en Windows.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es WSL 2?",
+      respuestas: ["máquina virtual", "wsl 2"],
+      solucion: "WSL 2: versión que usa una máquina virtual ligera.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la sincronización de hora?",
+      respuestas: ["NTP", "la sincronización de hora"],
+      solucion: "La sincronización de hora: servicio que ajusta el reloj con servidores NTP.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el perfil de usuario.",
+      respuestas: ["ajustes", "el perfil de usuario"],
+      solucion: "El perfil de usuario: conjunto de archivos y ajustes de cada usuario.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "Define la carpeta AppData.",
+      respuestas: ["oculta", "la carpeta appdata"],
+      solucion: "La carpeta AppData: carpeta oculta con datos de aplicaciones.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el arranque dual?",
+      respuestas: ["dos sistemas", "el arranque dual"],
+      solucion: "El arranque dual: equipo con dos sistemas operativos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la imagen de recuperación?",
+      respuestas: ["restaurar", "la imagen de recuperación"],
+      solucion: "La imagen de recuperación: copia del sistema para restaurar el equipo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de windows que conviene repasar antes del examen." }
   ]
 };
 
@@ -3271,7 +4710,469 @@ DATOS.ubuntu = {
       respuestas: ["root", "todos los permisos", "especiales", "comunes", "sistema", "/home"],
       solucion: "root es el superusuario con todos los permisos (instala software y gestiona cuentas). Además hay usuarios especiales o del sistema, sin contraseña y con privilegios de root solo para tareas concretas (no inician sesión), y usuarios comunes, con su directorio propio en /home.",
       nivel: "avanzado",
-      explicacion: "Conviene trabajar siempre con el usuario común y usar root solo cuando sea necesario." }
+      explicacion: "Conviene trabajar siempre con el usuario común y usar root solo cuando sea necesario." },
+
+    { q: "¿Qué es GNU/Linux?",
+      respuestas: ["libre", "gnu/linux"],
+      solucion: "GNU/Linux: sistema operativo libre basado en el núcleo Linux.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el núcleo Linux?",
+      respuestas: ["gestiona", "el núcleo linux"],
+      solucion: "El núcleo Linux: parte del sistema que gestiona el hardware y los recursos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es una distribución.",
+      respuestas: ["núcleo", "una distribución"],
+      solucion: "Una distribución: sistema operativo formado por el núcleo y un conjunto de programas.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define Canonical.",
+      respuestas: ["Canonical", "canonical"],
+      solucion: "Canonical: empresa que desarrolla y mantiene Ubuntu.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el escritorio GNOME?",
+      respuestas: ["entorno gráfico", "el escritorio gnome"],
+      solucion: "El escritorio GNOME: entorno gráfico predeterminado de Ubuntu.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el directorio raíz?",
+      respuestas: ["punto de partida", "el directorio raíz"],
+      solucion: "El directorio raíz: directorio / que es el punto de partida del árbol de archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el directorio /home.",
+      respuestas: ["usuarios", "el directorio /home"],
+      solucion: "El directorio /home: carpeta donde están los usuarios y sus archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el directorio /etc.",
+      respuestas: ["configuración", "el directorio /etc"],
+      solucion: "El directorio /etc: carpeta con los archivos de configuración.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el directorio /bin?",
+      respuestas: ["programas esenciales", "el directorio /bin"],
+      solucion: "El directorio /bin: carpeta con los programas esenciales.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el directorio /usr?",
+      respuestas: ["aplicaciones", "el directorio /usr"],
+      solucion: "El directorio /usr: carpeta con aplicaciones y archivos del sistema.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el directorio /var.",
+      respuestas: ["datos variables", "el directorio /var"],
+      solucion: "El directorio /var: carpeta con datos variables como registros.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el directorio /tmp.",
+      respuestas: ["temporales", "el directorio /tmp"],
+      solucion: "El directorio /tmp: carpeta de archivos temporales.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando ls?",
+      respuestas: ["lista", "el comando ls"],
+      solucion: "El comando ls: lista el contenido de un directorio.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando cd?",
+      respuestas: ["cambia", "el comando cd"],
+      solucion: "El comando cd: cambia de directorio.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando pwd.",
+      respuestas: ["directorio actual", "el comando pwd"],
+      solucion: "El comando pwd: muestra el directorio actual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando mkdir.",
+      respuestas: ["crea", "el comando mkdir"],
+      solucion: "El comando mkdir: crea un directorio.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando rmdir?",
+      respuestas: ["vacío", "el comando rmdir"],
+      solucion: "El comando rmdir: elimina un directorio vacío.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando touch?",
+      respuestas: ["archivo vacío", "el comando touch"],
+      solucion: "El comando touch: crea un archivo vacío.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando cp.",
+      respuestas: ["copia", "el comando cp"],
+      solucion: "El comando cp: copia archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando mv.",
+      respuestas: ["mueve", "el comando mv"],
+      solucion: "El comando mv: mueve o renombra archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando rm?",
+      respuestas: ["borra", "el comando rm"],
+      solucion: "El comando rm: borra archivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando cat?",
+      respuestas: ["contenido", "el comando cat"],
+      solucion: "El comando cat: muestra el contenido de un archivo.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando man.",
+      respuestas: ["manual", "el comando man"],
+      solucion: "El comando man: muestra el manual de un comando.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando clear.",
+      respuestas: ["limpia", "el comando clear"],
+      solucion: "El comando clear: limpia la pantalla de la terminal.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el símbolo ~?",
+      respuestas: ["directorio personal", "el símbolo ~"],
+      solucion: "El símbolo ~: atajo que representa el directorio personal del usuario.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el símbolo del punto?",
+      respuestas: ["directorio actual", "el símbolo del punto"],
+      solucion: "El símbolo del punto: representa el directorio actual.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el símbolo dos puntos.",
+      respuestas: ["directorio padre", "el símbolo dos puntos"],
+      solucion: "El símbolo dos puntos: representa el directorio padre.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define los permisos de lectura, escritura y ejecución.",
+      respuestas: ["lectura", "los permisos de lectura, escritura y ejecución"],
+      solucion: "Los permisos de lectura, escritura y ejecución: r, w y x aplicados a propietario, grupo y otros.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando chmod?",
+      respuestas: ["permisos", "el comando chmod"],
+      solucion: "El comando chmod: cambia los permisos de archivos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando chown?",
+      respuestas: ["propietario", "el comando chown"],
+      solucion: "El comando chown: cambia el propietario de un archivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el usuario root.",
+      respuestas: ["administrador", "el usuario root"],
+      solucion: "El usuario root: administrador con todos los privilegios.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define sudo.",
+      respuestas: ["como root", "sudo"],
+      solucion: "Sudo: permite ejecutar comandos como root.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la orden grep?",
+      respuestas: ["busca texto", "la orden grep"],
+      solucion: "La orden grep: busca texto dentro de archivos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la orden find?",
+      respuestas: ["busca archivos", "la orden find"],
+      solucion: "La orden find: busca archivos en el sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la orden wc.",
+      respuestas: ["cuenta", "la orden wc"],
+      solucion: "La orden wc: cuenta líneas, palabras y caracteres.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define la orden head.",
+      respuestas: ["primeras líneas", "la orden head"],
+      solucion: "La orden head: muestra las primeras líneas de un archivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la orden tail?",
+      respuestas: ["últimas líneas", "la orden tail"],
+      solucion: "La orden tail: muestra las últimas líneas de un archivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la orden sort?",
+      respuestas: ["ordena", "la orden sort"],
+      solucion: "La orden sort: ordena las líneas de un archivo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la orden uniq.",
+      respuestas: ["repetidas", "la orden uniq"],
+      solucion: "La orden uniq: elimina líneas repetidas consecutivas.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando df.",
+      respuestas: ["espacio libre", "el comando df"],
+      solucion: "El comando df: muestra el espacio libre de los discos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando du?",
+      respuestas: ["espacio ocupado", "el comando du"],
+      solucion: "El comando du: muestra el espacio ocupado por carpetas.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando ps?",
+      respuestas: ["procesos", "el comando ps"],
+      solucion: "El comando ps: lista los procesos en ejecución.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando top.",
+      respuestas: ["monitoriza", "el comando top"],
+      solucion: "El comando top: monitoriza los procesos y el consumo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando kill.",
+      respuestas: ["señal", "el comando kill"],
+      solucion: "El comando kill: envía una señal a un proceso.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando ping?",
+      respuestas: ["conectividad", "el comando ping"],
+      solucion: "El comando ping: comprueba la conectividad de red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando ifconfig?",
+      respuestas: ["configuración de red", "el comando ifconfig"],
+      solucion: "El comando ifconfig: muestra la configuración de red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el gestor de paquetes apt.",
+      respuestas: ["instala", "el gestor de paquetes apt"],
+      solucion: "El gestor de paquetes apt: instala y gestiona software en Ubuntu.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define apt update.",
+      respuestas: ["lista de paquetes", "apt update"],
+      solucion: "Apt update: actualiza la lista de paquetes disponibles.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es apt install?",
+      respuestas: ["instala un paquete", "apt install"],
+      solucion: "Apt install: instala un paquete en el sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el repositorio main?",
+      respuestas: ["oficiales", "el repositorio main"],
+      solucion: "El repositorio main: paquetes oficiales de software libre de Ubuntu.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el repositorio universe.",
+      respuestas: ["comunidad", "el repositorio universe"],
+      solucion: "El repositorio universe: paquetes de software libre de la comunidad.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define una ruta absoluta.",
+      respuestas: ["empieza en", "una ruta absoluta"],
+      solucion: "Una ruta absoluta: ruta que empieza en / y es única en el sistema.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el repositorio restricted?",
+      respuestas: ["propietarios", "el repositorio restricted"],
+      solucion: "El repositorio restricted: controladores propietarios necesarios para el hardware.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el repositorio multiverse?",
+      respuestas: ["no libre", "el repositorio multiverse"],
+      solucion: "El repositorio multiverse: software no libre con restricciones legales.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el gestor de arranque GRUB.",
+      respuestas: ["elegir el sistema", "el gestor de arranque grub"],
+      solucion: "El gestor de arranque GRUB: programa que permite elegir el sistema al arrancar.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el archivo fstab.",
+      respuestas: ["montan", "el archivo fstab"],
+      solucion: "El archivo fstab: tabla que indica qué particiones se montan al arrancar.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando mount?",
+      respuestas: ["asocia", "el comando mount"],
+      solucion: "El comando mount: asocia una partición o dispositivo a un directorio.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un enlace simbólico?",
+      respuestas: ["apunta", "un enlace simbólico"],
+      solucion: "Un enlace simbólico: archivo que apunta a otro archivo o directorio.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la redirección de salida.",
+      respuestas: ["salida", "la redirección de salida"],
+      solucion: "La redirección de salida: envía la salida de un comando a un archivo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define la redirección de adición.",
+      respuestas: ["añade", "la redirección de adición"],
+      solucion: "La redirección de adición: añade la salida al final de un archivo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la tubería?",
+      respuestas: ["entrada", "la tubería"],
+      solucion: "La tubería: envía la salida de un comando como entrada de otro.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve los comodines?",
+      respuestas: ["patrones", "los comodines"],
+      solucion: "Los comodines: patrones como * y ? para seleccionar varios archivos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando tar.",
+      respuestas: ["comprimidos", "el comando tar"],
+      solucion: "El comando tar: crea y extrae archivos comprimidos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando gzip.",
+      respuestas: ["comprime", "el comando gzip"],
+      solucion: "El comando gzip: comprime archivos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando ssh?",
+      respuestas: ["remoto", "el comando ssh"],
+      solucion: "El comando ssh: acceso remoto seguro a otro equipo.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando scp?",
+      respuestas: ["entre equipos", "el comando scp"],
+      solucion: "El comando scp: copia archivos entre equipos por SSH.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando crontab.",
+      respuestas: ["tareas periódicas", "el comando crontab"],
+      solucion: "El comando crontab: programa tareas periódicas.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define los grupos de usuarios.",
+      respuestas: ["permisos comunes", "los grupos de usuarios"],
+      solucion: "Los grupos de usuarios: conjuntos de usuarios con permisos comunes.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el archivo /etc/passwd?",
+      respuestas: ["usuarios", "el archivo /etc/passwd"],
+      solucion: "El archivo /etc/passwd: base de datos local de usuarios.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el archivo /etc/shadow?",
+      respuestas: ["contraseñas", "el archivo /etc/shadow"],
+      solucion: "El archivo /etc/shadow: almacena las contraseñas cifradas.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la partición swap.",
+      respuestas: ["memoria virtual", "la partición swap"],
+      solucion: "La partición swap: zona de disco usada como memoria virtual.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando apt upgrade.",
+      respuestas: ["actualiza", "el comando apt upgrade"],
+      solucion: "El comando apt upgrade: actualiza los paquetes instalados.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el comando dpkg?",
+      respuestas: ["bajo nivel", "el comando dpkg"],
+      solucion: "El comando dpkg: gestor de paquetes de bajo nivel.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando lsof?",
+      respuestas: ["archivos abiertos", "el comando lsof"],
+      solucion: "El comando lsof: lista archivos abiertos por procesos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando netstat.",
+      respuestas: ["conexiones", "el comando netstat"],
+      solucion: "El comando netstat: muestra conexiones y puertos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "Define el comando systemctl.",
+      respuestas: ["servicios", "el comando systemctl"],
+      solucion: "El comando systemctl: gestiona servicios del sistema.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el modo recuperación?",
+      respuestas: ["reparar", "el modo recuperación"],
+      solucion: "El modo recuperación: arranque alternativo para reparar el sistema.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de ubuntu que conviene repasar antes del examen." }
   ]
 };
 
@@ -3802,7 +5703,475 @@ DATOS.redes = {
       respuestas: ["wpa2", "wpa3", "cifrado", "interferencias", "banda abierta", "no exclusiva"],
       solucion: "La banda de frecuencias WiFi es de uso no exclusivo: cualquiera puede usarla sin autorización, lo que la hace vulnerable a escuchas. Por eso exige un cifrado robusto, como WPA2 o WPA3. Además hay que vigilar las interferencias (microondas, teléfonos inalámbricos, otras redes) y la ubicación de los equipos y obstáculos.",
       nivel: "avanzado",
-      explicacion: "La fibra óptica, por contra, es muy segura frente a escuchas." }
+      explicacion: "La fibra óptica, por contra, es muy segura frente a escuchas." },
+
+    { q: "¿Qué es un protocolo de red?",
+      respuestas: ["reglas", "un protocolo de red"],
+      solucion: "Un protocolo de red: conjunto de reglas que permiten comunicarse a los dispositivos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un servidor?",
+      respuestas: ["ofrece servicios", "un servidor"],
+      solucion: "Un servidor: ordenador que ofrece servicios a otros equipos de la red.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un cliente.",
+      respuestas: ["solicita", "un cliente"],
+      solucion: "Un cliente: equipo que solicita y consume los servicios del servidor.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define un nodo.",
+      respuestas: ["dispositivo conectado", "un nodo"],
+      solucion: "Un nodo: dispositivo cualquiera conectado a la red.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es un switch?",
+      respuestas: ["puerto de destino", "un switch"],
+      solucion: "Un switch: dispositivo que conecta equipos en una LAN y envía los datos solo al puerto de destino.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un router?",
+      respuestas: ["interconecta redes", "un router"],
+      solucion: "Un router: dispositivo que interconecta redes distintas y dirige los paquetes.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un hub.",
+      respuestas: ["todos los puertos", "un hub"],
+      solucion: "Un hub: dispositivo antiguo que reparte la señal a todos los puertos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define una tarjeta de red.",
+      respuestas: ["conectarse a la red", "una tarjeta de red"],
+      solucion: "Una tarjeta de red: componente que permite al ordenador conectarse a la red.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el cable UTP?",
+      respuestas: ["par trenzado", "el cable utp"],
+      solucion: "El cable UTP: par trenzado sin apantallamiento usado en Ethernet.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el cable STP?",
+      respuestas: ["apantallamiento", "el cable stp"],
+      solucion: "El cable STP: par trenzado con apantallamiento que reduce las interferencias.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la fibra óptica.",
+      respuestas: ["pulsos de luz", "la fibra óptica"],
+      solucion: "La fibra óptica: cable que transmite datos como pulsos de luz.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el cable coaxial.",
+      respuestas: ["conductor central", "el cable coaxial"],
+      solucion: "El cable coaxial: cable con conductor central y malla usado antiguamente en Ethernet.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una LAN?",
+      respuestas: ["área local", "una lan"],
+      solucion: "Una LAN: red de área local que cubre un edificio o aula.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve una WAN?",
+      respuestas: ["área extensa", "una wan"],
+      solucion: "Una WAN: red de área extensa que conecta redes geográficamente separadas.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es una MAN.",
+      respuestas: ["metropolitana", "una man"],
+      solucion: "Una MAN: red de área metropolitana que cubre una ciudad.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define una PAN.",
+      respuestas: ["área personal", "una pan"],
+      solucion: "Una PAN: red de área personal de pocos metros, como Bluetooth.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es Internet?",
+      respuestas: ["red mundial", "internet"],
+      solucion: "Internet: red mundial de redes que usa el protocolo TCP/IP.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve una intranet?",
+      respuestas: ["privada", "una intranet"],
+      solucion: "Una intranet: red privada interna de una organización.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es una extranet.",
+      respuestas: ["externos", "una extranet"],
+      solucion: "Una extranet: red privada que se abre parcialmente a usuarios externos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define un navegador.",
+      respuestas: ["páginas web", "un navegador"],
+      solucion: "Un navegador: programa que permite visitar páginas web.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una URL?",
+      respuestas: ["dirección", "una url"],
+      solucion: "Una URL: dirección que identifica un recurso en Internet.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un dominio?",
+      respuestas: ["nombre", "un dominio"],
+      solucion: "Un dominio: nombre legible que identifica una dirección IP.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el DNS.",
+      respuestas: ["traduce nombres", "el dns"],
+      solucion: "El DNS: servicio que traduce nombres de dominio a direcciones IP.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el correo electrónico.",
+      respuestas: ["mensajes", "el correo electrónico"],
+      solucion: "El correo electrónico: servicio que permite enviar mensajes por la red.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el protocolo FTP?",
+      respuestas: ["transferir archivos", "el protocolo ftp"],
+      solucion: "El protocolo FTP: protocolo para transferir archivos entre equipos.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el protocolo HTTP?",
+      respuestas: ["páginas web", "el protocolo http"],
+      solucion: "El protocolo HTTP: protocolo de aplicación para transferir páginas web.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es un puerto de red.",
+      respuestas: ["número", "un puerto de red"],
+      solucion: "Un puerto de red: número que identifica un servicio dentro de una IP.",
+      nivel: "basico",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el modelo OSI.",
+      respuestas: ["7 capas", "el modelo osi"],
+      solucion: "El modelo OSI: modelo de referencia de 7 capas para las comunicaciones.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el modelo TCP/IP?",
+      respuestas: ["4 capas", "el modelo tcp/ip"],
+      solucion: "El modelo TCP/IP: modelo de 4 capas usado por Internet.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la capa física?",
+      respuestas: ["bits", "la capa física"],
+      solucion: "La capa física: nivel que transmite bits por el medio físico.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la capa de enlace.",
+      respuestas: ["tramas", "la capa de enlace"],
+      solucion: "La capa de enlace: nivel que empaqueta datos en tramas y usa direcciones MAC.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define la capa de red.",
+      respuestas: ["paquetes", "la capa de red"],
+      solucion: "La capa de red: nivel que dirige paquetes usando direcciones IP.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la capa de transporte?",
+      respuestas: ["extremo a extremo", "la capa de transporte"],
+      solucion: "La capa de transporte: nivel que garantiza la entrega de extremo a extremo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve la capa de sesión?",
+      respuestas: ["sesión", "la capa de sesión"],
+      solucion: "La capa de sesión: nivel que establece y mantiene la sesión entre aplicaciones.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la capa de presentación.",
+      respuestas: ["formato", "la capa de presentación"],
+      solucion: "La capa de presentación: nivel que da formato, cifra y comprime los datos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define la capa de aplicación.",
+      respuestas: ["servicios", "la capa de aplicación"],
+      solucion: "La capa de aplicación: nivel donde están los servicios visibles para el usuario.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el protocolo TCP?",
+      respuestas: ["orientado a conexión", "el protocolo tcp"],
+      solucion: "El protocolo TCP: protocolo orientado a conexión y fiable.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el protocolo UDP?",
+      respuestas: ["sin conexión", "el protocolo udp"],
+      solucion: "El protocolo UDP: protocolo sin conexión y más rápido pero no fiable.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la conmutación de paquetes.",
+      respuestas: ["paquetes", "la conmutación de paquetes"],
+      solucion: "La conmutación de paquetes: técnica que divide la información en paquetes con destino independiente.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el MTU.",
+      respuestas: ["tamaño máximo", "el mtu"],
+      solucion: "El MTU: tamaño máximo de paquete que puede viajar por una red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es un gateway?",
+      respuestas: ["conecta dos redes", "un gateway"],
+      solucion: "Un gateway: equipo que conecta dos redes con protocolos distintos.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el enrutamiento estático?",
+      respuestas: ["manualmente", "el enrutamiento estático"],
+      solucion: "El enrutamiento estático: rutas configuradas manualmente en el router.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el enrutamiento dinámico.",
+      respuestas: ["automáticamente", "el enrutamiento dinámico"],
+      solucion: "El enrutamiento dinámico: rutas que los routers aprenden automáticamente.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el protocolo ARP.",
+      respuestas: ["IP a MAC", "el protocolo arp"],
+      solucion: "El protocolo ARP: protocolo que traduce direcciones IP a MAC.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el protocolo ICMP?",
+      respuestas: ["diagnóstico", "el protocolo icmp"],
+      solucion: "El protocolo ICMP: protocolo de diagnóstico usado por ping.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el comando ping?",
+      respuestas: ["conectividad", "el comando ping"],
+      solucion: "El comando ping: comando que comprueba la conectividad con otro equipo.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el comando tracert.",
+      respuestas: ["ruta", "el comando tracert"],
+      solucion: "El comando tracert: comando que muestra la ruta seguida por los paquetes.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define el TTL.",
+      respuestas: ["saltos", "el ttl"],
+      solucion: "El TTL: valor que limita el número de saltos de un paquete.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una máscara de subred?",
+      respuestas: ["parte de red", "una máscara de subred"],
+      solucion: "Una máscara de subred: número que separa la parte de red de la parte de host en una IP.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el CIDR?",
+      respuestas: ["bits de red", "el cidr"],
+      solucion: "El CIDR: notación que indica la IP y el número de bits de red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es las clases A, B y C.",
+      respuestas: ["clasificación", "las clases a, b y c"],
+      solucion: "Las clases A, B y C: clasificación antigua de las direcciones IP según su tamaño.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define IPv6.",
+      respuestas: ["128 bits", "ipv6"],
+      solucion: "IPv6: versión de IP de 128 bits que sustituye a IPv4.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una VPN?",
+      respuestas: ["túnel cifrado", "una vpn"],
+      solucion: "Una VPN: túnel cifrado que permite comunicarse de forma segura por otra red.",
+      nivel: "medio",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el algoritmo OSPF?",
+      respuestas: ["Dijkstra", "el algoritmo ospf"],
+      solucion: "El algoritmo OSPF: protocolo de enrutamiento de estado de enlace que usa Dijkstra.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el protocolo BGP.",
+      respuestas: ["sistemas autónomos", "el protocolo bgp"],
+      solucion: "El protocolo BGP: protocolo de enrutamiento entre sistemas autónomos de Internet.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define MPLS.",
+      respuestas: ["etiqueta", "mpls"],
+      solucion: "MPLS: técnica que etiqueta los paquetes para enrutarlos rápidamente.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es una VLAN?",
+      respuestas: ["red lógica", "una vlan"],
+      solucion: "Una VLAN: red lógica independiente creada sobre una física.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el protocolo STP?",
+      respuestas: ["bucles", "el protocolo stp"],
+      solucion: "El protocolo STP: protocolo que evita bucles en redes conmutadas.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es LACP.",
+      respuestas: ["agrupa", "lacp"],
+      solucion: "LACP: protocolo que agrupa varios enlaces físicos en uno lógico.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define un firewall.",
+      respuestas: ["filtra", "un firewall"],
+      solucion: "Un firewall: sistema que filtra el tráfico según reglas de seguridad.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es un IDS?",
+      respuestas: ["detecta", "un ids"],
+      solucion: "Un IDS: sistema que detecta intrusiones y alerta.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve un IPS?",
+      respuestas: ["bloquea", "un ips"],
+      solucion: "Un IPS: sistema que detecta y bloquea intrusiones activamente.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es una DMZ.",
+      respuestas: ["zona perimetral", "una dmz"],
+      solucion: "Una DMZ: zona perimetral donde se colocan servidores públicos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define WPA2.",
+      respuestas: ["AES", "wpa2"],
+      solucion: "WPA2: estándar de seguridad WiFi que usa AES.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es WEP?",
+      respuestas: ["inseguro", "wep"],
+      solucion: "WEP: cifrado WiFi antiguo e inseguro.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el SSID?",
+      respuestas: ["nombre", "el ssid"],
+      solucion: "El SSID: nombre que identifica una red inalámbrica.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es la banda de 2,4 GHz.",
+      respuestas: ["canales", "la banda de 2,4 ghz"],
+      solucion: "La banda de 2,4 GHz: banda WiFi con canales de 20 MHz que solapan entre sí.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define MIMO.",
+      respuestas: ["antenas", "mimo"],
+      solucion: "MIMO: técnica WiFi que usa varias antenas para mejorar el rendimiento.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es beamforming?",
+      respuestas: ["dirige la señal", "beamforming"],
+      solucion: "Beamforming: técnica que dirige la señal WiFi hacia el cliente.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve PoE?",
+      respuestas: ["energía", "poe"],
+      solucion: "PoE: tecnología que envía datos y energía por el mismo cable Ethernet.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es SNMP.",
+      respuestas: ["gestionar", "snmp"],
+      solucion: "SNMP: protocolo para gestionar y monitorizar dispositivos de red.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define syslog.",
+      respuestas: ["registro", "syslog"],
+      solucion: "Syslog: protocolo para enviar mensajes de registro a un servidor.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es la ruta por defecto?",
+      respuestas: ["más específica", "la ruta por defecto"],
+      solucion: "La ruta por defecto: ruta usada cuando no hay una más específica para el destino.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el NAT estático?",
+      respuestas: ["fija", "el nat estático"],
+      solucion: "El NAT estático: traducción fija entre una IP pública y una privada.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Explica qué es el PAT.",
+      respuestas: ["puertos", "el pat"],
+      solucion: "El PAT: traducción que comparte una IP pública con muchos equipos usando puertos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "Define la fragmentación IP.",
+      respuestas: ["fragmentos", "la fragmentación ip"],
+      solucion: "La fragmentación IP: división de un paquete grande en fragmentos más pequeños.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Qué es el checksum?",
+      respuestas: ["detecta errores", "el checksum"],
+      solucion: "El checksum: valor de comprobación que detecta errores en los datos.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." },
+
+    { q: "¿Para qué sirve el DNS recursivo?",
+      respuestas: ["todas las peticiones", "el dns recursivo"],
+      solucion: "El DNS recursivo: consulta en la que el servidor hace todas las peticiones hasta resolver.",
+      nivel: "avanzado",
+      explicacion: "Concepto del bloque de redes que conviene repasar antes del examen." }
   ]
 };
 
@@ -4738,7 +7107,7 @@ const Abiertas = (() => {
    conversiones.js  ·  Práctica de conversiones
    ---------------------------------------------------------
    Tercer bloque de la aplicación: convertir unidades de
-   almacenamiento (KB/MB/GB/TB) y números binarios a decimal.
+   almacenamiento (KB/MB/GB/TB) y números entre binario y decimal.
    Incluye calculadora, ejercicios aleatorios, resultado y
    explicación paso a paso.
    ========================================================= */
@@ -4751,7 +7120,8 @@ const Conversiones = (() => {
 
   let ejUnidades = null;
   let ejBinario = null;
-  const marca = { unidades: { bien: 0, total: 0 }, binario: { bien: 0, total: 0 } };
+  let ejDecimal = null;
+  const marca = { unidades: { bien: 0, total: 0 }, binario: { bien: 0, total: 0 }, decimal: { bien: 0, total: 0 } };
 
   const $ = (id) => document.getElementById(id);
 
@@ -4815,6 +7185,32 @@ const Conversiones = (() => {
     );
   }
 
+  /** Convierte un número decimal a su representación binaria (solo enteros) */
+  function aBinario(decimal) {
+    if (decimal === 0) return "0";
+    const bits = [];
+    let valor = decimal;
+    while (valor > 0) {
+      bits.unshift(String(valor % 2));
+      valor = Math.floor(valor / 2);
+    }
+    return bits.join("");
+  }
+
+  /** Explicación paso a paso de la conversión decimal -> binario */
+  function explicarDecimalBinario(decimal, binario) {
+    const suma = [];
+    binario.split("").forEach((b, i) => {
+      const potencia = binario.length - 1 - i;
+      if (b === "1") suma.push("2^" + potencia);
+    });
+    const operacion = suma.length ? suma.join(" + ") + " = " + fmt(decimal) : "0 = 0";
+    return (
+      "El número " + fmt(decimal) + " en binario es el patrón " + binario +
+      " (con 0 y 1, sin signos). Se obtiene dividiendo el número entre 2 sucesivamente y anotando los restos de cada división: " + operacion + "."
+    );
+  }
+
   /* ---------- Calculadora de unidades ---------- */
 
   function calcularUnidades() {
@@ -4846,6 +7242,25 @@ const Conversiones = (() => {
     const decimal = aDecimal(texto);
     $("bin-resultado").textContent = fmt(decimal);
     $("bin-explicacion").textContent = explicarBinario(texto, decimal);
+  }
+
+  /* ---------- Calculadora decimal a binario ---------- */
+
+  function calcularDecimal() {
+    const dato = num($("dec-entrada").value);
+    const texto = String($("dec-entrada").value || "").trim().replace(/\s/g, "").replace(",", ".");
+    const entero = /^-?\d+(\.0+)?$/.test(texto) ? Number(texto) : null;
+
+    if (entero === null || !Number.isInteger(entero) || entero < 0 || entero > 4294967295) {
+      $("dec-resultado").textContent = "—";
+      $("dec-explicacion").textContent =
+        "Escribe un número entero positivo (máximo 4294967295). Por ejemplo: 13.";
+      return;
+    }
+
+    const binario = aBinario(entero);
+    $("dec-resultado").textContent = binario;
+    $("dec-explicacion").textContent = explicarDecimalBinario(entero, binario);
   }
 
   /* ---------- Ejercicios aleatorios ---------- */
@@ -4902,46 +7317,63 @@ const Conversiones = (() => {
     $("ej-bin-marcador").textContent = marcador(marca.binario);
   }
 
+  function generarEjDecimal() {
+    const decimal = azar(2, 1023);
+    const binario = aBinario(decimal);
+    ejDecimal = { decimal, binario, corregida: false, explicacion: explicarDecimalBinario(decimal, binario) };
+
+    $("ej-dec-enunciado").textContent =
+      "Convierte el número decimal " + decimal + " a binario (solo unos y ceros). Escribe solo el número.";
+    $("ej-dec-respuesta").value = "";
+    $("ej-dec-respuesta").disabled = false;
+    $("ej-dec-feedback").className = "conv-feedback test-oculto";
+    $("ej-dec-feedback").textContent = "";
+    $("ej-dec-marcador").textContent = marcador(marca.decimal);
+  }
+
   function marcador(m) {
     return "Aciertos: " + m.bien + " / " + m.total;
   }
 
   function comprobar(tipo) {
     const esUnidades = tipo === "unidades";
-    const ej = esUnidades ? ejUnidades : ejBinario;
+    const esDecimal = tipo === "decimal";
+    const ej = esUnidades ? ejUnidades : esDecimal ? ejDecimal : ejBinario;
     if (!ej || ej.corregida) return;
 
-    const campo = esUnidades ? $("ej-unidades-respuesta") : $("ej-bin-respuesta");
+    const campo = esUnidades ? $("ej-unidades-respuesta") : esDecimal ? $("ej-dec-respuesta") : $("ej-bin-respuesta");
+    const feedback = $("ej-" + (esUnidades ? "unidades" : esDecimal ? "dec" : "bin") + "-feedback");
     const dado = num(campo.value);
     if (dado === null) {
       campo.focus();
-      $("ej-" + (esUnidades ? "unidades" : "bin") + "-feedback").className =
-        "conv-feedback conv-aviso";
-      $("ej-" + (esUnidades ? "unidades" : "bin") + "-feedback").textContent =
-        "Escribe un número antes de comprobar.";
+      feedback.className = "conv-feedback conv-aviso";
+      feedback.textContent = "Escribe un número antes de comprobar.";
       return;
     }
 
     ej.corregida = true;
     const correcto = esUnidades
       ? Math.abs(dado - ej.resultado) < Math.max(1e-6, Math.abs(ej.resultado) * 1e-9)
+      : esDecimal
+      ? String(campo.value || "").trim().replace(/\s/g, "") === ej.binario
       : Math.abs(dado - ej.decimal) < 1e-9;
 
     const m = marca[tipo];
     m.total++;
     if (correcto) m.bien++;
 
-    const feedback = $("ej-" + (esUnidades ? "unidades" : "bin") + "-feedback");
     feedback.className = "conv-feedback " + (correcto ? "conv-ok" : "conv-ko");
     feedback.textContent =
       (correcto ? "¡Correcto! " : "Incorrecto. ") +
       "Resultado: " + (esUnidades
         ? fmt(ej.resultado) + " " + ej.hasta
+        : esDecimal
+        ? ej.binario
         : fmt(ej.decimal)) +
       ". " + ej.explicacion;
 
     campo.disabled = true;
-    $("ej-" + (esUnidades ? "unidades" : "bin") + "-marcador").textContent = marcador(m);
+    $("ej-" + (esUnidades ? "unidades" : esDecimal ? "dec" : "bin") + "-marcador").textContent = marcador(m);
   }
 
   /* ---------- Arranque ---------- */
@@ -4949,25 +7381,32 @@ const Conversiones = (() => {
   function iniciar() {
     $("btn-calcular-unidades").addEventListener("click", calcularUnidades);
     $("btn-calcular-binario").addEventListener("click", calcularBinario);
+    $("btn-calcular-decimal").addEventListener("click", calcularDecimal);
     $("btn-ej-unidades-nuevo").addEventListener("click", generarEjUnidades);
     $("btn-ej-unidades-comprobar").addEventListener("click", () => comprobar("unidades"));
     $("btn-ej-bin-nuevo").addEventListener("click", generarEjBinario);
     $("btn-ej-bin-comprobar").addEventListener("click", () => comprobar("binario"));
+    $("btn-ej-dec-nuevo").addEventListener("click", generarEjDecimal);
+    $("btn-ej-dec-comprobar").addEventListener("click", () => comprobar("decimal"));
 
     // Permitir comprobar con la tecla Intro
-    [["ej-unidades-respuesta", "unidades"], ["ej-bin-respuesta", "binario"]].forEach(([id, tipo]) => {
-      $(id).addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          comprobar(tipo);
-        }
-      });
-    });
+    [["ej-unidades-respuesta", "unidades"], ["ej-bin-respuesta", "binario"], ["ej-dec-respuesta", "decimal"]].forEach(
+      ([id, tipo]) => {
+        $(id).addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            comprobar(tipo);
+          }
+        });
+      }
+    );
 
     calcularUnidades();
     calcularBinario();
+    calcularDecimal();
     generarEjUnidades();
     generarEjBinario();
+    generarEjDecimal();
   }
 
   function volverAConfig() {
@@ -4978,8 +7417,10 @@ const Conversiones = (() => {
     return (
       marca.unidades.total > 0 ||
       marca.binario.total > 0 ||
+      marca.decimal.total > 0 ||
       (ejUnidades && ejUnidades.corregida) ||
-      (ejBinario && ejBinario.corregida)
+      (ejBinario && ejBinario.corregida) ||
+      (ejDecimal && ejDecimal.corregida)
     );
   }
 
@@ -4988,14 +7429,19 @@ const Conversiones = (() => {
     marca.unidades.total = 0;
     marca.binario.bien = 0;
     marca.binario.total = 0;
+    marca.decimal.bien = 0;
+    marca.decimal.total = 0;
     $("conv-valor").value = "2.5";
     $("conv-desde").value = "GB";
     $("conv-hasta").value = "MB";
     $("bin-entrada").value = "101101";
+    $("dec-entrada").value = "13";
     calcularUnidades();
     calcularBinario();
+    calcularDecimal();
     generarEjUnidades();
     generarEjBinario();
+    generarEjDecimal();
   }
 
   return { iniciar, volverAConfig, hayProgreso, reiniciar };

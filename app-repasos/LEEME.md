@@ -11,8 +11,8 @@ Aplicación de repaso con cuatro bloques:
    (10, 20 o 30)**, **barajar las preguntas** y si ve la **respuesta oficial y la
    explicación al terminar** o al comprobar cada una. Al final hay una revisión
    completa con la respuesta del alumno, la oficial y la explicación.
-3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
-   y de binario a decimal, con resultado, explicación y aciertos.
+3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024),
+   de binario a decimal y de decimal a binario, con resultado, explicación y aciertos.
 4. **Montar un equipo** — la opción principal es un enlace a **Eniun PC Lab**
    (`https://pclab.eniun.com/`), que se abre en pestaña nueva. También está el
    *configurador de equipo* (compatibilidad y presupuesto).

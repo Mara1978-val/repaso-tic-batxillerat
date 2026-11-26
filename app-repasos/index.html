@@ -180,7 +180,7 @@
 
     <div class="conv-intro">
       <h2>Práctica de conversiones</h2>
-      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) en base binaria (1024) y números binarios a decimal.
+      <p>Convierte unidades de almacenamiento (GB, MB, KB, TB) en base binaria (1024) y números entre binario y decimal (binario ↔ decimal, y decimal → binario).
          Usa la calculadora para ver el resultado y su explicación, o resuelve ejercicios aleatorios.</p>
     </div>
 
@@ -272,6 +272,41 @@
           </div>
           <div class="conv-feedback test-oculto" id="ej-bin-feedback"></div>
           <p class="conv-marcador" id="ej-bin-marcador">Aciertos: 0 / 0</p>
+        </div>
+      </div>
+
+      <div class="conv-card">
+        <h3>Decimal a binario</h3>
+
+        <div class="conv-bloque">
+          <h4>Calculadora</h4>
+          <div class="conv-fila">
+            <label>Número decimal
+              <input type="text" inputmode="decimal" id="dec-entrada" value="13" placeholder="Ej.: 13">
+            </label>
+          </div>
+          <button class="btn-grande" id="btn-calcular-decimal">Convertir a binario</button>
+          <div class="conv-resultado">
+            <span class="conv-resultado-titulo">Resultado</span>
+            <strong id="dec-resultado">—</strong>
+          </div>
+          <div class="conv-explicacion" id="dec-explicacion"></div>
+        </div>
+
+        <div class="conv-bloque">
+          <h4>Ejercicio aleatorio</h4>
+          <p class="conv-enunciado" id="ej-dec-enunciado"></p>
+          <div class="conv-fila">
+            <label>Tu respuesta
+              <input type="text" inputmode="binary" id="ej-dec-respuesta" placeholder="Solo el binario">
+            </label>
+          </div>
+          <div class="acciones">
+            <button class="btn-grande" id="btn-ej-dec-comprobar">Comprobar</button>
+            <button class="btn-grande secundario" id="btn-ej-dec-nuevo">Nuevo ejercicio</button>
+          </div>
+          <div class="conv-feedback test-oculto" id="ej-dec-feedback"></div>
+          <p class="conv-marcador" id="ej-dec-marcador">Aciertos: 0 / 0</p>
         </div>
       </div>
 

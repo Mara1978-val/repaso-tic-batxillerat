@@ -17,8 +17,8 @@ con cuatro bloques de práctica:
    comprobarla en cada pregunta. Al final aparece una **revisión completa** con
    la respuesta del alumno, la oficial y la explicación de cada una.
 3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
-   (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
-   explicación paso a paso y contador de aciertos.
+   (siempre en **base binaria 1024**), **binario a decimal** y **decimal a binario**, con
+   resultado, explicación paso a paso y contador de aciertos.
 4. **Montar un equipo** — la actividad principal es un enlace al **simulador oficial
    de Eniun PC Lab** (`https://pclab.eniun.com/`), que se abre en pestaña nueva.
    Junto a él está el **configurador de equipo** (elige CPU, placa, RAM, disco,
@@ -29,9 +29,9 @@ con cuatro bloques de práctica:
    **taller 3D** con Three.js incluido (cámara giratoria y ranuras 3D). Ambos
    funcionan sin internet.
 
-**450 preguntas de test + 61 preguntas abiertas**, redactadas a partir de los
-materiales del curso. Hay 30 preguntas de test por tema y nivel, para poder elegir
-tests de 10, 20 o 30 preguntas en cualquier combinación.
+**450 preguntas de test + 450 preguntas abiertas**, redactadas a partir de los
+materiales del curso. Hay 30 preguntas de test y 30 preguntas abiertas por tema y
+nivel, para poder elegir tests de 10, 20 o 30 preguntas en cualquier combinación.
 
 Todo funciona **sin conexión a internet**: no hay que instalar nada.
 
@@ -151,12 +151,12 @@ DATOS.redes.abiertas.push({
 
 | Tema               | Básico | Medio | Avanzado | Abiertas |
 |--------------------|-------:|------:|---------:|---------:|
-| Hardware           |     30 |    30 |       30 |       12 |
-| Máquinas Virtuales |     30 |    30 |       30 |       12 |
-| Windows            |     30 |    30 |       30 |       12 |
-| Ubuntu             |     30 |    30 |       30 |       13 |
-| Redes              |     30 |    30 |       30 |       12 |
-| **Total**          |    **450 preguntas de test** | | **61 abiertas** | |
+| Hardware           |     30 |    30 |       30 |       90 |
+| Máquinas Virtuales |     30 |    30 |       30 |       90 |
+| Windows            |     30 |    30 |       30 |       90 |
+| Ubuntu             |     30 |    30 |       30 |       90 |
+| Redes              |     30 |    30 |       30 |       90 |
+| **Total**          |    **450 preguntas de test** | | **450 abiertas** | |
 
 ---
 
