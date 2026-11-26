@@ -7,7 +7,10 @@ Aplicación de repaso con cuatro bloques:
    Al terminar ve la **puntuación en %**, el número de aciertos, una explicación por
    pregunta y una revisión completa de todo el test.
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
-   aplicación le dice **si es correcta o no**, muestra la respuesta oficial y una pista.
+   aplicación le dice **si es correcta o no**. Puede elegir el **número de preguntas
+   (10, 20 o 30)**, **barajar las preguntas** y si ve la **respuesta oficial y la
+   explicación al terminar** o al comprobar cada una. Al final hay una revisión
+   completa con la respuesta del alumno, la oficial y la explicación.
 3. **Conversiones** — calculadora y ejercicios de GB ↔ TB/MB/KB (siempre base 1024)
    y de binario a decimal, con resultado, explicación y aciertos.
 4. **Montar un equipo** — la opción principal es un enlace a **Eniun PC Lab**

@@ -11,7 +11,11 @@ con cuatro bloques de práctica:
    Al terminar ve la **puntuación en %**, el número de aciertos, una explicación por
    pregunta y una revisión completa del test.
 2. **Preguntas abiertas** — el alumno escribe la respuesta con sus palabras y la
-   aplicación le dice **si es correcta o no**, mostrando la respuesta oficial y una pista.
+   aplicación le dice **si es correcta o no**. También puede elegir el **número de
+   preguntas (10, 20 o 30)**, **barajar el orden** de las preguntas y decidir si
+   ve la **respuesta oficial y la explicación al terminar** (por defecto) o
+   comprobarla en cada pregunta. Al final aparece una **revisión completa** con
+   la respuesta del alumno, la oficial y la explicación de cada una.
 3. **Conversiones** — calculadora y ejercicios aleatorios para convertir **GB a TB, MB y KB**
    (siempre en **base binaria 1024**) y **números binarios a decimal**, con resultado,
    explicación paso a paso y contador de aciertos.

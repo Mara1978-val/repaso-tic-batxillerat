@@ -113,6 +113,23 @@
           <button class="chip" data-nivel="avanzado">Avanzado</button>
         </div>
       </div>
+
+      <div class="bloque-config">
+        <h2>Número de preguntas</h2>
+        <div class="chips" id="chips-numero-abiertas">
+          <button class="chip activo" data-numero="10">10</button>
+          <button class="chip" data-numero="20">20</button>
+          <button class="chip" data-numero="30">30</button>
+        </div>
+        <p class="nota-config" id="dispo-abiertas"></p>
+      </div>
+
+      <div class="bloque-config">
+        <h2>Opciones</h2>
+        <label class="opcion"><input type="checkbox" id="chk-explicacion-abiertas" checked> Ver explicación al terminar</label>
+        <label class="opcion"><input type="checkbox" id="chk-aleatorio-abiertas" checked> Barajar preguntas</label>
+      </div>
+
       <button class="btn-grande" id="btn-empezar-abiertas">Empezar</button>
       <p class="aviso" id="aviso-abiertas"></p>
     </div>
@@ -153,6 +170,7 @@
           <button class="btn-grande secundario" id="btn-cambiar-abiertas">Cambiar tema</button>
         </div>
       </div>
+      <div id="revision-abiertas"></div>
     </div>
 
   </section>

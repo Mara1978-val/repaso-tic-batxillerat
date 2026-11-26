@@ -179,6 +179,7 @@ main{
 .btn-grande.secundario:active{box-shadow:0 1px 0 var(--azul-claro)}
 
 .aviso{grid-column:1/-1;margin:0;color:var(--rojo);font-size:.9rem;min-height:1.2em}
+.nota-config{margin:8px 0 0;font-size:.83rem;color:var(--texto-suave);line-height:1.5}
 
 /* ---------- Barra de progreso ---------- */
 .barra-progreso{
@@ -325,7 +326,7 @@ main{
 .respuesta-correcta{font-weight:600;color:var(--texto) !important}
 
 /* ---------- Revisión detallada ---------- */
-#revision{display:grid;gap:12px}
+#revision,#revision-abiertas{display:grid;gap:12px;margin-top:14px}
 .item-revision{
   background:var(--tarjeta);
   border:1px solid var(--borde);
